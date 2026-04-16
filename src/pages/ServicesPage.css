@@ -1,0 +1,204 @@
+/* =========================================
+   ServicesPage Styles
+   ========================================= */
+
+/* ---- Service Sections ---- */
+.service-section {
+  background: var(--white);
+  padding: var(--section-pad) 0;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.service-section--alt {
+  background: var(--bg);
+}
+
+.service-section__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.service-section__num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--navy-10);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.service-section__text h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.service-section__tagline {
+  font-size: 1rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.service-section__desc {
+  font-size: 1rem;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.service-section__cta { margin-top: 0.5rem; }
+
+/* Capabilities */
+.service-section__capabilities {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-section--alt .service-section__capabilities {
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+}
+
+.service-section__cap-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 1.5rem;
+}
+
+.service-section--alt .service-section__cap-title {
+  color: var(--gray);
+}
+
+.service-section__cap-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.service-section__cap-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+}
+
+.service-section--alt .service-section__cap-item {
+  color: var(--dark);
+}
+
+.service-section__cap-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ---- Process Steps ---- */
+.services-approach {
+  background: var(--navy);
+  padding: var(--section-pad) 0;
+}
+
+.services-approach__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.process-step {
+  padding: 2rem;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: border-color var(--fast), background var(--fast);
+}
+.process-step:hover {
+  border-color: var(--accent);
+  background: rgba(10,132,255,0.05);
+}
+
+.process-step__num {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.process-step h3 {
+  font-size: 1.1rem;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.process-step p {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+}
+
+/* ---- Why AYA ---- */
+.why-aya {
+  background: var(--bg);
+  padding: var(--section-pad) 0;
+}
+
+.why-aya__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.why-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem;
+  border: 1px solid var(--gray-light);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  transition: border-color var(--fast), transform var(--fast);
+}
+.why-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.why-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--accent-light);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.why-card h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+.why-card p { font-size: 0.875rem; color: var(--gray); line-height: 1.65; margin: 0; }
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .service-section__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .services-approach__steps { grid-template-columns: 1fr 1fr; }
+  .why-aya__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .services-approach__steps { grid-template-columns: 1fr; }
+}

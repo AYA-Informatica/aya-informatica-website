@@ -1,0 +1,150 @@
+/* =========================================
+   AYA Informatica – Global Styles
+   Brand Color System: Deep Navy + Soft Light + Tech Blue
+   ========================================= */
+
+:root {
+  /* Brand Colors */
+  --navy: #001529;
+  --navy-80: rgba(0, 21, 41, 0.8);
+  --navy-60: rgba(0, 21, 41, 0.6);
+  --navy-10: rgba(0, 21, 41, 0.08);
+  --bg: #F5F5F5;
+  --white: #FFFFFF;
+  --accent: #0A84FF;
+  --accent-hover: #0066CC;
+  --accent-light: rgba(10, 132, 255, 0.12);
+
+  /* Support Colors */
+  --black: #000000;
+  --dark: #1A1A1A;
+  --gray: #A0A0A0;
+  --gray-light: #E8E8E8;
+  --gray-mid: #D0D0D0;
+
+  /* Typography */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  /* Spacing */
+  --section-pad: clamp(5rem, 10vw, 9rem);
+  --container: 1200px;
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  /* Transitions */
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --fast: 0.2s var(--ease);
+  --med: 0.4s var(--ease);
+  --slow: 0.7s var(--ease);
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography Scale */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  color: var(--navy);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+h4 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+
+p {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  color: var(--dark);
+  line-height: 1.75;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--fast);
+}
+a:hover { color: var(--accent-hover); }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul { list-style: none; }
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  border: none;
+  outline: none;
+}
+
+/* Container */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 3rem);
+}
+
+/* Section Base */
+section {
+  padding: var(--section-pad) 0;
+}
+
+/* ---- Utility Classes ---- */
+.text-accent { color: var(--accent); }
+.text-navy { color: var(--navy); }
+.text-gray { color: var(--gray); }
+
+/* Scroll-reveal animation base */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: var(--white);
+}
