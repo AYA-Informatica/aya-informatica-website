@@ -52,11 +52,17 @@ export default function ContactPage() {
       {/* ===================== HERO ===================== */}
       <section className="page-hero page-hero--navy" aria-label="Contact page hero">
         <div className="page-hero__bg" aria-hidden="true">
+          <div className="page-hero__bg-grid" />
+          <div className="page-hero__bg-circle page-hero__bg-circle--1" />
+          <div className="page-hero__bg-circle page-hero__bg-circle--2" />
           <div className="page-hero__accent-line page-hero__accent-line--1" />
           <div className="page-hero__accent-line page-hero__accent-line--2" />
         </div>
         <div className="container page-hero__content">
-          <span className="section-eyebrow section-eyebrow--light reveal">Contact Us</span>
+          <div className="page-hero__badge reveal">
+            <span className="page-hero__badge-dot" aria-hidden="true" />
+            Contact Us
+          </div>
           <h1 className="reveal reveal-delay-1" style={{ color: 'var(--white)' }}>
             Let's Build<br />
             <span style={{ color: 'var(--accent)' }}>Together</span>
@@ -65,6 +71,10 @@ export default function ContactPage() {
             Whether you want to partner, collaborate, get early access to our products,
             or simply learn more — we'd love to hear from you.
           </p>
+        </div>
+        <div className="page-hero__scroll-hint" aria-hidden="true">
+          <div className="page-hero__scroll-line" />
+          <span>Scroll</span>
         </div>
       </section>
 
@@ -317,7 +327,7 @@ export default function ContactPage() {
             <blockquote>
               "Partner with us to build the future."
             </blockquote>
-            <cite>— AYA Informatica</cite>
+            <cite>~ AYA Informatica</cite>
           </div>
           <div className="contact-closing__pillars">
             {[

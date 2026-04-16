@@ -6,6 +6,8 @@
 .contact-main {
   background: var(--bg);
   padding: var(--section-pad) 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .contact-main__inner {
@@ -267,6 +269,10 @@ a.contact-info__item-value:hover { color: var(--accent); }
 .contact-closing {
   background: var(--navy);
   padding: 5rem 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .contact-closing__inner {

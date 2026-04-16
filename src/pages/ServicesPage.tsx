@@ -61,11 +61,17 @@ export default function ServicesPage() {
       {/* ===================== HERO ===================== */}
       <section className="page-hero page-hero--navy" aria-label="Services page hero">
         <div className="page-hero__bg" aria-hidden="true">
+          <div className="page-hero__bg-grid" />
+          <div className="page-hero__bg-circle page-hero__bg-circle--1" />
+          <div className="page-hero__bg-circle page-hero__bg-circle--2" />
           <div className="page-hero__accent-line page-hero__accent-line--1" />
           <div className="page-hero__accent-line page-hero__accent-line--2" />
         </div>
         <div className="container page-hero__content">
-          <span className="section-eyebrow section-eyebrow--light reveal">Our Services</span>
+          <div className="page-hero__badge reveal">
+            <span className="page-hero__badge-dot" aria-hidden="true" />
+            Our Services
+          </div>
           <h1 className="reveal reveal-delay-1" style={{ color: 'var(--white)' }}>
             We Build.<br />
             <span style={{ color: 'var(--accent)' }}>You Scale.</span>
@@ -75,6 +81,10 @@ export default function ServicesPage() {
             solutions — AYA Informatica brings the technical depth and product
             thinking your business needs to grow.
           </p>
+        </div>
+        <div className="page-hero__scroll-hint" aria-hidden="true">
+          <div className="page-hero__scroll-line" />
+          <span>Scroll</span>
         </div>
       </section>
 

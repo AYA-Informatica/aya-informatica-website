@@ -15,11 +15,17 @@ export default function AboutPage() {
       {/* ===================== PAGE HERO ===================== */}
       <section className="page-hero page-hero--navy" aria-label="About page hero">
         <div className="page-hero__bg" aria-hidden="true">
+          <div className="page-hero__bg-grid" />
+          <div className="page-hero__bg-circle page-hero__bg-circle--1" />
+          <div className="page-hero__bg-circle page-hero__bg-circle--2" />
           <div className="page-hero__accent-line page-hero__accent-line--1" />
           <div className="page-hero__accent-line page-hero__accent-line--2" />
         </div>
         <div className="container page-hero__content">
-          <span className="section-eyebrow section-eyebrow--light reveal">Our Story</span>
+          <div className="page-hero__badge reveal">
+            <span className="page-hero__badge-dot" aria-hidden="true" />
+            Our Story
+          </div>
           <h1 className="reveal reveal-delay-1" style={{ color: 'var(--white)' }}>
             Built From Rwanda.<br />
             <span style={{ color: 'var(--accent)' }}>For Africa.</span>
@@ -29,6 +35,10 @@ export default function AboutPage() {
             to creating impactful digital products that change how Africa lives, trades,
             and connects.
           </p>
+        </div>
+        <div className="page-hero__scroll-hint" aria-hidden="true">
+          <div className="page-hero__scroll-line" />
+          <span>Scroll</span>
         </div>
       </section>
 
@@ -61,7 +71,7 @@ export default function AboutPage() {
             <div className="about-visual-card">
               <div className="about-visual-card__top">
                 <div className="about-visual-stat">
-                  <span className="about-visual-stat__num">2024</span>
+                  <span className="about-visual-stat__num">2026</span>
                   <span className="about-visual-stat__label">Founded in Kigali</span>
                 </div>
                 <div className="about-visual-stat">

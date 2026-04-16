@@ -71,7 +71,7 @@ export default function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>&copy; {year} AYA Informatica. All rights reserved.</p>
+          <p className='footer__ltd'>&copy; {year} AYA Informatica. All rights reserved.</p>
           <p className="footer__mission">Connecting people, businesses &amp; opportunities across Africa.</p>
         </div>
       </div>

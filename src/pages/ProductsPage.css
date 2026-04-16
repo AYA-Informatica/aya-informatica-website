@@ -6,6 +6,8 @@
 .product-detail {
   background: var(--white);
   padding: var(--section-pad) 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .product-detail--humura {
@@ -230,6 +232,8 @@
 /* ---- Feature Cards ---- */
 .product-features {
   padding: var(--section-pad) 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .product-features--light { background: var(--bg); }
 
@@ -351,6 +355,8 @@
 .products-roadmap {
   background: var(--navy);
   padding: var(--section-pad) 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .ecosystem-diagram {

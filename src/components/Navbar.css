@@ -10,6 +10,8 @@
   z-index: 1000;
   padding: 1.25rem 0;
   transition: background var(--med), box-shadow var(--med), padding var(--med);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .navbar--scrolled {
