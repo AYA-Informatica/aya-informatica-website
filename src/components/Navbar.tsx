@@ -79,7 +79,6 @@ export default function Navbar() {
       <div
         id="mobile-menu"
         className={`navbar__mobile${menuOpen ? ' navbar__mobile--open' : ''}`}
-        aria-hidden={!menuOpen}
       >
         <nav aria-label="Mobile navigation">
           {navLinks.map(({ path, label }, i) => (
@@ -88,11 +87,16 @@ export default function Navbar() {
               to={path}
               className={`navbar__mobile-link${pathname === path ? ' navbar__mobile-link--active' : ''}`}
               style={{ animationDelay: `${i * 0.06}s` }}
+              tabIndex={menuOpen ? 0 : -1}
             >
               {label}
             </Link>
           ))}
-          <Link to="/contact" className="btn btn--primary navbar__mobile-cta">
+          <Link 
+            to="/contact" 
+            className="btn btn--primary navbar__mobile-cta"
+            tabIndex={menuOpen ? 0 : -1}
+          >
             Partner With Us
           </Link>
         </nav>
