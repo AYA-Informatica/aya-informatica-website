@@ -152,8 +152,9 @@
 .about-overview {
   background: var(--white);
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -4rem;
+  position: relative;
+  z-index: 2;
 }
 
 .about-overview__inner {
@@ -231,8 +232,10 @@
 .vm-section {
   background: var(--bg);
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 3;
 }
 
 .vm-section__grid {
@@ -286,8 +289,10 @@
 .team-section {
   background: var(--white);
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 4;
 }
 
 .team-section__grid {
@@ -340,8 +345,10 @@
 .roadmap {
   background: var(--navy);
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 5;
 }
 
 .roadmap__steps {
@@ -384,8 +391,10 @@
 .about-cta {
   background: var(--bg);
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 6;
 }
 .about-cta__inner {
   text-align: center;

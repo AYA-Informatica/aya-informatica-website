@@ -6,8 +6,9 @@
 .contact-main {
   background: var(--bg);
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -4rem;
+  position: relative;
+  z-index: 2;
 }
 
 .contact-main__inner {
@@ -269,10 +270,10 @@ a.contact-info__item-value:hover { color: var(--accent); }
 .contact-closing {
   background: var(--navy);
   padding: 5rem 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(5rem + 3rem);
+  position: relative;
+  z-index: 3;
 }
 
 .contact-closing__inner {

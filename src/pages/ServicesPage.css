@@ -7,12 +7,17 @@
   background: var(--white);
   padding: var(--section-pad) 0;
   border-bottom: 1px solid var(--gray-light);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -4rem;
+  position: relative;
+  z-index: 2;
 }
 
 .service-section--alt {
   background: var(--bg);
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 3;
 }
 
 .service-section__inner {
@@ -111,8 +116,10 @@
 .services-approach {
   background: var(--navy);
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 4;
 }
 
 .services-approach__steps {
@@ -158,8 +165,10 @@
 .why-aya {
   background: var(--bg);
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 5;
 }
 
 .why-aya__grid {

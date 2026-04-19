@@ -6,12 +6,17 @@
 .product-detail {
   background: var(--white);
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -4rem;
+  position: relative;
+  z-index: 2;
 }
 
 .product-detail--humura {
   background: var(--bg);
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 4;
 }
 
 .product-detail__inner {
@@ -232,8 +237,10 @@
 /* ---- Feature Cards ---- */
 .product-features {
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 3;
 }
 .product-features--light { background: var(--bg); }
 
@@ -355,8 +362,10 @@
 .products-roadmap {
   background: var(--navy);
   padding: var(--section-pad) 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 5;
 }
 
 .ecosystem-diagram {

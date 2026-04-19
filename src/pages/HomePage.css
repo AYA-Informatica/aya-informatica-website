@@ -181,8 +181,9 @@
   background: var(--white);
   padding: 3rem 0;
   border-bottom: 1px solid var(--gray-light);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -4rem;
+  position: relative;
+  z-index: 2;
 }
 
 .stats-strip__inner {
@@ -219,8 +220,8 @@
 /* ===================== PILLARS ===================== */
 .pillars {
   background: var(--bg);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  position: relative;
+  z-index: 3;
 }
 
 .pillars__grid {
@@ -291,8 +292,10 @@
 /* ===================== PRODUCTS PREVIEW ===================== */
 .products-preview {
   background: var(--navy);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 4;
 }
 
 .products-preview__grid {
@@ -392,8 +395,10 @@
 /* ===================== APPROACH ===================== */
 .approach {
   background: var(--bg);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(var(--section-pad) + 3rem);
+  position: relative;
+  z-index: 5;
 }
 
 .approach__inner {
@@ -451,8 +456,10 @@
   background: var(--white);
   border-top: 1px solid var(--gray-light);
   padding: 5rem 0;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  margin-top: -3rem;
+  padding-top: calc(5rem + 3rem);
+  position: relative;
+  z-index: 6;
 }
 
 .cta-banner__inner {
