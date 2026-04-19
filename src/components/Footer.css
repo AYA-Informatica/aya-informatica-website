@@ -111,6 +111,9 @@
 
 /* Responsive */
 @media (max-width: 900px) {
+  .footer {
+    padding: 4rem 0 2rem;
+  }
   .footer__grid {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
@@ -118,14 +121,25 @@
   .footer__brand {
     grid-column: 1 / -1;
   }
+  .footer__logo-img {
+    height: 42px;
+  }
 }
 
 @media (max-width: 500px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+  }
   .footer__grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .footer__logo-img {
+    height: 38px;
   }
   .footer__bottom {
     flex-direction: column;
     text-align: center;
+    gap: 1rem;
   }
 }
