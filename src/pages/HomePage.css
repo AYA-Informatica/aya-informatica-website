@@ -486,6 +486,15 @@
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 6rem 0 4rem;
+  }
+  .hero__scroll-hint { display: none; }
+  .stats-strip { margin-top: 0; }
+  .products-preview { margin-top: 0; padding-top: var(--section-pad); }
+  .approach { margin-top: 0; padding-top: var(--section-pad); }
+  .cta-banner { margin-top: 0; padding-top: 5rem; }
   .stats-strip__inner { grid-template-columns: repeat(2, 1fr); }
   .pillars__grid { grid-template-columns: 1fr; }
   .products-preview__grid { grid-template-columns: 1fr; }

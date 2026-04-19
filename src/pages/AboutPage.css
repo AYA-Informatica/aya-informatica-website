@@ -406,6 +406,16 @@
 
 /* ---- Responsive ---- */
 @media (max-width: 900px) {
+  .page-hero {
+    min-height: auto;
+    padding: 6rem 0 4rem;
+  }
+  .page-hero__scroll-hint { display: none; }
+  .about-overview { margin-top: 0; }
+  .vm-section { margin-top: 0; padding-top: var(--section-pad); }
+  .team-section { margin-top: 0; padding-top: var(--section-pad); }
+  .roadmap { margin-top: 0; padding-top: var(--section-pad); }
+  .about-cta { margin-top: 0; padding-top: var(--section-pad); }
   .about-overview__inner { grid-template-columns: 1fr; gap: 3rem; }
   .vm-section__grid { grid-template-columns: 1fr; }
   .team-section__grid { grid-template-columns: 1fr; }

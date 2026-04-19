@@ -209,6 +209,15 @@
 
 /* ---- Responsive ---- */
 @media (max-width: 900px) {
+  .page-hero {
+    min-height: auto;
+    padding: 6rem 0 4rem;
+  }
+  .page-hero__scroll-hint { display: none; }
+  .service-section { margin-top: 0; }
+  .service-section--alt { margin-top: 0; padding-top: var(--section-pad); }
+  .services-approach { margin-top: 0; padding-top: var(--section-pad); }
+  .why-aya { margin-top: 0; padding-top: var(--section-pad); }
   .service-section__inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .services-approach__steps { grid-template-columns: 1fr 1fr; }
   .why-aya__grid { grid-template-columns: 1fr; }

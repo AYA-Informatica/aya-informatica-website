@@ -327,6 +327,13 @@ a.contact-info__item-value:hover { color: var(--accent); }
 
 /* ---- Responsive ---- */
 @media (max-width: 1024px) {
+  .page-hero {
+    min-height: auto;
+    padding: 6rem 0 4rem;
+  }
+  .page-hero__scroll-hint { display: none; }
+  .contact-main { margin-top: 0; }
+  .contact-closing { margin-top: 0; padding-top: 5rem; }
   .contact-main__inner {
     grid-template-columns: 1fr;
     gap: 3rem;
