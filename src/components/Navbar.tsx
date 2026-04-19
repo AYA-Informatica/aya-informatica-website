@@ -34,10 +34,15 @@ export default function Navbar() {
   }, [menuOpen])
 
   return (
-    <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`} role="banner">
+    <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}${menuOpen ? ' navbar--menu-open' : ''}`} role="banner">
       <div className="container navbar__inner">
         {/* Logo */}
-        <Link to="/" className="navbar__logo" aria-label="AYA Informatica – Home">
+        <Link 
+          to="/" 
+          className="navbar__logo" 
+          aria-label="AYA Informatica – Home"
+          onClick={() => menuOpen && setMenuOpen(false)}
+        >
           <img 
             src="/AYA Informatica Company logo.png" 
             alt="AYA Informatica" 
