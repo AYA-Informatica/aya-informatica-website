@@ -1,10 +1,18 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useSEO } from '../hooks/useSEO'
 import './HomePage.css'
 
 export default function HomePage() {
   useScrollReveal()
+
+  useSEO({
+    title: 'AYA Informatica – Building Africa\'s Digital Future',
+    description: 'AYA Informatica is a Rwanda-based tech company building scalable digital platforms like RAY and Humura to power Africa\'s digital economy.',
+    canonical: 'https://ayainformatica.com/',
+    ogImage: '/favicon_io/android-chrome-512x512.png'
+  })
 
   /* Re-trigger reveal after mount since hook runs once */
   useEffect(() => {

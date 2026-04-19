@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useSEO } from '../hooks/useSEO'
 import './AboutPage.css'
 import './ServicesPage.css'
 
@@ -52,9 +53,12 @@ const services = [
 export default function ServicesPage() {
   useScrollReveal()
 
-  useEffect(() => {
-    document.title = 'Services – AYA Informatica'
-  }, [])
+  useSEO({
+    title: 'Software Development Services – AYA Informatica Rwanda',
+    description: 'AYA Informatica offers platform development, intelligent systems, and custom software solutions tailored for modern African businesses.',
+    canonical: 'https://ayainformatica.com/services',
+    ogImage: '/favicon_io/android-chrome-512x512.png'
+  })
 
   return (
     <>

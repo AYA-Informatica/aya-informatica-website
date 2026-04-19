@@ -1,5 +1,6 @@
 import { useState, useEffect, FormEvent } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useSEO } from '../hooks/useSEO'
 import './AboutPage.css'
 import './ContactPage.css'
 
@@ -16,6 +17,13 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 export default function ContactPage() {
   useScrollReveal()
 
+  useSEO({
+    title: 'Contact AYA Informatica – Kigali, Rwanda',
+    description: 'Get in touch with AYA Informatica in Kigali, Rwanda. Partner with us to build scalable digital solutions and platforms.',
+    canonical: 'https://ayainformatica.com/contact',
+    ogImage: '/favicon_io/android-chrome-512x512.png'
+  })
+
   const [form, setForm] = useState<FormState>({
     name: '',
     email: '',
@@ -26,10 +34,6 @@ export default function ContactPage() {
   const [status, setStatus] = useState<FormStatus>('idle')
 
   useEffect(() => {
-    document.title = 'Contact – AYA Informatica'
-  }, [])
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 

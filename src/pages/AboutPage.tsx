@@ -1,14 +1,18 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useSEO } from '../hooks/useSEO'
 import './AboutPage.css'
 
 export default function AboutPage() {
   useScrollReveal()
 
-  useEffect(() => {
-    document.title = 'About – AYA Informatica'
-  }, [])
+  useSEO({
+    title: 'About AYA Informatica – Tech Company in Kigali, Rwanda',
+    description: 'Learn about AYA Informatica, a Kigali-based technology company focused on building digital platforms and intelligent systems for Africa.',
+    canonical: 'https://ayainformatica.com/about',
+    ogImage: '/favicon_io/android-chrome-512x512.png'
+  })
 
   return (
     <>

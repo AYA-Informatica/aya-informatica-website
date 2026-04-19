@@ -1,15 +1,19 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useSEO } from '../hooks/useSEO'
 import './AboutPage.css'
 import './ProductsPage.css'
 
 export default function ProductsPage() {
   useScrollReveal()
 
-  useEffect(() => {
-    document.title = 'Products – AYA Informatica'
-  }, [])
+  useSEO({
+    title: 'RAY & Humura – Digital Products by AYA Informatica',
+    description: 'Explore AYA Informatica\'s products including RAY, a marketplace platform, and Humura, a mental wellness solution built for accessibility and trust.',
+    canonical: 'https://ayainformatica.com/products',
+    ogImage: '/favicon_io/android-chrome-512x512.png'
+  })
 
   return (
     <>
