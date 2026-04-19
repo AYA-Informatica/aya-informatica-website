@@ -308,6 +308,7 @@ a.contact-info__item-value:hover { color: var(--accent); }
   display: flex;
   gap: 1rem;
   flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .contact-closing__pillar {
@@ -318,12 +319,13 @@ a.contact-info__item-value:hover { color: var(--accent); }
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius);
-  padding: 1.25rem 1.75rem;
+  padding: 1.25rem 1.5rem;
   font-size: 0.85rem;
   font-weight: 600;
   color: rgba(255,255,255,0.65);
-  min-width: 90px;
+  min-width: 85px;
   text-align: center;
+  flex: 1;
 }
 
 .contact-closing__pillar span:first-child {
@@ -353,6 +355,15 @@ a.contact-info__item-value:hover { color: var(--accent); }
   .contact-info {
     position: static;
   }
+  .contact-closing__inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .contact-closing__pillars {
+    width: 100%;
+    max-width: 400px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -371,11 +382,15 @@ a.contact-info__item-value:hover { color: var(--accent); }
   .contact-form__submit {
     align-self: stretch;
   }
-  .contact-closing__inner {
-    flex-direction: column;
-    text-align: center;
+  .contact-closing__quote blockquote {
+    font-size: 1.1rem;
   }
-  .contact-closing__pillars {
-    justify-content: center;
+  .contact-closing__pillar {
+    padding: 1rem 1.25rem;
+    font-size: 0.8rem;
+    min-width: 75px;
+  }
+  .contact-closing__pillar span:first-child {
+    font-size: 1.3rem;
   }
 }
