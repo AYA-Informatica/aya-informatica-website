@@ -210,6 +210,8 @@
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(135deg, rgba(0, 21, 41, 0.98) 0%, rgba(0, 21, 41, 0.95) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -331,8 +333,6 @@
   }
   .navbar__hamburger {
     display: flex;
-    z-index: 1001;
-    position: relative;
   }
   .navbar__mobile {
     display: flex;
