@@ -13,8 +13,8 @@
 
 .contact-main__inner {
   display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 4rem;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
   align-items: start;
 }
 
