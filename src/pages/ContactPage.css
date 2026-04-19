@@ -9,6 +9,7 @@
   margin-top: -4rem;
   position: relative;
   z-index: 2;
+  overflow-x: hidden;
 }
 
 .contact-main__inner {
@@ -16,6 +17,7 @@
   grid-template-columns: 1fr 1.5fr;
   gap: 3rem;
   align-items: start;
+  max-width: 100%;
 }
 
 /* ---- Info Sidebar ---- */
@@ -122,6 +124,7 @@ a.contact-info__item-value:hover { color: var(--accent); }
   border-radius: var(--radius-lg);
   border: 1px solid var(--gray-light);
   overflow: hidden;
+  max-width: 100%;
 }
 
 .contact-form {
@@ -170,9 +173,11 @@ a.contact-info__item-value:hover { color: var(--accent); }
   padding: 0.8rem 1rem;
   transition: border-color var(--fast), box-shadow var(--fast), background var(--fast);
   width: 100%;
+  max-width: 100%;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
+  box-sizing: border-box;
 }
 
 .form-input:focus {
