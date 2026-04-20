@@ -33,7 +33,7 @@ export default function ContactPage() {
   })
   const [status, setStatus] = useState<FormStatus>('idle')
 
-  useEffect(() => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
