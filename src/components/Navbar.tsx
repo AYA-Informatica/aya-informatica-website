@@ -44,7 +44,7 @@ export default function Navbar() {
           onClick={() => menuOpen && setMenuOpen(false)}
         >
           <img 
-            src="/AYA Informatica Company logo.png" 
+            src="/AYA Informatica Company logo.jpg" 
             alt="AYA Informatica" 
             className="navbar__logo-img"
           />

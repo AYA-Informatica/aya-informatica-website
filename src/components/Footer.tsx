@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="footer__brand">
             <Link to="/" className="footer__logo" aria-label="AYA Informatica home">
               <img 
-                src="/AYA Informatica Company logo.png" 
+                src="/AYA Informatica Company logo.jpg" 
                 alt="AYA Informatica" 
                 className="footer__logo-img"
               />
