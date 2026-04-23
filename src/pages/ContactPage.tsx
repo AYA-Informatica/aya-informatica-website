@@ -1,19 +1,8 @@
-import { useState, FormEvent } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { useSEO } from '../hooks/useSEO'
+import { useForm, ValidationError } from '@formspree/react'
 import './AboutPage.css'
 import './ContactPage.css'
-
-type FormState = {
-  name: string
-  email: string
-  phone: string
-  subject: string
-  message: string
-}
-
-type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
-type FormErrors = Partial<Record<keyof FormState, string>>
 
 export default function ContactPage() {
   useScrollReveal()
@@ -25,98 +14,10 @@ export default function ContactPage() {
     ogImage: '/favicon_io/android-chrome-512x512.png'
   })
 
-  const [form, setForm] = useState<FormState>({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  })
-  const [status, setStatus] = useState<FormStatus>('idle')
-  const [errors, setErrors] = useState<FormErrors>({})
+  const [state, handleSubmit] = useForm('meevvqen')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-    // Clear error when user starts typing
-    if (errors[name as keyof FormState]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }))
-    }
-  }
-
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {}
-
-    // Name validation
-    if (!form.name.trim()) {
-      newErrors.name = 'Name is required'
-    } else if (form.name.trim().length < 2) {
-      newErrors.name = 'Name must be at least 2 characters'
-    }
-
-    // Email validation
-    if (!form.email.trim()) {
-      newErrors.email = 'Email is required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = 'Please enter a valid email address'
-    }
-
-    // Subject validation
-    if (!form.subject) {
-      newErrors.subject = 'Please select a subject'
-    }
-
-    // Message validation
-    if (!form.message.trim()) {
-      newErrors.message = 'Message is required'
-    } else if (form.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters'
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    
-    // Validate form
-    if (!validateForm()) {
-      return
-    }
-
-    setStatus('submitting')
-
-    try {
-      // Using Formspree - replace with your Formspree form ID
-      // Get your form ID from https://formspree.io/
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          phone: form.phone || 'Not provided',
-          subject: form.subject,
-          message: form.message,
-          _replyto: form.email,
-          _subject: `New contact from ${form.name} - ${form.subject}`,
-        }),
-      })
-
-      if (response.ok) {
-        setStatus('success')
-        setForm({ name: '', email: '', phone: '', subject: '', message: '' })
-        setErrors({})
-      } else {
-        setStatus('error')
-      }
-    } catch (error) {
-      console.error('Form submission error:', error)
-      setStatus('error')
-    }
+  const resetForm = () => {
+    window.location.reload()
   }
 
   return (
@@ -237,7 +138,7 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <div className="contact-form-wrapper reveal reveal-delay-2">
-            {status === 'success' ? (
+            {state.succeeded ? (
               <div className="contact-success" role="alert">
                 <div className="contact-success__icon" aria-hidden="true">
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -254,7 +155,7 @@ export default function ContactPage() {
                 </p>
                 <button
                   className="btn btn--outline-dark"
-                  onClick={() => setStatus('idle')}
+                  onClick={resetForm}
                 >
                   Send Another Message
                 </button>
@@ -277,21 +178,13 @@ export default function ContactPage() {
                       id="name"
                       name="name"
                       type="text"
-                      className={`form-input${errors.name ? ' form-input--error' : ''}`}
+                      className="form-input"
                       placeholder="Your full name"
-                      value={form.name}
-                      onChange={handleChange}
                       required
                       autoComplete="name"
                       aria-required="true"
-                      aria-invalid={!!errors.name}
-                      aria-describedby={errors.name ? 'name-error' : undefined}
                     />
-                    {errors.name && (
-                      <span id="name-error" className="form-error" role="alert">
-                        {errors.name}
-                      </span>
-                    )}
+                    <ValidationError prefix="Name" field="name" errors={state.errors} />
                   </div>
                   <div className="form-group">
                     <label htmlFor="email" className="form-label">
@@ -301,21 +194,13 @@ export default function ContactPage() {
                       id="email"
                       name="email"
                       type="email"
-                      className={`form-input${errors.email ? ' form-input--error' : ''}`}
+                      className="form-input"
                       placeholder="your@email.com"
-                      value={form.email}
-                      onChange={handleChange}
                       required
                       autoComplete="email"
                       aria-required="true"
-                      aria-invalid={!!errors.email}
-                      aria-describedby={errors.email ? 'email-error' : undefined}
                     />
-                    {errors.email && (
-                      <span id="email-error" className="form-error" role="alert">
-                        {errors.email}
-                      </span>
-                    )}
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
                   </div>
                 </div>
 
@@ -328,8 +213,6 @@ export default function ContactPage() {
                       type="tel"
                       className="form-input"
                       placeholder="+250 ..."
-                      value={form.phone}
-                      onChange={handleChange}
                       autoComplete="tel"
                     />
                   </div>
@@ -340,13 +223,9 @@ export default function ContactPage() {
                     <select
                       id="subject"
                       name="subject"
-                      className={`form-input form-select${errors.subject ? ' form-input--error' : ''}`}
-                      value={form.subject}
-                      onChange={handleChange}
+                      className="form-input form-select"
                       required
                       aria-required="true"
-                      aria-invalid={!!errors.subject}
-                      aria-describedby={errors.subject ? 'subject-error' : undefined}
                     >
                       <option value="" disabled>Select a topic</option>
                       <option value="partnership">Partnership</option>
@@ -356,11 +235,7 @@ export default function ContactPage() {
                       <option value="investment">Investment</option>
                       <option value="other">General / Other</option>
                     </select>
-                    {errors.subject && (
-                      <span id="subject-error" className="form-error" role="alert">
-                        {errors.subject}
-                      </span>
-                    )}
+                    <ValidationError prefix="Subject" field="subject" errors={state.errors} />
                   </div>
                 </div>
 
@@ -371,36 +246,24 @@ export default function ContactPage() {
                   <textarea
                     id="message"
                     name="message"
-                    className={`form-input form-textarea${errors.message ? ' form-input--error' : ''}`}
+                    className="form-input form-textarea"
                     placeholder="Tell us about yourself and how we can help..."
-                    value={form.message}
-                    onChange={handleChange}
                     required
                     rows={6}
                     aria-required="true"
-                    aria-invalid={!!errors.message}
-                    aria-describedby={errors.message ? 'message-error' : undefined}
                   />
-                  {errors.message && (
-                    <span id="message-error" className="form-error" role="alert">
-                      {errors.message}
-                    </span>
-                  )}
+                  <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </div>
 
-                {status === 'error' && (
-                  <p className="contact-form__error" role="alert">
-                    Something went wrong. Please try emailing us directly at ay.company.andy@gmail.com
-                  </p>
-                )}
+                <ValidationError errors={state.errors} />
 
                 <button
                   type="submit"
                   className="btn btn--primary contact-form__submit"
-                  disabled={status === 'submitting'}
-                  aria-busy={status === 'submitting'}
+                  disabled={state.submitting}
+                  aria-busy={state.submitting}
                 >
-                  {status === 'submitting' ? (
+                  {state.submitting ? (
                     <>
                       <span className="contact-form__spinner" aria-hidden="true" />
                       Sending...
