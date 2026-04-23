@@ -186,6 +186,30 @@ a.contact-info__item-value:hover { color: var(--accent); }
   box-shadow: 0 0 0 3px rgba(10,132,255,0.1);
 }
 
+.form-input--error {
+  border-color: #e53e3e;
+  background: rgba(229,62,62,0.02);
+}
+
+.form-input--error:focus {
+  border-color: #e53e3e;
+  box-shadow: 0 0 0 3px rgba(229,62,62,0.1);
+}
+
+.form-error {
+  font-size: 0.8rem;
+  color: #e53e3e;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.form-error::before {
+  content: '⚠';
+  font-size: 0.9rem;
+}
+
 .form-input::placeholder {
   color: var(--gray);
   font-size: 0.9rem;
