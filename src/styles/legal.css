@@ -1,0 +1,57 @@
+/* =========================================
+   Privacy / Legal page prose styles
+   Used by privacy/page.tsx and terms/page.tsx
+   ========================================= */
+
+.privacy-body p {
+  @apply text-sm text-brand-gray leading-relaxed mb-4;
+}
+
+.privacy-body p:last-child {
+  @apply mb-0;
+}
+
+.privacy-body h3 {
+  @apply font-display font-bold text-base text-navy mt-6 mb-3;
+}
+
+.privacy-body ul {
+  @apply list-disc list-outside ml-5 mb-4 space-y-1.5;
+}
+
+.privacy-body ul li {
+  @apply text-sm text-brand-gray leading-relaxed;
+}
+
+.privacy-body a {
+  @apply text-accent hover:text-[#0066CC] transition-colors underline underline-offset-2;
+}
+
+.privacy-body address {
+  @apply text-sm text-brand-gray leading-loose mt-3 pl-4 border-l-2 border-accent/30;
+}
+
+.privacy-body strong {
+  @apply text-brand-dark font-semibold;
+}
+
+/* Responsive table for third-party services */
+.privacy-body table {
+  @apply w-full text-sm border-collapse mt-4 mb-2;
+}
+
+.privacy-body thead {
+  @apply bg-brand-bg;
+}
+
+.privacy-body th {
+  @apply text-left text-xs font-semibold text-brand-dark uppercase tracking-wide py-3 px-4 border border-brand-gray-light;
+}
+
+.privacy-body td {
+  @apply py-3 px-4 text-brand-gray border border-brand-gray-light align-top;
+}
+
+.privacy-body tbody tr:hover {
+  @apply bg-brand-bg/50;
+}

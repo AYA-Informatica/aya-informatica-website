@@ -1,92 +1,130 @@
-# AYA Informatica Website
+# AYA Informatica — Next.js Website
 
-A modern, production-ready website for AYA Informatica — built with React + Vite + TypeScript.
+A modern, production-ready website for AYA Informatica built on the full Next.js 14 App Router stack.
 
 ## Tech Stack
 
-- **Framework**: React 18 + TypeScript
-- **Bundler**: Vite 5
-- **Routing**: React Router v6
-- **Fonts**: Syne (display) + DM Sans (body) via Google Fonts
-- **Styling**: Pure CSS with CSS custom properties (no CSS framework)
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Components | Shadcn UI (Radix UI primitives) |
+| Icons | Lucide React |
+| Animations | Framer Motion |
+| Global State | Zustand |
+| Forms | React Hook Form + Zod |
+| Fonts | @fontsource/syne + @fontsource/dm-sans (self-hosted) |
 
 ## Brand Colors
 
-| Role | Color | Hex |
-|------|-------|-----|
-| Primary / Navy | Deep Navy | `#001529` |
+| Role | Name | Hex |
+|---|---|---|
+| Primary | Deep Navy | `#001529` |
 | Background | Soft Light | `#F5F5F5` |
 | Accent | Tech Blue | `#0A84FF` |
-| Dark Text | Dark Gray | `#1A1A1A` |
-| Supporting | Medium Gray | `#A0A0A0` |
-
-## Pages
-
-| Route | Page | Purpose |
-|-------|------|---------|
-| `/` | Home | First impression + positioning |
-| `/about` | About | Trust + story |
-| `/products` | Products | Power + vision |
-| `/services` | Services | Revenue |
-| `/contact` | Contact | Action |
-
-## Getting Started
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
+| Text | Dark Gray | `#1A1A1A` |
+| Muted | Medium Gray | `#A0A0A0` |
 
 ## Project Structure
 
 ```
 src/
+├── app/
+│   ├── layout.tsx          # Root layout, fonts, metadata
+│   ├── page.tsx            # Home page
+│   ├── about/page.tsx      # About page
+│   ├── products/page.tsx   # Products page
+│   ├── services/page.tsx   # Services page
+│   ├── contact/page.tsx    # Contact page (Server Component)
+│   ├── not-found.tsx       # 404 page
+│   ├── globals.css         # Tailwind + base styles
+│   └── api/contact/        # API route for form submission
 ├── components/
-│   ├── Navbar.tsx / .css
-│   └── Footer.tsx / .css
-├── pages/
-│   ├── HomePage.tsx / .css
-│   ├── AboutPage.tsx / .css
-│   ├── ProductsPage.tsx / .css
-│   ├── ServicesPage.tsx / .css
-│   └── ContactPage.tsx / .css
+│   ├── ui/                 # Shadcn primitives (Button, Input, etc.)
+│   ├── layout/             # Navbar, Footer
+│   ├── sections/           # ContactForm (Client Component)
+│   └── shared/             # MotionDiv, SectionHeader
 ├── hooks/
-│   └── useScrollReveal.ts
-├── styles/
-│   └── global.css
-├── App.tsx
-└── main.tsx
+│   └── use-scrolled.ts     # Navbar scroll detection
+├── lib/
+│   ├── constants.ts        # All site content data
+│   ├── utils.ts            # cn() utility
+│   └── validations.ts      # Zod schemas
+├── store/
+│   └── ui.ts               # Zustand UI store (mobile menu)
+└── types/
+    └── index.ts            # Shared TypeScript types
 ```
 
-## Features
+## Getting Started
 
-- ✅ Fully responsive (mobile, tablet, desktop)
-- ✅ SEO optimized (meta tags, OG tags, structured data, canonical URLs)
-- ✅ Accessible (semantic HTML, ARIA labels, focus states, alt text)
-- ✅ Smooth scroll-reveal animations
-- ✅ Mobile hamburger navigation
-- ✅ Working contact form with success/error states
-- ✅ Brand-consistent design system via CSS variables
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Set up environment variables
+cp .env.local.example .env.local
+# → Edit .env.local and add your Formspree URL
+
+# 3. Run development server
+npm run dev
+# → Visit http://localhost:3000
+
+# 4. Build for production
+npm run build
+npm start
+```
+
+## Activating the Contact Form
+
+The contact form uses a **custom Nodemailer SMTP solution** — no paid third-party service required.
+
+### Quickstart with Gmail (free, takes 5 minutes)
+
+1. Enable 2FA on your Google account (required by Google for App Passwords)
+2. Go to [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+3. Create an App Password called "AYA Website"
+4. Copy `.env.local.example` to `.env.local` and fill in:
+
+```bash
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=ay.company.andy@gmail.com
+SMTP_PASS=your-16-char-app-password
+SMTP_FROM="AYA Informatica" <ay.company.andy@gmail.com>
+CONTACT_TO=ay.company.andy@gmail.com
+```
+
+### Other free SMTP providers
+- **Outlook/Hotmail**: `smtp-mail.outlook.com:587`
+- **Zoho Mail** (free custom domain): `smtp.zoho.com:587`
+- **Resend** (3,000/month free, scales well): `smtp.resend.com:587`
 
 ## Deployment
 
-This is a standard Vite SPA. Deploy to:
-- **Vercel**: `vercel --prod`
-- **Netlify**: Drag & drop the `dist/` folder, or connect via Git
-- **GitHub Pages**: Use the `vite-plugin-gh-pages` package
-- **Any CDN**: Run `npm run build` and serve the `dist/` folder
+### Vercel (recommended)
+```bash
+npx vercel --prod
+```
+Set environment variables in Vercel Dashboard → Project → Settings → Environment Variables.
 
-> ⚠️ **Note**: The contact form currently simulates submission. To make it functional,
-> integrate with a backend service (e.g., EmailJS, Formspree, or a custom API endpoint).
+### Other platforms
+```bash
+npm run build
+# Serve the .next/ output or export as static if needed
+```
+
+## Pages
+
+| Route | Page | Purpose |
+|---|---|---|
+| `/` | Home | Hero, pillars, products preview, approach, CTA |
+| `/about` | About | Story, vision/mission, team, roadmap |
+| `/products` | Products | RAY detail + mockup, features, Humura, ecosystem |
+| `/services` | Services | 3 service sections, process steps, why AYA |
+| `/contact` | Contact | Sidebar info + validated form |
+| `*` | 404 | Branded not-found page |
 
 ## Contact
 

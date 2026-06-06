@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#001529"/>
+
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="70%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="rgba(10,132,255,0.12)"/>
+      <stop offset="100%" stop-color="rgba(10,132,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Accent bar -->
+  <rect x="80" y="240" width="4" height="120" rx="2" fill="#0A84FF"/>
+
+  <!-- AYA logotype -->
+  <text x="108" y="295" font-family="Georgia, serif" font-weight="900"
+    font-size="88" fill="white" letter-spacing="-4">AYA</text>
+  <text x="108" y="342" font-family="Georgia, sans-serif" font-weight="400"
+    font-size="28" fill="rgba(255,255,255,0.45)" letter-spacing="6">INFORMATICA</text>
+
+  <!-- Tagline -->
+  <text x="108" y="410" font-family="Georgia, serif" font-weight="700"
+    font-size="36" fill="rgba(255,255,255,0.9)">Building Africa's Digital Future</text>
+
+  <!-- Location -->
+  <text x="108" y="460" font-family="Arial, sans-serif" font-weight="400"
+    font-size="20" fill="rgba(255,255,255,0.35)">Kigali, Rwanda</text>
+
+  <!-- Accent dot -->
+  <circle cx="80" cy="232" r="5" fill="#0A84FF"/>
+</svg>

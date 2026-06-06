@@ -1,0 +1,31 @@
+{
+  "name": "AYA Informatica",
+  "short_name": "AYA",
+  "description": "Building Africa's Digital Future",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#001529",
+  "theme_color": "#001529",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "en"
+}

@@ -1,0 +1,61 @@
+/* Legal pages (Privacy Policy, Terms) */
+@import "../styles/legal.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Font families — provided by @fontsource local packages */
+    --font-syne: 'Syne', system-ui, sans-serif;
+    --font-dm-sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-brand-bg text-brand-dark font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight text-navy;
+  }
+
+  ::selection {
+    @apply bg-accent text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 rounded;
+  }
+}
+
+@layer utilities {
+  /* Slightly transparent navy for nav */
+  .bg-navy\/97 {
+    background-color: rgba(0, 21, 41, 0.97);
+  }
+  .bg-white\/7 {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+  .bg-white\/8 {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  .border-white\/8 {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .border-white\/12 {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .navy-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+}
