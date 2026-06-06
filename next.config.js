@@ -22,12 +22,14 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               // Fonts are self-hosted via @fontsource — no Google Fonts needed
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+              // Vercel Live feedback in development
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live",
               "style-src 'self' 'unsafe-inline'",
               "font-src 'self' data:",
               "img-src 'self' data: blob:",
               // API route proxies to email provider — browser only calls /api/contact
-              "connect-src 'self'",
+              // Vercel Live websockets for real-time feedback
+              "connect-src 'self' https://vercel.live wss://ws-us3.pusher.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",

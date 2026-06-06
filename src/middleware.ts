@@ -71,11 +71,11 @@ const SECURITY_HEADERS: Record<string, string> = {
   // NOTE: tighten this further if you add third-party embeds
   "Content-Security-Policy": [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live",
     "style-src 'self' 'unsafe-inline'",
     "font-src 'self' data:",
     "img-src 'self' data: blob:",
-    "connect-src 'self'",
+    "connect-src 'self' https://vercel.live wss://ws-us3.pusher.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
