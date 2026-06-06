@@ -60,17 +60,14 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 shrink-0"
+            className="flex flex-col leading-none gap-px shrink-0"
             aria-label="AYA Informatica — Home"
           >
-            <AyaLogo />
-            <span className="flex flex-col leading-none gap-px">
-              <span className="font-display text-[1.05rem] font-extrabold text-white tracking-[0.04em]">
-                AYA
-              </span>
-              <span className="text-[0.6rem] text-white/40 uppercase tracking-[0.08em] font-medium">
-                Informatica
-              </span>
+            <span className="font-display text-[1.05rem] font-extrabold text-white tracking-[0.04em]">
+              AYA
+            </span>
+            <span className="text-[0.6rem] text-white/40 uppercase tracking-[0.08em] font-medium">
+              Informatica
             </span>
           </Link>
 
@@ -199,34 +196,4 @@ export function Navbar() {
   )
 }
 
-/** Inline SVG logo mark */
-function AyaLogo() {
-  return (
-    <svg
-      width="44"
-      height="28"
-      viewBox="0 0 48 32"
-      fill="none"
-      aria-hidden="true"
-      className="text-white"
-    >
-      <path
-        d="M0 28L7 4H10L17 28H14L12.5 22H4.5L3 28H0ZM5.3 19H11.7L8.5 8L5.3 19Z"
-        fill="currentColor"
-      />
-      <path
-        d="M19 4H22.5L27 14L31.5 4H35L28.5 18V28H25.5V18L19 4Z"
-        fill="currentColor"
-      />
-      <path
-        d="M31 28L38 4H41L48 28H45L43.5 22H35.5L34 28H31ZM36.3 19H42.7L39.5 8L36.3 19Z"
-        fill="currentColor"
-      />
-      <path
-        d="M8 2L10 0L14 6L12 8L8 2Z"
-        fill="#0A84FF"
-        opacity="0.8"
-      />
-    </svg>
-  )
-}
+
