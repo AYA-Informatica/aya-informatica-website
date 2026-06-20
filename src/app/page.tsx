@@ -22,7 +22,7 @@ export default function HomePage() {
           HERO
       ════════════════════════════════════════ */}
       <section
-        className="relative min-h-[calc(100vh-72px)] bg-navy flex flex-col justify-center overflow-hidden"
+        className="relative min-h-screen -mt-[72px] pt-[72px] bg-navy flex flex-col justify-center overflow-hidden"
         aria-label="Hero"
       >
         {/* Background grid */}
@@ -127,10 +127,10 @@ export default function HomePage() {
           />
 
           <MotionList className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {pillars.map((p, i) => (
+            {pillars.map((p) => (
               <MotionItem key={p.title}>
                 <Link
-                  href="/services"
+                  href={p.href}
                   className="group block bg-white rounded-2xl p-7 border border-brand-gray-light
                     hover:border-accent hover:shadow-card-hover hover:-translate-y-1
                     transition-all duration-300 h-full"
@@ -176,7 +176,7 @@ export default function HomePage() {
                   )}
                 >
                   <Badge
-                    variant={product.status === "active" ? "outline" : "outline"}
+                    variant="outline"
                     className="self-start mb-4 text-[0.65rem]"
                   >
                     {product.badge}
@@ -199,7 +199,7 @@ export default function HomePage() {
                   </ul>
                   <Button
                     asChild
-                    variant={product.status === "active" ? "outline" : "outline"}
+                    variant="outline"
                     className={cn(
                       "self-start",
                       product.status === "active" &&
@@ -281,6 +281,7 @@ export default function HomePage() {
 const pillars = [
   {
     title: "Platform Development",
+    href: "/services#svc-platform",
     desc: "Scalable digital platforms that connect users, facilitate transactions, and enable new forms of economic activity.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 28 28" fill="none" aria-hidden="true">
@@ -293,6 +294,7 @@ const pillars = [
   },
   {
     title: "Intelligent Systems",
+    href: "/services#svc-intelligent",
     desc: "Systems that leverage data and modern technologies to improve efficiency, decision-making, and user experience.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 28 28" fill="none" aria-hidden="true">
@@ -303,6 +305,7 @@ const pillars = [
   },
   {
     title: "Digital Solutions",
+    href: "/services#svc-solutions",
     desc: "Tailored software solutions for businesses seeking to modernize and scale their operations across Africa.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 28 28" fill="none" aria-hidden="true">

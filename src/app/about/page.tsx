@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "About AYA Informatica – Builders of Africa's Digital Future",
     description: "Meet the team behind AYA Informatica. Rwanda-based builders, engineers, and thinkers committed to Africa's digital transformation.",
     url: "https://ayainformatica.com/about",
-    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "About AYA Informatica" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "About AYA Informatica" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -29,7 +29,7 @@ export default function AboutPage() {
   return (
     <PageWrapper>
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 overflow-hidden">
+      <section className="relative bg-navy py-24 -mt-[72px] pt-[calc(72px+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
@@ -86,7 +86,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-2 border-b border-white/6 divide-x divide-white/6">
                 {[
                   { num: "2024", label: "Founded in Kigali" },
-                  { num: "1B+", label: "Potential users across Africa" },
+                  { num: "2", label: "Platforms in Development" },
                 ].map((s) => (
                   <div key={s.num} className="p-6 odd:border-r odd:border-white/6">
                     <div className="font-display text-3xl font-extrabold text-white mb-1">{s.num}</div>
@@ -115,7 +115,7 @@ export default function AboutPage() {
                 type: "Vision",
                 isVision: true,
                 title: "Africa's Leading Builder of Digital Ecosystems",
-                desc: "To become Africa's leading builder of digital ecosystems that power everyday life — from commerce to connection, from commerce to wellness.",
+                desc: "To become Africa's leading builder of digital ecosystems that power everyday life — from commerce to connection, from health to wellness.",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                     <circle cx="16" cy="16" r="6" stroke="currentColor" strokeWidth="2"/>

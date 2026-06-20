@@ -1,5 +1,7 @@
 "use client"
 
+import { useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { motion, AnimatePresence } from "framer-motion"
@@ -24,11 +26,13 @@ type SubmitStatus = "idle" | "loading" | "error"
 
 export function ContactForm() {
   const { toast } = useToastStore()
+  const searchParams = useSearchParams()
 
   const {
     register,
     handleSubmit,
     setValue,
+    watch,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactSchema>({
@@ -36,12 +40,34 @@ export function ContactForm() {
     defaultValues: { name: "", email: "", phone: "", subject: "", message: "" },
   })
 
+  const selectedSubject = watch("subject")
+
+  useEffect(() => {
+    const param = searchParams.get("subject")
+    if (param && CONTACT_SUBJECTS.some((s) => s.value === param)) {
+      setValue("subject", param, { shouldValidate: true })
+    }
+  }, [searchParams, setValue])
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const value = (e as CustomEvent<string>).detail
+      if (value) setValue("subject", value, { shouldValidate: true })
+    }
+    window.addEventListener("select-subject", handler)
+    return () => window.removeEventListener("select-subject", handler)
+  }, [setValue])
+
   const onSubmit = async (data: ContactSchema) => {
     try {
+      const honeyField = document.querySelector<HTMLInputElement>('input[name="_honey"]')
+      const payload: Record<string, unknown> = { ...data }
+      if (honeyField?.value) payload._honey = honeyField.value
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       })
 
       if (res.ok) {
@@ -69,7 +95,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-brand-gray-light p-5 sm:p-7 md:p-9">
+    <div id="contact-form" className="bg-white rounded-2xl border border-brand-gray-light p-5 sm:p-7 md:p-9 scroll-mt-28">
       <h3 className="font-display font-bold text-xl text-navy mb-1">Send Us a Message</h3>
       <p className="text-xs text-brand-gray mb-7">
         <span className="text-accent">*</span> Required fields
@@ -138,6 +164,8 @@ export function ContactForm() {
               Subject <span className="text-accent">*</span>
             </Label>
             <Select
+              key={selectedSubject || "empty"}
+              defaultValue={selectedSubject || undefined}
               onValueChange={(val) =>
                 setValue("subject", val, { shouldValidate: true })
               }
@@ -218,11 +246,7 @@ export function ContactForm() {
             )}
           </Button>
           <p className="text-xs text-brand-gray max-w-[220px] leading-relaxed">
-            Configure{" "}
-            <code className="text-[0.7rem] bg-brand-bg px-1 rounded">SMTP_*</code>{" "}
-            variables in{" "}
-            <code className="text-[0.7rem] bg-brand-bg px-1 rounded">.env.local</code>{" "}
-            to activate email delivery.
+            We typically respond within 24 hours.
           </p>
         </div>
       </form>

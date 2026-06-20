@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import { ContactForm } from "@/components/sections/contact-form"
+import { TopicTags } from "@/components/sections/topic-tags"
 import { MotionDiv } from "@/components/shared/motion-div"
 import { CONTACT_INFO } from "@/lib/constants"
 import { Mail, Phone, MapPin } from "lucide-react"
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
     title: "Contact AYA Informatica – Let's Build Together",
     description: "Partner with us, get early access to RAY, discuss a service inquiry, or explore investment opportunities.",
     url: "https://ayainformatica.com/contact",
-    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "Contact AYA Informatica" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Contact AYA Informatica" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -27,7 +29,7 @@ export default function ContactPage() {
   return (
     <PageWrapper>
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 overflow-hidden">
+      <section className="relative bg-navy py-24 -mt-[72px] pt-[calc(72px+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
@@ -52,8 +54,8 @@ export default function ContactPage() {
       <section className="bg-brand-bg py-24" aria-labelledby="contact-heading">
         <div className="container grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-8 lg:gap-14 items-start">
 
-          {/* Sidebar info */}
-          <MotionDiv>
+          {/* Sidebar info — on mobile, shows after the form via order */}
+          <MotionDiv className="order-2 lg:order-1">
             <div className="lg:sticky lg:top-28">
               <h2 id="contact-heading" className="font-display font-bold text-2xl text-navy mb-3">
                 Get in Touch
@@ -89,25 +91,16 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              {/* Topic tags */}
-              <div>
-                <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-brand-gray mb-3">
-                  What can we help with?
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {["Partnership", "RAY Early Access", "Humura Updates", "Service Inquiry", "Investment", "General Questions"].map((tag) => (
-                    <span key={tag} className="text-[0.75rem] font-medium text-navy bg-white border border-brand-gray-light px-3 py-1 rounded-full hover:border-accent hover:bg-accent/5 hover:text-accent transition-colors cursor-default">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              {/* Topic tags — clicking scrolls to form and pre-fills subject */}
+              <TopicTags />
             </div>
           </MotionDiv>
 
-          {/* Contact form — Client Component */}
-          <MotionDiv delay={0.15}>
-            <ContactForm />
+          {/* Contact form — on mobile, shows first via order */}
+          <MotionDiv delay={0.15} className="order-1 lg:order-2">
+            <Suspense>
+              <ContactForm />
+            </Suspense>
           </MotionDiv>
         </div>
       </section>

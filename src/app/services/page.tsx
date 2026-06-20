@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "AYA Informatica Services – Platform Development & Digital Solutions",
     description: "End-to-end platform development, intelligent systems, and tailored digital solutions for businesses across Africa.",
     url: "https://ayainformatica.com/services",
-    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "AYA Informatica Services" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AYA Informatica Services" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -44,7 +44,7 @@ export default function ServicesPage() {
   return (
     <PageWrapper>
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 overflow-hidden">
+      <section className="relative bg-navy py-24 -mt-[72px] pt-[calc(72px+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
@@ -69,21 +69,22 @@ export default function ServicesPage() {
       {SERVICES.map((svc, i) => (
         <section
           key={svc.id}
-          className={cn("py-20 border-b border-brand-gray-light", i % 2 === 0 ? "bg-white" : "bg-brand-bg")}
-          aria-labelledby={`svc-${svc.id}`}
+          id={`svc-${svc.id}`}
+          className={cn("py-20 border-b border-brand-gray-light scroll-mt-20", i % 2 === 0 ? "bg-white" : "bg-brand-bg")}
+          aria-labelledby={`svc-${svc.id}-heading`}
         >
           <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <MotionDiv>
               <div className="font-display text-5xl font-extrabold text-navy/6 leading-none mb-2 select-none" aria-hidden="true">
                 {svc.step}
               </div>
-              <h2 id={`svc-${svc.id}`} className="font-display font-bold text-2xl sm:text-3xl text-navy mb-2">
+              <h2 id={`svc-${svc.id}-heading`} className="font-display font-bold text-2xl sm:text-3xl text-navy mb-2">
                 {svc.title}
               </h2>
               <p className="text-accent font-medium text-sm mb-4">{svc.tagline}</p>
               <p className="text-brand-gray text-sm leading-relaxed mb-7">{svc.description}</p>
               <Button asChild size="default">
-                <Link href="/contact">Discuss Your Project</Link>
+                <Link href={`/contact?subject=services`}>Discuss Your Project</Link>
               </Button>
             </MotionDiv>
 

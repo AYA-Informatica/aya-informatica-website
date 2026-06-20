@@ -1,15 +1,10 @@
 "use client"
 
-import { motion, type Variants, type HTMLMotionProps } from "framer-motion"
+import { type ReactNode } from "react"
+import { useReducedMotion, motion, type Variants, type HTMLMotionProps } from "framer-motion"
 
 // ── Variants ───────────────────────────────────────────────
 
-/**
- * FIX #5: MotionItem previously used fadeUpVariants (which requires `custom`
- * for delay) but never passed `custom`. Fixed by using a separate
- * staggerChildVariants that has a fixed transition — delay is handled
- * by the staggerChildren on the parent container.
- */
 export const fadeUpVariants: Variants = {
   hidden: { opacity: 0, y: 28 },
   visible: (delay: number = 0) => ({
@@ -23,7 +18,6 @@ export const fadeUpVariants: Variants = {
   }),
 }
 
-/** Child variant — no custom delay needed; parent stagger controls timing */
 export const staggerChildVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
@@ -51,39 +45,28 @@ export const staggerContainerVariants: Variants = {
   },
 }
 
-/** Page-level fade-up for route transitions */
-export const pageVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
-  exit: {
-    opacity: 0,
-    y: -8,
-    transition: { duration: 0.25, ease: "easeIn" },
-  },
-}
-
 // ── Components ─────────────────────────────────────────────
 
-interface MotionDivProps extends HTMLMotionProps<"div"> {
+interface MotionDivProps extends Omit<HTMLMotionProps<"div">, "children"> {
+  children: ReactNode
   delay?: number
   once?: boolean
 }
 
-/**
- * Scroll-triggered fade-up wrapper.
- * Uses `custom={delay}` correctly with fadeUpVariants.
- */
 export function MotionDiv({
   children,
   delay = 0,
   once = true,
   variants = fadeUpVariants,
+  className,
   ...props
 }: MotionDivProps) {
+  const prefersReduced = useReducedMotion()
+
+  if (prefersReduced) {
+    return <div className={className}>{children}</div>
+  }
+
   return (
     <motion.div
       initial="hidden"
@@ -91,6 +74,7 @@ export function MotionDiv({
       viewport={{ once, margin: "-40px" }}
       variants={variants}
       custom={delay}
+      className={className}
       {...props}
     >
       {children}
@@ -98,15 +82,22 @@ export function MotionDiv({
   )
 }
 
-/**
- * Stagger container — orchestrates children via staggerChildren.
- * Children should use MotionItem (not MotionDiv) to avoid custom-prop mismatch.
- */
+interface MotionContainerProps extends Omit<HTMLMotionProps<"div">, "children"> {
+  children: ReactNode
+  className?: string
+}
+
 export function MotionList({
   children,
   className,
   ...props
-}: HTMLMotionProps<"div">) {
+}: MotionContainerProps) {
+  const prefersReduced = useReducedMotion()
+
+  if (prefersReduced) {
+    return <div className={className}>{children}</div>
+  }
+
   return (
     <motion.div
       initial="hidden"
@@ -121,34 +112,22 @@ export function MotionList({
   )
 }
 
-/**
- * FIX #5: Uses staggerChildVariants (fixed transition, no custom prop needed).
- * Timing is controlled by parent MotionList staggerChildren.
- */
 export function MotionItem({
   children,
   className,
   ...props
-}: HTMLMotionProps<"div">) {
+}: MotionContainerProps) {
+  const prefersReduced = useReducedMotion()
+
+  if (prefersReduced) {
+    return <div className={className}>{children}</div>
+  }
+
   return (
     <motion.div
       variants={staggerChildVariants}
       className={className}
       {...props}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-/** Wrapper for page-level route transition — used in layout.tsx */
-export function PageTransition({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      variants={pageVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
     >
       {children}
     </motion.div>

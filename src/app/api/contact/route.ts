@@ -13,19 +13,6 @@ import { logger } from "@/lib/logger"
  *   SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, CONTACT_TO
  */
 
-// ── Block all methods except POST ─────────────────────────────
-export async function GET()    { return methodNotAllowed() }
-export async function PUT()    { return methodNotAllowed() }
-export async function DELETE() { return methodNotAllowed() }
-export async function PATCH()  { return methodNotAllowed() }
-
-function methodNotAllowed() {
-  return NextResponse.json(
-    { error: "Method not allowed" },
-    { status: 405, headers: { Allow: "POST" } }
-  )
-}
-
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown"
 

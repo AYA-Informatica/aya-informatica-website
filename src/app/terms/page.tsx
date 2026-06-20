@@ -19,7 +19,7 @@ export default function TermsPage() {
   return (
     <PageWrapper>
       {/* ── HERO ─────────────────────────────── */}
-      <section className="bg-navy py-20 relative overflow-hidden">
+      <section className="bg-navy py-20 -mt-[72px] pt-[calc(72px+5rem)] relative overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
           <span className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50 block mb-3">

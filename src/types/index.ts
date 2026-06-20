@@ -25,11 +25,3 @@ export interface Product {
   badge: string
 }
 
-/** Contact form schema values (mirrored from Zod schema) */
-export interface ContactFormValues {
-  name: string
-  email: string
-  phone?: string
-  subject: string
-  message: string
-}

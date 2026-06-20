@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useReducedMotion, motion } from "framer-motion"
 
 const variants = {
   hidden: { opacity: 0, y: 14 },
@@ -11,11 +11,13 @@ const variants = {
   },
 }
 
-/**
- * FIX #14: Wrap every page in this to get smooth route transitions.
- * Used as the outermost element inside each page.tsx.
- */
 export function PageWrapper({ children }: { children: React.ReactNode }) {
+  const prefersReduced = useReducedMotion()
+
+  if (prefersReduced) {
+    return <div>{children}</div>
+  }
+
   return (
     <motion.div initial="hidden" animate="visible" variants={variants}>
       {children}

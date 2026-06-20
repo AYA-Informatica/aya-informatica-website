@@ -38,7 +38,7 @@ export default function PrivacyPage() {
   return (
     <PageWrapper>
       {/* ── HERO ─────────────────────────────── */}
-      <section className="bg-navy py-20 relative overflow-hidden">
+      <section className="bg-navy py-20 -mt-[72px] pt-[calc(72px+5rem)] relative overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
           <span className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50 block mb-3">
@@ -57,9 +57,23 @@ export default function PrivacyPage() {
       {/* ── CONTENT ──────────────────────────── */}
       <div className="bg-white">
         <div className="container py-16">
+          {/* Mobile TOC — horizontal scrollable */}
+          <nav className="lg:hidden overflow-x-auto pb-4 mb-8 border-b border-brand-gray-light -mx-4 px-4" aria-label="Table of contents">
+            <ul className="flex gap-2 whitespace-nowrap">
+              {TOC.map((item) => (
+                <li key={item.id}>
+                  <a href={`#${item.id}`}
+                    className="text-xs text-brand-gray hover:text-navy hover:bg-navy/5 transition-colors px-3 py-1.5 rounded-full border border-brand-gray-light inline-block">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
           <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-12 items-start">
 
-            {/* Sticky TOC */}
+            {/* Desktop sticky TOC */}
             <nav className="hidden lg:block sticky top-28 self-start" aria-label="Table of contents">
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-brand-gray mb-3">
                 Contents

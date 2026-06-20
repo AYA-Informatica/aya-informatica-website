@@ -35,7 +35,7 @@ export function JsonLd() {
         availableLanguage: ["English"],
       },
     ],
-    sameAs: [],
+    foundingDate: "2024",
     foundingLocation: {
       "@type": "Place",
       name: "Kigali, Rwanda",

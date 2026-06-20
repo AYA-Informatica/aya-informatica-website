@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "AYA Informatica Products – RAY Marketplace & Humura Wellness",
     description: "RAY: Rwanda's mobile-first marketplace for phones and electronics. Humura: mental wellness platform coming soon.",
     url: "https://ayainformatica.com/products",
-    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: "AYA Informatica Products" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AYA Informatica Products" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -40,7 +40,7 @@ export default function ProductsPage() {
   return (
     <PageWrapper>
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 overflow-hidden">
+      <section className="relative bg-navy py-24 -mt-[72px] pt-[calc(72px+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
@@ -113,12 +113,16 @@ export default function ProductsPage() {
                 <span className="text-xs text-white/35">Search phones &amp; electronics…</span>
               </div>
               <div className="flex flex-col gap-2 mb-3">
-                {["iPhone 14 Pro", "Samsung S23", "Tecno Camon 20"].map((item) => (
-                  <div key={item} className="flex items-center gap-3 bg-white/5 rounded-lg p-2.5">
+                {[
+                  { name: "iPhone 14 Pro", price: "RWF 850,000" },
+                  { name: "Samsung S23", price: "RWF 620,000" },
+                  { name: "Tecno Camon 20", price: "RWF 185,000" },
+                ].map((item) => (
+                  <div key={item.name} className="flex items-center gap-3 bg-white/5 rounded-lg p-2.5">
                     <div className="w-9 h-9 rounded-md bg-gradient-to-br from-accent/30 to-white/10 shrink-0" />
                     <div>
-                      <div className="text-xs font-semibold text-white">{item}</div>
-                      <div className="text-[0.65rem] text-accent">RWF ••••••</div>
+                      <div className="text-xs font-semibold text-white">{item.name}</div>
+                      <div className="text-[0.65rem] text-accent">{item.price}</div>
                       <div className="text-[0.6rem] text-white/35">Verified Seller</div>
                     </div>
                   </div>
@@ -234,8 +238,7 @@ export default function ProductsPage() {
                 {[
                   { name: "RAY", desc: "Commerce", active: true },
                   { name: "Humura", desc: "Wellness", active: false },
-                  { name: "Platform 3", desc: "Coming soon", active: false },
-                  { name: "Platform 4", desc: "Coming soon", active: false },
+                  { name: "More", desc: "Coming soon", active: false },
                 ].map((node) => (
                   <div
                     key={node.name}

@@ -23,7 +23,9 @@ const nextConfig = {
               "default-src 'self'",
               // Fonts are self-hosted via @fontsource — no Google Fonts needed
               // Vercel Live feedback in development
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live",
+              process.env.NODE_ENV === "development"
+                ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live"
+                : "script-src 'self' 'unsafe-inline' https://vercel.live",
               "style-src 'self' 'unsafe-inline'",
               "font-src 'self' data:",
               "img-src 'self' data: blob:",
@@ -57,6 +59,7 @@ const nextConfig = {
 
   // Power-on header removal (don't advertise Next.js version)
   poweredByHeader: false,
+
 }
 
 module.exports = nextConfig

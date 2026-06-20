@@ -171,7 +171,9 @@ export function Navbar() {
                     aria-current={pathname === href ? "page" : undefined}
                     className={cn(
                       "block font-display text-[2rem] font-bold py-2 transition-colors",
-                      pathname === href ? "text-white" : "text-white/60 hover:text-white"
+                      pathname === href
+                        ? "text-accent"
+                        : "text-white/40 hover:text-white"
                     )}
                   >
                     {label}

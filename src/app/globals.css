@@ -32,6 +32,25 @@
   :focus-visible {
     @apply outline-none ring-2 ring-accent ring-offset-2 rounded;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Ensure animated content is visible when JS fails or reduced-motion is on */
+  @media (prefers-reduced-motion: reduce) {
+    [style*="opacity: 0"],
+    [style*="opacity:0"] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 }
 
 @layer utilities {

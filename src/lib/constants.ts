@@ -116,10 +116,10 @@ export const ROADMAP = [
 ]
 
 export const STATS = [
-  { value: "3", label: "Core Product Pillars" },
-  { value: "2+", label: "Digital Platforms" },
-  { value: "1", label: "Active Market: Rwanda" },
-  { value: "∞", label: "Ambition: All Africa" },
+  { value: "3", label: "Service Pillars" },
+  { value: "2", label: "Platforms in Development" },
+  { value: "2024", label: "Founded in Kigali" },
+  { value: "54", label: "African Countries to Serve" },
 ]
 
 export const APPROACH = [
