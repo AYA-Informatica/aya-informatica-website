@@ -4,6 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import FocusLock from "react-focus-lock"
 import { Menu, X } from "lucide-react"
 import { useUIStore } from "@/store/ui"
 import { NAV_LINKS } from "@/lib/constants"
@@ -154,43 +155,45 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-40 bg-navy flex flex-col items-center justify-center"
           >
-            <nav
-              className="flex flex-col items-center gap-2 w-full max-w-xs"
-              aria-label="Mobile navigation"
-            >
-              {NAV_LINKS.map(({ href, label }, i) => (
+            <FocusLock returnFocus>
+              <nav
+                className="flex flex-col items-center gap-2 w-full max-w-xs"
+                aria-label="Mobile navigation"
+              >
+                {NAV_LINKS.map(({ href, label }, i) => (
+                  <motion.div
+                    key={href}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.07, duration: 0.3 }}
+                    className="w-full text-center"
+                  >
+                    <Link
+                      href={href}
+                      aria-current={pathname === href ? "page" : undefined}
+                      className={cn(
+                        "block font-display text-[2rem] font-bold py-2 transition-colors",
+                        pathname === href
+                          ? "text-accent"
+                          : "text-white/40 hover:text-white"
+                      )}
+                    >
+                      {label}
+                    </Link>
+                  </motion.div>
+                ))}
                 <motion.div
-                  key={href}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.07, duration: 0.3 }}
-                  className="w-full text-center"
+                  transition={{ delay: NAV_LINKS.length * 0.07 + 0.05, duration: 0.3 }}
+                  className="w-full mt-6"
                 >
-                  <Link
-                    href={href}
-                    aria-current={pathname === href ? "page" : undefined}
-                    className={cn(
-                      "block font-display text-[2rem] font-bold py-2 transition-colors",
-                      pathname === href
-                        ? "text-accent"
-                        : "text-white/40 hover:text-white"
-                    )}
-                  >
-                    {label}
-                  </Link>
+                  <Button asChild className="w-full" size="lg">
+                    <Link href="/contact">Partner With Us</Link>
+                  </Button>
                 </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: NAV_LINKS.length * 0.07 + 0.05, duration: 0.3 }}
-                className="w-full mt-6"
-              >
-                <Button asChild className="w-full" size="lg">
-                  <Link href="/contact">Partner With Us</Link>
-                </Button>
-              </motion.div>
-            </nav>
+              </nav>
+            </FocusLock>
           </motion.div>
         )}
       </AnimatePresence>

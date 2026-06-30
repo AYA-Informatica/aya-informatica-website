@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer"
 import type { ContactSchema } from "@/lib/validations"
+import { logger } from "@/lib/logger"
 
 /**
  * Custom email sender — zero third-party dependency, zero recurring cost.
@@ -30,26 +31,51 @@ import type { ContactSchema } from "@/lib/validations"
  * SMTP_PORT       587 (STARTTLS) or 465 (SSL)
  * SMTP_USER       your sending email address
  * SMTP_PASS       your app password or SMTP password
- * SMTP_FROM       display name + address, e.g. "AYA Informatica <noreply@ayainformatica.com>"
+ * SMTP_FROM       display name + address, e.g. "AYA Informatica <noreply@ayainformatica.tech>"
  * CONTACT_TO      destination address, e.g. ay.company.andy@gmail.com
  */
 
-function createTransporter() {
-  const host = process.env.SMTP_HOST
-  const port = parseInt(process.env.SMTP_PORT ?? "587", 10)
-  const user = process.env.SMTP_USER
-  const pass = process.env.SMTP_PASS
+export function validateSmtpConfig(): { valid: boolean; missing: string[] } {
+  const required = ["SMTP_HOST", "SMTP_USER", "SMTP_PASS"] as const
+  const missing = required.filter((key) => !process.env[key])
+  return { valid: missing.length === 0, missing }
+}
 
-  if (!host || !user || !pass) {
-    throw new Error("SMTP configuration incomplete — check SMTP_HOST, SMTP_USER, SMTP_PASS in .env.local")
+function createTransporter() {
+  const { valid, missing } = validateSmtpConfig()
+  if (!valid) {
+    throw new Error(`SMTP configuration incomplete — missing: ${missing.join(", ")}. Check .env.local`)
   }
 
+  const host = process.env.SMTP_HOST!
+  const port = parseInt(process.env.SMTP_PORT ?? "587", 10)
+  const user = process.env.SMTP_USER!
+  const pass = process.env.SMTP_PASS!
+
+  const primaryTransport = nodemailer.createTransport({
+    host,
+    port,
+    secure: port === 465,
+    auth: { user, pass },
+    connectionTimeout: 10_000,
+    greetingTimeout: 8_000,
+  })
+
+  return primaryTransport
+}
+
+function createFallbackTransporter(): ReturnType<typeof nodemailer.createTransport> | null {
+  const host = process.env.SMTP_FALLBACK_HOST
+  const user = process.env.SMTP_FALLBACK_USER
+  const pass = process.env.SMTP_FALLBACK_PASS
+  if (!host || !user || !pass) return null
+
+  const port = parseInt(process.env.SMTP_FALLBACK_PORT ?? "587", 10)
   return nodemailer.createTransport({
     host,
     port,
-    secure: port === 465, // SSL for 465, STARTTLS for 587
+    secure: port === 465,
     auth: { user, pass },
-    // Connection timeout (ms) — fail fast rather than hang
     connectionTimeout: 10_000,
     greetingTimeout: 8_000,
   })
@@ -60,10 +86,22 @@ export interface SendContactEmailResult {
   messageId: string
 }
 
+async function sendWithFallback(
+  mailOptions: Parameters<ReturnType<typeof nodemailer.createTransport>["sendMail"]>[0]
+) {
+  const primary = createTransporter()
+  try {
+    return await primary.sendMail(mailOptions)
+  } catch (err) {
+    const fallback = createFallbackTransporter()
+    if (!fallback) throw err
+    return await fallback.sendMail(mailOptions)
+  }
+}
+
 export async function sendContactEmail(
   data: ContactSchema
 ): Promise<SendContactEmailResult> {
-  const transporter = createTransporter()
   const from = process.env.SMTP_FROM ?? `"AYA Informatica" <${process.env.SMTP_USER}>`
   const to = process.env.CONTACT_TO ?? process.env.SMTP_USER ?? ""
 
@@ -168,7 +206,7 @@ export async function sendContactEmail(
         <tr>
           <td style="padding:20px 32px;border-top:1px solid #E8E8E8;">
             <p style="margin:0;font-size:11px;color:#A0A0A0;">
-              Sent via ayainformatica.com contact form · ${new Date().toUTCString()}
+              Sent via ayainformatica.tech contact form · ${new Date().toUTCString()}
             </p>
           </td>
         </tr>
@@ -179,7 +217,7 @@ export async function sendContactEmail(
 </body>
 </html>`
 
-  const info = await transporter.sendMail({
+  const info = await sendWithFallback({
     from,
     to,
     replyTo: `"${data.name}" <${data.email}>`,
@@ -187,6 +225,77 @@ export async function sendContactEmail(
     text,
     html,
   })
+
+  // Send auto-reply to the submitter
+  try {
+    await sendWithFallback({
+      from,
+      to: data.email,
+      subject: `Thank you for contacting AYA Informatica`,
+      text: [
+        `Hi ${data.name.split(" ")[0]},`,
+        ``,
+        `Thank you for reaching out to AYA Informatica. We've received your message and will get back to you within 24 hours.`,
+        ``,
+        `For reference, here's a summary of your submission:`,
+        `Subject: ${subjectLabel}`,
+        ``,
+        `Best regards,`,
+        `The AYA Informatica Team`,
+        `Kigali, Rwanda`,
+        ``,
+        `---`,
+        `This is an automated confirmation. Please do not reply to this email.`,
+      ].join("\n"),
+      html: `
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /></head>
+<body style="margin:0;padding:0;background:#F5F5F5;font-family:'DM Sans',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#F5F5F5;padding:32px 16px;">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #E8E8E8;">
+        <tr>
+          <td style="background:#001529;padding:28px 32px;">
+            <p style="margin:0;font-size:22px;font-weight:900;color:#ffffff;letter-spacing:2px;">AYA</p>
+            <p style="margin:4px 0 0;font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:4px;">Informatica</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:32px;">
+            <p style="margin:0 0 16px;font-size:18px;font-weight:700;color:#001529;">Thank you, ${data.name.split(" ")[0]}!</p>
+            <p style="margin:0 0 16px;font-size:14px;color:#A0A0A0;line-height:1.6;">
+              We've received your message regarding <strong style="color:#001529;">${subjectLabel}</strong> and our team will review it shortly.
+            </p>
+            <p style="margin:0 0 24px;font-size:14px;color:#A0A0A0;line-height:1.6;">
+              We typically respond within <strong style="color:#001529;">24 hours</strong>. In the meantime, feel free to explore our website for more information.
+            </p>
+            <div style="text-align:center;">
+              <a href="https://ayainformatica.tech" style="display:inline-block;background:#0A84FF;color:#ffffff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:8px;text-decoration:none;">
+                Visit Our Website
+              </a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:20px 32px;border-top:1px solid #E8E8E8;">
+            <p style="margin:0;font-size:11px;color:#A0A0A0;">
+              AYA Informatica · Kigali, Rwanda · This is an automated confirmation.
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`,
+    })
+  } catch (err) {
+    logger.warn("Contact auto-reply failed", {
+      email: data.email,
+      error: err instanceof Error ? err.message : String(err),
+    })
+  }
 
   return { success: true, messageId: info.messageId }
 }

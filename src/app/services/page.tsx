@@ -7,16 +7,17 @@ import { MotionDiv, MotionList, MotionItem } from "@/components/shared/motion-di
 import { SERVICES } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { PageWrapper } from "@/components/shared/page-wrapper"
+import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
 
 export const metadata: Metadata = {
   title: "Services",
   description:
     "Platform development, intelligent systems, and digital solutions. AYA Informatica brings the technical depth your business needs to grow.",
-  alternates: { canonical: "https://ayainformatica.com/services" },
+  alternates: { canonical: "https://ayainformatica.tech/services" },
   openGraph: {
     title: "AYA Informatica Services – Platform Development & Digital Solutions",
     description: "End-to-end platform development, intelligent systems, and tailored digital solutions for businesses across Africa.",
-    url: "https://ayainformatica.com/services",
+    url: "https://ayainformatica.tech/services",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AYA Informatica Services" }],
   },
   twitter: {
@@ -43,8 +44,9 @@ const PROCESS = [
 export default function ServicesPage() {
   return (
     <PageWrapper>
+      <BreadcrumbJsonLd items={[{ name: "Services", href: "/services" }]} />
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 -mt-[72px] pt-[calc(72px+6rem)] overflow-hidden">
+      <section className="relative bg-navy py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
@@ -70,7 +72,7 @@ export default function ServicesPage() {
         <section
           key={svc.id}
           id={`svc-${svc.id}`}
-          className={cn("py-20 border-b border-brand-gray-light scroll-mt-20", i % 2 === 0 ? "bg-white" : "bg-brand-bg")}
+          className={cn("py-20 border-b border-brand-gray-light scroll-mt-[calc(var(--navbar-height)+1rem)]", i % 2 === 0 ? "bg-white" : "bg-brand-bg")}
           aria-labelledby={`svc-${svc.id}-heading`}
         >
           <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">

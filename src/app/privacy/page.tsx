@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "How AYA Informatica collects, uses, and protects your personal information when you use our website and contact form.",
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://ayainformatica.com/privacy" },
+  alternates: { canonical: "https://ayainformatica.tech/privacy" },
 }
 
 const LAST_UPDATED = "June 2025"
@@ -38,7 +38,7 @@ export default function PrivacyPage() {
   return (
     <PageWrapper>
       {/* ── HERO ─────────────────────────────── */}
-      <section className="bg-navy py-20 -mt-[72px] pt-[calc(72px+5rem)] relative overflow-hidden">
+      <section className="bg-navy py-20 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+5rem)] relative overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
           <span className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50 block mb-3">
@@ -96,7 +96,7 @@ export default function PrivacyPage() {
               <section id="overview" className="mb-10 scroll-mt-28">
                 <SectionHeading id="overview" title="1. Overview" />
                 <div className="privacy-body">
-                  <p>AYA Informatica (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) operates the website <strong>ayainformatica.com</strong> (the &ldquo;Site&rdquo;). This Privacy Policy explains what personal information we collect, how we use it, and the choices you have.</p>
+                  <p>AYA Informatica (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) operates the website <strong>ayainformatica.tech</strong> (the &ldquo;Site&rdquo;). This Privacy Policy explains what personal information we collect, how we use it, and the choices you have.</p>
                   <p>By using our Site you agree to the practices described here. If you do not agree, please do not use the Site.</p>
                 </div>
               </section>

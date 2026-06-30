@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { contactSchema } from "@/lib/validations"
 import { sendContactEmail } from "@/lib/mailer"
+import { verifyTurnstile } from "@/lib/turnstile"
 import { logger } from "@/lib/logger"
 
 /**
@@ -43,7 +44,20 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // ── 4. Zod validation ─────────────────────────────────
+    // ── 4. Turnstile verification (when configured) ───────
+    if (process.env.TURNSTILE_SECRET_KEY && typeof body === "object" && body !== null) {
+      const token = (body as Record<string, unknown>)["cf-turnstile-response"]
+      if (!token || typeof token !== "string") {
+        return NextResponse.json({ error: "Captcha verification required" }, { status: 400 })
+      }
+      const valid = await verifyTurnstile(token)
+      if (!valid) {
+        logger.warn("Contact API: Turnstile verification failed", { ip })
+        return NextResponse.json({ error: "Captcha verification failed" }, { status: 403 })
+      }
+    }
+
+    // ── 5. Zod validation ─────────────────────────────────
     const parsed = contactSchema.safeParse(body)
     if (!parsed.success) {
       logger.warn("Contact API: validation failed", {
@@ -56,7 +70,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // ── 5. Send email via Nodemailer ──────────────────────
+    // ── 6. Send email via Nodemailer ──────────────────────
     const result = await sendContactEmail(parsed.data)
 
     logger.info("Contact API: email sent successfully", {

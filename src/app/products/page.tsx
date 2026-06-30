@@ -8,16 +8,17 @@ import { MotionDiv, MotionList, MotionItem } from "@/components/shared/motion-di
 import { PRODUCTS } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { PageWrapper } from "@/components/shared/page-wrapper"
+import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
 
 export const metadata: Metadata = {
   title: "Products",
   description:
     "Discover RAY, Rwanda's mobile-first marketplace, and Humura, our upcoming mental wellness platform. Platforms designed for real people.",
-  alternates: { canonical: "https://ayainformatica.com/products" },
+  alternates: { canonical: "https://ayainformatica.tech/products" },
   openGraph: {
     title: "AYA Informatica Products – RAY Marketplace & Humura Wellness",
     description: "RAY: Rwanda's mobile-first marketplace for phones and electronics. Humura: mental wellness platform coming soon.",
-    url: "https://ayainformatica.com/products",
+    url: "https://ayainformatica.tech/products",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AYA Informatica Products" }],
   },
   twitter: {
@@ -39,8 +40,9 @@ const RAY_FEATURES = [
 export default function ProductsPage() {
   return (
     <PageWrapper>
+      <BreadcrumbJsonLd items={[{ name: "Products", href: "/products" }]} />
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 -mt-[72px] pt-[calc(72px+6rem)] overflow-hidden">
+      <section className="relative bg-navy py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">

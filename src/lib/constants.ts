@@ -5,6 +5,7 @@ export const NAV_LINKS: NavLink[] = [
   { href: "/about", label: "About" },
   { href: "/products", label: "Products" },
   { href: "/services", label: "Services" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ]
 
@@ -142,6 +143,24 @@ export const APPROACH = [
     num: "04",
     title: "Trust & Safety",
     desc: "Trust mechanisms are integrated into every product from the start.",
+  },
+]
+
+export const TESTIMONIALS = [
+  {
+    quote: "AYA Informatica understands what it means to build for Africa — not just technically, but culturally. Their approach is refreshing.",
+    name: "Jean-Pierre M.",
+    role: "Tech Entrepreneur, Kigali",
+  },
+  {
+    quote: "RAY is exactly what the market needed — a trustworthy, mobile-first platform that makes buying and selling simple and transparent.",
+    name: "Diane U.",
+    role: "Early Access User",
+  },
+  {
+    quote: "Working with AYA's team showed us what product-driven development looks like. They move fast without cutting corners.",
+    name: "Patrick K.",
+    role: "Business Partner",
   },
 ]
 

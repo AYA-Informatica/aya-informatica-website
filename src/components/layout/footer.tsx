@@ -17,7 +17,7 @@ export function Footer() {
                 <span className="font-display text-2xl font-extrabold text-white tracking-[0.04em] leading-none">
                   AYA
                 </span>
-                <span className="text-[0.65rem] text-white/35 uppercase tracking-[0.08em]">
+                <span className="text-[0.65rem] text-white/55 uppercase tracking-[0.08em]">
                   Informatica
                 </span>
               </div>
@@ -25,7 +25,7 @@ export function Footer() {
             <p className="font-display text-sm font-semibold text-white/80 leading-snug mb-3">
               Building Africa&apos;s<br />Digital Future
             </p>
-            <p className="text-xs text-white/35 flex items-center gap-1.5">
+            <p className="text-xs text-white/55 flex items-center gap-1.5">
               <MapPin size={11} />
               Kigali, Rwanda
             </p>
@@ -33,7 +33,7 @@ export function Footer() {
 
           {/* Navigate */}
           <div>
-            <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-white/35 mb-4">
+            <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-4">
               Navigate
             </h3>
             <ul className="flex flex-col gap-2.5">
@@ -52,7 +52,7 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-white/35 mb-4">
+            <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-4">
               Products
             </h3>
             <ul className="flex flex-col gap-2.5">
@@ -71,7 +71,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-white/35 mb-4">
+            <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-4">
               Get in Touch
             </h3>
             <ul className="flex flex-col gap-3">
@@ -99,15 +99,15 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 pt-6 flex-wrap">
-          <p className="text-xs text-white/30">
+          <p className="text-xs text-white/45">
             &copy; {year} AYA Informatica. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <Link href="/privacy" className="text-xs text-white/30 hover:text-white/60 transition-colors">
+            <Link href="/privacy" className="text-xs text-white/45 hover:text-white/60 transition-colors">
               Privacy Policy
             </Link>
-            <span className="text-white/15 text-xs">·</span>
-            <Link href="/terms" className="text-xs text-white/30 hover:text-white/60 transition-colors">
+            <span className="text-white/35 text-xs">·</span>
+            <Link href="/terms" className="text-xs text-white/45 hover:text-white/60 transition-colors">
               Terms of Use
             </Link>
           </div>

@@ -6,16 +6,17 @@ import { MotionDiv } from "@/components/shared/motion-div"
 import { CONTACT_INFO } from "@/lib/constants"
 import { Mail, Phone, MapPin } from "lucide-react"
 import { PageWrapper } from "@/components/shared/page-wrapper"
+import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "Get in touch with AYA Informatica. Partner with us, get early access to RAY, or discuss a project.",
-  alternates: { canonical: "https://ayainformatica.com/contact" },
+  alternates: { canonical: "https://ayainformatica.tech/contact" },
   openGraph: {
     title: "Contact AYA Informatica – Let's Build Together",
     description: "Partner with us, get early access to RAY, discuss a service inquiry, or explore investment opportunities.",
-    url: "https://ayainformatica.com/contact",
+    url: "https://ayainformatica.tech/contact",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Contact AYA Informatica" }],
   },
   twitter: {
@@ -28,8 +29,9 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <PageWrapper>
+      <BreadcrumbJsonLd items={[{ name: "Contact", href: "/contact" }]} />
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 -mt-[72px] pt-[calc(72px+6rem)] overflow-hidden">
+      <section className="relative bg-navy py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">

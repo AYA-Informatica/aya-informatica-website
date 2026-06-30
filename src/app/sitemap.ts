@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.com"
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech"
 
 /**
  * Generates /sitemap.xml via Next.js App Router.
@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about",   priority: 0.8, changeFrequency: "monthly"  },
     { path: "/products",priority: 0.9, changeFrequency: "weekly"   }, // products update more frequently
     { path: "/services",priority: 0.8, changeFrequency: "monthly"  },
+    { path: "/blog",    priority: 0.8, changeFrequency: "weekly"   },
     { path: "/contact", priority: 0.7, changeFrequency: "yearly"   },
     { path: "/privacy", priority: 0.3, changeFrequency: "yearly"   },
     { path: "/terms",   priority: 0.3, changeFrequency: "yearly"   },

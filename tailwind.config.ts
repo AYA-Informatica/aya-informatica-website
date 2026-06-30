@@ -35,9 +35,9 @@ const config: Config = {
       },
       // ── Typography ─────────────────────────────────────────
       fontFamily: {
-        display: ["Syne", "system-ui", "sans-serif"],
-        body: ["DM Sans", "system-ui", "sans-serif"],
-        sans: ["DM Sans", "system-ui", "sans-serif"],
+        display: ["'Syne Variable'", "Syne", "system-ui", "sans-serif"],
+        body: ["'DM Sans Variable'", "DM Sans", "system-ui", "sans-serif"],
+        sans: ["'DM Sans Variable'", "DM Sans", "system-ui", "sans-serif"],
       },
       // ── Animations ─────────────────────────────────────────
       keyframes: {

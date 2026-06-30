@@ -1,22 +1,50 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
+import { Ratelimit } from "@upstash/ratelimit"
+import { Redis } from "@upstash/redis"
 
 // ─────────────────────────────────────────────────────────────
 // SECURITY MIDDLEWARE
 // Handles: CORS, rate limiting, security headers, method guards
 // ─────────────────────────────────────────────────────────────
 
-// ── In-memory rate limiter ────────────────────────────────────
-// WARNING: On serverless platforms (Vercel), each instance gets its
-// own Map — the limiter only works within a single instance's lifetime.
-// For production at scale, replace with Upstash Redis:
-//   npm install @upstash/ratelimit @upstash/redis
-//   https://github.com/upstash/ratelimit
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+// ── Upstash Redis rate limiter (production) ──────────────────
 
-// Prevent unbounded memory growth — evict expired entries periodically
+const hasRedis = !!(process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN)
+
+let contactLimiter: Ratelimit | null = null
+let defaultLimiter: Ratelimit | null = null
+
+function getContactLimiter() {
+  if (!contactLimiter && hasRedis) {
+    contactLimiter = new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(5, "1 m"),
+      analytics: true,
+      prefix: "aya-rl-contact",
+    })
+  }
+  return contactLimiter
+}
+
+function getDefaultLimiter() {
+  if (!defaultLimiter && hasRedis) {
+    defaultLimiter = new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(60, "1 m"),
+      analytics: true,
+      prefix: "aya-rl-default",
+    })
+  }
+  return defaultLimiter
+}
+
+// ── In-memory fallback rate limiter (development) ────────────
+
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
 const CLEANUP_INTERVAL = 60_000
 let lastCleanup = Date.now()
+
 function cleanupExpired() {
   const now = Date.now()
   if (now - lastCleanup < CLEANUP_INTERVAL) return
@@ -26,74 +54,102 @@ function cleanupExpired() {
   })
 }
 
-const RATE_LIMIT_RULES: Record<string, { max: number; windowMs: number }> = {
-  "/api/contact": { max: 5, windowMs: 60_000 },  // 5 requests / minute
-  default:        { max: 60, windowMs: 60_000 }, // 60 requests / minute for all other routes
-}
-
-function getRateLimit(pathname: string) {
-  return RATE_LIMIT_RULES[pathname] ?? RATE_LIMIT_RULES.default
-}
-
-function isRateLimited(ip: string, pathname: string): boolean {
+function isRateLimitedFallback(ip: string, pathname: string): boolean {
   cleanupExpired()
   const now = Date.now()
+  const max = pathname === "/api/contact" ? 5 : 60
   const key = `${ip}:${pathname}`
-  const rule = getRateLimit(pathname)
   const entry = rateLimitMap.get(key)
 
   if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(key, { count: 1, resetAt: now + rule.windowMs })
+    rateLimitMap.set(key, { count: 1, resetAt: now + 60_000 })
     return false
   }
-
-  if (entry.count >= rule.max) return true
-
+  if (entry.count >= max) return true
   entry.count++
   return false
 }
 
-// ── Allowed origins ──────────────────────────────────────────
+// ── CORS ─────────────────────────────────────────────────────
+
 const ALLOWED_ORIGINS = new Set([
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.com",
-  // Add staging URL here if needed:
-  // "https://staging.ayainformatica.com",
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech",
 ])
 
-// Only enforce CORS on API routes
 function getCorsOrigin(origin: string | null): string | null {
   if (!origin) return null
   if (ALLOWED_ORIGINS.has(origin)) return origin
-  // During local development allow localhost
   if (process.env.NODE_ENV === "development" && origin.startsWith("http://localhost")) {
     return origin
   }
   return null
 }
 
+function handlePreflight(allowedOrigin: string | null) {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": allowedOrigin ?? "",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Max-Age": "86400",
+    },
+  })
+}
+
+function rejectOrigin() {
+  return NextResponse.json({ error: "CORS: origin not allowed" }, { status: 403 })
+}
+
+// ── Rate limit check (unified) ───────────────────────────────
+
+async function checkRateLimit(ip: string, pathname: string): Promise<NextResponse | null> {
+  const isContact = pathname === "/api/contact"
+  const limiter = isContact ? getContactLimiter() : getDefaultLimiter()
+
+  if (limiter) {
+    const { success, limit, remaining, reset } = await limiter.limit(ip)
+    if (!success) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": "60",
+            "X-RateLimit-Limit": String(limit),
+            "X-RateLimit-Remaining": String(remaining),
+            "X-RateLimit-Reset": String(reset),
+          },
+        },
+      )
+    }
+    return null
+  }
+
+  if (isRateLimitedFallback(ip, pathname)) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again later." },
+      { status: 429, headers: { "Retry-After": "60" } },
+    )
+  }
+  return null
+}
+
 // ── Security headers ─────────────────────────────────────────
+
 const SECURITY_HEADERS: Record<string, string> = {
-  // Prevent clickjacking
   "X-Frame-Options": "DENY",
-  // Prevent MIME-type sniffing
   "X-Content-Type-Options": "nosniff",
-  // Referrer policy — don't leak full URL to third-party sites
   "Referrer-Policy": "strict-origin-when-cross-origin",
-  // Permissions policy — disable unnecessary browser features
   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
-  // Force HTTPS
   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
-  // Content-Security-Policy
-  // NOTE: tighten this further if you add third-party embeds
   "Content-Security-Policy": [
     "default-src 'self'",
-    process.env.NODE_ENV === "development"
-      ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live"
-      : "script-src 'self' 'unsafe-inline' https://vercel.live",
+    "script-src 'self' 'unsafe-inline' https://vercel.live https://va.vercel-scripts.com",
     "style-src 'self' 'unsafe-inline'",
     "font-src 'self' data:",
     "img-src 'self' data: blob:",
-    "connect-src 'self' https://vercel.live wss://ws-us3.pusher.com",
+    "connect-src 'self' https://vercel.live wss://ws-us3.pusher.com https://vitals.vercel-insights.com https://va.vercel-scripts.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",
@@ -102,66 +158,35 @@ const SECURITY_HEADERS: Record<string, string> = {
 
 const SKIP_PATTERN = /^\/((_next\/static|_next\/image|favicon\.ico|og-image)\/|.*\.svg$)/
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+// ── Middleware entry point ────────────────────────────────────
 
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
   if (SKIP_PATTERN.test(pathname)) return NextResponse.next()
 
   const origin = request.headers.get("origin")
   const isApiRoute = pathname.startsWith("/api/")
 
-  // ── 1. CORS — API routes only ────────────────────────────
   if (isApiRoute) {
     const allowedOrigin = getCorsOrigin(origin)
 
-    // Preflight (OPTIONS) request
-    if (request.method === "OPTIONS") {
-      return new NextResponse(null, {
-        status: 204,
-        headers: {
-          "Access-Control-Allow-Origin": allowedOrigin ?? "",
-          "Access-Control-Allow-Methods": "POST, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type",
-          "Access-Control-Max-Age": "86400",
-        },
-      })
-    }
+    if (request.method === "OPTIONS") return handlePreflight(allowedOrigin)
+    if (origin && !allowedOrigin) return rejectOrigin()
 
-    // Reject requests from unlisted origins (only when an Origin header is present)
-    if (origin && !allowedOrigin) {
-      return NextResponse.json(
-        { error: "CORS: origin not allowed" },
-        { status: 403 }
-      )
-    }
-
-    // ── 2. Rate limiting — API routes ──────────────────────
     const ip =
       request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
       request.headers.get("x-real-ip") ??
       "unknown"
 
-    if (isRateLimited(ip, pathname)) {
-      return NextResponse.json(
-        { error: "Too many requests. Please try again later." },
-        {
-          status: 429,
-          headers: {
-            "Retry-After": "60",
-            "X-RateLimit-Limit": String(getRateLimit(pathname).max),
-          },
-        }
-      )
-    }
+    const rateLimitResponse = await checkRateLimit(ip, pathname)
+    if (rateLimitResponse) return rateLimitResponse
   }
 
-  // ── 3. Attach security headers to every response ─────────
   const response = NextResponse.next()
-  Object.entries(SECURITY_HEADERS).forEach(([key, value]) => {
+  for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
     response.headers.set(key, value)
-  })
+  }
 
-  // Attach CORS header to API responses too
   if (isApiRoute && origin) {
     const allowedOrigin = getCorsOrigin(origin)
     if (allowedOrigin) {
@@ -171,4 +196,3 @@ export function middleware(request: NextRequest) {
 
   return response
 }
-

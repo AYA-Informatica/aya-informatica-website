@@ -11,7 +11,7 @@
   "regions": ["cdg1"],
 
   "env": {
-    "NEXT_PUBLIC_SITE_URL": "https://ayainformatica.com"
+    "NEXT_PUBLIC_SITE_URL": "https://ayainformatica.tech"
   },
 
   "headers": [

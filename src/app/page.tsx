@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { SectionHeader } from "@/components/shared/section-header"
 import { MotionDiv, MotionList, MotionItem } from "@/components/shared/motion-div"
-import { STATS, PRODUCTS, APPROACH } from "@/lib/constants"
+import { STATS, PRODUCTS, APPROACH, TESTIMONIALS } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 
@@ -22,7 +22,7 @@ export default function HomePage() {
           HERO
       ════════════════════════════════════════ */}
       <section
-        className="relative min-h-screen -mt-[72px] pt-[72px] bg-navy flex flex-col justify-center overflow-hidden"
+        className="relative min-h-screen -mt-[var(--navbar-height)] pt-[var(--navbar-height)] bg-navy flex flex-col justify-center overflow-hidden"
         aria-label="Hero"
       >
         {/* Background grid */}
@@ -243,6 +243,38 @@ export default function HomePage() {
               ))}
             </MotionList>
           </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          TESTIMONIALS
+      ════════════════════════════════════════ */}
+      <section className="bg-navy py-24" aria-labelledby="testimonials-heading">
+        <div className="container">
+          <SectionHeader
+            eyebrow="What People Say"
+            title="Trusted by Builders"
+            light
+            className="mb-14"
+          />
+          <MotionList className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            {TESTIMONIALS.map((t) => (
+              <MotionItem key={t.name}>
+                <div className="bg-white/5 border border-white/8 rounded-2xl p-7 h-full flex flex-col">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-accent mb-4 shrink-0" aria-hidden="true">
+                    <path d="M11 7H7a4 4 0 0 0-4 4v1a3 3 0 0 0 3 3h1a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2H5.5A2.5 2.5 0 0 1 8 7.5V7h3V7ZM21 7h-4a4 4 0 0 0-4 4v1a3 3 0 0 0 3 3h1a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1.5A2.5 2.5 0 0 1 18 7.5V7h3V7Z" fill="currentColor" />
+                  </svg>
+                  <blockquote className="text-sm text-white/70 leading-relaxed mb-5 flex-1">
+                    {t.quote}
+                  </blockquote>
+                  <div>
+                    <div className="font-display font-semibold text-sm text-white">{t.name}</div>
+                    <div className="text-xs text-white/40">{t.role}</div>
+                  </div>
+                </div>
+              </MotionItem>
+            ))}
+          </MotionList>
         </div>
       </section>
 

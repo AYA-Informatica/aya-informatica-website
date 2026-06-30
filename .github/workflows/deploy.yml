@@ -65,7 +65,7 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment:
       name: production
-      url: https://ayainformatica.com
+      url: https://ayainformatica.tech
     steps:
       - uses: actions/checkout@v4
 

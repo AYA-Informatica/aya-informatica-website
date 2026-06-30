@@ -8,10 +8,7 @@ export default function Loading() {
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="w-2 h-2 rounded-full bg-accent"
-              style={{
-                animation: `pulse 1.2s ease-in-out ${i * 0.2}s infinite`,
-              }}
+              className="w-2 h-2 rounded-full bg-accent motion-safe:animate-pulse-dot"
             />
           ))}
         </div>

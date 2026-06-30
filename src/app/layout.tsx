@@ -1,19 +1,16 @@
 import type { Metadata } from "next"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Toaster } from "@/components/ui/toaster"
 import { JsonLd } from "@/components/shared/json-ld"
-// Local fonts — no network call required at build time
-import "@fontsource/syne/600.css"
-import "@fontsource/syne/700.css"
-import "@fontsource/syne/800.css"
-import "@fontsource/dm-sans/300.css"
-import "@fontsource/dm-sans/400.css"
-import "@fontsource/dm-sans/500.css"
-import "@fontsource/dm-sans/600.css"
+// Variable fonts — single file per family, all weights included
+import "@fontsource-variable/syne"
+import "@fontsource-variable/dm-sans"
 import "./globals.css"
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.com"
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech"
 
 /* ── Root Metadata ────────────────────────────────────── */
 export const metadata: Metadata = {
@@ -109,11 +106,13 @@ export default function RootLayout({
       </head>
       <body>
         <Navbar />
-        <main id="main-content" className="pt-[72px]">
+        <main id="main-content" className="pt-[var(--navbar-height)]">
           {children}
         </main>
         <Footer />
         <Toaster />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )

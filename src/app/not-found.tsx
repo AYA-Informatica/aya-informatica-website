@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <section
-      className="min-h-[calc(100vh-72px)] bg-brand-bg flex items-center justify-center"
+      className="min-h-[calc(100vh-var(--navbar-height))] bg-brand-bg flex items-center justify-center"
       aria-label="Page not found"
     >
       <div className="container py-20 flex flex-col items-center text-center max-w-lg">

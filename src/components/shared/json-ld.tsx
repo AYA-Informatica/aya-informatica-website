@@ -1,20 +1,43 @@
-/**
- * JSON-LD Structured Data
- * Injected into <head> via layout.tsx for Google rich results.
- * Two schemas:
- *   1. Organization — company identity, contact, logo
- *   2. WebSite      — enables Google Sitelinks Search Box
- */
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech"
+
+interface BreadcrumbItem {
+  name: string
+  href: string
+}
+
+export function BreadcrumbJsonLd({ items }: { readonly items: readonly BreadcrumbItem[] }) {
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      ...items.map((item, i) => ({
+        "@type": "ListItem",
+        position: i + 2,
+        name: item.name,
+        item: `${BASE_URL}${item.href}`,
+      })),
+    ],
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+    />
+  )
+}
+
 export function JsonLd() {
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://ayainformatica.com/#organization",
+    "@id": `${BASE_URL}/#organization`,
     name: "AYA Informatica",
-    url: "https://ayainformatica.com",
+    url: BASE_URL,
     logo: {
       "@type": "ImageObject",
-      url: "https://ayainformatica.com/og-image.png",
+      url: `${BASE_URL}/og-image.png`,
       width: 1200,
       height: 630,
     },
@@ -32,8 +55,13 @@ export function JsonLd() {
         email: "ay.company.andy@gmail.com",
         contactType: "customer service",
         areaServed: "Africa",
-        availableLanguage: ["English"],
+        availableLanguage: ["English", "French", "Kinyarwanda"],
       },
+    ],
+    sameAs: [
+      "https://twitter.com/ayainformatica",
+      "https://linkedin.com/company/ayainformatica",
+      "https://github.com/ayainformatica",
     ],
     foundingDate: "2024",
     foundingLocation: {
@@ -45,12 +73,12 @@ export function JsonLd() {
   const website = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://ayainformatica.com/#website",
-    url: "https://ayainformatica.com",
+    "@id": `${BASE_URL}/#website`,
+    url: BASE_URL,
     name: "AYA Informatica",
     description: "Building Africa's Digital Future",
     publisher: {
-      "@id": "https://ayainformatica.com/#organization",
+      "@id": `${BASE_URL}/#organization`,
     },
   }
 

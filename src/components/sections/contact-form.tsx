@@ -38,6 +38,7 @@ export function ContactForm() {
   } = useForm<ContactSchema>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", email: "", phone: "", subject: "", message: "" },
+    mode: "onTouched",
   })
 
   const selectedSubject = watch("subject")

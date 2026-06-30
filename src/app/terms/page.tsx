@@ -7,19 +7,19 @@ export const metadata: Metadata = {
   description:
     "Terms and conditions for using the AYA Informatica website and services.",
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://ayainformatica.com/terms" },
+  alternates: { canonical: "https://ayainformatica.tech/terms" },
 }
 
 const LAST_UPDATED = "June 2025"
 const CONTACT_EMAIL = "ay.company.andy@gmail.com"
 const COMPANY = "AYA Informatica"
-const SITE = "ayainformatica.com"
+const SITE = "ayainformatica.tech"
 
 export default function TermsPage() {
   return (
     <PageWrapper>
       {/* ── HERO ─────────────────────────────── */}
-      <section className="bg-navy py-20 -mt-[72px] pt-[calc(72px+5rem)] relative overflow-hidden">
+      <section className="bg-navy py-20 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+5rem)] relative overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
           <span className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50 block mb-3">

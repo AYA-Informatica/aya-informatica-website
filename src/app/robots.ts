@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next"
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.com"
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech"
 
 /**
  * FIX #7: Generates /robots.txt automatically via Next.js App Router.
