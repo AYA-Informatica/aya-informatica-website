@@ -12,6 +12,10 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   },
+  "overrides": {
+    "postcss": "^8.5.25",
+    "sharp": "^0.35.3"
+  },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.2.8",
     "@fontsource-variable/syne": "^5.2.7",
@@ -36,7 +40,7 @@
     "lucide-react": "^0.414.0",
     "next": "^16.2.7",
     "next-intl": "^4.13.0",
-    "nodemailer": "^8.0.10",
+    "nodemailer": "^9.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-focus-lock": "^2.13.7",
@@ -47,15 +51,15 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/nodemailer": "^8.0.0",
+    "@types/nodemailer": "^8.0.1",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@vitest/coverage-v8": "^3.2.7",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.2.12",
-    "postcss": "^8.4.40",
-    "sharp": "^0.34.5",
+    "postcss": "^8.5.25",
+    "sharp": "^0.35.3",
     "tailwindcss": "^3.4.6",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.5.3",
