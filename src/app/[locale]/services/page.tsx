@@ -1,74 +1,92 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import { use } from "react"
+import { useTranslations } from "next-intl"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 import { CheckCircle2 } from "lucide-react"
+import { Link } from "@/i18n/navigation"
 import { Button } from "@/components/ui/button"
 import { SectionHeader } from "@/components/shared/section-header"
 import { MotionDiv, MotionList, MotionItem } from "@/components/shared/motion-div"
-import { SERVICES } from "@/lib/constants"
+import { useServices } from "@/lib/content"
 import { cn } from "@/lib/utils"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
+import { localeUrl } from "@/lib/urls"
 
-export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "Platform development, intelligent systems, and digital solutions. AYA Informatica brings the technical depth your business needs to grow.",
-  alternates: { canonical: "https://ayainformatica.tech/services" },
-  openGraph: {
-    title: "AYA Informatica Services – Platform Development & Digital Solutions",
-    description: "End-to-end platform development, intelligent systems, and tailored digital solutions for businesses across Africa.",
-    url: "https://ayainformatica.tech/services",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AYA Informatica Services" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AYA Informatica Services",
-    description: "Platform development, intelligent systems, and digital solutions for Africa.",
-  },
+/** Ids for the process and differentiator sections — copy lives in messages. */
+const PROCESS_STEPS = [
+  { id: "discover", step: "01" },
+  { id: "design", step: "02" },
+  { id: "build", step: "03" },
+  { id: "scale", step: "04" },
+] as const
+
+const WHY_ITEMS = ["localKnowledge", "mobileFirst", "productDriven", "trustFirst"] as const
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: "services" })
+  const url = localeUrl(locale, "/services")
+
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: { canonical: url },
+    openGraph: {
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+      url,
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: t("ogTitle") }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("twitterTitle"),
+      description: t("twitterDescription"),
+    },
+  }
 }
 
-const WHY = [
-  { title: "Deep Local Market Knowledge", desc: "Based in Kigali, we understand the realities of building for African markets — infrastructure, user behavior, and business dynamics." },
-  { title: "Mobile-First by Default", desc: "Everything we build is designed for mobile-first use, because that's how most of Africa accesses digital services." },
-  { title: "Product-Driven Thinking", desc: "We think like product builders, not just developers — ensuring what we build serves real user needs and business goals." },
-  { title: "Trust-First Architecture", desc: "Trust, safety, and reliability are core design principles from day one — not afterthoughts." },
-]
+export default function ServicesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = use(params)
+  setRequestLocale(locale)
 
-const PROCESS = [
-  { step: "01", title: "Discover", desc: "We start by understanding your business, users, and the problem you're solving." },
-  { step: "02", title: "Design", desc: "We architect a solution that is user-centered, scalable, and grounded in your context." },
-  { step: "03", title: "Build", desc: "We develop fast and iteratively, keeping you involved and shipping real progress continuously." },
-  { step: "04", title: "Scale", desc: "We deploy, monitor, and optimize — ensuring your platform grows as your business grows." },
-]
+  const t = useTranslations("services")
+  const services = useServices()
 
-export default function ServicesPage() {
   return (
     <PageWrapper>
-      <BreadcrumbJsonLd items={[{ name: "Services", href: "/services" }]} />
+      <BreadcrumbJsonLd items={[{ name: t("breadcrumb"), href: "/services" }]} />
       {/* ── HERO ─────────────────────────────── */}
       <section className="relative bg-navy py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
-          <MotionDiv><span className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">Our Services</span></MotionDiv>
+          <MotionDiv><span className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">{t("eyebrow")}</span></MotionDiv>
           <MotionDiv delay={0.1}>
             <h1 className="font-display font-bold text-white leading-tight mt-3 mb-5"
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
             >
-              We Build.<br /><span className="text-accent">You Scale.</span>
+              {t("headline")}<br /><span className="text-accent">{t("headlineAccent")}</span>
             </h1>
           </MotionDiv>
           <MotionDiv delay={0.2}>
             <p className="text-white/60 text-lg max-w-xl leading-relaxed">
-              From scalable platforms to intelligent systems and custom digital solutions —
-              AYA Informatica brings the technical depth and product thinking your business needs.
+              {t("sub")}
             </p>
           </MotionDiv>
         </div>
       </section>
 
       {/* ── SERVICES ─────────────────────────── */}
-      {SERVICES.map((svc, i) => (
+      {services.map((svc, i) => (
         <section
           key={svc.id}
           id={`svc-${svc.id}`}
@@ -86,14 +104,14 @@ export default function ServicesPage() {
               <p className="text-accent font-medium text-sm mb-4">{svc.tagline}</p>
               <p className="text-brand-gray text-sm leading-relaxed mb-7">{svc.description}</p>
               <Button asChild size="default">
-                <Link href={`/contact?subject=services`}>Discuss Your Project</Link>
+                <Link href="/contact?subject=services">{t("discussProject")}</Link>
               </Button>
             </MotionDiv>
 
             <MotionDiv delay={0.15}>
               <div className={cn("rounded-2xl p-7", i % 2 === 0 ? "bg-navy" : "bg-white border border-brand-gray-light")}>
                 <h3 className={cn("text-xs font-semibold uppercase tracking-[0.1em] mb-5", i % 2 === 0 ? "text-white/40" : "text-brand-gray")}>
-                  What This Includes
+                  {t("whatThisIncludes")}
                 </h3>
                 <ul className="flex flex-col gap-4">
                   {svc.capabilities.map((cap) => (
@@ -114,14 +132,14 @@ export default function ServicesPage() {
       {/* ── PROCESS ──────────────────────────── */}
       <section className="bg-navy py-24">
         <div className="container">
-          <SectionHeader eyebrow="How We Work" title="Our Process" light className="mb-14" />
+          <SectionHeader eyebrow={t("processEyebrow")} title={t("processTitle")} light className="mb-14" />
           <MotionList className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {PROCESS.map((item) => (
-              <MotionItem key={item.step}>
+            {PROCESS_STEPS.map(({ id, step }) => (
+              <MotionItem key={id}>
                 <div className="bg-white/4 border border-white/7 rounded-xl p-6 hover:border-accent hover:bg-accent/5 transition-all duration-200">
-                  <div className="text-xs font-bold text-accent tracking-wider mb-4">{item.step}</div>
-                  <h3 className="font-display font-semibold text-white text-base mb-2">{item.title}</h3>
-                  <p className="text-sm text-white/50 leading-relaxed">{item.desc}</p>
+                  <div className="text-xs font-bold text-accent tracking-wider mb-4">{step}</div>
+                  <h3 className="font-display font-semibold text-white text-base mb-2">{t(`process.${id}.title`)}</h3>
+                  <p className="text-sm text-white/50 leading-relaxed">{t(`process.${id}.desc`)}</p>
                 </div>
               </MotionItem>
             ))}
@@ -132,17 +150,17 @@ export default function ServicesPage() {
       {/* ── WHY AYA ──────────────────────────── */}
       <section className="bg-brand-bg py-24">
         <div className="container">
-          <SectionHeader eyebrow="Why Choose AYA Informatica" title="What Sets Us Apart" className="mb-14" />
+          <SectionHeader eyebrow={t("whyEyebrow")} title={t("whyTitle")} className="mb-14" />
           <MotionList className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            {WHY.map((item) => (
-              <MotionItem key={item.title}>
+            {WHY_ITEMS.map((id) => (
+              <MotionItem key={id}>
                 <div className="flex items-start gap-4 bg-white rounded-xl p-6 border border-brand-gray-light hover:border-accent hover:-translate-y-0.5 transition-all duration-200">
                   <div className="w-9 h-9 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
                     <CheckCircle2 size={18} />
                   </div>
                   <div>
-                    <h4 className="font-display font-bold text-navy text-sm mb-1">{item.title}</h4>
-                    <p className="text-xs text-brand-gray leading-relaxed">{item.desc}</p>
+                    <h4 className="font-display font-bold text-navy text-sm mb-1">{t(`why.${id}.title`)}</h4>
+                    <p className="text-xs text-brand-gray leading-relaxed">{t(`why.${id}.desc`)}</p>
                   </div>
                 </div>
               </MotionItem>
@@ -157,10 +175,10 @@ export default function ServicesPage() {
           <MotionDiv>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
               <div>
-                <h2 className="font-display font-bold text-2xl sm:text-3xl text-navy mb-2">Ready to Build Something Great?</h2>
-                <p className="text-brand-gray">Tell us about your project. We build for the future — grounded in the needs of today.</p>
+                <h2 className="font-display font-bold text-2xl sm:text-3xl text-navy mb-2">{t("ctaTitle")}</h2>
+                <p className="text-brand-gray">{t("ctaDesc")}</p>
               </div>
-              <Button asChild size="lg"><Link href="/contact">Start a Conversation</Link></Button>
+              <Button asChild size="lg"><Link href="/contact">{t("ctaButton")}</Link></Button>
             </div>
           </MotionDiv>
         </div>

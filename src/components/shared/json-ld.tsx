@@ -33,7 +33,10 @@ export function JsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${BASE_URL}/#organization`,
-    name: "AYA Informatica",
+    name: "AYA Informatica RW",
+    // The former name is kept as an alternate so the rename does not sever the
+    // association search engines have already built with the previous wordmark.
+    alternateName: "AYA Informatica",
     url: BASE_URL,
     logo: {
       "@type": "ImageObject",
@@ -75,7 +78,8 @@ export function JsonLd() {
     "@type": "WebSite",
     "@id": `${BASE_URL}/#website`,
     url: BASE_URL,
-    name: "AYA Informatica",
+    name: "AYA Informatica RW",
+    alternateName: "AYA Informatica",
     description: "Building Africa's Digital Future",
     publisher: {
       "@id": `${BASE_URL}/#organization`,

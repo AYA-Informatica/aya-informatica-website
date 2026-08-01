@@ -1,8 +1,12 @@
 "use client"
 
-import { CONTACT_SUBJECTS } from "@/lib/constants"
+import { useTranslations } from "next-intl"
+import { useContactSubjects } from "@/lib/content"
 
 export function TopicTags() {
+  const t = useTranslations("contact")
+  const contactSubjects = useContactSubjects()
+
   const handleClick = (value: string) => {
     const form = document.getElementById("contact-form")
     if (form) form.scrollIntoView({ behavior: "smooth" })
@@ -15,10 +19,10 @@ export function TopicTags() {
   return (
     <div>
       <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-brand-gray mb-3">
-        What can we help with?
+        {t("topicTagsTitle")}
       </h3>
       <div className="flex flex-wrap gap-1.5">
-        {CONTACT_SUBJECTS.map((subject) => (
+        {contactSubjects.map((subject) => (
           <button
             key={subject.value}
             type="button"

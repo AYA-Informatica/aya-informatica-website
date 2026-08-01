@@ -7,14 +7,21 @@ import { z } from "zod"
 function stripHtml(val: string): string {
   return val
     .replace(/<[^>]*>/g, "")          // strip HTML tags
+    .replace(/[<>]/g, "")              // strip residual brackets from unclosed tags
     .replace(/javascript:/gi, "")      // strip JS protocol
     .replace(/on\w+\s*=/gi, "")        // strip event handlers (onclick=, etc.)
     .trim()
 }
 
-// Reusable sanitized string transform
+// Reusable sanitized string transform.
+//
+// Uses z.preprocess rather than schema.transform: transform runs AFTER
+// validation, so a value made entirely of markup would satisfy .min() on its
+// raw length and only then collapse to "" — yielding a "valid" submission with
+// no content. Preprocessing sanitizes first, so the length bounds apply to the
+// text that actually survives.
 const sanitizedString = (schema: z.ZodString) =>
-  schema.transform((val) => stripHtml(val))
+  z.preprocess((val) => (typeof val === "string" ? stripHtml(val) : val), schema)
 
 /**
  * Contact form validation schema

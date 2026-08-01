@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
+import { useTranslations } from "next-intl"
 import { useSearchParams } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -18,15 +19,22 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { contactSchema, type ContactSchema } from "@/lib/validations"
-import { CONTACT_SUBJECTS } from "@/lib/constants"
+import {
+  TurnstileWidget,
+  readTurnstileToken,
+  resetTurnstile,
+} from "@/components/shared/turnstile"
+import { useContactSubjects } from "@/lib/content"
 import { useToastStore } from "@/store/toast"
 import { cn } from "@/lib/utils"
 
 type SubmitStatus = "idle" | "loading" | "error"
 
 export function ContactForm() {
+  const t = useTranslations("contact")
   const { toast } = useToastStore()
   const searchParams = useSearchParams()
+  const contactSubjects = useContactSubjects()
 
   const {
     register,
@@ -45,7 +53,7 @@ export function ContactForm() {
 
   useEffect(() => {
     const param = searchParams.get("subject")
-    if (param && CONTACT_SUBJECTS.some((s) => s.value === param)) {
+    if (param && contactSubjects.some((s) => s.value === param)) {
       setValue("subject", param, { shouldValidate: true })
     }
   }, [searchParams, setValue])
@@ -65,31 +73,38 @@ export function ContactForm() {
       const payload: Record<string, unknown> = { ...data }
       if (honeyField?.value) payload._honey = honeyField.value
 
+      const turnstileToken = readTurnstileToken()
+      if (turnstileToken) payload["cf-turnstile-response"] = turnstileToken
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       })
 
+      // Turnstile tokens are single-use — issue a fresh one for any
+      // subsequent submission, whether this one succeeded or not.
+      resetTurnstile()
+
       if (res.ok) {
         reset()
         toast({
-          title: "Message sent!",
-          description: "We'll get back to you as soon as possible. Let's build together.",
+          title: t("successTitle"),
+          description: t("successDesc"),
           variant: "success",
         })
       } else {
         const body = await res.json().catch(() => ({}))
         toast({
-          title: "Something went wrong",
-          description: body?.error ?? "Please email us directly at ay.company.andy@gmail.com",
+          title: t("errorTitle"),
+          description: body?.error ?? t("errorFallbackDesc"),
           variant: "destructive",
         })
       }
     } catch {
       toast({
-        title: "Network error",
-        description: "Please check your connection or email us directly.",
+        title: t("networkErrorTitle"),
+        description: t("networkErrorDesc"),
         variant: "destructive",
       })
     }
@@ -97,9 +112,9 @@ export function ContactForm() {
 
   return (
     <div id="contact-form" className="bg-white rounded-2xl border border-brand-gray-light p-5 sm:p-7 md:p-9 scroll-mt-28">
-      <h3 className="font-display font-bold text-xl text-navy mb-1">Send Us a Message</h3>
+      <h3 className="font-display font-bold text-xl text-navy mb-1">{t("formTitle")}</h3>
       <p className="text-xs text-brand-gray mb-7">
-        <span className="text-accent">*</span> Required fields
+        <span className="text-accent">*</span> {t("requiredFields")}
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-5">
@@ -107,11 +122,11 @@ export function ContactForm() {
         <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="name">
-              Full Name <span className="text-accent">*</span>
+              {t("fullName")} <span className="text-accent">*</span>
             </Label>
             <Input
               id="name"
-              placeholder="Your full name"
+              placeholder={t("fullNamePlaceholder")}
               autoComplete="name"
               aria-invalid={!!errors.name}
               aria-describedby={errors.name ? "name-error" : undefined}
@@ -127,7 +142,7 @@ export function ContactForm() {
 
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="email">
-              Email Address <span className="text-accent">*</span>
+              {t("email")} <span className="text-accent">*</span>
             </Label>
             <Input
               id="email"
@@ -150,7 +165,7 @@ export function ContactForm() {
         {/* Row: Phone + Subject */}
         <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
-            <Label htmlFor="phone">Phone (Optional)</Label>
+            <Label htmlFor="phone">{t("phone")}</Label>
             <Input
               id="phone"
               type="tel"
@@ -162,7 +177,7 @@ export function ContactForm() {
 
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="subject">
-              Subject <span className="text-accent">*</span>
+              {t("subject")} <span className="text-accent">*</span>
             </Label>
             <Select
               key={selectedSubject || "empty"}
@@ -176,10 +191,10 @@ export function ContactForm() {
                 aria-invalid={!!errors.subject}
                 className={cn(errors.subject && "border-red-400")}
               >
-                <SelectValue placeholder="Select a topic" />
+                <SelectValue placeholder={t("selectTopic")} />
               </SelectTrigger>
               <SelectContent>
-                {CONTACT_SUBJECTS.map((s) => (
+                {contactSubjects.map((s) => (
                   <SelectItem key={s.value} value={s.value}>
                     {s.label}
                   </SelectItem>
@@ -197,11 +212,11 @@ export function ContactForm() {
         {/* Message */}
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="message">
-            Message <span className="text-accent">*</span>
+            {t("message")} <span className="text-accent">*</span>
           </Label>
           <Textarea
             id="message"
-            placeholder="Tell us about yourself and how we can help…"
+            placeholder={t("messagePlaceholder")}
             rows={6}
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? "message-error" : undefined}
@@ -226,6 +241,9 @@ export function ContactForm() {
           autoComplete="off"
         />
 
+        {/* Captcha — renders only when a Turnstile site key is configured */}
+        <TurnstileWidget />
+
         {/* Submit */}
         <div className="flex flex-col min-[480px]:flex-row items-start min-[480px]:items-center gap-4 flex-wrap">
           <Button
@@ -237,17 +255,17 @@ export function ContactForm() {
             {isSubmitting ? (
               <>
                 <Loader2 size={16} className="animate-spin" />
-                Sending…
+                {t("sending")}
               </>
             ) : (
               <>
-                Send Message
+                {t("send")}
                 <Send size={15} />
               </>
             )}
           </Button>
           <p className="text-xs text-brand-gray max-w-[220px] leading-relaxed">
-            We typically respond within 24 hours.
+            {t("responseTime")}
           </p>
         </div>
       </form>

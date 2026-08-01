@@ -1,9 +1,19 @@
 {
+  "metadata": {
+    "siteName": "AYA Informatica RW",
+    "defaultTitle": "AYA Informatica RW – Building Africa's Digital Future",
+    "titleTemplate": "%s | AYA Informatica RW",
+    "description": "AYA Informatica RW is a Rwanda-based technology company building scalable digital platforms that connect people, businesses, and opportunities across Africa.",
+    "ogDescription": "Rwanda-based technology company building scalable digital platforms across Africa. Product-first. Mobile-first. Built for the continent.",
+    "twitterDescription": "Rwanda-based technology company building scalable digital platforms across Africa.",
+    "keywords": "AYA Informatica RW|AYA Informatica|Rwanda technology|digital platforms|Africa tech|RAY marketplace|Humura wellness|Kigali startup|mobile-first|African digital infrastructure"
+  },
   "nav": {
     "home": "Home",
     "about": "About",
     "products": "Products",
     "services": "Services",
+    "blog": "Blog",
     "contact": "Contact",
     "partnerWithUs": "Partner With Us",
     "skipToContent": "Skip to main content"
@@ -12,7 +22,7 @@
     "badge": "Kigali, Rwanda — Building For Africa",
     "headline": "Building Africa's",
     "headlineAccent": "Digital Future",
-    "sub": "AYA Informatica designs and deploys innovative platforms that simplify commerce, enhance human connection, and unlock economic opportunity across the continent.",
+    "sub": "AYA Informatica RW designs and deploys innovative platforms that simplify commerce, enhance human connection, and unlock economic opportunity across the continent.",
     "ctaProducts": "Explore Our Products",
     "ctaStory": "Learn Our Story",
     "scroll": "Scroll",
@@ -26,16 +36,35 @@
     "approachTitle": "How We Build",
     "approachDesc": "Every product we ship follows a disciplined philosophy — designed for real people, built to scale, and grounded in trust.",
     "ctaTitle": "Ready to Build the Future Together?",
-    "ctaDesc": "Partner with AYA Informatica to create the digital infrastructure Africa deserves.",
+    "ctaDesc": "Partner with AYA Informatica RW to create the digital infrastructure Africa deserves.",
     "ctaButton": "Get in Touch",
-    "ctaProducts2": "See Our Products"
+    "ctaProducts2": "See Our Products",
+    "metaTitle": "AYA Informatica RW – Building Africa's Digital Future",
+    "metaDescription": "AYA Informatica RW designs and deploys innovative platforms that simplify commerce, enhance human connection, and unlock economic opportunity across Africa.",
+    "heroAriaLabel": "Hero",
+    "statsAriaLabel": "Company highlights",
+    "pillarsTitleLine1": "Three Pillars.",
+    "pillarsTitleLine2": "One Mission.",
+    "productsTitleLine1": "Platforms Built",
+    "productsTitleLine2": "for Real People",
+    "testimonialsEyebrow": "What People Say",
+    "testimonialsTitle": "Trusted by Builders"
   },
   "footer": {
     "tagline": "Building Africa's digital future from Kigali, Rwanda.",
     "navigate": "Navigate",
     "products": "Products",
     "getInTouch": "Get in Touch",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "homeAriaLabel": "AYA Informatica RW — Home",
+    "brandLine1": "Building Africa's",
+    "brandLine2": "Digital Future",
+    "location": "Kigali, Rwanda",
+    "rayLabel": "RAY – Marketplace",
+    "humuraLabel": "Humura – Wellness",
+    "companyName": "AYA Informatica RW",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
   },
   "contact": {
     "eyebrow": "Contact Us",
@@ -60,7 +89,29 @@
     "successDesc": "We'll get back to you as soon as possible. Let's build together.",
     "errorTitle": "Something went wrong",
     "networkErrorTitle": "Network error",
-    "networkErrorDesc": "Please check your connection or email us directly."
+    "networkErrorDesc": "Please check your connection or email us directly.",
+    "fullNamePlaceholder": "Your full name",
+    "errorFallbackDesc": "Please email us directly at ay.company.andy@gmail.com",
+    "topicTagsTitle": "What can we help with?",
+    "breadcrumb": "Contact",
+    "metaTitle": "Contact",
+    "metaDescription": "Get in touch with AYA Informatica RW. Partner with us, get early access to RAY, or discuss a project.",
+    "ogTitle": "Contact AYA Informatica RW – Let's Build Together",
+    "ogDescription": "Partner with us, get early access to RAY, discuss a service inquiry, or explore investment opportunities.",
+    "twitterTitle": "Contact AYA Informatica RW",
+    "twitterDescription": "Partner with us or get in touch about our products and services.",
+    "details": {
+      "email": "Email",
+      "phone": "Phone / WhatsApp",
+      "location": "Location"
+    },
+    "closingQuote": "Partner with us to build the future.",
+    "closingAttribution": "AYA Informatica RW",
+    "closingBadges": {
+      "builders": "Builders",
+      "engineers": "Engineers",
+      "thinkers": "Thinkers"
+    }
   },
   "common": {
     "loading": "Loading",
@@ -71,5 +122,415 @@
     "notFoundTitle": "Page Not Found",
     "notFoundDesc": "The page you're looking for doesn't exist, or may have moved. Let's get you back on track.",
     "contactUs": "Contact Us"
+  },
+  "content": {
+    "products": {
+      "ray": {
+        "name": "RAY",
+        "badge": "🔥 Flagship Platform",
+        "tagline": "Rwanda's mobile-first marketplace for buying and selling.",
+        "description": "RAY is a mobile-first marketplace designed to simplify buying and selling in Rwanda, starting with phones and electronics. Built on trust, speed, and accessibility — RAY connects buyers and sellers directly and transparently.",
+        "features": [
+          "Post items quickly",
+          "Connect directly with buyers or sellers",
+          "Negotiate prices transparently",
+          "Access a wider, more active market"
+        ],
+        "cta": "Discover RAY"
+      },
+      "humura": {
+        "name": "Humura",
+        "badge": "🧠 Upcoming Platform",
+        "tagline": "Mental wellness and emotional support — for Africa.",
+        "description": "Humura is a digital platform focused on mental wellness and emotional support. It provides safe and anonymous access to support, human-centered experiences, and a trusted digital environment for personal wellbeing.",
+        "features": [
+          "Safe & anonymous access to support",
+          "Human-centered UX design",
+          "Trusted digital environment",
+          "Personal wellbeing focus"
+        ],
+        "cta": "Learn More"
+      }
+    },
+    "services": {
+      "platform": {
+        "title": "Platform Development",
+        "tagline": "End-to-end digital platforms built to scale.",
+        "description": "We design and build scalable digital platforms from the ground up. Whether you need a marketplace, a service directory, or a transactional platform, we architect it for reliability, performance, and long-term growth.",
+        "capabilities": [
+          "Mobile-first application development",
+          "API design and backend infrastructure",
+          "Marketplace and commerce platforms",
+          "Real-time communication systems",
+          "Third-party integrations and payments",
+          "Cloud infrastructure and DevOps"
+        ]
+      },
+      "intelligent": {
+        "title": "Intelligent Systems",
+        "tagline": "Data-driven systems that make smarter decisions.",
+        "description": "We design systems that leverage data and modern technologies to improve efficiency, decision-making, and user experience — from recommendation engines to analytics dashboards.",
+        "capabilities": [
+          "Data pipeline design and engineering",
+          "Analytics dashboards and reporting",
+          "Recommendation and search systems",
+          "Process automation and workflow tools",
+          "Performance monitoring systems",
+          "User behavior and engagement analysis"
+        ]
+      },
+      "solutions": {
+        "title": "Digital Solutions",
+        "tagline": "Tailored software for businesses ready to modernize.",
+        "description": "We provide customized software solutions for businesses that want to digitize, streamline, and scale their operations. Purposeful software — not generic tools.",
+        "capabilities": [
+          "Custom business software development",
+          "Legacy system modernization",
+          "Web and mobile application development",
+          "CMS and content platform development",
+          "ERP and operational tooling",
+          "Ongoing support and maintenance"
+        ]
+      }
+    },
+    "roadmap": {
+      "launch": {
+        "title": "Launch & Scale RAY in Kigali",
+        "desc": "Establish Rwanda's go-to mobile marketplace for phones and electronics."
+      },
+      "expand": {
+        "title": "Expand Categories & User Base",
+        "desc": "Broaden the marketplace to new product categories and grow the active community."
+      },
+      "humura": {
+        "title": "Introduce Humura Platform",
+        "desc": "Launch our mental wellness and emotional support platform for Africa."
+      },
+      "ecosystem": {
+        "title": "Build an Integrated Ecosystem",
+        "desc": "Connect our platforms into a unified digital ecosystem powering everyday African life."
+      }
+    },
+    "stats": {
+      "pillars": {
+        "label": "Service Pillars"
+      },
+      "platforms": {
+        "label": "Platforms in Development"
+      },
+      "founded": {
+        "label": "Founded in Kigali"
+      },
+      "countries": {
+        "label": "African Countries to Serve"
+      }
+    },
+    "approach": {
+      "userCentered": {
+        "title": "User-Centered Design",
+        "desc": "We build for real people with real needs — not assumptions."
+      },
+      "speed": {
+        "title": "Speed & Execution",
+        "desc": "We prioritize rapid development and continuous improvement."
+      },
+      "scalability": {
+        "title": "Scalability First",
+        "desc": "Every system is architected to grow with demand from day one."
+      },
+      "trust": {
+        "title": "Trust & Safety",
+        "desc": "Trust mechanisms are integrated into every product from the start."
+      }
+    },
+    "testimonials": {
+      "jeanPierre": {
+        "quote": "AYA Informatica RW understands what it means to build for Africa — not just technically, but culturally. Their approach is refreshing.",
+        "name": "Jean-Pierre M.",
+        "role": "Tech Entrepreneur, Kigali"
+      },
+      "diane": {
+        "quote": "RAY is exactly what the market needed — a trustworthy, mobile-first platform that makes buying and selling simple and transparent.",
+        "name": "Diane U.",
+        "role": "Early Access User"
+      },
+      "patrick": {
+        "quote": "Working with the AYA team showed us what product-driven development looks like. They move fast without cutting corners.",
+        "name": "Patrick K.",
+        "role": "Business Partner"
+      }
+    },
+    "pillars": {
+      "platform": {
+        "title": "Platform Development",
+        "desc": "Scalable digital platforms that connect users, facilitate transactions, and enable new forms of economic activity."
+      },
+      "intelligent": {
+        "title": "Intelligent Systems",
+        "desc": "Systems that leverage data and modern technologies to improve efficiency, decision-making, and user experience."
+      },
+      "solutions": {
+        "title": "Digital Solutions",
+        "desc": "Tailored software solutions for businesses seeking to modernize and scale their operations across Africa."
+      }
+    },
+    "contactSubjects": {
+      "partnership": "Partnership",
+      "ray-access": "RAY Early Access",
+      "humura": "Humura Platform",
+      "services": "Service Inquiry",
+      "investment": "Investment",
+      "other": "General / Other"
+    }
+  },
+  "services": {
+    "breadcrumb": "Services",
+    "metaTitle": "Services",
+    "metaDescription": "Platform development, intelligent systems, and digital solutions. AYA Informatica RW brings the technical depth your business needs to grow.",
+    "ogTitle": "AYA Informatica RW Services – Platform Development & Digital Solutions",
+    "ogDescription": "End-to-end platform development, intelligent systems, and tailored digital solutions for businesses across Africa.",
+    "twitterTitle": "AYA Informatica RW Services",
+    "twitterDescription": "Platform development, intelligent systems, and digital solutions for Africa.",
+    "eyebrow": "Our Services",
+    "headline": "We Build.",
+    "headlineAccent": "You Scale.",
+    "sub": "From scalable platforms to intelligent systems and custom digital solutions — AYA Informatica RW brings the technical depth and product thinking your business needs.",
+    "discussProject": "Discuss Your Project",
+    "whatThisIncludes": "What This Includes",
+    "processEyebrow": "How We Work",
+    "processTitle": "Our Process",
+    "process": {
+      "discover": {
+        "title": "Discover",
+        "desc": "We start by understanding your business, users, and the problem you're solving."
+      },
+      "design": {
+        "title": "Design",
+        "desc": "We architect a solution that is user-centered, scalable, and grounded in your context."
+      },
+      "build": {
+        "title": "Build",
+        "desc": "We develop fast and iteratively, keeping you involved and shipping real progress continuously."
+      },
+      "scale": {
+        "title": "Scale",
+        "desc": "We deploy, monitor, and optimize — ensuring your platform grows as your business grows."
+      }
+    },
+    "whyEyebrow": "Why Choose AYA Informatica RW",
+    "whyTitle": "What Sets Us Apart",
+    "why": {
+      "localKnowledge": {
+        "title": "Deep Local Market Knowledge",
+        "desc": "Based in Kigali, we understand the realities of building for African markets — infrastructure, user behavior, and business dynamics."
+      },
+      "mobileFirst": {
+        "title": "Mobile-First by Default",
+        "desc": "Everything we build is designed for mobile-first use, because that's how most of Africa accesses digital services."
+      },
+      "productDriven": {
+        "title": "Product-Driven Thinking",
+        "desc": "We think like product builders, not just developers — ensuring what we build serves real user needs and business goals."
+      },
+      "trustFirst": {
+        "title": "Trust-First Architecture",
+        "desc": "Trust, safety, and reliability are core design principles from day one — not afterthoughts."
+      }
+    },
+    "ctaTitle": "Ready to Build Something Great?",
+    "ctaDesc": "Tell us about your project. We build for the future — grounded in the needs of today.",
+    "ctaButton": "Start a Conversation"
+  },
+  "products": {
+    "breadcrumb": "Products",
+    "metaTitle": "Products",
+    "metaDescription": "Discover RAY, Rwanda's mobile-first marketplace, and Humura, our upcoming mental wellness platform. Platforms designed for real people.",
+    "ogTitle": "AYA Informatica RW Products – RAY Marketplace & Humura Wellness",
+    "ogDescription": "RAY: Rwanda's mobile-first marketplace for phones and electronics. Humura: mental wellness platform coming soon.",
+    "twitterTitle": "AYA Informatica RW Products – RAY & Humura",
+    "twitterDescription": "RAY: Rwanda's mobile-first marketplace. Humura: mental wellness platform coming soon.",
+    "eyebrow": "Our Products",
+    "headline": "Platforms Designed",
+    "headlineAccent": "for Real Life",
+    "sub": "Each product is grounded in a real problem, designed for accessibility, and engineered to scale. We don't build apps — we build digital infrastructure.",
+    "rayIntro1": "RAY is a mobile-first marketplace designed to simplify buying and selling in Rwanda, starting with phones and electronics.",
+    "rayIntro2": "Built on trust, speed, and accessibility — RAY connects buyers and sellers directly and transparently. Our goal is to make RAY the default platform for everyday commerce in Rwanda.",
+    "rayPillars": {
+      "trust": {
+        "title": "Trust",
+        "desc": "Every interaction designed to build user trust."
+      },
+      "accessibility": {
+        "title": "Accessibility",
+        "desc": "Built mobile-first for how Rwanda uses technology."
+      },
+      "speed": {
+        "title": "Speed",
+        "desc": "Fast to list, connect, and close a deal."
+      }
+    },
+    "getEarlyAccess": "Get Early Access",
+    "mockupLocation": "📍 Kigali",
+    "mockupSearch": "Search phones & electronics…",
+    "mockupVerified": "Verified Seller",
+    "mockupPostItem": "+ Post Item",
+    "rayFeaturesEyebrow": "RAY – Key Features",
+    "rayFeaturesTitle": "What Makes RAY Different",
+    "rayFeatures": {
+      "quickListings": {
+        "title": "Quick Listings",
+        "desc": "Post items in seconds — simple forms, fast uploads, immediate visibility."
+      },
+      "directConnection": {
+        "title": "Direct Connection",
+        "desc": "Connect directly with buyers or sellers. No middlemen, no hidden fees."
+      },
+      "transparentPricing": {
+        "title": "Transparent Pricing",
+        "desc": "Negotiate prices openly. What you see is what you get."
+      },
+      "widerMarket": {
+        "title": "Wider Market",
+        "desc": "Access a wider, more active market than local classifieds or groups."
+      },
+      "trustFirst": {
+        "title": "Trust-First Design",
+        "desc": "Verified sellers and safe messaging built in from day one."
+      },
+      "mobileFirst": {
+        "title": "Mobile-First",
+        "desc": "Optimized for mobile — the way most Rwandans access the internet."
+      }
+    },
+    "humuraVisualLabel": "Mental Wellness",
+    "humuraTags": {
+      "safeSpace": "Safe Space",
+      "anonymous": "Anonymous",
+      "support": "Support",
+      "wellbeing": "Wellbeing"
+    },
+    "humuraBlurb": "Humura reflects our commitment to building not only powerful systems but meaningful ones — platforms that matter to the people who use them.",
+    "stayUpdated": "Stay Updated on Humura",
+    "ecosystemEyebrow": "The Vision",
+    "ecosystemTitleLine1": "Building an Integrated",
+    "ecosystemTitleLine2": "Digital Ecosystem",
+    "ecosystemDesc": "RAY and Humura are the first pieces of a larger vision — an interconnected ecosystem of platforms that power everyday African life.",
+    "ecosystemBadge": "Ecosystem",
+    "ecosystemNodes": {
+      "ray": {
+        "desc": "Commerce"
+      },
+      "humura": {
+        "desc": "Wellness"
+      },
+      "more": {
+        "name": "More",
+        "desc": "Coming soon"
+      }
+    },
+    "ctaTitle": "Interested in Our Platforms?",
+    "ctaDesc": "Reach out to partner with us or get early access.",
+    "ctaContact": "Contact Us",
+    "ctaServices": "See Services"
+  },
+  "about": {
+    "breadcrumb": "About",
+    "metaTitle": "About",
+    "metaDescription": "AYA Informatica RW is led by a focused team of builders, engineers, and thinkers committed to creating impactful digital products across Africa.",
+    "ogTitle": "About AYA Informatica RW – Builders of Africa's Digital Future",
+    "ogDescription": "Meet the team behind AYA Informatica RW. Rwanda-based builders, engineers, and thinkers committed to Africa's digital transformation.",
+    "twitterTitle": "About AYA Informatica RW",
+    "twitterDescription": "Rwanda-based builders, engineers, and thinkers committed to Africa's digital transformation.",
+    "eyebrow": "Our Story",
+    "headline": "Built From Rwanda.",
+    "headlineAccent": "For Africa.",
+    "sub": "We are a focused team of builders, engineers, and thinkers committed to creating impactful digital products that change how Africa lives, trades, and connects.",
+    "overviewEyebrow": "Company Overview",
+    "overviewTitleLine1": "More Than Apps.",
+    "overviewTitleLine2": "Digital Infrastructure.",
+    "overviewP1": "AYA Informatica RW is a Rwanda-based technology company focused on building scalable digital platforms that connect people, businesses, and opportunities across Africa.",
+    "overviewP2": "We take a product-first approach to solving real-world challenges, designing systems that are simple, reliable, and built for everyday use. Our work sits at the intersection of commerce, technology, and human experience.",
+    "overviewP3": "At AYA Informatica RW, we are not just building applications — we are building the digital infrastructure for how people live, trade, and interact in the modern African economy.",
+    "quote": "We are building for the future — but grounded in the needs of today.",
+    "quoteAttribution": "AYA Informatica RW",
+    "visionEyebrow": "Vision & Mission",
+    "visionTitle": "Why We Exist",
+    "visionMission": {
+      "vision": {
+        "type": "Vision",
+        "title": "Africa's Leading Builder of Digital Ecosystems",
+        "desc": "To become Africa's leading builder of digital ecosystems that power everyday life — from commerce to connection, from health to wellness."
+      },
+      "mission": {
+        "type": "Mission",
+        "title": "Design Platforms. Simplify Commerce. Connect Africa.",
+        "desc": "To design and deploy innovative platforms that simplify commerce, enhance human connection, and unlock economic opportunities across the continent."
+      }
+    },
+    "teamEyebrow": "Our Team",
+    "teamTitleLine1": "Builders. Engineers.",
+    "teamTitleLine2": "Thinkers.",
+    "teamDesc": "AYA Informatica RW is led by a focused team committed to creating impactful digital products. We operate lean, fast, and with clarity.",
+    "team": {
+      "founder": {
+        "role": "Founder & CEO",
+        "desc": "Vision, product strategy, and growth. The driving force behind AYA Informatica RW's mission to build Africa's digital infrastructure."
+      },
+      "engineering": {
+        "role": "Development Team",
+        "desc": "Responsible for building scalable, efficient systems. The engineers who turn vision into working digital reality."
+      }
+    },
+    "teamNoteStrong": "We operate lean, fast, and with clarity.",
+    "teamNoteRest": "Small team, big ambitions, disciplined execution.",
+    "roadmapEyebrow": "Our Roadmap",
+    "roadmapTitle": "The Path Ahead",
+    "ctaTitle": "Join Us in Building Africa's Digital Future",
+    "ctaDesc": "Whether you want to partner, invest, or collaborate — we want to hear from you.",
+    "ctaButton": "Get in Touch"
+  },
+  "blog": {
+    "breadcrumb": "Blog",
+    "metaTitle": "Blog",
+    "metaDescription": "Insights, updates, and stories from AYA Informatica RW — building Africa's digital future from Kigali, Rwanda.",
+    "ogTitle": "AYA Informatica RW Blog – Insights & Updates",
+    "ogDescription": "Insights, updates, and stories from AYA Informatica RW.",
+    "eyebrow": "Blog",
+    "headline": "Insights &",
+    "headlineAccent": "Updates",
+    "sub": "Stories, product updates, and perspectives from the team building Africa's digital future.",
+    "readTime": "{minutes} min read",
+    "read": "Read",
+    "posts": {
+      "building-for-africa": {
+        "title": "Why We're Building for Africa First",
+        "excerpt": "Africa's digital economy is growing faster than anywhere else. Here's why we chose to build from Kigali and what it means for our products.",
+        "category": "Company"
+      },
+      "ray-marketplace-vision": {
+        "title": "RAY: Rethinking How Rwanda Trades",
+        "excerpt": "From fragmented WhatsApp groups to a unified marketplace — the story behind RAY and our vision for digital commerce in East Africa.",
+        "category": "Product"
+      },
+      "mental-wellness-africa": {
+        "title": "Mental Wellness in Africa: The Gap We're Filling with Humura",
+        "excerpt": "Mental health support in Africa remains critically underserved. Humura is our answer — a platform designed with cultural sensitivity at its core.",
+        "category": "Product"
+      }
+    },
+    "ctaTitle": "Stay in the Loop",
+    "ctaDesc": "Want to follow our journey? Get in touch and we'll keep you updated on our latest developments.",
+    "ctaButton": "Get in Touch"
+  },
+  "legal": {
+    "eyebrow": "Legal",
+    "lastUpdated": "Last updated",
+    "privacyTitle": "Privacy Policy",
+    "privacyDescription": "How AYA Informatica RW collects, uses, and protects your personal information when you use our website and contact form.",
+    "termsTitle": "Terms of Use",
+    "termsDescription": "Terms and conditions for using the AYA Informatica RW website and services.",
+    "backHome": "← Back to Home",
+    "contactUs": "Contact Us →",
+    "translationNotice": "The English version of this document is the legally governing text."
   }
 }

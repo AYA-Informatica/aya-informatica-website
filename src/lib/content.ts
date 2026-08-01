@@ -1,38 +1,110 @@
 /**
- * Content layer abstraction.
+ * Content layer.
  *
- * Currently reads from local constants. When ready to integrate a CMS
- * (Sanity, Contentful, etc.), replace these functions with API calls.
- * All pages import content through this module, making migration simple.
+ * Merges the structural data in constants.ts with the translated copy in
+ * src/i18n/messages/{locale}.json. Pages consume content exclusively through
+ * these hooks, so a copy change is a JSON edit and a locale is a new JSON file
+ * — neither requires touching a component.
  *
- * To integrate Sanity:
- *   1. npm install @sanity/client next-sanity
- *   2. Create sanity.config.ts with project credentials
- *   3. Replace the functions below with GROQ queries
+ * These are hooks rather than plain functions because `useTranslations` resolves
+ * the active locale from context. next-intl supports it in both Server and
+ * Client Components, so pages can stay server-rendered.
+ *
+ * To move to a CMS later, replace the `t(...)` lookups here with API calls; the
+ * page components do not change.
  */
 
-import { PRODUCTS, SERVICES, ROADMAP, STATS, APPROACH, TESTIMONIALS } from "./constants"
+import { useTranslations } from "next-intl"
+import {
+  APPROACH_META,
+  CONTACT_SUBJECTS,
+  PILLAR_META,
+  PRODUCT_META,
+  ROADMAP_META,
+  SERVICE_META,
+  STATS_META,
+  TESTIMONIAL_META,
+} from "./constants"
 
-export function getProducts() {
-  return PRODUCTS
+export function useProducts() {
+  const t = useTranslations("content.products")
+  return PRODUCT_META.map(({ id, status }) => ({
+    id,
+    status,
+    name: t(`${id}.name`),
+    badge: t(`${id}.badge`),
+    tagline: t(`${id}.tagline`),
+    description: t(`${id}.description`),
+    features: t.raw(`${id}.features`) as string[],
+    cta: t(`${id}.cta`),
+  }))
 }
 
-export function getServices() {
-  return SERVICES
+export function useServices() {
+  const t = useTranslations("content.services")
+  return SERVICE_META.map(({ id, step }) => ({
+    id,
+    step,
+    title: t(`${id}.title`),
+    tagline: t(`${id}.tagline`),
+    description: t(`${id}.description`),
+    capabilities: t.raw(`${id}.capabilities`) as string[],
+  }))
 }
 
-export function getRoadmap() {
-  return ROADMAP
+export function useRoadmap() {
+  const t = useTranslations("content.roadmap")
+  return ROADMAP_META.map(({ id, step }) => ({
+    id,
+    step,
+    title: t(`${id}.title`),
+    desc: t(`${id}.desc`),
+  }))
 }
 
-export function getStats() {
-  return STATS
+export function useStats() {
+  const t = useTranslations("content.stats")
+  return STATS_META.map(({ id, value }) => ({
+    id,
+    value,
+    label: t(`${id}.label`),
+  }))
 }
 
-export function getApproach() {
-  return APPROACH
+export function useApproach() {
+  const t = useTranslations("content.approach")
+  return APPROACH_META.map(({ id, num }) => ({
+    id,
+    num,
+    title: t(`${id}.title`),
+    desc: t(`${id}.desc`),
+  }))
 }
 
-export function getTestimonials() {
-  return TESTIMONIALS
+export function useTestimonials() {
+  const t = useTranslations("content.testimonials")
+  return TESTIMONIAL_META.map(({ id }) => ({
+    id,
+    quote: t(`${id}.quote`),
+    name: t(`${id}.name`),
+    role: t(`${id}.role`),
+  }))
+}
+
+export function usePillars() {
+  const t = useTranslations("content.pillars")
+  return PILLAR_META.map(({ id, href }) => ({
+    id,
+    href,
+    title: t(`${id}.title`),
+    desc: t(`${id}.desc`),
+  }))
+}
+
+export function useContactSubjects() {
+  const t = useTranslations("content.contactSubjects")
+  return CONTACT_SUBJECTS.map(({ value }) => ({
+    value,
+    label: t(value),
+  }))
 }

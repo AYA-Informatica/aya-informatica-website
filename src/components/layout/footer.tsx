@@ -1,8 +1,11 @@
-import Link from "next/link"
+import { useTranslations } from "next-intl"
 import { Mail, Phone, MapPin } from "lucide-react"
+import { Link } from "@/i18n/navigation"
 import { NAV_LINKS, CONTACT_INFO } from "@/lib/constants"
 
 export function Footer() {
+  const t = useTranslations("footer")
+  const tNav = useTranslations("nav")
   const year = new Date().getFullYear()
 
   return (
@@ -12,38 +15,38 @@ export function Footer() {
 
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" aria-label="AYA Informatica home">
+            <Link href="/" aria-label={t("homeAriaLabel")}>
               <div className="flex flex-col gap-0.5 mb-5">
                 <span className="font-display text-2xl font-extrabold text-white tracking-[0.04em] leading-none">
                   AYA
                 </span>
                 <span className="text-[0.65rem] text-white/55 uppercase tracking-[0.08em]">
-                  Informatica
+                  Informatica RW
                 </span>
               </div>
             </Link>
             <p className="font-display text-sm font-semibold text-white/80 leading-snug mb-3">
-              Building Africa&apos;s<br />Digital Future
+              {t("brandLine1")}<br />{t("brandLine2")}
             </p>
             <p className="text-xs text-white/55 flex items-center gap-1.5">
               <MapPin size={11} />
-              Kigali, Rwanda
+              {t("location")}
             </p>
           </div>
 
           {/* Navigate */}
           <div>
             <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-4">
-              Navigate
+              {t("navigate")}
             </h3>
             <ul className="flex flex-col gap-2.5">
-              {NAV_LINKS.map(({ href, label }) => (
+              {NAV_LINKS.map(({ href, key }) => (
                 <li key={href}>
                   <Link
                     href={href}
                     className="text-sm text-white/55 hover:text-white transition-colors"
                   >
-                    {label}
+                    {tNav(key)}
                   </Link>
                 </li>
               ))}
@@ -53,17 +56,17 @@ export function Footer() {
           {/* Products */}
           <div>
             <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-4">
-              Products
+              {t("products")}
             </h3>
             <ul className="flex flex-col gap-2.5">
               <li>
                 <Link href="/products" className="text-sm text-white/55 hover:text-white transition-colors">
-                  RAY – Marketplace
+                  {t("rayLabel")}
                 </Link>
               </li>
               <li>
                 <Link href="/products" className="text-sm text-white/55 hover:text-white transition-colors">
-                  Humura – Wellness
+                  {t("humuraLabel")}
                 </Link>
               </li>
             </ul>
@@ -72,7 +75,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-4">
-              Get in Touch
+              {t("getInTouch")}
             </h3>
             <ul className="flex flex-col gap-3">
               <li>
@@ -100,15 +103,15 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 pt-6 flex-wrap">
           <p className="text-xs text-white/45">
-            &copy; {year} AYA Informatica. All rights reserved.
+            &copy; {year} {t("companyName")}. {t("rights")}
           </p>
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="text-xs text-white/45 hover:text-white/60 transition-colors">
-              Privacy Policy
+              {t("privacy")}
             </Link>
             <span className="text-white/35 text-xs">·</span>
             <Link href="/terms" className="text-xs text-white/45 hover:text-white/60 transition-colors">
-              Terms of Use
+              {t("terms")}
             </Link>
           </div>
         </div>

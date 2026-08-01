@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect } from "react"
-import Link from "next/link"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 
 export default function Error({
   error,
@@ -10,6 +11,8 @@ export default function Error({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  const t = useTranslations("common")
+
   useEffect(() => {
     // Client-side error boundary logging
     // In production, wire this to a client-safe error tracker (e.g. Sentry)
@@ -31,10 +34,10 @@ export default function Error({
           </svg>
         </div>
         <h2 className="font-display font-bold text-2xl text-navy mb-3">
-          Something went wrong
+          {t("errorTitle")}
         </h2>
         <p className="text-sm text-brand-gray leading-relaxed mb-8">
-          An unexpected error occurred. You can try again or return home.
+          {t("errorDesc")}
         </p>
         <div className="flex gap-3 flex-wrap justify-center">
           <button
@@ -42,13 +45,13 @@ export default function Error({
             onClick={reset}
             className="inline-flex items-center justify-center h-11 px-6 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-[#0066CC] transition-colors"
           >
-            Try again
+            {t("tryAgain")}
           </button>
           <Link
             href="/"
             className="inline-flex items-center justify-center h-11 px-6 border-[1.5px] border-navy text-navy text-sm font-semibold rounded-lg hover:bg-navy hover:text-white transition-colors"
           >
-            Go home
+            {t("goHome")}
           </Link>
         </div>
       </div>

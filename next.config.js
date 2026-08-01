@@ -1,9 +1,15 @@
 const createNextIntlPlugin = require("next-intl/plugin")
+const createMDX = require("@next/mdx")
+const { SECURITY_HEADERS_LIST } = require("./src/lib/security-headers")
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
+// Legal copy lives in .mdx files so it can be edited as prose rather than JSX.
+const withMDX = createMDX({})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+
   // ── Security Headers ───────────────────────────────────────
   async headers() {
     return [
@@ -18,30 +24,9 @@ const nextConfig = {
       },
       {
         source: "/(.*)",
-        headers: [
-          { key: "X-Frame-Options",           value: "DENY" },
-          { key: "X-Content-Type-Options",    value: "nosniff" },
-          { key: "Referrer-Policy",           value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy",        value: "camera=(), microphone=(), geolocation=(), payment=()" },
-          {
-            key: "Strict-Transport-Security",
-            value: "max-age=63072000; includeSubDomains; preload",
-          },
-          {
-            key: "Content-Security-Policy",
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' https://vercel.live https://va.vercel-scripts.com",
-              "style-src 'self' 'unsafe-inline'",
-              "font-src 'self' data:",
-              "img-src 'self' data: blob:",
-              "connect-src 'self' https://vercel.live wss://ws-us3.pusher.com https://vitals.vercel-insights.com https://va.vercel-scripts.com",
-              "frame-ancestors 'none'",
-              "base-uri 'self'",
-              "form-action 'self'",
-            ].join("; "),
-          },
-        ],
+        // Defined once in src/lib/security-headers.js and shared with the
+        // proxy so the two cannot drift apart.
+        headers: SECURITY_HEADERS_LIST,
       },
     ]
   },
@@ -57,4 +42,4 @@ const nextConfig = {
   poweredByHeader: false,
 }
 
-module.exports = withNextIntl(nextConfig)
+module.exports = withNextIntl(withMDX(nextConfig))

@@ -1,12 +1,16 @@
 import type { MetadataRoute } from "next"
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech"
+import { locales } from "@/i18n/config"
+import { localeAlternates, localeUrl } from "@/lib/urls"
 
 /**
  * Generates /sitemap.xml via Next.js App Router.
- * Priorities reflect relative importance for crawlers.
- * changeFrequency reflects how often content actually changes.
+ *
+ * Every route is emitted once per locale, each entry carrying `alternates.languages`
+ * so crawlers understand the translations are the same page rather than duplicates.
+ * Priorities reflect relative importance; changeFrequency reflects how often
+ * content actually changes.
  */
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: Array<{
     path: string
@@ -23,10 +27,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terms",   priority: 0.3, changeFrequency: "yearly"   },
   ]
 
-  return routes.map(({ path, priority, changeFrequency }) => ({
-    url: `${BASE_URL}${path}`,
-    lastModified: new Date(),
-    changeFrequency,
-    priority,
-  }))
+  const lastModified = new Date()
+
+  return routes.flatMap(({ path, priority, changeFrequency }) =>
+    locales.map((locale) => ({
+      url: localeUrl(locale, path),
+      lastModified,
+      changeFrequency,
+      priority,
+      alternates: { languages: localeAlternates(path) },
+    }))
+  )
 }

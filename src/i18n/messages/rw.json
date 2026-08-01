@@ -1,9 +1,19 @@
 {
+  "metadata": {
+    "siteName": "AYA Informatica RW",
+    "defaultTitle": "AYA Informatica RW – Twubaka ejo hazaza h'ikoranabuhanga rya Afrika",
+    "titleTemplate": "%s | AYA Informatica RW",
+    "description": "AYA Informatica RW ni ikigo cy'ikoranabuhanga gifite icyicaro mu Rwanda cyubaka imbuga za numerike zishobora gukura, zihuza abantu, ubucuruzi, n'amahirwe muri Afrika yose.",
+    "ogDescription": "Ikigo cy'ikoranabuhanga gifite icyicaro mu Rwanda cyubaka imbuga za numerike muri Afrika. Ibicuruzwa mbere. Telefoni mbere. Cyubakiwe umugabane.",
+    "twitterDescription": "Ikigo cy'ikoranabuhanga gifite icyicaro mu Rwanda cyubaka imbuga za numerike muri Afrika.",
+    "keywords": "AYA Informatica RW|AYA Informatica|ikoranabuhanga mu Rwanda|imbuga za numerike|ikoranabuhanga muri Afrika|isoko rya RAY|ubuzima bwo mu mutwe Humura|ikigo gishya i Kigali|telefoni mbere|ibikorwa remezo bya numerike muri Afrika"
+  },
   "nav": {
     "home": "Ahabanza",
     "about": "Abo turi",
     "products": "Ibicuruzwa",
     "services": "Serivisi",
+    "blog": "Inkuru",
     "contact": "Twandikire",
     "partnerWithUs": "Dufatanye",
     "skipToContent": "Jya ku biri muri page"
@@ -12,7 +22,7 @@
     "badge": "Kigali, Rwanda — Twubaka Afrika",
     "headline": "Twubaka ejo hazaza",
     "headlineAccent": "h'ikoranabuhanga rya Afrika",
-    "sub": "AYA Informatica ikora kandi ishyiraho imbuga zinoze zigabanya ubucuruzi, zongera ubufatanye bw'abantu, kandi zihanamura amahirwe y'ubukungu mu mugabane wose.",
+    "sub": "AYA Informatica RW ikora kandi ishyiraho imbuga zinoze zigabanya ubucuruzi, zongera ubufatanye bw'abantu, kandi zihanamura amahirwe y'ubukungu mu mugabane wose.",
     "ctaProducts": "Reba ibicuruzwa byacu",
     "ctaStory": "Menya inkuru yacu",
     "scroll": "Manura",
@@ -26,16 +36,35 @@
     "approachTitle": "Uko twubaka",
     "approachDesc": "Buri gicuruzwa dushyiraho gikurikiza filosofi y'umurimo — cyubatswe ku bantu nyabo, cyubatswe kugira ngo gikure, kandi gishingiye ku kwizera.",
     "ctaTitle": "Witeguye kwubaka ejo hazaza hamwe?",
-    "ctaDesc": "Fataanya na AYA Informatica kugira ngo mwubake ibikorwa remezo bya numerike Afrika ikeneye.",
+    "ctaDesc": "Fataanya na AYA Informatica RW kugira ngo mwubake ibikorwa remezo bya numerike Afrika ikeneye.",
     "ctaButton": "Twandikire",
-    "ctaProducts2": "Reba ibicuruzwa byacu"
+    "ctaProducts2": "Reba ibicuruzwa byacu",
+    "metaTitle": "AYA Informatica RW – Twubaka ejo hazaza h'ikoranabuhanga rya Afrika",
+    "metaDescription": "AYA Informatica RW ishushanya kandi ishyiraho imbuga nshya zoroshya ubucuruzi, zongera ubufatanye bw'abantu, kandi zigatanga amahirwe y'ubukungu muri Afrika.",
+    "heroAriaLabel": "Igice cy'itangiriro",
+    "statsAriaLabel": "Imibare y'ikigo",
+    "pillarsTitleLine1": "Inkingi eshatu.",
+    "pillarsTitleLine2": "Intego imwe.",
+    "productsTitleLine1": "Imbuga zubatswe",
+    "productsTitleLine2": "ku bantu nyabo",
+    "testimonialsEyebrow": "Icyo abantu bavuga",
+    "testimonialsTitle": "Twizewe n'abubatsi"
   },
   "footer": {
     "tagline": "Twubaka ejo hazaza h'ikoranabuhanga rya Afrika uhereye i Kigali, Rwanda.",
     "navigate": "Kuyobora",
     "products": "Ibicuruzwa",
     "getInTouch": "Twandikire",
-    "rights": "Uburenganzira bwose bwarinzwe."
+    "rights": "Uburenganzira bwose bwarinzwe.",
+    "homeAriaLabel": "AYA Informatica RW — Ahabanza",
+    "brandLine1": "Twubaka ejo hazaza",
+    "brandLine2": "h'ikoranabuhanga rya Afrika",
+    "location": "Kigali, u Rwanda",
+    "rayLabel": "RAY – Isoko",
+    "humuraLabel": "Humura – Ubuzima bwo mu mutwe",
+    "companyName": "AYA Informatica RW",
+    "privacy": "Politiki y'ibanga",
+    "terms": "Amabwiriza yo gukoresha"
   },
   "contact": {
     "eyebrow": "Twandikire",
@@ -60,7 +89,29 @@
     "successDesc": "Tuzagusubiza vuba bishoboka. Twubake hamwe.",
     "errorTitle": "Hari ikintu kitagenze neza",
     "networkErrorTitle": "Ikosa rya reseau",
-    "networkErrorDesc": "Reba imiyoboro yawe cyangwa utwandikire kuri imeli."
+    "networkErrorDesc": "Reba imiyoboro yawe cyangwa utwandikire kuri imeli.",
+    "fullNamePlaceholder": "Amazina yawe yombi",
+    "errorFallbackDesc": "Twandikire kuri imeli ay.company.andy@gmail.com",
+    "topicTagsTitle": "Twagufasha iki?",
+    "breadcrumb": "Twandikire",
+    "metaTitle": "Twandikire",
+    "metaDescription": "Twandikire muri AYA Informatica RW. Dufatanye, ubone RAY hakiri kare, cyangwa uganire ku mushinga.",
+    "ogTitle": "Twandikire AYA Informatica RW – Twubake hamwe",
+    "ogDescription": "Dufatanye, ubone RAY hakiri kare, ubaze kuri serivisi, cyangwa urebe amahirwe yo gushora imari.",
+    "twitterTitle": "Twandikire AYA Informatica RW",
+    "twitterDescription": "Dufatanye cyangwa utwandikire ku bicuruzwa na serivisi zacu.",
+    "details": {
+      "email": "Imeli",
+      "phone": "Telefoni / WhatsApp",
+      "location": "Aho tuherereye"
+    },
+    "closingQuote": "Dufatanye kubaka ejo hazaza.",
+    "closingAttribution": "AYA Informatica RW",
+    "closingBadges": {
+      "builders": "Abubatsi",
+      "engineers": "Abainjeniyeri",
+      "thinkers": "Abatekereza"
+    }
   },
   "common": {
     "loading": "Gutegereza",
@@ -71,5 +122,415 @@
     "notFoundTitle": "Paji ntibashije kuboneka",
     "notFoundDesc": "Paji ushaka ntibaho, cyangwa yimukiwe. Reka tukugarure ku nzira nziza.",
     "contactUs": "Twandikire"
+  },
+  "content": {
+    "products": {
+      "ray": {
+        "name": "RAY",
+        "badge": "🔥 Urubuga rw'ibanze",
+        "tagline": "Isoko rya mbere kuri telefoni mu Rwanda ryo kugura no kugurisha.",
+        "description": "RAY ni isoko ryubatswe ryibanda kuri telefoni, ryagenewe koroshya kugura no kugurisha mu Rwanda, hatangirwa kuri telefoni n'ibikoresho by'ikoranabuhanga. Ryubakiye ku kwizerana, umuvuduko, no kuboneka — RAY rihuza abaguzi n'abagurisha ku buryo butaziguye kandi bugaragara.",
+        "features": [
+          "Shyiraho ibicuruzwa vuba",
+          "Hura ku buryo butaziguye n'abaguzi cyangwa abagurisha",
+          "Ganira ku biciro ku mucyo",
+          "Gera ku isoko rigari kandi rikora cyane"
+        ],
+        "cta": "Menya RAY"
+      },
+      "humura": {
+        "name": "Humura",
+        "badge": "🧠 Urubuga ruzaza",
+        "tagline": "Ubuzima bwo mu mutwe n'ubufasha mu marangamutima — kuri Afrika.",
+        "description": "Humura ni urubuga rwa numerike rwibanda ku buzima bwo mu mutwe no ku bufasha mu marangamutima. Rutanga uburyo bwizewe kandi butamenyekana bwo kubona ubufasha, uburambe bwibanda ku muntu, n'ahantu ha numerike hizewe ku buzima bwiza bwa buri muntu.",
+        "features": [
+          "Uburyo bwizewe kandi butamenyekana bwo kubona ubufasha",
+          "Igishushanyo cya UX cyibanda ku muntu",
+          "Ahantu ha numerike hizewe",
+          "Kwibanda ku buzima bwiza bwa buri muntu"
+        ],
+        "cta": "Menya byinshi"
+      }
+    },
+    "services": {
+      "platform": {
+        "title": "Kubaka imbuga",
+        "tagline": "Imbuga za numerike zuzuye zubatswe kugira ngo zikure.",
+        "description": "Dushushanya kandi twubaka imbuga za numerike zishobora gukura uhereye ku ntangiriro. Waba ukeneye isoko, urutonde rwa serivisi, cyangwa urubuga rw'ubucuruzi — turubaka kugira ngo rwizerwe, rukore neza, kandi rukure igihe kirekire.",
+        "capabilities": [
+          "Gukora porogaramu zibanza kuri telefoni",
+          "Gushushanya API n'ibikorwa remezo bya backend",
+          "Imbuga z'isoko n'ubucuruzi",
+          "Sisitemu z'itumanaho ryihuse",
+          "Guhuza n'ibindi bikoresho no kwishyura",
+          "Ibikorwa remezo bya cloud na DevOps"
+        ]
+      },
+      "intelligent": {
+        "title": "Sisitemu z'ubwenge",
+        "tagline": "Sisitemu zishingiye ku makuru zifata ibyemezo byiza.",
+        "description": "Dushushanya sisitemu zikoresha amakuru n'ikoranabuhanga rigezweho kugira ngo zongere imikorere, gufata ibyemezo, n'uburambe bw'abakoresha — kuva kuri sisitemu z'inama kugeza ku mbonerahamwe z'isesengura.",
+        "capabilities": [
+          "Gushushanya no kubaka imiyoboro y'amakuru",
+          "Imbonerahamwe z'isesengura na raporo",
+          "Sisitemu z'inama n'ishakisha",
+          "Gukora ibikorwa mu buryo bwikora n'ibikoresho by'imirimo",
+          "Sisitemu zikurikirana imikorere",
+          "Isesengura ry'imyitwarire n'uruhare rw'abakoresha"
+        ]
+      },
+      "solutions": {
+        "title": "Ibisubizo bya numerike",
+        "tagline": "Porogaramu zihariye ku bigo byiteguye kuvugurura.",
+        "description": "Dutanga ibisubizo bya porogaramu byihariye ku bigo bishaka kwinjira muri numerike, koroshya, no kwagura ibikorwa byabyo. Porogaramu zifite intego — atari ibikoresho rusange.",
+        "capabilities": [
+          "Gukora porogaramu z'ubucuruzi zihariye",
+          "Kuvugurura sisitemu za kera",
+          "Gukora porogaramu za web na telefoni",
+          "Gukora CMS n'imbuga z'ibirimo",
+          "ERP n'ibikoresho by'imikorere",
+          "Ubufasha n'ubusanwe buhoraho"
+        ]
+      }
+    },
+    "roadmap": {
+      "launch": {
+        "title": "Gutangiza no kwagura RAY i Kigali",
+        "desc": "Gushinga isoko rya telefoni rikomeye mu Rwanda kuri telefoni n'ibikoresho by'ikoranabuhanga."
+      },
+      "expand": {
+        "title": "Kwagura ibyiciro n'abakoresha",
+        "desc": "Kwagura isoko ku byiciro bishya by'ibicuruzwa no kongera umubare w'abakoresha."
+      },
+      "humura": {
+        "title": "Gutangiza urubuga Humura",
+        "desc": "Gutangiza urubuga rwacu rw'ubuzima bwo mu mutwe n'ubufasha mu marangamutima kuri Afrika."
+      },
+      "ecosystem": {
+        "title": "Kubaka urusobe rwuzuye",
+        "desc": "Guhuza imbuga zacu mu rusobe rumwe rwa numerike rufasha ubuzima bwa buri munsi muri Afrika."
+      }
+    },
+    "stats": {
+      "pillars": {
+        "label": "Inkingi za serivisi"
+      },
+      "platforms": {
+        "label": "Imbuga ziri kubakwa"
+      },
+      "founded": {
+        "label": "Yashinzwe i Kigali"
+      },
+      "countries": {
+        "label": "Ibihugu bya Afrika bizafashwa"
+      }
+    },
+    "approach": {
+      "userCentered": {
+        "title": "Igishushanyo cyibanda ku ukoresha",
+        "desc": "Twubakira abantu nyabo bafite ibyo bakeneye by'ukuri — atari ibyo dukeka."
+      },
+      "speed": {
+        "title": "Umuvuduko n'ishyirwa mu bikorwa",
+        "desc": "Dushyira imbere kubaka byihuse no kunoza buri gihe."
+      },
+      "scalability": {
+        "title": "Gukura mbere na mbere",
+        "desc": "Buri sisitemu yubatswe kugira ngo ikure hamwe n'ibikenewe kuva ku munsi wa mbere."
+      },
+      "trust": {
+        "title": "Kwizerana n'umutekano",
+        "desc": "Uburyo bwo kwizerana bushyirwa muri buri gicuruzwa kuva ku ntangiriro."
+      }
+    },
+    "testimonials": {
+      "jeanPierre": {
+        "quote": "AYA Informatica RW isobanukiwe icyo kwubakira Afrika bisobanura — atari mu buhanga gusa, ahubwo no mu muco. Uburyo bwabo burashimishije.",
+        "name": "Jean-Pierre M.",
+        "role": "Rwiyemezamirimo w'ikoranabuhanga, Kigali"
+      },
+      "diane": {
+        "quote": "RAY ni cyo isoko ryari rikeneye — urubuga rwizewe, rwibanda kuri telefoni, rutuma kugura no kugurisha byoroha kandi bigaragara.",
+        "name": "Diane U.",
+        "role": "Ukoresha wa mbere"
+      },
+      "patrick": {
+        "quote": "Gukorana n'itsinda rya AYA byatweretse uko kubaka bishingiye ku gicuruzwa bimeze. Bagenda vuba batabangamiye ubuziranenge.",
+        "name": "Patrick K.",
+        "role": "Umufatanyabikorwa w'ubucuruzi"
+      }
+    },
+    "pillars": {
+      "platform": {
+        "title": "Kubaka imbuga",
+        "desc": "Imbuga za numerike zishobora gukura zihuza abakoresha, zoroshya ubucuruzi, kandi zitanga uburyo bushya bw'ubukungu."
+      },
+      "intelligent": {
+        "title": "Sisitemu z'ubwenge",
+        "desc": "Sisitemu zikoresha amakuru n'ikoranabuhanga rigezweho kugira ngo zongere imikorere, gufata ibyemezo, n'uburambe bw'abakoresha."
+      },
+      "solutions": {
+        "title": "Ibisubizo bya numerike",
+        "desc": "Ibisubizo bya porogaramu byihariye ku bigo bishaka kuvugurura no kwagura ibikorwa byabyo muri Afrika."
+      }
+    },
+    "contactSubjects": {
+      "partnership": "Ubufatanye",
+      "ray-access": "Kubona RAY hakiri kare",
+      "humura": "Urubuga Humura",
+      "services": "Kubaza kuri serivisi",
+      "investment": "Ishoramari",
+      "other": "Rusange / Ibindi"
+    }
+  },
+  "services": {
+    "breadcrumb": "Serivisi",
+    "metaTitle": "Serivisi",
+    "metaDescription": "Kubaka imbuga, sisitemu z'ubwenge, n'ibisubizo bya numerike. AYA Informatica RW izana ubuhanga bwa tekiniki ikigo cyawe gikeneye kugira ngo gikure.",
+    "ogTitle": "Serivisi za AYA Informatica RW – Kubaka imbuga n'ibisubizo bya numerike",
+    "ogDescription": "Kubaka imbuga zuzuye, sisitemu z'ubwenge, n'ibisubizo bya numerike byihariye ku bigo muri Afrika.",
+    "twitterTitle": "Serivisi za AYA Informatica RW",
+    "twitterDescription": "Kubaka imbuga, sisitemu z'ubwenge, n'ibisubizo bya numerike kuri Afrika.",
+    "eyebrow": "Serivisi zacu",
+    "headline": "Turubaka.",
+    "headlineAccent": "Mukura.",
+    "sub": "Kuva ku mbuga zishobora gukura kugeza kuri sisitemu z'ubwenge n'ibisubizo bya numerike byihariye — AYA Informatica RW izana ubuhanga bwa tekiniki n'ubwenge ku bicuruzwa ikigo cyawe gikeneye.",
+    "discussProject": "Ganira ku mushinga wawe",
+    "whatThisIncludes": "Ibyo bikubiyemo",
+    "processEyebrow": "Uko dukora",
+    "processTitle": "Uburyo bwacu",
+    "process": {
+      "discover": {
+        "title": "Gusesengura",
+        "desc": "Dutangira dusobanukirwa ikigo cyawe, abakoresha bawe, n'ikibazo urimo gukemura."
+      },
+      "design": {
+        "title": "Gushushanya",
+        "desc": "Dushushanya igisubizo cyibanda ku ukoresha, gishobora gukura, kandi gishingiye ku bumenyi bwawe."
+      },
+      "build": {
+        "title": "Kubaka",
+        "desc": "Dubaka vuba kandi mu byiciro, tugukomeza mu nzira kandi tugaragaza iterambere nyaryo buri gihe."
+      },
+      "scale": {
+        "title": "Kwagura",
+        "desc": "Dushyira mu bikorwa, dukurikirana, kandi tunoza — kugira ngo urubuga rwawe rukure hamwe n'ikigo cyawe."
+      }
+    },
+    "whyEyebrow": "Impamvu wahitamo AYA Informatica RW",
+    "whyTitle": "Icyo dutandukaniyeho",
+    "why": {
+      "localKnowledge": {
+        "title": "Ubumenyi bwimbitse ku isoko ryo mu gihugu",
+        "desc": "Twicaye i Kigali, dusobanukiwe ukuri kwo kwubakira amasoko ya Afrika — ibikorwa remezo, imyitwarire y'abakoresha, n'uko ubucuruzi bukora."
+      },
+      "mobileFirst": {
+        "title": "Telefoni mbere na mbere",
+        "desc": "Ibyo twubaka byose bigenewe gukoreshwa kuri telefoni, kuko ari ko abenshi muri Afrika bagera kuri serivisi za numerike."
+      },
+      "productDriven": {
+        "title": "Gutekereza nk'abakora ibicuruzwa",
+        "desc": "Dutekereza nk'abubaka ibicuruzwa, atari abakora porogaramu gusa — kugira ngo ibyo twubaka bibe bifasha abakoresha n'intego z'ubucuruzi."
+      },
+      "trustFirst": {
+        "title": "Kwizerana mbere na mbere",
+        "desc": "Kwizerana, umutekano, no kwizerwa ni ingingo z'ibanze mu gushushanya kuva ku munsi wa mbere — atari ibyongewaho nyuma."
+      }
+    },
+    "ctaTitle": "Witeguye kubaka ikintu gikomeye?",
+    "ctaDesc": "Tubwire umushinga wawe. Twubaka ejo hazaza — dushingiye ku byo ubu bikenewe.",
+    "ctaButton": "Tangira ikiganiro"
+  },
+  "products": {
+    "breadcrumb": "Ibicuruzwa",
+    "metaTitle": "Ibicuruzwa",
+    "metaDescription": "Menya RAY, isoko rya mbere kuri telefoni mu Rwanda, na Humura, urubuga rwacu ruzaza rw'ubuzima bwo mu mutwe. Imbuga zagenewe abantu nyabo.",
+    "ogTitle": "Ibicuruzwa bya AYA Informatica RW – Isoko RAY n'ubuzima Humura",
+    "ogDescription": "RAY: isoko rya mbere kuri telefoni mu Rwanda ku telefoni n'ibikoresho by'ikoranabuhanga. Humura: urubuga rw'ubuzima bwo mu mutwe ruraza.",
+    "twitterTitle": "Ibicuruzwa bya AYA Informatica RW – RAY na Humura",
+    "twitterDescription": "RAY: isoko rya mbere kuri telefoni mu Rwanda. Humura: urubuga rw'ubuzima bwo mu mutwe ruraza.",
+    "eyebrow": "Ibicuruzwa byacu",
+    "headline": "Imbuga zagenewe",
+    "headlineAccent": "ubuzima nyabwo",
+    "sub": "Buri gicuruzwa gishingiye ku kibazo nyacyo, cyagenewe kuboneka ku bose, kandi cyubatswe kugira ngo gikure. Ntitwubaka porogaramu gusa — twubaka ibikorwa remezo bya numerike.",
+    "rayIntro1": "RAY ni isoko ryibanda kuri telefoni, ryagenewe koroshya kugura no kugurisha mu Rwanda, hatangirwa kuri telefoni n'ibikoresho by'ikoranabuhanga.",
+    "rayIntro2": "Ryubakiye ku kwizerana, umuvuduko, no kuboneka — RAY rihuza abaguzi n'abagurisha ku buryo butaziguye kandi bugaragara. Intego yacu ni uko RAY riba urubuga rw'ibanze rw'ubucuruzi bwa buri munsi mu Rwanda.",
+    "rayPillars": {
+      "trust": {
+        "title": "Kwizerana",
+        "desc": "Buri gikorwa cyagenewe kubaka icyizere cy'abakoresha."
+      },
+      "accessibility": {
+        "title": "Kuboneka",
+        "desc": "Cyubatswe cyibanda kuri telefoni, uko u Rwanda rukoresha ikoranabuhanga."
+      },
+      "speed": {
+        "title": "Umuvuduko",
+        "desc": "Byihuse mu gushyiraho, guhura, no gusoza ubucuruzi."
+      }
+    },
+    "getEarlyAccess": "Bona RAY hakiri kare",
+    "mockupLocation": "📍 Kigali",
+    "mockupSearch": "Shakisha telefoni n'ibikoresho…",
+    "mockupVerified": "Umugurisha wemejwe",
+    "mockupPostItem": "+ Shyiraho igicuruzwa",
+    "rayFeaturesEyebrow": "RAY – Ibiranga by'ingenzi",
+    "rayFeaturesTitle": "Icyo RAY itandukaniyeho",
+    "rayFeatures": {
+      "quickListings": {
+        "title": "Gushyiraho byihuse",
+        "desc": "Shyiraho ibicuruzwa mu masegonda — impapuro zoroshye, kohereza byihuse, kugaragara ako kanya."
+      },
+      "directConnection": {
+        "title": "Guhura ku buryo butaziguye",
+        "desc": "Hura ku buryo butaziguye n'abaguzi cyangwa abagurisha. Nta bahuza, nta mafaranga ahishe."
+      },
+      "transparentPricing": {
+        "title": "Ibiciro bigaragara",
+        "desc": "Ganira ku biciro ku mugaragaro. Icyo ubona ni cyo ubona."
+      },
+      "widerMarket": {
+        "title": "Isoko rigari",
+        "desc": "Gera ku isoko rigari kandi rikora cyane kurusha amatangazo yo mu gace."
+      },
+      "trustFirst": {
+        "title": "Igishushanyo cyibanda ku kwizerana",
+        "desc": "Abagurisha bemejwe n'ubutumwa bwizewe kuva ku munsi wa mbere."
+      },
+      "mobileFirst": {
+        "title": "Telefoni mbere",
+        "desc": "Cyanozwe kuri telefoni — uko Abanyarwanda benshi bagera kuri interineti."
+      }
+    },
+    "humuraVisualLabel": "Ubuzima bwo mu mutwe",
+    "humuraTags": {
+      "safeSpace": "Ahantu hizewe",
+      "anonymous": "Utamenyekana",
+      "support": "Ubufasha",
+      "wellbeing": "Ubuzima bwiza"
+    },
+    "humuraBlurb": "Humura yerekana ubwitange bwacu bwo kubaka sisitemu zikomeye ariko kandi zifite icyo zivuze — imbuga zifitiye akamaro abazikoresha.",
+    "stayUpdated": "Kurikirana amakuru ya Humura",
+    "ecosystemEyebrow": "Icyerekezo",
+    "ecosystemTitleLine1": "Kubaka urusobe rwa numerike",
+    "ecosystemTitleLine2": "ruhuza byose",
+    "ecosystemDesc": "RAY na Humura ni ibice bya mbere by'icyerekezo kinini — urusobe rw'imbuga zihujwe zifasha ubuzima bwa buri munsi muri Afrika.",
+    "ecosystemBadge": "Urusobe",
+    "ecosystemNodes": {
+      "ray": {
+        "desc": "Ubucuruzi"
+      },
+      "humura": {
+        "desc": "Ubuzima bwiza"
+      },
+      "more": {
+        "name": "Ibindi",
+        "desc": "Biraza vuba"
+      }
+    },
+    "ctaTitle": "Ushishikajwe n'imbuga zacu?",
+    "ctaDesc": "Twandikire kugira ngo dufatanye cyangwa ubone serivisi hakiri kare.",
+    "ctaContact": "Twandikire",
+    "ctaServices": "Reba serivisi"
+  },
+  "about": {
+    "breadcrumb": "Abo turi bo",
+    "metaTitle": "Abo turi bo",
+    "metaDescription": "AYA Informatica RW iyobowe n'itsinda ryihariye ry'abubatsi, abainjeniyeri, n'abatekereza biyemeje gukora ibicuruzwa bya numerike bifite akamaro muri Afrika.",
+    "ogTitle": "Abo turi bo muri AYA Informatica RW – Abubaka ejo hazaza h'ikoranabuhanga rya Afrika",
+    "ogDescription": "Menya itsinda riri inyuma ya AYA Informatica RW. Abubatsi, abainjeniyeri, n'abatekereza bo mu Rwanda biyemeje impinduka za numerike muri Afrika.",
+    "twitterTitle": "Abo turi bo muri AYA Informatica RW",
+    "twitterDescription": "Abubatsi, abainjeniyeri, n'abatekereza bo mu Rwanda biyemeje impinduka za numerike muri Afrika.",
+    "eyebrow": "Inkuru yacu",
+    "headline": "Byubatswe mu Rwanda.",
+    "headlineAccent": "Kuri Afrika.",
+    "sub": "Turi itsinda ryihariye ry'abubatsi, abainjeniyeri, n'abatekereza biyemeje gukora ibicuruzwa bya numerike bihindura uko Afrika ibaho, icuruza, kandi ihuza.",
+    "overviewEyebrow": "Incamake y'ikigo",
+    "overviewTitleLine1": "Ntabwo ari porogaramu gusa.",
+    "overviewTitleLine2": "Ni ibikorwa remezo bya numerike.",
+    "overviewP1": "AYA Informatica RW ni ikigo cy'ikoranabuhanga gifite icyicaro mu Rwanda cyibanda ku kubaka imbuga za numerike zishobora gukura zihuza abantu, ubucuruzi, n'amahirwe muri Afrika.",
+    "overviewP2": "Dukoresha uburyo bushingiye ku gicuruzwa mu gukemura ibibazo nyabyo, dushushanya sisitemu zoroshye, zizewe, kandi zagenewe gukoreshwa buri munsi. Akazi kacu kari aho ubucuruzi, ikoranabuhanga, n'uburambe bw'abantu bihurira.",
+    "overviewP3": "Muri AYA Informatica RW, ntitwubaka porogaramu gusa — twubaka ibikorwa remezo bya numerike by'uko abantu babaho, bacuruza, kandi bahurira mu bukungu bwa Afrika bugezweho.",
+    "quote": "Twubaka ejo hazaza — ariko dushingiye ku byo ubu bikenewe.",
+    "quoteAttribution": "AYA Informatica RW",
+    "visionEyebrow": "Icyerekezo n'ubutumwa",
+    "visionTitle": "Impamvu tubaho",
+    "visionMission": {
+      "vision": {
+        "type": "Icyerekezo",
+        "title": "Uwa mbere mu kubaka urusobe rwa numerike muri Afrika",
+        "desc": "Kuba uwa mbere muri Afrika mu kubaka urusobe rwa numerike rufasha ubuzima bwa buri munsi — kuva ku bucuruzi kugeza ku guhuza, kuva ku buzima kugeza ku buzima bwiza."
+      },
+      "mission": {
+        "type": "Ubutumwa",
+        "title": "Gushushanya imbuga. Koroshya ubucuruzi. Guhuza Afrika.",
+        "desc": "Gushushanya no gushyiraho imbuga nshya zoroshya ubucuruzi, zongera ubufatanye bw'abantu, kandi zigatanga amahirwe y'ubukungu mu mugabane wose."
+      }
+    },
+    "teamEyebrow": "Itsinda ryacu",
+    "teamTitleLine1": "Abubatsi. Abainjeniyeri.",
+    "teamTitleLine2": "Abatekereza.",
+    "teamDesc": "AYA Informatica RW iyobowe n'itsinda ryihariye ryiyemeje gukora ibicuruzwa bya numerike bifite akamaro. Dukora mu buryo bworoshye, bwihuse, kandi busobanutse.",
+    "team": {
+      "founder": {
+        "role": "Washinze akaba n'Umuyobozi Mukuru",
+        "desc": "Icyerekezo, ingamba z'ibicuruzwa, n'iterambere. Imbaraga ziri inyuma y'ubutumwa bwa AYA Informatica RW bwo kubaka ibikorwa remezo bya numerike bya Afrika."
+      },
+      "engineering": {
+        "role": "Itsinda ry'iterambere",
+        "desc": "Rishinzwe kubaka sisitemu zishobora gukura kandi zikora neza. Abainjeniyeri bahindura icyerekezo mu bikorwa nyabyo bya numerike."
+      }
+    },
+    "teamNoteStrong": "Dukora mu buryo bworoshye, bwihuse, kandi busobanutse.",
+    "teamNoteRest": "Itsinda rito, intego nini, gushyira mu bikorwa mu bushishozi.",
+    "roadmapEyebrow": "Gahunda yacu",
+    "roadmapTitle": "Inzira iri imbere",
+    "ctaTitle": "Duhurire mu kubaka ejo hazaza h'ikoranabuhanga rya Afrika",
+    "ctaDesc": "Waba ushaka gufatanya, gushora imari, cyangwa gukorana natwe — twifuza kukwumva.",
+    "ctaButton": "Twandikire"
+  },
+  "blog": {
+    "breadcrumb": "Inkuru",
+    "metaTitle": "Inkuru",
+    "metaDescription": "Ibitekerezo, amakuru, n'inkuru bya AYA Informatica RW — twubaka ejo hazaza h'ikoranabuhanga rya Afrika uhereye i Kigali, mu Rwanda.",
+    "ogTitle": "Inkuru za AYA Informatica RW – Ibitekerezo n'amakuru",
+    "ogDescription": "Ibitekerezo, amakuru, n'inkuru bya AYA Informatica RW.",
+    "eyebrow": "Inkuru",
+    "headline": "Ibitekerezo n'",
+    "headlineAccent": "amakuru",
+    "sub": "Inkuru, amakuru y'ibicuruzwa, n'ibitekerezo by'itsinda ryubaka ejo hazaza h'ikoranabuhanga rya Afrika.",
+    "readTime": "iminota {minutes} yo gusoma",
+    "read": "Soma",
+    "posts": {
+      "building-for-africa": {
+        "title": "Impamvu twubakira Afrika mbere na mbere",
+        "excerpt": "Ubukungu bwa numerike muri Afrika bukura vuba kurusha ahandi hose. Dore impamvu twahisemo kwubaka duhereye i Kigali n'icyo bivuze ku bicuruzwa byacu.",
+        "category": "Ikigo"
+      },
+      "ray-marketplace-vision": {
+        "title": "RAY: Kongera gutekereza uko u Rwanda rucuruza",
+        "excerpt": "Kuva ku matsinda ya WhatsApp atatanye kugeza ku isoko rimwe rihuza — inkuru iri inyuma ya RAY n'icyerekezo cyacu ku bucuruzi bwa numerike muri Afrika y'Iburasirazuba.",
+        "category": "Igicuruzwa"
+      },
+      "mental-wellness-africa": {
+        "title": "Ubuzima bwo mu mutwe muri Afrika: icyuho Humura izuzuza",
+        "excerpt": "Ubufasha mu buzima bwo mu mutwe muri Afrika buracyari buke cyane. Humura ni igisubizo cyacu — urubuga rwubatswe rushingiye ku muco.",
+        "category": "Igicuruzwa"
+      }
+    },
+    "ctaTitle": "Komeza ukurikirane",
+    "ctaDesc": "Wifuza gukurikirana urugendo rwacu? Twandikire tuzajya tukumenyesha amakuru mashya.",
+    "ctaButton": "Twandikire"
+  },
+  "legal": {
+    "eyebrow": "Amategeko",
+    "lastUpdated": "Byavuguruwe bwa nyuma",
+    "privacyTitle": "Politiki y'ibanga",
+    "privacyDescription": "Uko AYA Informatica RW ikusanya, ikoresha, kandi irinda amakuru yawe bwite igihe ukoresha urubuga rwacu n'ifishi yo kutwandikira.",
+    "termsTitle": "Amabwiriza yo gukoresha",
+    "termsDescription": "Amabwiriza n'amasezerano yo gukoresha urubuga na serivisi bya AYA Informatica RW.",
+    "backHome": "← Subira ahabanza",
+    "contactUs": "Twandikire →",
+    "translationNotice": "Ubu buhinduzi butangwa kugira ngo bikworohere. Verisiyo y'Icyongereza y'iyi nyandiko ni yo ifite agaciro mu mategeko."
   }
 }

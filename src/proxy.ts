@@ -2,10 +2,19 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
+import createMiddleware from "next-intl/middleware"
+import { routing } from "@/i18n/routing"
+// Security headers are defined once in src/lib/security-headers.js and shared
+// with next.config.js so the two cannot drift apart.
+import { SECURITY_HEADERS } from "@/lib/security-headers"
 
 // ─────────────────────────────────────────────────────────────
-// SECURITY MIDDLEWARE
+// SECURITY PROXY
 // Handles: CORS, rate limiting, security headers, method guards
+//
+// Next.js 16 renamed the `middleware` file convention to `proxy`
+// (same signature, same request/response APIs).
+// See: https://nextjs.org/docs/messages/middleware-to-proxy
 // ─────────────────────────────────────────────────────────────
 
 // ── Upstash Redis rate limiter (production) ──────────────────
@@ -101,6 +110,17 @@ function rejectOrigin() {
   return NextResponse.json({ error: "CORS: origin not allowed" }, { status: 403 })
 }
 
+/**
+ * Methods that change server state and therefore require a trusted Origin.
+ *
+ * Per the Fetch specification a browser attaches `Origin` to every request
+ * except a same-origin GET/HEAD — including same-origin POSTs. A POST with no
+ * Origin header is therefore not coming from a browser, and previously slipped
+ * past the CORS check entirely because that check was skipped when the header
+ * was absent.
+ */
+const STATE_CHANGING_METHODS = new Set(["POST", "PUT", "PATCH", "DELETE"])
+
 // ── Rate limit check (unified) ───────────────────────────────
 
 async function checkRateLimit(ip: string, pathname: string): Promise<NextResponse | null> {
@@ -137,30 +157,32 @@ async function checkRateLimit(ip: string, pathname: string): Promise<NextRespons
 
 // ── Security headers ─────────────────────────────────────────
 
-const SECURITY_HEADERS: Record<string, string> = {
-  "X-Frame-Options": "DENY",
-  "X-Content-Type-Options": "nosniff",
-  "Referrer-Policy": "strict-origin-when-cross-origin",
-  "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
-  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
-  "Content-Security-Policy": [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://vercel.live https://va.vercel-scripts.com",
-    "style-src 'self' 'unsafe-inline'",
-    "font-src 'self' data:",
-    "img-src 'self' data: blob:",
-    "connect-src 'self' https://vercel.live wss://ws-us3.pusher.com https://vitals.vercel-insights.com https://va.vercel-scripts.com",
-    "frame-ancestors 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-  ].join("; "),
-}
 
 const SKIP_PATTERN = /^\/((_next\/static|_next\/image|favicon\.ico|og-image)\/|.*\.svg$)/
 
-// ── Middleware entry point ────────────────────────────────────
+// ── Locale routing ───────────────────────────────────────────
 
-export async function middleware(request: NextRequest) {
+const handleI18nRouting = createMiddleware(routing)
+
+/**
+ * Whether a request should go through locale negotiation.
+ *
+ * Only real page routes are localized. Anything with a file extension is a
+ * static asset or a well-known file that must keep its exact URL — this
+ * deliberately covers /robots.txt, /sitemap.xml, /manifest.json and the Google
+ * Search Console verification file, all of which would break if redirected to
+ * a locale-prefixed path.
+ */
+function shouldLocalize(pathname: string): boolean {
+  if (pathname.startsWith("/api/")) return false
+  if (pathname.startsWith("/_next/")) return false
+  if (pathname.includes(".")) return false
+  return true
+}
+
+// ── Proxy entry point ─────────────────────────────────────────
+
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   if (SKIP_PATTERN.test(pathname)) return NextResponse.next()
 
@@ -173,6 +195,12 @@ export async function middleware(request: NextRequest) {
     if (request.method === "OPTIONS") return handlePreflight(allowedOrigin)
     if (origin && !allowedOrigin) return rejectOrigin()
 
+    // A state-changing request must carry an Origin the allowlist recognises.
+    // Without this, omitting the header altogether bypassed the check above.
+    if (STATE_CHANGING_METHODS.has(request.method) && !allowedOrigin) {
+      return rejectOrigin()
+    }
+
     const ip =
       request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
       request.headers.get("x-real-ip") ??
@@ -182,7 +210,14 @@ export async function middleware(request: NextRequest) {
     if (rateLimitResponse) return rateLimitResponse
   }
 
-  const response = NextResponse.next()
+  // Locale negotiation runs only after the API guards above, so rate limiting
+  // and CORS still short-circuit before any i18n work happens. next-intl may
+  // return a rewrite or a redirect; security headers are attached to whichever
+  // response it produces rather than to a fresh one, so they are never lost.
+  const response = shouldLocalize(pathname)
+    ? handleI18nRouting(request)
+    : NextResponse.next()
+
   for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
     response.headers.set(key, value)
   }

@@ -1,7 +1,8 @@
 /** Navigation link */
 export interface NavLink {
   href: string
-  label: string
+  /** Key into the `nav` message namespace — the label itself is translated. */
+  key: string
 }
 
 /** Service pillar */

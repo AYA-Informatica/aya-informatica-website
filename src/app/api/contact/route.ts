@@ -44,8 +44,15 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // ── 4. Turnstile verification (when configured) ───────
-    if (process.env.TURNSTILE_SECRET_KEY && typeof body === "object" && body !== null) {
+    // ── 4. Turnstile verification (when fully configured) ─
+    // Both keys are required: the secret alone means the server would demand a
+    // token the client has no widget to produce, rejecting every genuine
+    // submission. Enforcement therefore only switches on when the client can
+    // actually satisfy it.
+    const turnstileConfigured = Boolean(
+      process.env.TURNSTILE_SECRET_KEY && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+    )
+    if (turnstileConfigured && typeof body === "object" && body !== null) {
       const token = (body as Record<string, unknown>)["cf-turnstile-response"]
       if (!token || typeof token !== "string") {
         return NextResponse.json({ error: "Captcha verification required" }, { status: 400 })

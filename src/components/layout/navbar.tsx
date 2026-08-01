@@ -1,18 +1,20 @@
 "use client"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { useEffect } from "react"
+import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import FocusLock from "react-focus-lock"
 import { Menu, X } from "lucide-react"
+import { Link, usePathname } from "@/i18n/navigation"
 import { useUIStore } from "@/store/ui"
 import { NAV_LINKS } from "@/lib/constants"
 import { Button } from "@/components/ui/button"
+import { LanguageSwitcher } from "@/components/layout/language-switcher"
 import { cn } from "@/lib/utils"
 import { useScrolled } from "@/hooks/use-scrolled"
 
 export function Navbar() {
+  const t = useTranslations("nav")
   const pathname = usePathname()
   const { mobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useUIStore()
   const scrolled = useScrolled(20)
@@ -45,7 +47,7 @@ export function Navbar() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold"
       >
-        Skip to main content
+        {t("skipToContent")}
       </a>
 
       <header
@@ -62,13 +64,13 @@ export function Navbar() {
           <Link
             href="/"
             className="flex flex-col leading-none gap-px shrink-0"
-            aria-label="AYA Informatica — Home"
+            aria-label="AYA Informatica RW — Home"
           >
             <span className="font-display text-[1.05rem] font-extrabold text-white tracking-[0.04em]">
               AYA
             </span>
             <span className="text-[0.6rem] text-white/40 uppercase tracking-[0.08em] font-medium">
-              Informatica
+              Informatica RW
             </span>
           </Link>
 
@@ -77,7 +79,7 @@ export function Navbar() {
             className="hidden md:flex items-center gap-1 ml-auto"
             aria-label="Main navigation"
           >
-            {NAV_LINKS.map(({ href, label }) => (
+            {NAV_LINKS.map(({ href, key }) => (
               <Link
                 key={href}
                 href={href}
@@ -89,7 +91,7 @@ export function Navbar() {
                     : "text-white/65 hover:text-white hover:bg-white/7"
                 )}
               >
-                {label}
+                {t(key)}
                 {pathname === href && (
                   <motion.span
                     layoutId="nav-indicator"
@@ -100,9 +102,10 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <Button asChild size="sm" className="hidden md:inline-flex ml-3">
-            <Link href="/contact">Partner With Us</Link>
+          {/* Language switcher + desktop CTA */}
+          <LanguageSwitcher className="hidden md:flex ml-2" />
+          <Button asChild size="sm" className="hidden md:inline-flex ml-1">
+            <Link href="/contact">{t("partnerWithUs")}</Link>
           </Button>
 
           {/* Mobile hamburger */}
@@ -160,7 +163,7 @@ export function Navbar() {
                 className="flex flex-col items-center gap-2 w-full max-w-xs"
                 aria-label="Mobile navigation"
               >
-                {NAV_LINKS.map(({ href, label }, i) => (
+                {NAV_LINKS.map(({ href, key }, i) => (
                   <motion.div
                     key={href}
                     initial={{ opacity: 0, y: 16 }}
@@ -178,7 +181,7 @@ export function Navbar() {
                           : "text-white/40 hover:text-white"
                       )}
                     >
-                      {label}
+                      {t(key)}
                     </Link>
                   </motion.div>
                 ))}
@@ -186,11 +189,12 @@ export function Navbar() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: NAV_LINKS.length * 0.07 + 0.05, duration: 0.3 }}
-                  className="w-full mt-6"
+                  className="w-full mt-6 flex flex-col items-center gap-5"
                 >
                   <Button asChild className="w-full" size="lg">
-                    <Link href="/contact">Partner With Us</Link>
+                    <Link href="/contact">{t("partnerWithUs")}</Link>
                   </Button>
+                  <LanguageSwitcher />
                 </motion.div>
               </nav>
             </FocusLock>
