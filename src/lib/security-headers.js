@@ -16,28 +16,53 @@
 const turnstileEnabled = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY)
 const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com"
 
+/**
+ * React's development build uses eval() for debugging features such as
+ * reconstructing stack traces across the server/client boundary, and Turbopack
+ * opens a websocket for hot reload. Both are blocked by the production policy.
+ *
+ * These relaxations are development-only and must never reach production:
+ * 'unsafe-eval' would undo a meaningful part of the CSP's value. React does not
+ * use eval() in its production build, so nothing needs it there.
+ *
+ * NODE_ENV is set by Next itself — "development" under `next dev`, "production"
+ * under `next build` — so this cannot be switched on accidentally in a
+ * production deploy.
+ */
+const isDev = process.env.NODE_ENV === "development"
+
 /** @param {string[]} sources */
 const withTurnstile = (sources) =>
   turnstileEnabled ? [...sources, TURNSTILE_ORIGIN] : sources
 
+/** @param {string[]} sources @param {string[]} extra */
+const inDev = (sources, extra) => (isDev ? [...sources, ...extra] : sources)
+
 const CSP_DIRECTIVES = {
   "default-src": ["'self'"],
-  "script-src": withTurnstile([
-    "'self'",
-    "'unsafe-inline'",
-    "https://vercel.live",
-    "https://va.vercel-scripts.com",
-  ]),
+  "script-src": inDev(
+    withTurnstile([
+      "'self'",
+      "'unsafe-inline'",
+      "https://vercel.live",
+      "https://va.vercel-scripts.com",
+    ]),
+    ["'unsafe-eval'"]
+  ),
   "style-src": ["'self'", "'unsafe-inline'"],
   "font-src": ["'self'", "data:"],
   "img-src": ["'self'", "data:", "blob:"],
-  "connect-src": withTurnstile([
-    "'self'",
-    "https://vercel.live",
-    "wss://ws-us3.pusher.com",
-    "https://vitals.vercel-insights.com",
-    "https://va.vercel-scripts.com",
-  ]),
+  "connect-src": inDev(
+    withTurnstile([
+      "'self'",
+      "https://vercel.live",
+      "wss://ws-us3.pusher.com",
+      "https://vitals.vercel-insights.com",
+      "https://va.vercel-scripts.com",
+    ]),
+    // Turbopack's hot-reload channel.
+    ["ws:", "wss:"]
+  ),
   // Without an explicit frame-src the Turnstile iframe falls back to
   // default-src 'self' and is blocked.
   "frame-src": withTurnstile(["'self'"]),
@@ -68,6 +93,8 @@ const SECURITY_HEADERS_LIST = Object.entries(SECURITY_HEADERS).map(([key, value]
 
 module.exports = {
   CONTENT_SECURITY_POLICY,
+  CSP_DIRECTIVES,
+  isDev,
   SECURITY_HEADERS,
   SECURITY_HEADERS_LIST,
   TURNSTILE_ORIGIN,
