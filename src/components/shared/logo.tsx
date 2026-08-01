@@ -10,10 +10,17 @@ import { cn } from "@/lib/utils"
  * over "Informatica" in the display face — which meant the real mark was only
  * ever seen as a browser tab icon. This renders the actual artwork.
  *
- * Two variants exist because the source is navy on transparent, which would be
+ * Two variants exist because the artwork is navy on transparent, which would be
  * invisible on the navy surfaces: `logo-white.png` is a white silhouette built
  * from the same alpha mask. Both are trimmed of their padding so they read at
- * navbar sizes.
+ * navbar sizes (472x296, a 1.6:1 lockup).
+ *
+ * These are NOT derived from the current favicon and should not be regenerated
+ * from it. The app icons are a circular badge — an off-white disc with the mark
+ * inside — which suits a home-screen icon but is the wrong shape for a header,
+ * and whose alpha mask covers the whole disc, so the white-silhouette technique
+ * would produce a solid circle. Regenerate these from a bare-wordmark export
+ * only.
  *
  * Statically imported so Next supplies the intrinsic dimensions and reserves
  * layout space, avoiding a shift while the image loads.
