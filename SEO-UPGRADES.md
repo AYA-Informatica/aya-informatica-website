@@ -1,13 +1,13 @@
-# AYA Informatica — SEO Upgrade Plan
+# AYA Informatica RW — SEO Upgrade Plan
 
-Last updated: June 2025
+Last updated: August 2025
 
 ---
 
 ## Current SEO State
 
 **What's already in place:**
-- Per-page `<title>` with `%s | AYA Informatica` template
+- Per-page `<title>` with `%s | AYA Informatica RW` template
 - OpenGraph + Twitter Card tags on every page
 - Canonical URLs set on all pages
 - `robots.ts` auto-generating `/robots.txt` (disallows `/api/`)
@@ -16,7 +16,12 @@ Last updated: June 2025
 - `sameAs` social profile references
 - Self-hosted fonts (no render-blocking Google Fonts)
 - `max-image-preview: large`, `max-snippet: -1` for GoogleBot
-- Static pre-rendering for all public pages
+- Static pre-rendering for all 24 localized routes, enforced by a postbuild
+  check (`scripts/check-prerender.mjs`) that fails the build if it regresses
+- Trilingual routing (EN/FR/RW) with a dynamic `<html lang>`, `hreflang`
+  alternates on every page, and a sitemap covering every route in every locale
+- Company logo rendered through `next/Image` with alt text and reserved
+  dimensions
 
 **What's missing — ranked by SEO impact:**
 
@@ -52,38 +57,35 @@ Last updated: June 2025
 - No description uses a call-to-action or differentiator
 
 **Action items:**
-- Homepage: focus on brand promise + location — "AYA Informatica builds digital platforms from Kigali, Rwanda. Explore RAY marketplace and Humura wellness — mobile-first products for Africa."
+- Homepage: focus on brand promise + location — "AYA Informatica RW builds digital platforms from Kigali, Rwanda. Explore RAY marketplace and Humura wellness — mobile-first products for Africa."
 - Products: lead with product names — "RAY: Rwanda's mobile marketplace for phones & electronics. Humura: Africa's upcoming mental wellness platform. Try them today."
 - Services: lead with value prop — "End-to-end platform development, intelligent systems, and custom software for businesses scaling across Africa. Based in Kigali."
-- About: focus on team/story — "Meet the team behind AYA Informatica. Founded in Kigali in 2024, we're builders, engineers, and thinkers creating Africa's digital infrastructure."
-- Contact: include response time — "Contact AYA Informatica — partnerships, early access, investment. Based in Kigali, Rwanda. We respond within 24 hours."
+- About: focus on team/story — "Meet the team behind AYA Informatica RW. Founded in Kigali in 2024, we're builders, engineers, and thinkers creating Africa's digital infrastructure."
+- Contact: include response time — "Contact AYA Informatica RW — partnerships, early access, investment. Based in Kigali, Rwanda. We respond within 24 hours."
 - Keep each under 155 characters
 
-### 3. Fix the `<html lang>` for i18n
-**Impact:** Google uses `lang` attribute for language targeting  
-**Current state:** Hardcoded `lang="en"` on every page  
+### 3. ~~Fix the `<html lang>` for i18n~~ — DONE
 
-**Action items:**
-- When i18n is active, dynamically set `lang` to match locale (`en`, `fr`, `rw`)
-- Add `hreflang` alternates in metadata for each page:
-  ```
-  <link rel="alternate" hreflang="en" href="https://ayainformatica.com/" />
-  <link rel="alternate" hreflang="fr" href="https://ayainformatica.com/fr/" />
-  <link rel="alternate" hreflang="rw" href="https://ayainformatica.com/rw/" />
-  <link rel="alternate" hreflang="x-default" href="https://ayainformatica.com/" />
-  ```
-- This tells Google which version to show French/Kinyarwanda speakers
+`<html lang>` is set from the active locale, and every page emits `hreflang`
+alternates for all three locales. The sitemap lists each route once per locale
+with `alternates.languages`. `localePrefix` is `"as-needed"`, so English stays
+unprefixed and its existing indexed URLs were preserved.
 
-### 4. Add Real Images with Alt Text
+Still outstanding: an `x-default` alternate is not emitted.
+
+### 4. Add Real Images with Alt Text — PARTIALLY DONE
 **Impact:** Image search is a major traffic source; alt text feeds page relevance  
-**Current state:** Zero `<img>` tags in the entire site  
+**Current state:** The company logo now renders through `next/Image` with alt
+text and intrinsic dimensions (so it reserves layout space and does not cause
+CLS). There are still no photographs, product screenshots or team images — the
+phone mockup on the products page is CSS.  
 
 **Action items:**
 - Add product screenshots (RAY app mockups, Humura wireframes)
 - Add team photos on about page
 - Use `next/Image` with descriptive `alt` text containing target keywords:
   - `alt="RAY marketplace app showing phone listings in Kigali, Rwanda"`
-  - `alt="AYA Informatica team in Kigali office"`
+  - `alt="AYA Informatica RW team in Kigali office"`
 - Add `width`/`height` to prevent CLS (Core Web Vitals)
 - Create WebP versions with PNG fallback
 
@@ -120,7 +122,7 @@ Last updated: June 2025
   - "Is RAY free to use?"
   - "How do I sell on RAY?"
   - "What is Humura?"
-  - "Where is AYA Informatica based?"
+  - "Where is AYA Informatica RW based?"
 - Wrap in `FAQPage` + `Question` + `Answer` JSON-LD schema
 
 ### 7. Improve Internal Linking
@@ -146,7 +148,7 @@ Last updated: June 2025
 
 ### 9. Submit to Google Search Console
 **Impact:** Required to monitor indexing, fix crawl errors, submit sitemap  
-**Current state:** `public/google08e8e8e4b9e28b0b.html` exists (verification file) but unclear if GSC is active  
+**Current state:** `public/google08e8e8e4b9e28b0b.html` is present and confirmed serving 200; whether the property is actively monitored is unknown  
 
 **Action items:**
 - Verify ownership in Google Search Console
@@ -190,7 +192,7 @@ Last updated: June 2025
   {
     "@type": "Service",
     "name": "Platform Development",
-    "provider": { "@id": "https://ayainformatica.com/#organization" },
+    "provider": { "@id": "https://ayainformatica.tech/#organization" },
     "areaServed": "Africa",
     "description": "End-to-end digital platforms built to scale."
   }
@@ -222,17 +224,20 @@ Last updated: June 2025
 **Action items:**
 - Review Vercel Speed Insights dashboard after deploy
 - Target scores: LCP < 2.5s, FID < 100ms, CLS < 0.1
-- Current risks: no `next/Image` usage (when images are added, LCP could spike)
+- `next/Image` is now in use with reserved dimensions, so added imagery should
+  not spike CLS; LCP is still unmeasured
 - Font loading could affect FCP — monitor after variable font switch
+- The whole ~450-key message catalogue is serialized into every page's client
+  payload, including locales the page will never render. Worth scoping per route.
 
 ### 16. Build Backlinks
 **Impact:** Still the strongest ranking signal  
 **Current state:** Likely zero external backlinks  
 
 **Action items:**
-- List AYA Informatica on Rwanda startup directories
+- List AYA Informatica RW on Rwanda startup directories
 - Submit to African tech publication lists (e.g., Disrupt Africa, TechCabal)
-- Contribute guest posts to tech blogs with backlink to ayainformatica.com
+- Contribute guest posts to tech blogs with backlink to ayainformatica.tech
 - List on Crunchbase, AngelList, ProductHunt (when RAY launches)
 - Engage in Kigali tech community events for press coverage
 
@@ -245,9 +250,10 @@ Last updated: June 2025
 | Indexed pages | ~8 | 20+ (with blog posts) |
 | Blog posts | 0 real | 10+ with keyword targeting |
 | JSON-LD schemas | 3 (Org, WebSite, Breadcrumb) | 6+ (add BlogPosting, Service, FAQ) |
-| Images with alt text | 0 | 15+ |
-| Languages | 1 (English) | 3 (EN, FR, RW) with hreflang |
+| Images with alt text | 1 (logo, via `next/Image`) | 15+ |
+| Languages | **3 (EN, FR, RW) with hreflang** ✓ | done |
 | Backlinks | ~0 | 10+ from directories/press |
 | Core Web Vitals | Unmonitored | LCP <2.5s, CLS <0.1 |
+| Static prerendering | 24/24 localized routes ✓ | enforced by postbuild check |
 | Dynamic OG images | No (static) | Yes (per-page) |
 | Search Console | Possibly inactive | Active, monitored weekly |
