@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { MotionDiv, MotionList, MotionItem } from "@/components/shared/motion-div"
+import { Logo } from "@/components/shared/logo"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
 import { localeUrl } from "@/lib/urls"
@@ -92,7 +93,7 @@ export default function BlogPage({
               <MotionItem key={post.slug}>
                 <article className="group bg-white rounded-2xl border border-brand-gray-light overflow-hidden hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
                   <div className="h-48 bg-navy/5 flex items-center justify-center">
-                    <span className="font-display text-5xl font-extrabold text-navy/6 select-none">AYA</span>
+                    <Logo alt="" className="h-14 opacity-10" />
                   </div>
                   <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center gap-2 mb-3">

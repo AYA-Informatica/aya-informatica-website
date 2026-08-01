@@ -10,6 +10,7 @@ import { SectionHeader } from "@/components/shared/section-header"
 import { MotionDiv, MotionList, MotionItem } from "@/components/shared/motion-div"
 import { useProducts } from "@/lib/content"
 import { cn } from "@/lib/utils"
+import { Logo } from "@/components/shared/logo"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
 import { localeUrl } from "@/lib/urls"
@@ -269,8 +270,8 @@ export default function ProductsPage({
             <div className="flex flex-col items-center gap-6">
               <div className="w-24 h-24 rounded-full bg-accent flex flex-col items-center justify-center
                 shadow-[0_0_60px_rgba(10,132,255,0.3)]">
-                <span className="font-display text-2xl font-extrabold text-white leading-none">AYA</span>
-                <span className="text-[0.55rem] text-white/65 uppercase tracking-wider">{t("ecosystemBadge")}</span>
+                <Logo variant="white" alt="" className="h-7" />
+                <span className="text-[0.55rem] text-white/65 uppercase tracking-wider mt-1">{t("ecosystemBadge")}</span>
               </div>
               <div className="flex flex-wrap gap-2 sm:gap-3 justify-center px-4">
                 {ECOSYSTEM_NODES.map((node) => (

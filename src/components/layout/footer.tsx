@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl"
 import { Mail, Phone, MapPin } from "lucide-react"
 import { Link } from "@/i18n/navigation"
+import { Logo } from "@/components/shared/logo"
 import { NAV_LINKS, CONTACT_INFO } from "@/lib/constants"
 
 export function Footer() {
@@ -15,15 +16,8 @@ export function Footer() {
 
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" aria-label={t("homeAriaLabel")}>
-              <div className="flex flex-col gap-0.5 mb-5">
-                <span className="font-display text-2xl font-extrabold text-white tracking-[0.04em] leading-none">
-                  AYA
-                </span>
-                <span className="text-[0.65rem] text-white/55 uppercase tracking-[0.08em]">
-                  Informatica RW
-                </span>
-              </div>
+            <Link href="/" aria-label={t("homeAriaLabel")} className="inline-block mb-5">
+              <Logo variant="white" alt={t("homeAriaLabel")} className="h-14" />
             </Link>
             <p className="font-display text-sm font-semibold text-white/80 leading-snug mb-3">
               {t("brandLine1")}<br />{t("brandLine2")}

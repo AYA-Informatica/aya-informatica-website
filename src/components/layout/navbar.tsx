@@ -10,6 +10,7 @@ import { useUIStore } from "@/store/ui"
 import { NAV_LINKS } from "@/lib/constants"
 import { Button } from "@/components/ui/button"
 import { LanguageSwitcher } from "@/components/layout/language-switcher"
+import { Logo } from "@/components/shared/logo"
 import { cn } from "@/lib/utils"
 import { useScrolled } from "@/hooks/use-scrolled"
 
@@ -63,15 +64,15 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex flex-col leading-none gap-px shrink-0"
-            aria-label="AYA Informatica RW — Home"
+            className="flex items-center shrink-0"
+            aria-label={t("homeAriaLabel")}
           >
-            <span className="font-display text-[1.05rem] font-extrabold text-white tracking-[0.04em]">
-              AYA
-            </span>
-            <span className="text-[0.6rem] text-white/40 uppercase tracking-[0.08em] font-medium">
-              Informatica RW
-            </span>
+            <Logo
+              variant="white"
+              priority
+              alt={t("homeAriaLabel")}
+              className={cn("transition-all duration-300", isSolid ? "h-9" : "h-10")}
+            />
           </Link>
 
           {/* Desktop nav */}

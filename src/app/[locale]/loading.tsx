@@ -1,23 +1,14 @@
-"use client"
-
 import { useTranslations } from "next-intl"
+import { PageSkeleton } from "@/components/shared/page-skeleton"
 
+/**
+ * Route-level loading UI.
+ *
+ * Replaces the previous centred dot spinner. A spinner only communicates
+ * "wait"; a skeleton shaped like the page keeps the layout stable and makes a
+ * navigation feel like it has already landed.
+ */
 export default function Loading() {
   const t = useTranslations("common")
-
-  return (
-    <div className="min-h-[60vh] flex items-center justify-center bg-brand-bg">
-      <div className="flex flex-col items-center gap-4">
-        <div className="flex gap-1.5" aria-label={t("loading")} role="status">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="w-2 h-2 rounded-full bg-accent motion-safe:animate-pulse-dot"
-            />
-          ))}
-        </div>
-        <p className="text-xs text-brand-gray uppercase tracking-widest">{t("loading")}</p>
-      </div>
-    </div>
-  )
+  return <PageSkeleton label={t("loading")} />
 }

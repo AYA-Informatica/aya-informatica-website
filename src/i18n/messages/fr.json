@@ -16,7 +16,8 @@
     "blog": "Blog",
     "contact": "Contact",
     "partnerWithUs": "Collaborer avec nous",
-    "skipToContent": "Aller au contenu principal"
+    "skipToContent": "Aller au contenu principal",
+    "homeAriaLabel": "AYA Informatica RW — Accueil"
   },
   "home": {
     "badge": "Kigali, Rwanda — Construire pour l'Afrique",

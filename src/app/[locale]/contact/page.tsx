@@ -3,6 +3,7 @@ import { Suspense, use } from "react"
 import { useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { ContactForm } from "@/components/sections/contact-form"
+import { ContactFormSkeleton } from "@/components/sections/contact-form-skeleton"
 import { TopicTags } from "@/components/sections/topic-tags"
 import { MotionDiv } from "@/components/shared/motion-div"
 import { CONTACT_INFO } from "@/lib/constants"
@@ -54,6 +55,7 @@ export default function ContactPage({
   setRequestLocale(locale)
 
   const t = useTranslations("contact")
+  const tCommon = useTranslations("common")
 
   const details = [
     { id: "email", icon: <Mail size={16} />, value: CONTACT_INFO.email, href: `mailto:${CONTACT_INFO.email}` },
@@ -128,7 +130,7 @@ export default function ContactPage({
 
           {/* Contact form — on mobile, shows first via order */}
           <MotionDiv delay={0.15} className="order-1 lg:order-2">
-            <Suspense>
+            <Suspense fallback={<ContactFormSkeleton label={tCommon("loading")} />}>
               <ContactForm />
             </Suspense>
           </MotionDiv>
