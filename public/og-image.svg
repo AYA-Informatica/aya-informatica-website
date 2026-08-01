@@ -19,17 +19,22 @@
   <rect x="80" y="240" width="4" height="120" rx="2" fill="#0A84FF"/>
 
   <!-- AYA logotype -->
-  <text x="108" y="295" font-family="serif" font-weight="900"
+  <text x="108" y="295" font-family="Georgia, 'Times New Roman', serif" font-weight="900"
     font-size="88" fill="white" letter-spacing="-4">AYA</text>
-  <text x="108" y="342" font-family="sans-serif" font-weight="400"
-    font-size="28" fill="rgba(255,255,255,0.45)" letter-spacing="6">INFORMATICA</text>
+  <text x="108" y="342" font-family="Arial, Helvetica, sans-serif" font-weight="400"
+    font-size="28" fill="rgba(255,255,255,0.45)" letter-spacing="6">INFORMATICA RW</text>
+
+  <!-- RW roundel, echoing the company logo -->
+  <circle cx="352" cy="258" r="27" fill="none" stroke="#0A84FF" stroke-width="3"/>
+  <text x="352" y="268" font-family="Arial, Helvetica, sans-serif" font-weight="700"
+    font-size="24" fill="#0A84FF" text-anchor="middle" letter-spacing="0">RW</text>
 
   <!-- Tagline -->
-  <text x="108" y="410" font-family="serif" font-weight="700"
+  <text x="108" y="410" font-family="Georgia, 'Times New Roman', serif" font-weight="700"
     font-size="36" fill="rgba(255,255,255,0.9)">Building Africa's Digital Future</text>
 
   <!-- Location -->
-  <text x="108" y="460" font-family="sans-serif" font-weight="400"
+  <text x="108" y="460" font-family="Arial, Helvetica, sans-serif" font-weight="400"
     font-size="20" fill="rgba(255,255,255,0.35)">Kigali, Rwanda</text>
 
   <!-- Accent dot -->

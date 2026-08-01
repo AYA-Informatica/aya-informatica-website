@@ -69,10 +69,15 @@ export async function generateMetadata({
       images: ["/og-image.png"],
     },
     icons: {
+      // Ordered least-to-most preferred: browsers that understand SVG take it,
+      // the rest fall back to the raster sizes, and favicon.ico covers legacy.
       icon: [
-        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
         { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
       ],
+      shortcut: [{ url: "/favicon.ico" }],
       apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     },
     applicationName: t("siteName"),
