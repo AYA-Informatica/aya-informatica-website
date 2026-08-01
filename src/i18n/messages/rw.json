@@ -501,7 +501,6 @@
     "headlineAccent": "amakuru",
     "sub": "Inkuru, amakuru y'ibicuruzwa, n'ibitekerezo by'itsinda ryubaka ejo hazaza h'ikoranabuhanga rya Afrika.",
     "readTime": "iminota {minutes} yo gusoma",
-    "read": "Soma",
     "posts": {
       "building-for-africa": {
         "title": "Impamvu twubakira Afrika mbere na mbere",
@@ -521,7 +520,9 @@
     },
     "ctaTitle": "Komeza ukurikirane",
     "ctaDesc": "Wifuza gukurikirana urugendo rwacu? Twandikire tuzajya tukumenyesha amakuru mashya.",
-    "ctaButton": "Twandikire"
+    "ctaButton": "Twandikire",
+    "comingSoon": "Biraza vuba",
+    "note": "Izi nkuru ziracyategurwa — nta na imwe irasohoka. Twandikire niba wifuza kumenyeshwa igihe zizaba zisohotse."
   },
   "legal": {
     "eyebrow": "Amategeko",

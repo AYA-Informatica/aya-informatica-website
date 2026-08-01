@@ -501,7 +501,6 @@
     "headlineAccent": "Updates",
     "sub": "Stories, product updates, and perspectives from the team building Africa's digital future.",
     "readTime": "{minutes} min read",
-    "read": "Read",
     "posts": {
       "building-for-africa": {
         "title": "Why We're Building for Africa First",
@@ -521,7 +520,9 @@
     },
     "ctaTitle": "Stay in the Loop",
     "ctaDesc": "Want to follow our journey? Get in touch and we'll keep you updated on our latest developments.",
-    "ctaButton": "Get in Touch"
+    "ctaButton": "Get in Touch",
+    "comingSoon": "Coming soon",
+    "note": "These articles are in the works — no posts are published yet. Get in touch if you would like to be told when they go live."
   },
   "legal": {
     "eyebrow": "Legal",

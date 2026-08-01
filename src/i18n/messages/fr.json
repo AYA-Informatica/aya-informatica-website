@@ -501,7 +501,6 @@
     "headlineAccent": "actualités",
     "sub": "Récits, actualités produit et points de vue de l'équipe qui bâtit l'avenir numérique de l'Afrique.",
     "readTime": "{minutes} min de lecture",
-    "read": "Lire",
     "posts": {
       "building-for-africa": {
         "title": "Pourquoi nous construisons d'abord pour l'Afrique",
@@ -521,7 +520,9 @@
     },
     "ctaTitle": "Restez informé",
     "ctaDesc": "Envie de suivre notre parcours ? Contactez-nous et nous vous tiendrons au courant de nos dernières avancées.",
-    "ctaButton": "Nous contacter"
+    "ctaButton": "Nous contacter",
+    "comingSoon": "Bientôt",
+    "note": "Ces articles sont en préparation — aucun n'est encore publié. Contactez-nous si vous souhaitez être prévenu de leur parution."
   },
   "legal": {
     "eyebrow": "Mentions légales",

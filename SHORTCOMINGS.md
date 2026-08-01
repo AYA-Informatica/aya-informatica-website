@@ -1,114 +1,150 @@
-# AYA Informatica Website — Shortcomings Audit
+# AYA Informatica RW Website — Shortcomings Audit
 
-Last updated: June 2025
+Last updated: August 2025
+
+This tracks what the site does *not* yet do. Items that have since been closed
+are listed at the bottom so the history stays visible.
 
 ---
 
 ## 1. Content Gaps
 
-### No Real Content
-- Blog has 3 placeholder posts that link nowhere — no actual articles exist
-- Testimonials are fabricated placeholders ("Jean-Pierre M.", "Diane U.") — no real user quotes
-- No case studies, press mentions, or real-world success stories
-- Site reads polished but empty — visitors will notice immediately
+### No published articles
+- The blog lists three planned posts. None are written, and nothing links to an
+  article, because there is no article to link to.
+- The cards now say "Coming soon" and no longer carry a link affordance, so the
+  page is honest about this — but it is still a section with no content.
 
-### No Product You Can Actually Use
-- RAY and Humura are described extensively but there's no app download link, no demo, no waitlist signup, no beta access form
-- Every CTA button ("Get Early Access", "Discover RAY", "Stay Updated on Humura") routes to the generic contact page
-- A visitor excited about RAY hits a dead end with no product to try
+### No product anyone can use
+- RAY and Humura are described at length, but there is no download, demo,
+  waitlist, or beta signup.
+- Every product CTA routes to `/contact`. A visitor who gets excited about RAY
+  reaches a contact form, not a product.
 
-### No Images Anywhere
-- Entire site is text + inline SVG icons + CSS-generated shapes
-- No team photos, no product screenshots, no lifestyle imagery
-- Phone mockup on products page is CSS divs pretending to be a phone
-- Makes the site feel like a template, not a real company
+### Fabricated testimonials
+- `content.testimonials` contains three quotes attributed to named people —
+  "Jean-Pierre M.", "Diane U.", "Patrick K.". These are placeholders presented
+  as real customer quotes.
+- This is a credibility risk rather than a cosmetic one: quotes attributed to
+  named individuals imply consent and provenance. They should be replaced with
+  real ones or removed.
+
+### Almost no imagery
+- The company logo is now used in the site chrome (header, footer, blog card
+  placeholder, ecosystem hub).
+- Beyond that there are still no photographs, product screenshots, or team
+  images. The phone mockup on the products page is CSS divs.
 
 ---
 
 ## 2. Business Credibility Gaps
 
-### No Team Identity
-- About page shows "Founder & CEO" and "Development Team" with generic SVG icons
-- No names, no photos, no LinkedIn profiles, no bios
-- For a company seeking partnerships and investment, anonymity erodes trust
+### No team identity
+- The About page lists "Founder & CEO" and "Development Team" with generic SVG
+  icons — no names, photographs, bios, or profile links.
 
-### No External Validation
-- No press logos or "featured in" section
-- No partner badges or client logos
-- No awards or recognitions
-- Site is entirely self-referential — AYA only talks about AYA
+### Social profiles are asserted but not shown
+- `json-ld.tsx` declares three `sameAs` profiles: `twitter.com/ayainformatica`,
+  `linkedin.com/company/ayainformatica`, `github.com/ayainformatica`.
+- Nothing in the UI links to them. If those accounts do not exist, the
+  structured data is asserting something untrue to search engines. Either add
+  the links to the footer or drop the claims.
 
-### Aspirational Stats, Not Achievements
-- Stats section shows "3 Service Pillars", "54 African Countries to Serve"
-- These are goals, not traction metrics
-- No user counts, download numbers, revenue figures, or named partnerships
-- "Founded 2024" with nothing to show for the time elapsed
-
-### No Social Media Presence
-- JSON-LD structured data references Twitter, LinkedIn, GitHub profiles
-- No social links visible anywhere in the footer or site UI
-- If those profiles don't actually exist, the structured data misleads search engines
+### Aspirational stats, not achievements
+- The headline figures are "3 Service Pillars", "54 African Countries to Serve".
+  These are intentions. There are no user counts, downloads, revenue figures, or
+  named partnerships.
 
 ---
 
 ## 3. Architecture Shortcomings
 
-### No Database
-- All content hardcoded in `src/lib/constants.ts`
-- Contact form submissions are emailed then gone — no record, no CRM, no lead tracking
-- No way to follow up systematically on inquiries
+### Rate limiting is not durable in production
+- `proxy.ts` uses Upstash Redis when `UPSTASH_REDIS_REST_URL` and
+  `UPSTASH_REDIS_REST_TOKEN` are set, and falls back to an in-memory map when
+  they are not.
+- Those variables are not currently configured, so the fallback is what runs.
+  It resets on every serverless cold start, which means the 5-requests-per-minute
+  contact limit does not durably hold on Vercel.
+- Both variables are documented in `.env.local.example`. Setting them is the fix.
 
-### No Authentication or Admin Panel
-- Blog posts require a code deploy to create or update
-- Content changes require a developer
-- Will bottleneck the team as soon as content needs grow
+### No database
+- Content lives in message catalogues; contact submissions are emailed and then
+  gone. There is no record, no CRM, and no way to follow up systematically.
 
-### No Tests
-- Zero test files in the entire codebase
-- No unit tests, no integration tests, no e2e tests
-- Any change could break something silently
+### No authentication or admin surface
+- Copy is now editable as JSON and MDX without touching TypeScript, which
+  removes the need for a developer to change wording — but publishing still
+  requires a commit and a deploy.
 
-### Rate Limiting Still Fragile
-- Upstash Redis is wired up but only works if env vars are configured
-- Without `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`, falls back to in-memory
-- In-memory resets on every Vercel cold start — effectively disabled in production without Redis
+### Whole message catalogue ships to every page
+- next-intl serializes all ~450 keys into each page's client payload, so the
+  home page carries the Kinyarwanda legal notice and every other locale string
+  it will never render. Worth scoping to per-route namespaces.
+
+### Security headers are declared in three places
+- `src/lib/security-headers.js` is the single source used by `next.config.js`
+  and `src/proxy.ts`.
+- `vercel.json` separately re-declares `X-Frame-Options`,
+  `X-Content-Type-Options` and `Referrer-Policy`. The values currently agree, so
+  nothing is broken, but it is a third copy that can drift.
 
 ---
 
 ## 4. UX Shortcomings
 
-### Every Page Looks the Same
-- Navy hero with grid background + diagonal accent line + eyebrow text + headline + paragraph
-- Seven pages, identical layout pattern
-- Consistent but monotonous — nothing visually distinguishes products from about from services
+### Every page shares one template
+- Navy hero, grid background, diagonal accent line, eyebrow, headline,
+  paragraph — repeated across seven pages. Consistent, but nothing
+  distinguishes products from about from services.
 
-### Too Many CTAs, Not Enough Specificity
-- "Get in Touch", "Partner With Us", "Contact Us", "Start a Conversation", "Get Early Access"
-- All route to `/contact`
-- Variety of labels creates an illusion of different actions that all do the same thing
+### Too many CTAs, all going to one place
+- "Get in Touch", "Partner With Us", "Contact Us", "Start a Conversation",
+  "Get Early Access" all route to `/contact`. The variety of labels suggests
+  different actions that turn out to be identical.
 
-### No Clear User Journey
-- Homepage presents pillars, products, approach, testimonials, CTA — but no narrative thread
-- No differentiation for visitor types (investor vs. potential user vs. business client)
-- No guided path to a specific outcome
-
-### Legal Pages Are Walls of JSX
-- Privacy policy and terms are hundreds of lines of hardcoded React components
-- Updating a paragraph requires touching source code
-- Should be markdown, MDX, or CMS-managed
+### No differentiated user journey
+- The homepage presents pillars, products, approach and testimonials without a
+  narrative thread, and does not distinguish an investor from a prospective user
+  from a business client.
 
 ---
 
-## 5. Internationalization Gap
+## 5. Translation Status
 
-### Single Language Despite "Built for Africa"
-- i18n foundation exists (next-intl + FR/Kinyarwanda message files)
-- Zero pages actually consume the translations
-- Site is English-only
-- For a company targeting 54 African countries, this directly undermines the positioning
+- French and Kinyarwanda cover the full site, including the legal pages, and a
+  parity test enforces that all three catalogues stay in step.
+- Both translations are machine-produced and have not been reviewed by a native
+  speaker. The English version of the legal documents is declared as the
+  governing text.
+
+---
+
+## Closed since the previous audit
+
+- **No tests** — there are now 87 across validation, the mailer, Turnstile, the
+  contact route handler, the CSP, and message parity.
+- **English-only site** — full locale routing for English, French and
+  Kinyarwanda, with a language switcher, hreflang alternates, and a
+  locale-aware sitemap.
+- **Legal pages as walls of JSX** — privacy and terms are MDX, one file per
+  locale, editable as prose.
+- **Content hardcoded in constants.ts** — all human-readable copy now lives in
+  `src/i18n/messages/*.json`, merged with structural data by `src/lib/content.ts`.
+- **Logo unused in the UI** — the header, footer, blog card placeholder and
+  ecosystem hub previously drew a CSS text approximation of the wordmark.
+- **Spinner-only loading state** — route transitions now use skeletons shaped
+  like the page.
 
 ---
 
 ## Summary
 
-The codebase is technically strong — clean architecture, solid security, good accessibility foundation. The gap is not engineering quality. The gap is that the site doesn't prove AYA Informatica is a real, operating business with real products and real customers. Closing that gap requires content and business milestones, not more code.
+The engineering gaps that this document previously described have largely been
+closed. What remains is mostly not an engineering problem: the site still does
+not demonstrate that AYA Informatica RW is an operating business with shipped
+products and real customers. Closing that needs content and business milestones.
+
+The exceptions — genuine technical work still outstanding — are durable rate
+limiting, the oversized client message payload, and the duplicated header
+declaration in `vercel.json`.

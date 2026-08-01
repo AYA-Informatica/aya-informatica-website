@@ -24,6 +24,7 @@ import {
   readTurnstileToken,
   resetTurnstile,
 } from "@/components/shared/turnstile"
+import { CONTACT_SUBJECTS } from "@/lib/constants"
 import { useContactSubjects } from "@/lib/content"
 import { useToastStore } from "@/store/toast"
 import { cn } from "@/lib/utils"
@@ -53,7 +54,11 @@ export function ContactForm() {
 
   useEffect(() => {
     const param = searchParams.get("subject")
-    if (param && contactSubjects.some((s) => s.value === param)) {
+    // Validated against the structural allowlist rather than the translated
+    // list: the values are locale-independent, and CONTACT_SUBJECTS is a module
+    // constant, so the effect does not re-run on every render the way it would
+    // with the freshly-built array returned by useContactSubjects().
+    if (param && CONTACT_SUBJECTS.some((s) => s.value === param)) {
       setValue("subject", param, { shouldValidate: true })
     }
   }, [searchParams, setValue])

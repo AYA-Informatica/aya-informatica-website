@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { use } from "react"
 import { useFormatter, useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
-import { ArrowRight } from "lucide-react"
 import { Link } from "@/i18n/navigation"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -81,6 +80,9 @@ export default function BlogPage({
             <p className="text-white/60 text-lg max-w-xl leading-relaxed">
               {t("sub")}
             </p>
+            <p className="text-white/40 text-sm max-w-xl leading-relaxed mt-4">
+              {t("note")}
+            </p>
           </MotionDiv>
         </div>
       </section>
@@ -91,7 +93,7 @@ export default function BlogPage({
           <MotionList className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {POSTS.map((post) => (
               <MotionItem key={post.slug}>
-                <article className="group bg-white rounded-2xl border border-brand-gray-light overflow-hidden hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                <article className="bg-white rounded-2xl border border-brand-gray-light overflow-hidden h-full flex flex-col">
                   <div className="h-48 bg-navy/5 flex items-center justify-center">
                     <Logo alt="" className="h-14 opacity-10" />
                   </div>
@@ -102,7 +104,7 @@ export default function BlogPage({
                         {t("readTime", { minutes: post.readMinutes })}
                       </span>
                     </div>
-                    <h2 className="font-display font-bold text-lg text-navy mb-2 group-hover:text-accent transition-colors">
+                    <h2 className="font-display font-bold text-lg text-navy mb-2">
                       {t(`posts.${post.slug}.title`)}
                     </h2>
                     <p className="text-sm text-brand-gray leading-relaxed mb-4 flex-1">
@@ -116,8 +118,8 @@ export default function BlogPage({
                           day: "numeric",
                         })}
                       </time>
-                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent group-hover:gap-2 transition-all">
-                        {t("read")} <ArrowRight size={14} />
+                      <span className="inline-flex items-center rounded-full bg-navy/5 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-brand-gray">
+                        {t("comingSoon")}
                       </span>
                     </div>
                   </div>
