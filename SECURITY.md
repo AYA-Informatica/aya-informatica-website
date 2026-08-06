@@ -30,25 +30,78 @@ its own network, and your origin never sees it.
 Everything in this section is configuration, not code. It is written out so it
 can be executed and audited later.
 
+Order matters more than usual here, because two of the steps fail in ways that
+look like success. Working checklist:
+
+- [ ] Upstash database created, both variables in Vercel, **redeployed** (1.0)
+- [ ] Site added to Cloudflare, apex + www as CNAMEs, **cloud still grey** (1.1)
+- [ ] Nameservers changed at the registrar (1.1)
+- [ ] Vercel reports **Valid Configuration** with a certificate — wait for this
+- [ ] SSL/TLS set to **Full (strict)** (1.2)
+- [ ] Both records switched to **Proxied / orange** (1.1) ← protection starts here
+- [ ] `curl -sI https://ayainformatica.tech | grep -i '^cf-ray'` returns a value
+- [ ] Managed + OWASP rulesets, Bot Fight Mode, the one rate-limit rule (1.3)
+
+### 1.0 Do this before touching DNS
+
+Rate limiting is **not working in production** until Upstash is configured. The
+in-memory fallback resets on every cold start, so in a serverless deployment it
+is effectively off. This takes five minutes and carries no DNS risk, so it comes
+first.
+
+1. [console.upstash.com](https://console.upstash.com) → **Create Database**.
+2. Type **Redis**, region **eu-west-1** — the closest to the `cdg1` region set in
+   `vercel.json`. Every limiter decision is a round trip, so distance is latency
+   on every request.
+3. **REST API** tab → copy `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
+4. Vercel → **Settings → Environment Variables** → add both to **Production**.
+5. **Redeploy.** Environment variables only apply to new deployments.
+
 ### 1.1 Point the domain at Cloudflare
 
+The starting state, confirmed by DNS lookup:
+
+| Record | Value |
+|---|---|
+| Nameservers | `ns1.vercel-dns.com`, `ns2.vercel-dns.com` |
+| A (apex) | `216.150.16.193`, `216.150.16.65` |
+| MX | none |
+| TXT | none |
+
+Vercel is the DNS provider, not just the host, so this moves DNS away from it.
+With no MX and no TXT records there is no mail routing and no verification token
+to preserve — the usual migration hazard does not apply here. Only the apex
+needs to survive.
+
 1. Create a free Cloudflare account and **Add a site** → `ayainformatica.tech`.
-2. Cloudflare scans the existing DNS. Check the imported records against your
-   current registrar before continuing — a missed MX record silently kills your
-   email.
+2. Replace the imported A records with a CNAME. Cloudflare flattens CNAMEs at
+   the apex, and this keeps working if Vercel changes its anycast addresses:
+
+   | Type | Name | Target | Proxy |
+   |---|---|---|---|
+   | CNAME | `@` | `cname.vercel-dns.com` | **grey — for now** |
+   | CNAME | `www` | `cname.vercel-dns.com` | **grey — for now** |
+
+   Grey deliberately. Vercel issues its TLS certificate through an HTTP
+   challenge, and Cloudflare proxying intercepts that challenge, so a domain
+   that has never been verified will fail to get a certificate if you start
+   orange. DNS-only first.
 3. Replace the nameservers at your registrar with the two Cloudflare gives you.
    Propagation is usually under an hour, occasionally up to 24.
-4. In **DNS → Records**, make sure the record pointing at Vercel is
-   **Proxied** (the cloud icon is orange, not grey). A grey cloud is DNS-only:
-   traffic bypasses Cloudflare entirely and every protection below does nothing.
-
-> Vercel and Cloudflare proxying coexist, but the domain must remain configured
-> in Vercel as well, or Vercel will not issue a certificate for it.
+4. **Wait for Vercel → Settings → Domains to report Valid Configuration** with a
+   certificate issued. Do not continue before it does.
+5. Now switch both records to **Proxied** (orange). This is the moment any of
+   the protection below starts applying — while the cloud is grey, traffic
+   reaches Vercel directly and Cloudflare sees none of it.
 
 ### 1.2 SSL/TLS
 
+Set this **with or before** the switch to orange, not after.
+
 - **SSL/TLS → Overview → Full (strict)**. Anything less lets the Cloudflare↔Vercel
-  hop run unencrypted or unverified.
+  hop run unencrypted or unverified, and *Flexible* specifically produces an
+  infinite redirect loop: Vercel forces HTTPS, Cloudflare calls it over HTTP,
+  and the two argue until the browser gives up.
 - **Edge Certificates → Always Use HTTPS: On**
 - **Minimum TLS Version: 1.2**
 
@@ -69,7 +122,8 @@ The app already sends HSTS with a two-year max-age and `preload`.
 
 **Security → WAF → Rate limiting rules**
 
-One rule matters more than the rest:
+The free plan allows **one** rate-limiting rule. Spend it here — this is the
+only endpoint that costs anything to abuse:
 
 | Field | Value |
 |---|---|
@@ -84,7 +138,8 @@ one that survives if Cloudflare is bypassed; the Cloudflare limit is the one
 that stops the traffic before you pay for it. Defence at both layers is the
 point, not redundancy to be tidied away.
 
-A second, wider rule is worth adding if you see sustained crawling:
+A second, wider rule is worth adding **if the plan is ever upgraded** — it needs
+a rule slot the free plan does not have:
 
 | Field | Value |
 |---|---|
@@ -97,6 +152,10 @@ A second, wider rule is worth adding if you see sustained crawling:
 Challenge rather than block. Carrier-grade NAT is widespread across East Africa,
 so one address can front a large number of real visitors — a hard block at this
 tier would take out a whole ISP's worth of genuine users at once.
+
+Until that slot exists, the `page` tier in `proxy.ts` (200/min) is what covers
+this case. It is the weaker of the two — it fires after the request has been
+paid for rather than before — but it is not nothing, and it is already live.
 
 **Security → Settings**
 
@@ -220,6 +279,22 @@ Do not run `npm audit fix --force` here — it has previously tried to "fix" the
 tree by downgrading Next.js from 16 to 9.3.3.
 
 ## Verifying the whole thing
+
+**Is Cloudflare actually in front?** Everything in Layer 1 depends on this one
+answer, and a grey cloud fails silently — the site works perfectly, entirely
+unprotected.
+
+```bash
+curl -sI https://ayainformatica.tech | grep -i '^cf-ray'   # a value = proxied
+```
+
+No `cf-ray` means the record is DNS-only and none of the WAF, bot or
+rate-limiting configuration is being applied, however carefully it was set up.
+
+**Is Upstash actually wired?** The limiter is silent about falling back, so
+check it by behaviour: eight rapid posts should turn into `429` after five, and
+should *stay* limited after a redeploy. If a redeploy resets the count, the
+in-memory fallback is still in use and the environment variables did not take.
 
 ```bash
 curl -sI https://ayainformatica.tech | grep -iE 'strict-transport|content-security|x-frame'
