@@ -1,15 +1,54 @@
 # AYA Informatica RW — Keyword Strategy
 
-Last updated: August 2025
+Last updated: August 2026
+
+---
+
+## Two things block indexing right now
+
+Both were found by auditing the live site rather than the code, and neither is
+about keywords. Fix them before anything below matters.
+
+### 1. Every URL you submit to Google redirects
+
+Vercel serves `www.ayainformatica.tech` and 308s the apex to it. Every ranking
+signal the site emits names the **apex**:
+
+| Signal | Value |
+|---|---|
+| `<link rel="canonical">` on all 8 routes | `https://ayainformatica.tech/…` |
+| `robots.txt` → `Host:` | `https://ayainformatica.tech` |
+| All 24 `<loc>` entries in `sitemap.xml` | `https://ayainformatica.tech/…` |
+| Every `hreflang` alternate | `https://ayainformatica.tech/…` |
+| JSON-LD `@id` and `url` | `https://ayainformatica.tech` |
+
+So Google is told to index the apex, follows a redirect to `www`, and finds a
+page whose canonical points back at the URL it just came from. That is a
+circular signal, and it costs crawl budget and consolidation on every page.
+
+**The fix is one setting, no code.** Vercel → Settings → Domains → make
+`ayainformatica.tech` the primary domain instead of `www`. Every signal above
+is already correct for the apex, so nothing else has to change. Doing it the
+other way — changing `NEXT_PUBLIC_SITE_URL` to `www` — also works but rewrites
+all 24 canonical URLs, which is a worse trade for URLs already indexed.
+
+### 2. The page titles carried no keywords
+
+Until August 2026 they rendered as `About | AYA Informatica RW`,
+`Products | AYA Informatica RW`, and so on. The `<title>` is the strongest
+on-page signal there is, and every page was spending it on a brand name with no
+search volume — so each page was competing only for its own name.
+
+Now fixed in `src/i18n/messages/*.json` under `<page>.metaTitle`: they name the
+service and the place, in all three locales, within the ~60 character limit.
 
 ---
 
 ## Read this first
 
-**Keywords are not currently the bottleneck.** The site is technically in good
-shape — every route is prerendered, canonical, indexable, and now carries
-correct `hreflang`. What it does not have is content or links, and those are what
-actually decide rankings.
+**Keywords are still not the main bottleneck.** The site is technically sound —
+every route is prerendered, indexable, and carries correct `hreflang`. What it
+does not have is content or links, and those are what actually decide rankings.
 
 Three things determine whether a page ranks, roughly in order:
 
@@ -53,10 +92,49 @@ because the site is new and under-crawled.
 **Action:** these need no new pages. They need the site crawled and, ideally,
 a Google Business Profile plus a few directory listings so the brand resolves.
 
+### Who you are actually competing with
+
+Checked against live search results in August 2026, not estimated. Worth
+knowing before setting expectations, because both markets are already occupied.
+
+**RAY Markets is entering a crowded field.** The first page for
+"online marketplace Rwanda / buy and sell classifieds Kigali" is already held
+by: [Jumia Deals](https://deals.jumia.rw/kigali),
+[Catchyz Rwanda](https://rw.catchyz.com/en/),
+[Kwetumarket](https://kwetumarket.com/),
+[Kigali Online](https://kigalionline.com/),
+[Murukali](https://murukali.com/),
+[KigaliLife](https://kigalilife.co.rw/), [lulu.rw](https://lulu.rw/),
+[IMALI.biz](https://imali.biz/) and [RwandaMart](https://rwandamart.rw/).
+
+Jumia is a continental brand with years of domain authority. **Do not target
+"marketplace Rwanda" head-on** — it is not winnable in the next year and effort
+spent there produces nothing. Tier 3 below is where RAY can actually win.
+
+**AYA's market is less crowded but has an establishe­d leader.**
+[Awesomity](https://awesomity.rw/) is the name that comes up first, alongside
+[Kigali Web Developers](https://www.kigalidev.com/),
+[Enoveta](https://enoveta.com/), [Sokrab](https://sokrab.com/),
+[RUNI Rw](https://runirw.com/) and [ITS Ltd](https://itsltd.online/).
+
+**The most useful finding: directories outrank the companies themselves.** The
+top two results for "web development companies Kigali" are
+[TechBehemoths](https://techbehemoths.com/companies/web-development/kigali)
+listing pages, not any agency's own site. Ranking above a directory is far
+harder than being listed *in* it — and a listing puts you in front of the same
+searcher on day one. Getting onto TechBehemoths, Clutch and GoodFirms is
+higher-leverage than any on-page work in this document, and it is free.
+
+**Neither brand currently appears in search at all.** Expected for sites this
+new, and the reason Tier 1 matters first. (Caveat: the search tooling used here
+returns US-centric results, so a Rwandan SERP will differ in detail — the
+competitor set and the directory pattern will not.)
+
 ### Tier 2 — Local service intent (winnable in months, highest commercial value)
 
 This is how a Rwandan business actually looks for a development partner. Real
-purchase intent, moderate and *local* competition.
+purchase intent, moderate and *local* competition — see the competitor list
+above for who currently holds these.
 
 | Query | Target page |
 |---|---|
