@@ -108,8 +108,12 @@ export default function HomePage({
 
             {/* CTAs */}
             <MotionDiv delay={0.3}>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg">
+              {/* Full width apiece once they stack. Side by side the ghost
+                  button's padding is invisible, but stacked it pushes the label
+                  in from the filled button's edge and the left margin goes
+                  ragged. Equal blocks with centred labels avoid that. */}
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
+                <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link href="/products">
                     {t("ctaProducts")}
                     <ArrowRight size={16} />
@@ -118,7 +122,7 @@ export default function HomePage({
                 {/* Ghost rather than outlined. A white border on navy carries
                     almost as much weight as the filled button beside it, so the
                     two read as a choice rather than a primary and a secondary. */}
-                <Button asChild variant="ghost" size="lg">
+                <Button asChild variant="ghost" size="lg" className="w-full sm:w-auto">
                   <Link href="/about">
                     {t("ctaStory")}
                     <ArrowRight size={16} />
