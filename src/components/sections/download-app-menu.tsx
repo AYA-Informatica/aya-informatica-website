@@ -10,17 +10,20 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
-// Points at the EAS-hosted build artifact rather than a self-hosted file:
-// GitHub hard-rejects any committed file over 100 MB (the APK is ~118 MB),
-// so a repo-hosted file was not an option without adding new infrastructure
-// (Vercel Blob, Git LFS) that wasn't set up yet. Expo does not guarantee
-// build-artifact URLs stay valid indefinitely — this is a deliberate interim
-// choice, not a permanent one. When this link goes stale (404), the fix is
-// either a fresh `eas build` + swap this URL, or move to Vercel Blob for a
-// URL that does not expire.
+// Hosted on Vercel Blob (store: ray-downloads, project: aya-informatica) —
+// not committed to the repo, since GitHub hard-rejects any file over 100 MB
+// and the APK is ~118 MB. This URL is permanent; it does not expire the way
+// an EAS build-artifact URL would.
+//
+// To publish a new build: download the APK from a fresh `eas build`, then
+//   npx vercel blob put <path-to-apk> --pathname ray-markets.apk \
+//     --access public --rw-token <BLOB_READ_WRITE_TOKEN from .env.local>
+// Vercel Blob does not support overwriting a pathname in place, so this
+// produces a new URL each time (it appends a random suffix regardless of
+// --add-random-suffix) — update the constant below to match.
 //
 // Built from RAY-Mobile commit a638d6a (EAS build 30741939, 2026-08-06).
-const DOWNLOAD_URL = "https://expo.dev/artifacts/eas/hPR8HQH-jzxrO6OYsKu3lCCajwsstvXt13jnQBO3znE.apk"
+const DOWNLOAD_URL = "https://qqwe5gualahgrnd8.public.blob.vercel-storage.com/ray-markets-eIjygCxfvIpRfqRaVPQhY6kA7jWUuA.apk"
 
 /**
  * "Download App" trigger with a panel offering three routes: the real,

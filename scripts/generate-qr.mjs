@@ -13,9 +13,9 @@ import { writeFileSync } from "node:fs"
 import QRCode from "qrcode"
 
 // Keep in sync with DOWNLOAD_URL in
-// src/components/sections/download-app-menu.tsx — see that file for why
-// this points at Expo's build artifact rather than a self-hosted file.
-const DOWNLOAD_URL = "https://expo.dev/artifacts/eas/hPR8HQH-jzxrO6OYsKu3lCCajwsstvXt13jnQBO3znE.apk"
+// src/components/sections/download-app-menu.tsx — see that file for the
+// Vercel Blob upload command needed to publish a new build.
+const DOWNLOAD_URL = "https://qqwe5gualahgrnd8.public.blob.vercel-storage.com/ray-markets-eIjygCxfvIpRfqRaVPQhY6kA7jWUuA.apk"
 const OUT = "public/ray-download-qr.svg"
 
 const svg = await QRCode.toString(DOWNLOAD_URL, {
