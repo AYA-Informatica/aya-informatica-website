@@ -2,6 +2,8 @@
 
 Last updated: August 2025
 
+Keyword targeting lives in `KEYWORDS.md`.
+
 ---
 
 ## Current SEO State
@@ -146,17 +148,41 @@ phone mockup on the products page is CSS.
 - For blog posts, use the post's `date` field
 - This signals to Google which pages actually changed vs. which are stale
 
-### 9. Submit to Google Search Console
-**Impact:** Required to monitor indexing, fix crawl errors, submit sitemap  
-**Current state:** `public/google08e8e8e4b9e28b0b.html` is present and confirmed serving 200; whether the property is actively monitored is unknown  
+### 9. Confirm Indexing in Google Search Console
+**Impact:** Nothing else in this document matters if the pages are not indexed  
+**Current state:** `public/google08e8e8e4b9e28b0b.html` is present and serving
+200, so the property can be verified. Whether it is actively monitored — and
+whether Google has actually indexed the 24 routes — cannot be determined from
+the codebase.
 
-**Action items:**
-- Verify ownership in Google Search Console
-- Submit `sitemap.xml`
-- Monitor "Coverage" for indexing issues
-- Monitor "Core Web Vitals" scores
-- Check "Search Results" for impressions and click data
-- Set up Bing Webmaster Tools as well (low effort, free traffic)
+**What the code guarantees** (verified against a production build):
+
+- `robots.txt` allows everything except `/api/`, and declares the sitemap
+- `sitemap.xml` lists all 24 URLs (8 routes × 3 locales)
+- every page returns `index, follow`
+- every page self-canonicals, so no locale is collapsed into another
+- every page emits `hreflang` for en/fr/rw plus `x-default`
+
+That is *indexable*. Whether it is *indexed* is a question only Search Console
+can answer.
+
+**How to check:**
+
+1. Search Console → **Pages**. This reports how many URLs are indexed and, for
+   the rest, why not. "Discovered – currently not indexed" on a new site
+   usually means low crawl priority rather than a fault.
+2. Search Console → **Sitemaps** → submit `https://ayainformatica.tech/sitemap.xml`.
+   Confirm it reports 24 discovered URLs.
+3. **URL Inspection** on a few specific pages — one English, one French, one
+   Kinyarwanda — to confirm each is indexed independently rather than being
+   treated as a duplicate.
+4. As a rough external check, `site:ayainformatica.tech` in Google shows
+   approximately what is indexed. Treat the count as indicative, not exact.
+5. Also submit to **Bing Webmaster Tools** — low effort, and it feeds DuckDuckGo.
+
+**Expect a lag.** A newly verified property on a new domain commonly takes days
+to weeks before all pages appear, and the localized routes usually trail the
+English ones.
 
 ### 10. Add `og:locale:alternate` for Multilingual OG
 **Impact:** Facebook/LinkedIn serve the right language card to users  
