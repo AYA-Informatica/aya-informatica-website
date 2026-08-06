@@ -274,12 +274,18 @@ export default function ProductsPage({
             className="mb-14"
           />
           <MotionDiv>
-            <div className="flex flex-col items-center gap-6">
-              <div className="w-24 h-24 rounded-full bg-accent flex flex-col items-center justify-center
+            <div className="flex flex-col items-center gap-4">
+              {/* A 96px circle could not hold a two-line wordmark and a label
+                  as well — the mark was cramped and collided with the text
+                  under it. The circle now carries the mark alone, at a size
+                  where it reads, and the label sits outside it. */}
+              <div className="w-28 h-28 rounded-full bg-accent flex items-center justify-center
                 shadow-[0_0_60px_rgb(var(--brand-accent)/0.3)]">
-                <Logo variant="on-accent" alt="" className="h-7" />
-                <span className="text-[0.55rem] text-on-accent/75 uppercase tracking-wider mt-1">{t("ecosystemBadge")}</span>
+                <Logo variant="on-accent" alt="" className="h-10" />
               </div>
+              <span className="text-[0.65rem] font-semibold text-white/60 uppercase tracking-[0.2em] mb-2">
+                {t("ecosystemBadge")}
+              </span>
               <div className="flex flex-wrap gap-2 sm:gap-3 justify-center px-4">
                 {ECOSYSTEM_NODES.map((node) => (
                   <div

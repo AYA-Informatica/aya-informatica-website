@@ -1,4 +1,4 @@
-import { globSync, readFileSync } from "node:fs"
+import { readdirSync, readFileSync } from "node:fs"
 import { describe, expect, it } from "vitest"
 
 /**
@@ -132,8 +132,14 @@ describe("semantic colour tokens", () => {
   it("never pairs text-white with an accent fill", () => {
     // `bg-accent text-white` reads at 2.87:1 in dark mode, where the accent
     // lightens. `text-on-accent` is the paired foreground and flips with it.
+    // readdirSync rather than fs.globSync: the latter exists on this Node but
+    // not in the installed @types/node, so it typechecks red.
+    const files = readdirSync("src", { recursive: true, encoding: "utf8" })
+      .filter((f) => f.endsWith(".tsx"))
+      .map((f) => `src/${f}`)
+
     const offenders: string[] = []
-    for (const file of globSync("src/**/*.tsx")) {
+    for (const file of files) {
       for (const [line] of readFileSync(file, "utf8").matchAll(/^.*\bbg-accent\b(?!\/).*$/gm)) {
         if (/\btext-white\b/.test(line)) offenders.push(`${file}: ${line.trim()}`)
       }

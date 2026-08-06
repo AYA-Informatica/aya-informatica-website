@@ -72,7 +72,10 @@ export function Navbar() {
               variant="white"
               priority
               alt={t("homeAriaLabel")}
-              className={cn("transition-all duration-300", isSolid ? "h-9" : "h-10")}
+              // The mark is a two-line lockup — "AYA" over "Informatica" — so it
+              // needs more height than a single wordmark before the second line
+              // is legible. At h-10 the lower line was effectively decoration.
+              className={cn("transition-all duration-300", isSolid ? "h-10" : "h-12")}
             />
           </Link>
 

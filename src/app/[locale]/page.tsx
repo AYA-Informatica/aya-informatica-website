@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { SectionHeader } from "@/components/shared/section-header"
 import { MotionDiv, MotionList, MotionItem } from "@/components/shared/motion-div"
+import { HeroVisual } from "@/components/sections/hero-visual"
 import {
   useApproach,
   usePillars,
@@ -74,47 +75,63 @@ export default function HomePage({
         />
 
         <div className="container relative z-10 py-12 sm:py-16 md:py-20">
-          {/* Eyebrow badge */}
-          <MotionDiv delay={0}>
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/6 border border-white/10 px-4 py-2 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-dot" />
-              <span className="text-xs text-white/55 tracking-wide">
-                {t("badge")}
-              </span>
+          {/* Two columns from lg up. Below that the visual is hidden and this
+              collapses back to the single column it used to be. */}
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,27rem)] gap-12 xl:gap-20 items-center">
+            <div>
+            {/* Eyebrow badge */}
+            <MotionDiv delay={0}>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/6 border border-white/10 px-4 py-2 mb-8">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-dot" />
+                <span className="text-xs text-white/55 tracking-wide">
+                  {t("badge")}
+                </span>
+              </div>
+            </MotionDiv>
+
+            {/* Headline */}
+            <MotionDiv delay={0.1}>
+              <h1 className="font-display font-bold text-white leading-[1.05] tracking-tight mb-6"
+                style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+              >
+                {t("headline")}<br />
+                <span className="text-accent-on-inverse">{t("headlineAccent")}</span>
+              </h1>
+            </MotionDiv>
+
+            {/* Sub */}
+            <MotionDiv delay={0.2}>
+              <p className="text-white/60 text-lg leading-relaxed max-w-xl mb-10">
+                {t("sub")}
+              </p>
+            </MotionDiv>
+
+            {/* CTAs */}
+            <MotionDiv delay={0.3}>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild size="lg">
+                  <Link href="/products">
+                    {t("ctaProducts")}
+                    <ArrowRight size={16} />
+                  </Link>
+                </Button>
+                {/* Ghost rather than outlined. A white border on navy carries
+                    almost as much weight as the filled button beside it, so the
+                    two read as a choice rather than a primary and a secondary. */}
+                <Button asChild variant="ghost" size="lg">
+                  <Link href="/about">
+                    {t("ctaStory")}
+                    <ArrowRight size={16} />
+                  </Link>
+                </Button>
+              </div>
+            </MotionDiv>
             </div>
-          </MotionDiv>
 
-          {/* Headline */}
-          <MotionDiv delay={0.1}>
-            <h1 className="font-display font-bold text-white leading-[1.05] tracking-tight mb-6"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
-            >
-              {t("headline")}<br />
-              <span className="text-accent-on-inverse">{t("headlineAccent")}</span>
-            </h1>
-          </MotionDiv>
-
-          {/* Sub */}
-          <MotionDiv delay={0.2}>
-            <p className="text-white/60 text-lg leading-relaxed max-w-xl mb-10">
-              {t("sub")}
-            </p>
-          </MotionDiv>
-
-          {/* CTAs */}
-          <MotionDiv delay={0.3}>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link href="/products">
-                  {t("ctaProducts")}
-                  <ArrowRight size={16} />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/about">{t("ctaStory")}</Link>
-              </Button>
-            </div>
-          </MotionDiv>
+            <MotionDiv delay={0.4}>
+              <HeroVisual />
+            </MotionDiv>
+          </div>
         </div>
 
         {/* Scroll indicator */}
@@ -159,16 +176,28 @@ export default function HomePage({
           />
 
           <MotionList className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {pillars.map((p) => (
+            {pillars.map((p, i) => {
+              // Three identical cards read as three things of equal weight,
+              // which is not what the rest of the site says: platform work is
+              // the lead offering and the products bear that out. The first
+              // card is promoted to say so. Change the index to move it.
+              const lead = i === 0
+              return (
               <MotionItem key={p.id}>
                 <Link
                   href={p.href}
-                  className="group block bg-surface-raised rounded-2xl p-7 border border-border-subtle
-                    hover:border-accent hover:shadow-card-hover hover:-translate-y-1
-                    transition-all duration-300 h-full"
+                  className={cn(
+                    `group block bg-surface-raised rounded-2xl p-7 border
+                     hover:border-accent hover:shadow-card-hover hover:-translate-y-1
+                     transition-all duration-300 h-full`,
+                    lead ? "border-accent/40 shadow-card" : "border-border-subtle"
+                  )}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-content/8 flex items-center justify-center text-content-strong
-                    group-hover:bg-accent/12 group-hover:text-accent transition-colors duration-200 mb-5"
+                  <div className={cn(
+                    `w-12 h-12 rounded-xl flex items-center justify-center
+                     group-hover:bg-accent/12 group-hover:text-accent transition-colors duration-200 mb-5`,
+                    lead ? "bg-accent/12 text-accent" : "bg-content/8 text-content-strong"
+                  )}
                   >
                     {PILLAR_ICONS[p.id]}
                   </div>
@@ -179,7 +208,8 @@ export default function HomePage({
                   </span>
                 </Link>
               </MotionItem>
-            ))}
+              )
+            })}
           </MotionList>
         </div>
       </section>
