@@ -132,12 +132,12 @@
         "tagline": "Isoko rya mbere kuri telefoni mu Rwanda ryo kugura no kugurisha.",
         "description": "RAY Markets ni isoko ryubatswe ryibanda kuri telefoni, ryagenewe koroshya kugura no kugurisha mu Rwanda, hatangirwa kuri telefoni n'ibikoresho by'ikoranabuhanga. Ryubakiye ku kwizerana, umuvuduko, no kuboneka — RAY Markets rihuza abaguzi n'abagurisha ku buryo butaziguye kandi bugaragara.",
         "features": [
-          "Shyiraho ibicuruzwa vuba",
-          "Hura ku buryo butaziguye n'abaguzi cyangwa abagurisha",
-          "Ganira ku biciro ku mucyo",
-          "Gera ku isoko rigari kandi rikora cyane"
+          "Reba telefoni, imodoka, inzu n'ibindi",
+          "Hura ku buryo butaziguye — nta barimu",
+          "Shyiraho ibicuruzwa ku buntu mu minota mike",
+          "Isoko ry'amahoro kandi ry'ikizere i Kigali"
         ],
-        "cta": "Menya RAY Markets"
+        "cta": "Sura RAY Markets"
       },
       "humura": {
         "name": "Humura",
@@ -217,7 +217,7 @@
         "label": "Inkingi za serivisi"
       },
       "platforms": {
-        "label": "Imbuga ziri kubakwa"
+        "label": "Ibicuruzwa bya Numerike"
       },
       "founded": {
         "label": "Yashinzwe i Kigali"
@@ -429,10 +429,33 @@
         "desc": "Biraza vuba"
       }
     },
-    "ctaTitle": "Ushishikajwe n'imbuga zacu?",
-    "ctaDesc": "Twandikire kugira ngo dufatanye cyangwa ubone serivisi hakiri kare.",
+    "ctaTitle": "Isoko rya Rwanda Rirashoboka",
+    "ctaDesc": "RAY Markets rifunguye abaguzi n'abagurisha muri Kigali. Shyiraho ibicuruzwa ku buntu kandi uhuze ku buryo butaziguye — nta barimu.",
     "ctaContact": "Twandikire",
-    "ctaServices": "Reba serivisi"
+    "ctaServices": "Reba serivisi",
+    "rayLiveAnnouncement": "RAY Markets irashoboka ubu —",
+    "rayLiveBadge": "Iriho Ubu",
+    "rayLiveIndicator": "LIVE",
+    "rayCategoriesLabel": "Ibyo Ushobora Kugura no Kugurisha",
+    "rayStatCategories": "Inzego 10+",
+    "rayStatLocation": "Iriho i Kigali",
+    "rayStatPlatform": "Web na Telefoni",
+    "rayStatPosting": "Kwandika Birasohora",
+    "visitRayMarkets": "Sura RAY Markets",
+    "rayPartnerCta": "Dufatanye",
+    "ctaRay": "Fungura RAY Markets",
+    "ctaPartner": "Dufatanye",
+    "mockupAvailableOn": "Iriho kuri web na telefoni · raymarkets.co",
+    "rayCategoryLabels": {
+      "phones": "Telefoni",
+      "cars": "Imodoka",
+      "rentals": "Inzu z'Ubukode",
+      "electronics": "Ikoranabuhanga",
+      "furniture": "Imbago",
+      "fashion": "Imyenda",
+      "jobs": "Imirimo",
+      "services": "Serivisi"
+    }
   },
   "about": {
     "breadcrumb": "Abo turi bo",

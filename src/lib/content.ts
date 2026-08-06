@@ -28,9 +28,10 @@ import {
 
 export function useProducts() {
   const t = useTranslations("content.products")
-  return PRODUCT_META.map(({ id, status }) => ({
+  return PRODUCT_META.map(({ id, status, liveUrl }) => ({
     id,
     status,
+    liveUrl: liveUrl as string | null,
     name: t(`${id}.name`),
     badge: t(`${id}.badge`),
     tagline: t(`${id}.tagline`),

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { use } from "react"
 import { useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
-import { CheckCircle2 } from "lucide-react"
+import { CheckCircle2, ExternalLink } from "lucide-react"
 import { Link } from "@/i18n/navigation"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -44,6 +44,28 @@ const MOCKUP_LISTINGS = [
   { name: "Samsung S23", price: "RWF 620,000" },
   { name: "Tecno Camon 20", price: "RWF 185,000" },
 ] as const
+
+/** Mini stat pills displayed in the RAY Markets detail section. */
+const RAY_MINI_STATS = [
+  { icon: "📦", key: "rayStatCategories" },
+  { icon: "📍", key: "rayStatLocation" },
+  { icon: "📱", key: "rayStatPlatform" },
+  { icon: "🆓", key: "rayStatPosting" },
+] as const
+
+/** Category chips — emojis are decorative; labels come from i18n. */
+const RAY_CATEGORY_KEYS = [
+  { emoji: "📱", key: "phones" },
+  { emoji: "🚗", key: "cars" },
+  { emoji: "🏠", key: "rentals" },
+  { emoji: "💻", key: "electronics" },
+  { emoji: "🛋", key: "furniture" },
+  { emoji: "👗", key: "fashion" },
+  { emoji: "💼", key: "jobs" },
+  { emoji: "🔧", key: "services" },
+] as const
+
+const RAY_LIVE_URL = "https://www.raymarkets.co/home"
 
 const ECOSYSTEM_NODES = [
   { id: "ray", name: "RAY Markets", active: true },
@@ -116,10 +138,37 @@ export default function ProductsPage({
       </section>
 
       {/* ── RAY MARKETS DETAIL ───────────────────────── */}
-      <section className="bg-surface-raised py-24" aria-labelledby="ray-heading">
-        <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <section id="ray-markets" className="bg-surface-raised" aria-labelledby="ray-heading">
+
+        {/* Live announcement bar */}
+        <div className="border-b border-accent/20 bg-accent/5">
+          <div className="container flex items-center justify-center gap-2.5 py-2.5">
+            <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+            </span>
+            <span className="text-xs font-medium text-content">{t("rayLiveAnnouncement")}</span>
+            <a
+              href={RAY_LIVE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-accent hover:underline"
+            >
+              raymarkets.co →
+            </a>
+          </div>
+        </div>
+
+        <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start py-20">
           <MotionDiv>
-            <Badge className="mb-5">{ray.badge}</Badge>
+            {/* Dual badges */}
+            <div className="flex flex-wrap gap-2 mb-5">
+              <Badge>{ray.badge}</Badge>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-xs font-semibold text-green-700 dark:text-green-400">
+                ✅ {t("rayLiveBadge")}
+              </span>
+            </div>
+
             <h2 id="ray-heading" className="font-display font-extrabold text-content-strong leading-none tracking-tight mb-3"
               style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}
             >
@@ -131,11 +180,21 @@ export default function ProductsPage({
               <p>{t("rayIntro2")}</p>
             </div>
 
+            {/* Mini stats strip */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-8">
+              {RAY_MINI_STATS.map((s) => (
+                <div key={s.key} className="flex flex-col items-center gap-1.5 rounded-xl border border-border-subtle bg-surface p-3 text-center">
+                  <span className="text-lg" aria-hidden="true">{s.icon}</span>
+                  <span className="text-[0.7rem] font-semibold text-content leading-tight">{t(s.key)}</span>
+                </div>
+              ))}
+            </div>
+
             {/* Three pillars */}
             <div className="flex flex-col gap-3 mb-7">
               {RAY_PILLARS.map((p) => (
                 <div key={p.id} className="flex items-start gap-4 p-4 bg-surface rounded-xl border border-border-subtle hover:border-accent transition-colors">
-                  <div className="w-10 h-10 rounded-lg bg-surface-raised flex items-center justify-center text-lg shrink-0">{p.icon}</div>
+                  <div className="w-10 h-10 rounded-lg bg-surface-raised flex items-center justify-center text-lg shrink-0" aria-hidden="true">{p.icon}</div>
                   <div>
                     <h4 className="font-display font-bold text-sm text-content-strong mb-0.5">{t(`rayPillars.${p.id}.title`)}</h4>
                     <p className="text-xs text-content-muted">{t(`rayPillars.${p.id}.desc`)}</p>
@@ -143,42 +202,108 @@ export default function ProductsPage({
                 </div>
               ))}
             </div>
-            <Button asChild size="lg">
-              <Link href="/contact?subject=ray-access">{t("getEarlyAccess")}</Link>
-            </Button>
+
+            {/* Category chips */}
+            <div className="mb-8">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-content-muted mb-3">
+                {t("rayCategoriesLabel")}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {RAY_CATEGORY_KEYS.map((cat) => (
+                  <span
+                    key={cat.key}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border-subtle bg-surface px-3 py-1.5 text-xs font-medium text-content hover:border-accent hover:text-accent transition-colors"
+                  >
+                    <span aria-hidden="true">{cat.emoji}</span>
+                    {t(`rayCategoryLabels.${cat.key}`)}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <a href={RAY_LIVE_URL} target="_blank" rel="noopener noreferrer">
+                  {t("visitRayMarkets")}
+                  <ExternalLink size={15} className="ml-1.5" aria-hidden="true" />
+                </a>
+              </Button>
+              <Button asChild variant="outline-dark" size="lg">
+                <Link href="/contact?subject=partnership">{t("rayPartnerCta")}</Link>
+              </Button>
+            </div>
           </MotionDiv>
 
-          {/* Phone mockup */}
+          {/* Enhanced phone mockup */}
           <MotionDiv delay={0.15}>
             <div className="bg-surface-inverse rounded-3xl p-5 sm:p-6 shadow-[0_40px_80px_rgba(0,21,41,0.25)] max-w-[260px] sm:max-w-[300px] mx-auto w-full">
+
+              {/* App header with LIVE indicator */}
               <div className="flex justify-between items-center mb-4">
-                {/* Short form: this is the app's own header inside the mockup. */}
                 <span className="font-display text-xl font-extrabold text-white">RAY</span>
-                <span className="text-xs text-white/60">{t("mockupLocation")}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-white/60">{t("mockupLocation")}</span>
+                  <span className="flex items-center gap-1 text-[0.55rem] font-bold text-green-400 uppercase tracking-wider">
+                    <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
+                    {t("rayLiveIndicator")}
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 bg-white/7 rounded-lg px-3 py-2.5 mb-4">
-                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" className="text-white/60" aria-hidden="true">
+
+              {/* Search bar */}
+              <div className="flex items-center gap-2 bg-white/7 rounded-lg px-3 py-2.5 mb-3">
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" className="text-white/60 shrink-0" aria-hidden="true">
                   <circle cx="6" cy="6" r="4" stroke="currentColor" strokeWidth="1.5"/>
                   <path d="M9 9l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
                 <span className="text-xs text-white/55">{t("mockupSearch")}</span>
               </div>
+
+              {/* Category pills row */}
+              <div className="flex gap-1.5 mb-3 overflow-x-auto pb-0.5 scrollbar-hide">
+                {["All", "Phones", "Cars", "Rentals"].map((cat, i) => (
+                  <span
+                    key={cat}
+                    className={cn(
+                      "shrink-0 rounded-full px-2.5 py-1 text-[0.6rem] font-semibold",
+                      // text-on-accent, not text-white: the accent lightens in
+                      // dark mode, where a white label on it is 2.87:1.
+                      i === 1 ? "bg-accent text-on-accent" : "bg-white/8 text-white/55"
+                    )}
+                  >
+                    {cat}
+                  </span>
+                ))}
+              </div>
+
+              {/* Listings */}
               <div className="flex flex-col gap-2 mb-3">
                 {MOCKUP_LISTINGS.map((item) => (
                   <div key={item.name} className="flex items-center gap-3 bg-white/5 rounded-lg p-2.5">
-                    <div className="w-9 h-9 rounded-md bg-gradient-to-br from-accent/30 to-white/10 shrink-0" />
-                    <div>
-                      <div className="text-xs font-semibold text-white">{item.name}</div>
-                      <div className="text-[0.65rem] text-accent-on-inverse">{item.price}</div>
-                      <div className="text-[0.6rem] text-white/55">{t("mockupVerified")}</div>
+                    <div className="w-9 h-9 rounded-md bg-gradient-to-br from-accent/30 to-white/10 shrink-0" aria-hidden="true" />
+                    <div className="min-w-0">
+                      <div className="text-xs font-semibold text-white truncate">{item.name}</div>
+                      <div className="text-[0.65rem] font-medium text-accent-on-inverse">{item.price}</div>
+                      <div className="text-[0.6rem] text-white/55 flex items-center gap-1">
+                        <span className="h-1 w-1 rounded-full bg-green-500 inline-block" aria-hidden="true" />
+                        {t("mockupVerified")}
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
+
+              {/* Post CTA */}
               <div className="bg-accent rounded-lg py-2.5 text-center text-xs font-semibold text-on-accent">
                 {t("mockupPostItem")}
               </div>
             </div>
+
+            {/* Available on label */}
+            <p className="mt-4 text-center text-[0.65rem] text-content-muted">
+              {t("mockupAvailableOn")}
+            </p>
           </MotionDiv>
         </div>
       </section>
@@ -321,8 +446,15 @@ export default function ProductsPage({
                 <p className="text-content-muted">{t("ctaDesc")}</p>
               </div>
               <div className="flex gap-3 flex-wrap">
-                <Button asChild size="lg"><Link href="/contact">{t("ctaContact")}</Link></Button>
-                <Button asChild variant="outline-dark" size="lg"><Link href="/services">{t("ctaServices")}</Link></Button>
+                <Button asChild size="lg">
+                  <a href={RAY_LIVE_URL} target="_blank" rel="noopener noreferrer">
+                    {t("ctaRay")}
+                    <ExternalLink size={15} className="ml-1.5" aria-hidden="true" />
+                  </a>
+                </Button>
+                <Button asChild variant="outline-dark" size="lg">
+                  <Link href="/contact?subject=partnership">{t("ctaPartner")}</Link>
+                </Button>
               </div>
             </div>
           </MotionDiv>

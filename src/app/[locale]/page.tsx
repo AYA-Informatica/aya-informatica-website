@@ -231,53 +231,63 @@ export default function HomePage({
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-            {products.map((product, i) => (
-              <MotionDiv key={product.id} delay={i * 0.1}>
-                <div
-                  className={cn(
-                    "rounded-2xl p-8 h-full flex flex-col",
-                    product.status === "active"
-                      ? "bg-accent"
-                      : "bg-white/5 border border-white/10"
-                  )}
-                >
-                  <Badge
-                    variant="outline"
-                    className="self-start mb-4 text-[0.65rem]"
-                  >
-                    {product.badge}
-                  </Badge>
-                  <h3 className="font-display font-extrabold text-white leading-none tracking-tight mb-3"
-                    style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-                  >
-                    {product.name}
-                  </h3>
-                  <p className="text-white/75 text-sm leading-relaxed mb-5 flex-1">
-                    {product.description}
-                  </p>
-                  <ul className="flex flex-col gap-2 mb-6">
-                    {product.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-sm text-white/70">
-                        <span className="w-1 h-1 rounded-full bg-white/50 shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    asChild
-                    variant="outline"
+            {products.map((product, i) => {
+              const cardHref = product.id === "ray" ? "/products#ray-markets" : "/products"
+              return (
+                <MotionDiv key={product.id} delay={i * 0.1}>
+                  <div
                     className={cn(
-                      "self-start",
-                      product.status === "active" &&
-                        "bg-surface-raised text-accent border-transparent hover:bg-white/90 hover:text-accent shadow-none"
+                      "relative rounded-2xl p-8 h-full flex flex-col",
+                      product.status === "active"
+                        ? "bg-accent"
+                        : "bg-white/5 border border-white/10"
                     )}
-                    size="sm"
                   >
-                    <Link href="/products">{product.cta}</Link>
-                  </Button>
-                </div>
-              </MotionDiv>
-            ))}
+                    {/* Stretched link — whole card is clickable */}
+                    <Link
+                      href={cardHref}
+                      className="absolute inset-0 rounded-2xl"
+                      aria-label={product.name}
+                      tabIndex={-1}
+                    />
+                    <Badge
+                      variant="outline"
+                      className="self-start mb-4 text-[0.65rem] relative z-10"
+                    >
+                      {product.badge}
+                    </Badge>
+                    <h3 className="font-display font-extrabold text-white leading-none tracking-tight mb-3 relative z-10"
+                      style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+                    >
+                      {product.name}
+                    </h3>
+                    <p className="text-white/75 text-sm leading-relaxed mb-5 flex-1 relative z-10">
+                      {product.description}
+                    </p>
+                    <ul className="flex flex-col gap-2 mb-6 relative z-10">
+                      {product.features.map((f) => (
+                        <li key={f} className="flex items-center gap-2 text-sm text-white/70">
+                          <span className="w-1 h-1 rounded-full bg-white/50 shrink-0" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button
+                      asChild
+                      variant="outline"
+                      className={cn(
+                        "self-start relative z-10",
+                        product.status === "active" &&
+                          "bg-surface-raised text-accent border-transparent hover:bg-white/90 hover:text-accent shadow-none"
+                      )}
+                      size="sm"
+                    >
+                      <Link href={cardHref}>{product.cta}</Link>
+                    </Button>
+                  </div>
+                </MotionDiv>
+              )
+            })}
           </div>
         </div>
       </section>

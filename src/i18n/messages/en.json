@@ -132,12 +132,12 @@
         "tagline": "Rwanda's mobile-first marketplace for buying and selling.",
         "description": "RAY Markets is a mobile-first marketplace designed to simplify buying and selling in Rwanda, starting with phones and electronics. Built on trust, speed, and accessibility — RAY Markets connects buyers and sellers directly and transparently.",
         "features": [
-          "Post items quickly",
-          "Connect directly with buyers or sellers",
-          "Negotiate prices transparently",
-          "Access a wider, more active market"
+          "Browse phones, cars, rentals & more",
+          "Connect directly — no middlemen",
+          "Post items for free in minutes",
+          "Safe, trusted marketplace for Kigali"
         ],
-        "cta": "Discover RAY Markets"
+        "cta": "Visit RAY Markets"
       },
       "humura": {
         "name": "Humura",
@@ -217,7 +217,7 @@
         "label": "Service Pillars"
       },
       "platforms": {
-        "label": "Platforms in Development"
+        "label": "Digital Products"
       },
       "founded": {
         "label": "Founded in Kigali"
@@ -429,10 +429,33 @@
         "desc": "Coming soon"
       }
     },
-    "ctaTitle": "Interested in Our Platforms?",
-    "ctaDesc": "Reach out to partner with us or get early access.",
+    "ctaTitle": "Rwanda's Marketplace is Live",
+    "ctaDesc": "RAY Markets is open for buyers and sellers across Kigali. Post items for free and connect directly — no middlemen.",
     "ctaContact": "Contact Us",
-    "ctaServices": "See Services"
+    "ctaServices": "See Services",
+    "rayLiveAnnouncement": "RAY Markets is now live —",
+    "rayLiveBadge": "Available Now",
+    "rayLiveIndicator": "LIVE",
+    "rayCategoriesLabel": "What You Can Buy & Sell",
+    "rayStatCategories": "10+ Categories",
+    "rayStatLocation": "Live in Kigali",
+    "rayStatPlatform": "Web & Mobile",
+    "rayStatPosting": "Free to Post",
+    "visitRayMarkets": "Visit RAY Markets",
+    "rayPartnerCta": "Partner With Us",
+    "ctaRay": "Open RAY Markets",
+    "ctaPartner": "Partner With Us",
+    "mockupAvailableOn": "Available on web & mobile · raymarkets.co",
+    "rayCategoryLabels": {
+      "phones": "Phones",
+      "cars": "Cars",
+      "rentals": "Rentals",
+      "electronics": "Electronics",
+      "furniture": "Furniture",
+      "fashion": "Fashion",
+      "jobs": "Jobs",
+      "services": "Services"
+    }
   },
   "about": {
     "breadcrumb": "About",

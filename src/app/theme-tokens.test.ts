@@ -141,7 +141,10 @@ describe("semantic colour tokens", () => {
     const offenders: string[] = []
     for (const file of files) {
       for (const [line] of readFileSync(file, "utf8").matchAll(/^.*\bbg-accent\b(?!\/).*$/gm)) {
-        if (/\btext-white\b/.test(line)) offenders.push(`${file}: ${line.trim()}`)
+        // `(?!\/)` matters: a line can legitimately carry `bg-accent` in one
+        // ternary branch and `text-white/55` in the other, and an opacity-
+        // modified white is never the label on an accent fill.
+        if (/\btext-white\b(?!\/)/.test(line)) offenders.push(`${file}: ${line.trim()}`)
       }
     }
     expect(offenders, "accent fills must use text-on-accent").toEqual([])

@@ -132,12 +132,12 @@
         "tagline": "La place de marché mobile du Rwanda pour acheter et vendre.",
         "description": "RAY Markets est une place de marché pensée d'abord pour le mobile, conçue pour simplifier l'achat et la vente au Rwanda, en commençant par les téléphones et l'électronique. Fondée sur la confiance, la rapidité et l'accessibilité, RAY Markets met en relation acheteurs et vendeurs de façon directe et transparente.",
         "features": [
-          "Publier des articles rapidement",
-          "Entrer en contact direct avec les acheteurs ou les vendeurs",
-          "Négocier les prix en toute transparence",
-          "Accéder à un marché plus large et plus actif"
+          "Parcourez téléphones, voitures, locations et plus",
+          "Contactez directement — sans intermédiaires",
+          "Publiez gratuitement en quelques minutes",
+          "Place de marché sûre et fiable à Kigali"
         ],
-        "cta": "Découvrir RAY Markets"
+        "cta": "Visiter RAY Markets"
       },
       "humura": {
         "name": "Humura",
@@ -217,7 +217,7 @@
         "label": "Piliers de services"
       },
       "platforms": {
-        "label": "Plateformes en développement"
+        "label": "Produits Numériques"
       },
       "founded": {
         "label": "Fondée à Kigali"
@@ -429,10 +429,33 @@
         "desc": "Bientôt"
       }
     },
-    "ctaTitle": "Nos plateformes vous intéressent ?",
-    "ctaDesc": "Contactez-nous pour devenir partenaire ou obtenir un accès anticipé.",
+    "ctaTitle": "Le Marché du Rwanda est en Ligne",
+    "ctaDesc": "RAY Markets est ouvert pour les acheteurs et vendeurs à Kigali. Publiez gratuitement et connectez-vous directement — sans intermédiaires.",
     "ctaContact": "Nous contacter",
-    "ctaServices": "Voir les services"
+    "ctaServices": "Voir les services",
+    "rayLiveAnnouncement": "RAY Markets est maintenant en ligne —",
+    "rayLiveBadge": "Disponible Maintenant",
+    "rayLiveIndicator": "EN DIRECT",
+    "rayCategoriesLabel": "Ce Que Vous Pouvez Acheter & Vendre",
+    "rayStatCategories": "10+ Catégories",
+    "rayStatLocation": "En direct à Kigali",
+    "rayStatPlatform": "Web & Mobile",
+    "rayStatPosting": "Publication Gratuite",
+    "visitRayMarkets": "Visiter RAY Markets",
+    "rayPartnerCta": "Devenir Partenaire",
+    "ctaRay": "Ouvrir RAY Markets",
+    "ctaPartner": "Devenir Partenaire",
+    "mockupAvailableOn": "Disponible sur web & mobile · raymarkets.co",
+    "rayCategoryLabels": {
+      "phones": "Téléphones",
+      "cars": "Voitures",
+      "rentals": "Locations",
+      "electronics": "Électronique",
+      "furniture": "Meubles",
+      "fashion": "Mode",
+      "jobs": "Emplois",
+      "services": "Services"
+    }
   },
   "about": {
     "breadcrumb": "À propos",

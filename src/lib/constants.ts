@@ -22,8 +22,8 @@ export const NAV_LINKS: NavLink[] = [
 
 /** Product ordering and lifecycle status. Copy: `content.products.<id>`. */
 export const PRODUCT_META = [
-  { id: "ray", status: "active" },
-  { id: "humura", status: "upcoming" },
+  { id: "ray", status: "active", liveUrl: "https://www.raymarkets.co/home" },
+  { id: "humura", status: "upcoming", liveUrl: null },
 ] as const
 
 /** Service pillars. Copy: `content.services.<id>`. */

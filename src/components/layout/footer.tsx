@@ -54,7 +54,7 @@ export function Footer() {
             </h3>
             <ul className="flex flex-col gap-2.5">
               <li>
-                <Link href="/products" className="text-sm text-white/55 hover:text-white transition-colors">
+                <Link href="/products#ray-markets" className="text-sm text-white/55 hover:text-white transition-colors">
                   {t("rayLabel")}
                 </Link>
               </li>
