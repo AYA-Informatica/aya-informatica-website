@@ -1,6 +1,9 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
+  // Class-based rather than the default "media", so a visitor can override
+  // their OS setting. The class is set before first paint by the theme script.
+  darkMode: "class",
   content: [
     "./src/components/**/*.{ts,tsx}",
     "./src/app/**/*.{ts,tsx}",
@@ -12,8 +15,27 @@ const config: Config = {
       screens: { "2xl": "1280px" },
     },
     extend: {
-      // ── Brand Color System ──────────────────────────────────
+      // ── Semantic tokens (theme-aware) ───────────────────────
+      // Backed by CSS variables declared in globals.css, so the same utility
+      // resolves differently per theme. The `<alpha-value>` placeholder is what
+      // keeps opacity modifiers (`bg-surface/50`) working.
       colors: {
+        surface: {
+          DEFAULT: "rgb(var(--surface) / <alpha-value>)",
+          raised: "rgb(var(--surface-raised) / <alpha-value>)",
+          inverse: "rgb(var(--surface-inverse) / <alpha-value>)",
+        },
+        content: {
+          DEFAULT: "rgb(var(--content) / <alpha-value>)",
+          strong: "rgb(var(--content-strong) / <alpha-value>)",
+          muted: "rgb(var(--content-muted) / <alpha-value>)",
+          "on-inverse": "rgb(var(--content-on-inverse) / <alpha-value>)",
+        },
+        "border-subtle": "rgb(var(--border-subtle) / <alpha-value>)",
+
+        // ── Existing literal brand palette ────────────────────
+        // Kept unchanged so the site builds and looks identical while the
+        // migration onto the tokens above happens page by page.
         navy: {
           DEFAULT: "#001529",
           80: "rgba(0,21,41,0.8)",

@@ -11,6 +11,46 @@
     --font-syne: 'Syne Variable', 'Syne', system-ui, sans-serif;
     --font-dm-sans: 'DM Sans Variable', 'DM Sans', system-ui, sans-serif;
     --navbar-height: 72px;
+
+    /* ── Semantic colour tokens ───────────────────────────────
+       Space-separated RGB channels, not hex or rgb() strings, so that
+       Tailwind's opacity modifiers keep working: the theme maps each token
+       through `rgb(var(--token) / <alpha-value>)`. A plain hex or rgb() here
+       would silently break every `bg-surface/50`-style utility.
+
+       Light values are identical to the current palette, so introducing these
+       changes nothing on screen. Phase 2 migrates usages onto them. */
+
+    --surface:            245 245 245;  /* page base      (#F5F5F5) */
+    --surface-raised:     255 255 255;  /* cards          (#FFFFFF) */
+    --surface-inverse:      0  21  41;  /* hero / footer  (#001529) */
+
+    --content:             26  26  26;  /* body           (#1A1A1A) */
+    --content-strong:       0  21  41;  /* headings       (#001529) */
+    --content-muted:      160 160 160;  /* secondary      (#A0A0A0) */
+    --content-on-inverse: 255 255 255;  /* text on navy   (#FFFFFF) */
+
+    --border-subtle:      232 232 232;  /* dividers       (#E8E8E8) */
+    --brand-accent:        10 132 255;  /* actions        (#0A84FF) */
+  }
+
+  /* Applied by the theme script before first paint. `surface-inverse` stays
+     dark in both themes — the navy bands are the brand, and keeping them fixed
+     means the ~99 `text-white/*` usages inside them need no changes. It is
+     lifted slightly here so it still separates from the darker base:
+     measured 1.09:1 against #05080C at the original navy, 1.20:1 at this. */
+  .dark {
+    --surface:              5   8  12;  /* page base      (#05080C) */
+    --surface-raised:      26  35  45;  /* cards          (#1A232D) */
+    --surface-inverse:      0  31  56;  /* hero / footer  (#001F38) */
+
+    --content:            232 234 237;  /* body           (#E8EAED) */
+    --content-strong:     255 255 255;  /* headings       (#FFFFFF) */
+    --content-muted:      160 160 160;  /* secondary      (#A0A0A0) — 7.67:1, AAA */
+    --content-on-inverse: 255 255 255;  /* text on navy   (#FFFFFF) */
+
+    --border-subtle:       42  52  63;  /* dividers       (#2A343F) */
+    --brand-accent:        10 132 255;  /* actions        (#0A84FF) — 5.50:1, AA */
   }
 
   html {
