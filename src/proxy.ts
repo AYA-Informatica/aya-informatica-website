@@ -85,7 +85,7 @@ function isRateLimitedFallback(ip: string, tier: RateTier): boolean {
 // ── CORS ─────────────────────────────────────────────────────
 
 const ALLOWED_ORIGINS = new Set(
-  hostVariants(process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech")
+  hostVariants(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ayainformatica.tech")
 )
 
 function getCorsOrigin(origin: string | null): string | null {

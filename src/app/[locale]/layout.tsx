@@ -89,6 +89,15 @@ export async function generateMetadata({
     },
     applicationName: t("siteName"),
     manifest: "/manifest.json",
+    // Search Console is currently verified by the file in public/, which only
+    // resolves on the host it was uploaded for — it 308s on the apex and 200s
+    // on www. The meta-tag method is host-independent and survives a domain
+    // change, but its token is different from the filename and only Search
+    // Console can issue it. Paste it into GOOGLE_SITE_VERIFICATION and this
+    // renders; leave it unset and nothing is emitted.
+    verification: process.env.GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+      : undefined,
     robots: {
       index: true,
       follow: true,

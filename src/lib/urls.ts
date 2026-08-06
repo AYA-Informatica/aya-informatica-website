@@ -1,7 +1,7 @@
 import { type Locale, locales } from "@/i18n/config"
 import { routing } from "@/i18n/routing"
 
-export const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech"
+export const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ayainformatica.tech"
 
 /**
  * Absolute URL for a path in a given locale.
