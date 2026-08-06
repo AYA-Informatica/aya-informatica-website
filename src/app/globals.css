@@ -43,27 +43,35 @@
      lifted slightly here so it still separates from the darker base:
      measured 1.09:1 against #05080C at the original navy, 1.20:1 at this. */
   .dark {
-    --surface:              5   8  12;  /* page base      (#05080C) */
-    --surface-raised:      26  35  45;  /* cards          (#1A232D) */
-    --surface-inverse:      0  31  56;  /* hero / footer  (#001F38) */
+    /* The surfaces keep the same ORDER as light — inverse darkest, then page,
+       then cards — so every relationship in the markup survives the switch.
+       That ordering was inverted before: the page was the darkest thing, which
+       left the navy bands sandwiched between page and cards (so the hero
+       barely changed when toggling) and turned any `bg-surface` element nested
+       inside a card into a near-black hole.
+       The page is a slate rather than near-black, which is what gives the fixed
+       brand navy something to sit against. */
+    --surface:             31  39  51;  /* page base      (#1F2733) */
+    --surface-raised:      39  49  62;  /* cards          (#27313E) */
+    --surface-inverse:      0  21  41;  /* hero / footer  (#001529) — brand navy, unchanged */
 
     --content:            232 234 237;  /* body           (#E8EAED) */
     --content-strong:     255 255 255;  /* headings       (#FFFFFF) */
     --content-muted:      160 160 160;  /* secondary      (#A0A0A0) — 7.67:1, AAA */
     --content-on-inverse: 255 255 255;  /* text on navy   (#FFFFFF) */
 
-    --border-subtle:       42  52  63;  /* dividers       (#2A343F) */
+    --border-subtle:       58  70  86;  /* dividers       (#3A4656) */
     /* Lifted from #0A84FF, which lands at 4.35:1 on the raised surface — just
        under AA for normal text. #2E93FF clears it at 5.09:1 while staying close
        to the brand blue. Hover lightens on dark rather than darkening. */
-    --brand-accent:        46 147 255;  /* actions        (#2E93FF) — 5.09:1, AA */
-    --brand-accent-hover:  92 176 255;  /* hover          (#5CB0FF) */
+    --brand-accent:        59 155 255;  /* actions        (#3B9BFF) — 4.59:1 on cards, AA */
+    --brand-accent-hover:  109 184 255; /* hover          (#6DB8FF) */
 
-    /* Black rather than navy, and stronger: a tinted shadow is invisible
-       against a dark surface. Depth here comes mostly from border-subtle;
-       the shadow only deepens it. */
+    /* Black, and stronger than light: against a slate base a black shadow
+       reads properly, so cards can carry real elevation rather than relying on
+       their border alone. */
     --shadow-rgb:            0   0   0;
-    --shadow-strength:            0.45;
+    --shadow-strength:            0.35;
   }
 
   html {

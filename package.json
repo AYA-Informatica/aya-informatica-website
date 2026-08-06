@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "postbuild": "node scripts/check-prerender.mjs",
-    "verify:prerender": "node scripts/check-prerender.mjs"
+    "verify:prerender": "node scripts/check-prerender.mjs",
+    "screenshot": "node scripts/screenshot.mjs"
   },
   "overrides": {
     "postcss": "^8.5.25",
@@ -61,6 +62,7 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.2.12",
+    "playwright": "^1.62.1",
     "postcss": "^8.5.25",
     "sharp": "^0.35.3",
     "tailwindcss": "^3.4.6",

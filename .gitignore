@@ -45,3 +45,6 @@ coverage/
 
 # Debug
 .pnpm-debug.log*
+
+# Visual review output (npm run screenshot)
+.screenshots/

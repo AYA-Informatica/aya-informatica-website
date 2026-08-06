@@ -55,9 +55,12 @@ export function ThemeToggle({ className }: { className?: string }) {
   const next = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length]
   const Icon = ICONS[current]
 
+  // white/45 sits at 4.45:1 on the navy bar — under AA, and too faint for an
+  // icon-only control that has to be found before it can be used. white/70
+  // matches the weight of the nav links beside it.
   const base = cn(
     "inline-flex items-center justify-center w-7 h-7 rounded",
-    "text-white/45 hover:text-white hover:bg-white/10 transition-colors",
+    "text-white/70 hover:text-white hover:bg-white/10 transition-colors",
     className
   )
 
