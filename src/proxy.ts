@@ -10,6 +10,7 @@ import { SECURITY_HEADERS } from "@/lib/security-headers"
 import {
   exceedsBodyLimit,
   isAllowedMethod,
+  hostVariants,
   isProbePath,
   resolveClientIp,
   tierFor,
@@ -83,9 +84,9 @@ function isRateLimitedFallback(ip: string, tier: RateTier): boolean {
 
 // ── CORS ─────────────────────────────────────────────────────
 
-const ALLOWED_ORIGINS = new Set([
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech",
-])
+const ALLOWED_ORIGINS = new Set(
+  hostVariants(process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech")
+)
 
 function getCorsOrigin(origin: string | null): string | null {
   if (!origin) return null

@@ -12,6 +12,7 @@ import { useProducts } from "@/lib/content"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/shared/logo"
 import { RaySlideshow } from "@/components/sections/ray-slideshow"
+import { DownloadAppMenu } from "@/components/sections/download-app-menu"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
 import { localeAlternates, localeUrl } from "@/lib/urls"
@@ -220,7 +221,8 @@ export default function ProductsPage({
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg">
+              <DownloadAppMenu size="lg" />
+              <Button asChild variant="outline-dark" size="lg">
                 <a href={RAY_LIVE_URL} target="_blank" rel="noopener noreferrer">
                   {t("visitRayMarkets")}
                   <ExternalLink size={15} className="ml-1.5" aria-hidden="true" />
@@ -377,7 +379,8 @@ export default function ProductsPage({
                 <p className="text-content-muted">{t("ctaDesc")}</p>
               </div>
               <div className="flex gap-3 flex-wrap">
-                <Button asChild size="lg">
+                <DownloadAppMenu size="lg" />
+                <Button asChild variant="outline-dark" size="lg">
                   <a href={RAY_LIVE_URL} target="_blank" rel="noopener noreferrer">
                     {t("ctaRay")}
                     <ExternalLink size={15} className="ml-1.5" aria-hidden="true" />

@@ -166,3 +166,27 @@ export function tierFor(pathname: string): RateTier {
   if (pathname.startsWith("/api/")) return RATE_TIERS.api
   return RATE_TIERS.page
 }
+
+/**
+ * Both host spellings of a site URL — apex and www.
+ *
+ * Vercel serves this site on www and 308s the apex to it, while
+ * NEXT_PUBLIC_SITE_URL names the apex. An allowlist holding only the configured
+ * spelling rejected the Origin a real browser sends, because that is the www
+ * one the redirect lands on, and every contact submission in production
+ * returned 403 from the site's own CORS check.
+ *
+ * Accepting both spellings fixes that and stays correct whichever is later made
+ * canonical. It widens the allowlist by exactly one host and nothing else.
+ */
+export function hostVariants(siteUrl: string): string[] {
+  try {
+    const url = new URL(siteUrl)
+    const bare = url.host.replace(/^www\./, "")
+    return [`${url.protocol}//${bare}`, `${url.protocol}//www.${bare}`]
+  } catch {
+    // A malformed value should not take the whole proxy down; the original
+    // string simply matches nothing.
+    return [siteUrl]
+  }
+}

@@ -3,6 +3,7 @@ import {
   MAX_BODY_BYTES,
   RATE_TIERS,
   exceedsBodyLimit,
+  hostVariants,
   isAllowedMethod,
   isProbePath,
   resolveClientIp,
@@ -173,5 +174,40 @@ describe("tierFor", () => {
     // Carrier-grade NAT is common across East Africa, so many genuine visitors
     // can share one address. A tight page limit would lock them out together.
     expect(RATE_TIERS.page.max).toBeGreaterThanOrEqual(120)
+  })
+})
+
+describe("CORS host variants", () => {
+  it("accepts the www origin when the apex is configured", () => {
+    // The live failure: Vercel 308s the apex to www, so the Origin a browser
+    // sends is the www one, and it was not on the allowlist.
+    const allowed = hostVariants("https://ayainformatica.tech")
+    expect(allowed).toContain("https://www.ayainformatica.tech")
+    expect(allowed).toContain("https://ayainformatica.tech")
+  })
+
+  it("accepts the apex when the www host is configured", () => {
+    const allowed = hostVariants("https://www.ayainformatica.tech")
+    expect(allowed).toContain("https://ayainformatica.tech")
+    expect(allowed).toContain("https://www.ayainformatica.tech")
+  })
+
+  it("does not widen the allowlist beyond that one host", () => {
+    const allowed = new Set(hostVariants("https://ayainformatica.tech"))
+    expect(allowed.has("https://evil.test")).toBe(false)
+    expect(allowed.has("http://ayainformatica.tech")).toBe(false)
+    expect(allowed.has("https://ayainformatica.tech.evil.test")).toBe(false)
+    expect(allowed.size).toBe(2)
+  })
+
+  it("preserves the scheme and any port", () => {
+    expect(hostVariants("http://localhost:3000")).toEqual([
+      "http://localhost:3000",
+      "http://www.localhost:3000",
+    ])
+  })
+
+  it("falls back to the raw value rather than throwing on a malformed URL", () => {
+    expect(hostVariants("not a url")).toEqual(["not a url"])
   })
 })
