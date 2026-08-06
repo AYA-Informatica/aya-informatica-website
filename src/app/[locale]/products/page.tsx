@@ -2,7 +2,10 @@ import type { Metadata } from "next"
 import { use } from "react"
 import { useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
-import { CheckCircle2, ExternalLink } from "lucide-react"
+import {
+  Brain, Briefcase, Car, CheckCircle2, ExternalLink, Home, Laptop, LayoutGrid,
+  Flame, MapPin, Shirt, ShieldCheck, Smartphone, Sofa, Sparkles, Tag, Wrench, Zap,
+} from "lucide-react"
 import { Link } from "@/i18n/navigation"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -27,37 +30,43 @@ const RAY_FEATURE_IDS = [
   "mobileFirst",
 ] as const
 
+/**
+ * Emoji were doing this job. They render differently on every platform, so the
+ * page looked different depending on the visitor's OS, and at 16px inside a
+ * rounded square they read as broken images rather than icons. Lucide is
+ * already a dependency and is used everywhere else on the site.
+ */
 const RAY_PILLARS = [
-  { id: "trust", icon: "🛡" },
-  { id: "accessibility", icon: "📱" },
-  { id: "speed", icon: "⚡" },
+  { id: "trust", Icon: ShieldCheck },
+  { id: "accessibility", Icon: Smartphone },
+  { id: "speed", Icon: Zap },
 ] as const
 
 const HUMURA_TAGS = [
-  { id: "safeSpace", pos: "top-4 left-0" },
-  { id: "anonymous", pos: "top-4 right-0" },
-  { id: "support", pos: "bottom-12 left-0" },
-  { id: "wellbeing", pos: "bottom-12 right-0" },
+  { id: "safeSpace" },
+  { id: "anonymous" },
+  { id: "support" },
+  { id: "wellbeing" },
 ] as const
 
-/** Mini stat pills displayed in the RAY Markets detail section. */
+/** Four facts about RAY, shown as an inline row rather than as boxes. */
 const RAY_MINI_STATS = [
-  { icon: "📦", key: "rayStatCategories" },
-  { icon: "📍", key: "rayStatLocation" },
-  { icon: "📱", key: "rayStatPlatform" },
-  { icon: "🆓", key: "rayStatPosting" },
+  { Icon: LayoutGrid, key: "rayStatCategories" },
+  { Icon: MapPin, key: "rayStatLocation" },
+  { Icon: Smartphone, key: "rayStatPlatform" },
+  { Icon: Tag, key: "rayStatPosting" },
 ] as const
 
 /** Category chips — emojis are decorative; labels come from i18n. */
 const RAY_CATEGORY_KEYS = [
-  { emoji: "📱", key: "phones",      slug: "phones" },
-  { emoji: "🚗", key: "cars",        slug: "cars" },
-  { emoji: "🏠", key: "rentals",     slug: "residential-rentals" },
-  { emoji: "💻", key: "electronics", slug: "electronics" },
-  { emoji: "🛋", key: "furniture",   slug: "furniture" },
-  { emoji: "👗", key: "fashion",     slug: "fashion" },
-  { emoji: "💼", key: "jobs",        slug: "jobs" },
-  { emoji: "🔧", key: "services",    slug: "services" },
+  { Icon: Smartphone, key: "phones",      slug: "phones" },
+  { Icon: Car,        key: "cars",        slug: "cars" },
+  { Icon: Home,       key: "rentals",     slug: "residential-rentals" },
+  { Icon: Laptop,     key: "electronics", slug: "electronics" },
+  { Icon: Sofa,       key: "furniture",   slug: "furniture" },
+  { Icon: Shirt,      key: "fashion",     slug: "fashion" },
+  { Icon: Briefcase,  key: "jobs",        slug: "jobs" },
+  { Icon: Wrench,     key: "services",    slug: "services" },
 ] as const
 
 const RAY_LIVE_URL = "https://www.raymarkets.co/home"
@@ -158,42 +167,55 @@ export default function ProductsPage({
           <MotionDiv>
             {/* Dual badges */}
             <div className="flex flex-wrap gap-2 mb-5">
-              <Badge>{ray.badge}</Badge>
+              <Badge className="gap-1.5">
+                <Flame size={13} aria-hidden="true" />
+                {ray.badge}
+              </Badge>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-xs font-semibold text-green-700 dark:text-green-400">
-                ✅ {t("rayLiveBadge")}
+                <CheckCircle2 size={13} aria-hidden="true" />
+                {t("rayLiveBadge")}
               </span>
             </div>
 
-            <h2 id="ray-heading" className="font-display font-extrabold text-content-strong leading-none tracking-tight mb-3"
-              style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}
+            {/* Was clamp(3rem, 6vw, 5rem), which broke "RAY Markets" across two
+                lines at every desktop width and shouted over its own tagline.
+                Capped so the name sits on one line and the sentence under it
+                can be read as the more important of the two. */}
+            <h2 id="ray-heading" className="font-display font-extrabold text-content-strong leading-[1.05] tracking-tight mb-3"
+              style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.25rem)" }}
             >
               {ray.name}
             </h2>
-            <p className="text-accent font-medium mb-4">{ray.tagline}</p>
+            <p className="text-accent font-medium text-lg mb-4">{ray.tagline}</p>
             <div className="space-y-3 text-content-muted text-sm leading-relaxed mb-7">
               <p>{t("rayIntro1")}</p>
               <p>{t("rayIntro2")}</p>
             </div>
 
-            {/* Mini stats strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-8">
-              {RAY_MINI_STATS.map((s) => (
-                <div key={s.key} className="flex flex-col items-center gap-1.5 rounded-xl border border-border-subtle bg-surface p-3 text-center">
-                  <span className="text-lg" aria-hidden="true">{s.icon}</span>
-                  <span className="text-[0.7rem] font-semibold text-content leading-tight">{t(s.key)}</span>
-                </div>
+            {/* Facts, as an inline row.
+                These were boxes, directly above three more boxes and eight
+                pills — the same rhythm three times running, so nothing led and
+                the pillars read as list rows rather than as the reasons to care.
+                Stripping the boxes here leaves one rhythm per band: a quiet
+                line of facts, then cards, then pills. */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-8 pb-7 border-b border-border-subtle">
+              {RAY_MINI_STATS.map(({ Icon, key }) => (
+                <span key={key} className="inline-flex items-center gap-1.5 text-xs font-medium text-content-muted">
+                  <Icon size={14} className="text-accent shrink-0" aria-hidden="true" />
+                  {t(key)}
+                </span>
               ))}
             </div>
 
-            {/* Three pillars */}
-            <div className="flex flex-col gap-3 mb-7">
-              {RAY_PILLARS.map((p) => (
-                <div key={p.id} className="flex items-start gap-4 p-4 bg-surface rounded-xl border border-border-subtle hover:border-accent transition-colors">
-                  <div className="w-10 h-10 rounded-lg bg-surface-raised flex items-center justify-center text-lg shrink-0" aria-hidden="true">{p.icon}</div>
-                  <div>
-                    <h4 className="font-display font-bold text-sm text-content-strong mb-0.5">{t(`rayPillars.${p.id}.title`)}</h4>
-                    <p className="text-xs text-content-muted">{t(`rayPillars.${p.id}.desc`)}</p>
+            {/* Three pillars — now the only carded rhythm in the column. */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+              {RAY_PILLARS.map(({ id, Icon }) => (
+                <div key={id} className="p-4 bg-surface rounded-xl border border-border-subtle hover:border-accent transition-colors">
+                  <div className="w-9 h-9 rounded-lg bg-accent/10 text-accent flex items-center justify-center mb-3">
+                    <Icon size={17} aria-hidden="true" />
                   </div>
+                  <h4 className="font-display font-bold text-sm text-content-strong mb-1">{t(`rayPillars.${id}.title`)}</h4>
+                  <p className="text-xs text-content-muted leading-relaxed">{t(`rayPillars.${id}.desc`)}</p>
                 </div>
               ))}
             </div>
@@ -210,27 +232,38 @@ export default function ProductsPage({
                     href={`https://www.raymarkets.co/search?category=${cat.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-border-subtle bg-surface px-3 py-1.5 text-xs font-medium text-content hover:border-accent hover:text-accent transition-colors"
+                    className="group inline-flex items-center gap-1.5 rounded-full border border-border-subtle bg-surface px-3 py-1.5 text-xs font-medium text-content hover:border-accent hover:text-accent transition-colors"
                   >
-                    <span aria-hidden="true">{cat.emoji}</span>
+                    <cat.Icon
+                      size={13}
+                      className="text-content-muted group-hover:text-accent transition-colors shrink-0"
+                      aria-hidden="true"
+                    />
                     {t(`rayCategoryLabels.${cat.key}`)}
                   </a>
                 ))}
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-3">
+            {/* One primary action.
+                There were three buttons of near-equal weight here, which asked
+                the visitor to choose rather than telling them what to do, and
+                stacked into three near-identical blocks on a phone. Downloading
+                the app is the only one of the three that cannot be done from
+                anywhere else on the site, so it is the button; visiting the web
+                app is a link beside it. "Partner With Us" is gone — it is
+                already a button in the navbar, a few inches above this. */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               <DownloadAppMenu size="lg" />
-              <Button asChild variant="outline-dark" size="lg">
-                <a href={RAY_LIVE_URL} target="_blank" rel="noopener noreferrer">
-                  {t("visitRayMarkets")}
-                  <ExternalLink size={15} className="ml-1.5" aria-hidden="true" />
-                </a>
-              </Button>
-              <Button asChild variant="outline-dark" size="lg">
-                <Link href="/contact?subject=partnership">{t("rayPartnerCta")}</Link>
-              </Button>
+              <a
+                href={RAY_LIVE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline underline-offset-4"
+              >
+                {t("visitRayMarkets")}
+                <ExternalLink size={14} aria-hidden="true" />
+              </a>
             </div>
           </MotionDiv>
 
@@ -263,46 +296,88 @@ export default function ProductsPage({
       {/* ── HUMURA ───────────────────────────── */}
       <section className="bg-surface py-24" aria-labelledby="humura-heading">
         <div className="container grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Visual */}
+          {/* Visual.
+              RAY arrives with a real screenshot, four facts, three pillars and
+              eight categories. Humura has not shipped, so there is nothing
+              truthful to put here of that weight, and the previous version —
+              hairline rings around an emoji, adrift in a large empty column —
+              read as a section someone ran out of time on rather than as a
+              product that is deliberately still ahead.
+
+              So it commits to being a mark rather than pretending to be a
+              screenshot: a filled panel with the rings inside it, sized to hold
+              the column, with the four qualities anchored along the bottom
+              instead of floating at the corners. Restrained on purpose, but
+              finished. */}
           <MotionDiv>
-            <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 mx-auto flex items-center justify-center">
-              {["100%", "70%", "40%"].map((size, i) => (
-                <div
-                  key={size}
-                  className={cn(
-                    "absolute rounded-full border border-content/8",
-                    // Innermost ring carries a faint fill; theme-aware so it
-                    // does not vanish against the dark surface.
-                    i === 2 && "bg-content/[0.03]"
-                  )}
-                  style={{ width: size, height: size }}
-                />
-              ))}
-              <div className="flex flex-col items-center gap-1 z-10">
-                <span className="text-4xl">🧠</span>
-                <span className="font-display text-xl font-extrabold text-content-strong">{humura.name}</span>
-                <span className="text-xs text-content-muted uppercase tracking-wider">{t("humuraVisualLabel")}</span>
+            <div className="relative rounded-3xl border border-border-subtle bg-surface-raised px-6 py-12 sm:py-16 overflow-hidden">
+              {/* A single soft accent wash, so the panel is not flat grey. */}
+              <div
+                aria-hidden="true"
+                className="absolute -top-24 left-1/2 -translate-x-1/2 w-[420px] h-[420px] rounded-full pointer-events-none"
+                style={{ background: "radial-gradient(circle, rgb(var(--brand-accent) / 0.10) 0%, transparent 70%)" }}
+              />
+
+              <div className="relative flex flex-col items-center">
+                <div className="relative w-52 h-52 sm:w-60 sm:h-60 flex items-center justify-center">
+                  {["100%", "72%", "44%"].map((size, i) => (
+                    <div
+                      key={size}
+                      className={cn(
+                        "absolute rounded-full border",
+                        // Stepped rather than uniform, so the rings read as
+                        // depth rather than as three identical circles.
+                        i === 0 && "border-content/10",
+                        i === 1 && "border-content/[0.14]",
+                        i === 2 && "border-accent/30 bg-accent/5"
+                      )}
+                      style={{ width: size, height: size }}
+                    />
+                  ))}
+                  {/* Only the mark sits inside the rings. With the name and
+                      label in here too, the text ran wider than the inner ring
+                      and crossed the one outside it. */}
+                  <span className="z-10 w-14 h-14 rounded-2xl bg-accent/12 text-accent flex items-center justify-center">
+                    <Brain size={26} aria-hidden="true" />
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center gap-1 mt-6">
+                  <span className="font-display text-2xl font-extrabold text-content-strong">{humura.name}</span>
+                  <span className="text-[0.65rem] text-content-muted uppercase tracking-[0.18em]">
+                    {t("humuraVisualLabel")}
+                  </span>
+                </div>
+
+                {/* Anchored, not floating. As absolutely-positioned corner tags
+                    these collided with the rings at some widths and had no
+                    relationship to anything. */}
+                <div className="flex flex-wrap justify-center gap-2 mt-8">
+                  {HUMURA_TAGS.map((tag) => (
+                    <span
+                      key={tag.id}
+                      className="text-xs font-medium text-accent bg-accent/10 border border-accent/20 px-3 py-1.5 rounded-full"
+                    >
+                      {t(`humuraTags.${tag.id}`)}
+                    </span>
+                  ))}
+                </div>
               </div>
-              {HUMURA_TAGS.map((tag) => (
-                <span
-                  key={tag.id}
-                  className={cn("absolute text-xs font-medium text-accent bg-accent/10 px-2.5 py-1 rounded-full", tag.pos)}
-                >
-                  {t(`humuraTags.${tag.id}`)}
-                </span>
-              ))}
             </div>
           </MotionDiv>
 
           {/* Text */}
           <MotionDiv delay={0.1}>
-            <Badge variant="navy" className="mb-5">{humura.badge}</Badge>
-            <h2 id="humura-heading" className="font-display font-extrabold text-content-strong leading-none tracking-tight mb-3"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
+            <Badge variant="navy" className="gap-1.5 mb-5">
+              <Sparkles size={13} aria-hidden="true" />
+              {humura.badge}
+            </Badge>
+            <h2 id="humura-heading" className="font-display font-extrabold text-content-strong leading-[1.05] tracking-tight mb-3"
+              style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.25rem)" }}
             >
               {humura.name}
             </h2>
-            <p className="text-accent font-medium mb-4">{humura.tagline}</p>
+            <p className="text-accent font-medium text-lg mb-4">{humura.tagline}</p>
             <p className="text-content-muted text-sm leading-relaxed mb-6">
               {t("humuraBlurb")}
             </p>

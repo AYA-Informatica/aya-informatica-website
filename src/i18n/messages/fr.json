@@ -138,7 +138,7 @@
     "products": {
       "ray": {
         "name": "RAY Markets",
-        "badge": "🔥 Plateforme phare",
+        "badge": "Plateforme phare",
         "tagline": "La place de marché mobile du Rwanda pour acheter et vendre.",
         "description": "RAY Markets est une place de marché pensée d'abord pour le mobile, conçue pour simplifier l'achat et la vente au Rwanda, en commençant par les téléphones et l'électronique. Fondée sur la confiance, la rapidité et l'accessibilité, RAY Markets met en relation acheteurs et vendeurs de façon directe et transparente.",
         "features": [
@@ -151,7 +151,7 @@
       },
       "humura": {
         "name": "Humura",
-        "badge": "🧠 Plateforme à venir",
+        "badge": "Plateforme à venir",
         "tagline": "Bien-être mental et soutien émotionnel — pour l'Afrique.",
         "description": "Humura est une plateforme numérique dédiée au bien-être mental et au soutien émotionnel. Elle offre un accès sûr et anonyme à de l'aide, des expériences centrées sur l'humain et un environnement numérique de confiance pour le bien-être personnel.",
         "features": [
@@ -381,7 +381,7 @@
       }
     },
     "getEarlyAccess": "Obtenir un accès anticipé",
-    "mockupLocation": "📍 Kigali",
+    "mockupLocation": "Rwanda",
     "mockupSearch": "Rechercher téléphones et électronique…",
     "mockupVerified": "Vendeur vérifié",
     "mockupPostItem": "+ Publier un article",
@@ -447,8 +447,8 @@
     "rayLiveBadge": "Disponible Maintenant",
     "rayLiveIndicator": "EN DIRECT",
     "rayCategoriesLabel": "Ce Que Vous Pouvez Acheter & Vendre",
-    "rayStatCategories": "10+ Catégories",
-    "rayStatLocation": "En direct à Kigali",
+    "rayStatCategories": "10 Catégories",
+    "rayStatLocation": "En direct au Rwanda",
     "rayStatPlatform": "Web & Mobile",
     "rayStatPosting": "Publication Gratuite",
     "visitRayMarkets": "Visiter RAY Markets",

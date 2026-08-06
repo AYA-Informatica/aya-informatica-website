@@ -138,7 +138,7 @@
     "products": {
       "ray": {
         "name": "RAY Markets",
-        "badge": "🔥 Flagship Platform",
+        "badge": "Flagship Platform",
         "tagline": "Rwanda's mobile-first marketplace for buying and selling.",
         "description": "RAY Markets is a mobile-first marketplace designed to simplify buying and selling in Rwanda, starting with phones and electronics. Built on trust, speed, and accessibility — RAY Markets connects buyers and sellers directly and transparently.",
         "features": [
@@ -151,7 +151,7 @@
       },
       "humura": {
         "name": "Humura",
-        "badge": "🧠 Upcoming Platform",
+        "badge": "Upcoming Platform",
         "tagline": "Mental wellness and emotional support — for Africa.",
         "description": "Humura is a digital platform focused on mental wellness and emotional support. It provides safe and anonymous access to support, human-centered experiences, and a trusted digital environment for personal wellbeing.",
         "features": [
@@ -381,7 +381,7 @@
       }
     },
     "getEarlyAccess": "Get Early Access",
-    "mockupLocation": "📍 Kigali",
+    "mockupLocation": "Rwanda",
     "mockupSearch": "Search phones & electronics…",
     "mockupVerified": "Verified Seller",
     "mockupPostItem": "+ Post Item",
@@ -447,8 +447,8 @@
     "rayLiveBadge": "Available Now",
     "rayLiveIndicator": "LIVE",
     "rayCategoriesLabel": "What You Can Buy & Sell",
-    "rayStatCategories": "10+ Categories",
-    "rayStatLocation": "Live in Kigali",
+    "rayStatCategories": "10 Categories",
+    "rayStatLocation": "Live in Rwanda",
     "rayStatPlatform": "Web & Mobile",
     "rayStatPosting": "Free to Post",
     "visitRayMarkets": "Visit RAY Markets",

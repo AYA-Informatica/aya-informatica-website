@@ -138,7 +138,7 @@
     "products": {
       "ray": {
         "name": "RAY Markets",
-        "badge": "🔥 Urubuga rw'ibanze",
+        "badge": "Urubuga rw'ibanze",
         "tagline": "Isoko rya mbere kuri telefoni mu Rwanda ryo kugura no kugurisha.",
         "description": "RAY Markets ni isoko ryubatswe ryibanda kuri telefoni, ryagenewe koroshya kugura no kugurisha mu Rwanda, hatangirwa kuri telefoni n'ibikoresho by'ikoranabuhanga. Ryubakiye ku kwizerana, umuvuduko, no kuboneka — RAY Markets rihuza abaguzi n'abagurisha ku buryo butaziguye kandi bugaragara.",
         "features": [
@@ -151,7 +151,7 @@
       },
       "humura": {
         "name": "Humura",
-        "badge": "🧠 Urubuga ruzaza",
+        "badge": "Urubuga ruzaza",
         "tagline": "Ubuzima bwo mu mutwe n'ubufasha mu marangamutima — kuri Afrika.",
         "description": "Humura ni urubuga rwa numerike rwibanda ku buzima bwo mu mutwe no ku bufasha mu marangamutima. Rutanga uburyo bwizewe kandi butamenyekana bwo kubona ubufasha, uburambe bwibanda ku muntu, n'ahantu ha numerike hizewe ku buzima bwiza bwa buri muntu.",
         "features": [
@@ -381,7 +381,7 @@
       }
     },
     "getEarlyAccess": "Bona RAY Markets hakiri kare",
-    "mockupLocation": "📍 Kigali",
+    "mockupLocation": "u Rwanda",
     "mockupSearch": "Shakisha telefoni n'ibikoresho…",
     "mockupVerified": "Umugurisha wemejwe",
     "mockupPostItem": "+ Shyiraho igicuruzwa",
@@ -447,8 +447,8 @@
     "rayLiveBadge": "Iriho Ubu",
     "rayLiveIndicator": "LIVE",
     "rayCategoriesLabel": "Ibyo Ushobora Kugura no Kugurisha",
-    "rayStatCategories": "Inzego 10+",
-    "rayStatLocation": "Iriho i Kigali",
+    "rayStatCategories": "Inzego 10",
+    "rayStatLocation": "Iriho mu Rwanda",
     "rayStatPlatform": "Web na Telefoni",
     "rayStatPosting": "Kwandika Birasohora",
     "visitRayMarkets": "Sura RAY Markets",
