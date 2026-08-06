@@ -8,6 +8,7 @@ import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { Toaster } from "@/components/ui/toaster"
 import { JsonLd } from "@/components/shared/json-ld"
+import { ThemeProvider } from "@/components/shared/theme-provider"
 import { type Locale, locales } from "@/i18n/config"
 import { BASE_URL, localeAlternates, localeUrl } from "@/lib/urls"
 // Variable fonts — single file per family, all weights included
@@ -98,7 +99,13 @@ export async function generateMetadata({
 
 /** Viewport config — required for themeColor in Next.js 14.2+ */
 export const viewport = {
-  themeColor: "#001529",
+  // Per-scheme so the browser chrome matches the rendered page. This follows
+  // the OS setting rather than the in-page toggle — the meta tag is read before
+  // any script runs, so it cannot reflect a stored override.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#001529" },
+    { media: "(prefers-color-scheme: dark)", color: "#05080C" },
+  ],
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -126,14 +133,16 @@ export default async function LocaleLayout({
         </noscript>
       </head>
       <body>
-        <NextIntlClientProvider>
-          <Navbar />
-          <main id="main-content" className="pt-[var(--navbar-height)]">
-            {children}
-          </main>
-          <Footer />
-          <Toaster />
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider>
+            <Navbar />
+            <main id="main-content" className="pt-[var(--navbar-height)]">
+              {children}
+            </main>
+            <Footer />
+            <Toaster />
+          </NextIntlClientProvider>
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

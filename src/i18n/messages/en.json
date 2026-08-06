@@ -534,5 +534,11 @@
     "backHome": "← Back to Home",
     "contactUs": "Contact Us →",
     "translationNotice": "The English version of this document is the legally governing text."
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "toggle": "Theme: {current}. Switch to {next}."
   }
 }

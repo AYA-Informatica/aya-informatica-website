@@ -10,6 +10,7 @@ import { useUIStore } from "@/store/ui"
 import { NAV_LINKS } from "@/lib/constants"
 import { Button } from "@/components/ui/button"
 import { LanguageSwitcher } from "@/components/layout/language-switcher"
+import { ThemeToggle } from "@/components/layout/theme-toggle"
 import { Logo } from "@/components/shared/logo"
 import { cn } from "@/lib/utils"
 import { useScrolled } from "@/hooks/use-scrolled"
@@ -103,8 +104,9 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Language switcher + desktop CTA */}
-          <LanguageSwitcher className="hidden md:flex ml-2" />
+          {/* Theme + language + desktop CTA */}
+          <ThemeToggle className="hidden md:inline-flex ml-2" />
+          <LanguageSwitcher className="hidden md:flex" />
           <Button asChild size="sm" className="hidden md:inline-flex ml-1">
             <Link href="/contact">{t("partnerWithUs")}</Link>
           </Button>
@@ -195,7 +197,10 @@ export function Navbar() {
                   <Button asChild className="w-full" size="lg">
                     <Link href="/contact">{t("partnerWithUs")}</Link>
                   </Button>
-                  <LanguageSwitcher />
+                  <div className="flex items-center gap-4">
+                    <LanguageSwitcher />
+                    <ThemeToggle />
+                  </div>
                 </motion.div>
               </nav>
             </FocusLock>

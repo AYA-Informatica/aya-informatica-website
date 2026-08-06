@@ -534,5 +534,11 @@
     "backHome": "← Subira ahabanza",
     "contactUs": "Twandikire →",
     "translationNotice": "Ubu buhinduzi butangwa kugira ngo bikworohere. Verisiyo y'Icyongereza y'iyi nyandiko ni yo ifite agaciro mu mategeko."
+  },
+  "theme": {
+    "light": "Urumuri",
+    "dark": "Umwijima",
+    "system": "Sisitemu",
+    "toggle": "Insanganyamatsiko: {current}. Hindura ujye kuri {next}."
   }
 }

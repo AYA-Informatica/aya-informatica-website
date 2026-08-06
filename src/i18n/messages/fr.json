@@ -534,5 +534,11 @@
     "backHome": "← Retour à l'accueil",
     "contactUs": "Nous contacter →",
     "translationNotice": "Cette traduction est fournie à titre indicatif. La version anglaise de ce document est le texte juridiquement contraignant."
+  },
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "toggle": "Thème : {current}. Passer à {next}."
   }
 }
