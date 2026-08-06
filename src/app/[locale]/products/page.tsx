@@ -11,6 +11,7 @@ import { MotionDiv, MotionList, MotionItem } from "@/components/shared/motion-di
 import { useProducts } from "@/lib/content"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/shared/logo"
+import { RaySlideshow } from "@/components/sections/ray-slideshow"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
 import { localeAlternates, localeUrl } from "@/lib/urls"
@@ -38,13 +39,6 @@ const HUMURA_TAGS = [
   { id: "wellbeing", pos: "bottom-12 right-0" },
 ] as const
 
-/** Illustrative listings for the phone mockup — product names are proper nouns. */
-const MOCKUP_LISTINGS = [
-  { name: "iPhone 14 Pro", price: "RWF 850,000" },
-  { name: "Samsung S23", price: "RWF 620,000" },
-  { name: "Tecno Camon 20", price: "RWF 185,000" },
-] as const
-
 /** Mini stat pills displayed in the RAY Markets detail section. */
 const RAY_MINI_STATS = [
   { icon: "📦", key: "rayStatCategories" },
@@ -55,14 +49,14 @@ const RAY_MINI_STATS = [
 
 /** Category chips — emojis are decorative; labels come from i18n. */
 const RAY_CATEGORY_KEYS = [
-  { emoji: "📱", key: "phones" },
-  { emoji: "🚗", key: "cars" },
-  { emoji: "🏠", key: "rentals" },
-  { emoji: "💻", key: "electronics" },
-  { emoji: "🛋", key: "furniture" },
-  { emoji: "👗", key: "fashion" },
-  { emoji: "💼", key: "jobs" },
-  { emoji: "🔧", key: "services" },
+  { emoji: "📱", key: "phones",      slug: "phones" },
+  { emoji: "🚗", key: "cars",        slug: "cars" },
+  { emoji: "🏠", key: "rentals",     slug: "residential-rentals" },
+  { emoji: "💻", key: "electronics", slug: "electronics" },
+  { emoji: "🛋", key: "furniture",   slug: "furniture" },
+  { emoji: "👗", key: "fashion",     slug: "fashion" },
+  { emoji: "💼", key: "jobs",        slug: "jobs" },
+  { emoji: "🔧", key: "services",    slug: "services" },
 ] as const
 
 const RAY_LIVE_URL = "https://www.raymarkets.co/home"
@@ -210,13 +204,16 @@ export default function ProductsPage({
               </p>
               <div className="flex flex-wrap gap-2">
                 {RAY_CATEGORY_KEYS.map((cat) => (
-                  <span
+                  <a
                     key={cat.key}
+                    href={`https://www.raymarkets.co/search?category=${cat.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-full border border-border-subtle bg-surface px-3 py-1.5 text-xs font-medium text-content hover:border-accent hover:text-accent transition-colors"
                   >
                     <span aria-hidden="true">{cat.emoji}</span>
                     {t(`rayCategoryLabels.${cat.key}`)}
-                  </span>
+                  </a>
                 ))}
               </div>
             </div>
@@ -235,75 +232,9 @@ export default function ProductsPage({
             </div>
           </MotionDiv>
 
-          {/* Enhanced phone mockup */}
-          <MotionDiv delay={0.15}>
-            <div className="bg-surface-inverse rounded-3xl p-5 sm:p-6 shadow-[0_40px_80px_rgba(0,21,41,0.25)] max-w-[260px] sm:max-w-[300px] mx-auto w-full">
-
-              {/* App header with LIVE indicator */}
-              <div className="flex justify-between items-center mb-4">
-                <span className="font-display text-xl font-extrabold text-white">RAY</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-white/60">{t("mockupLocation")}</span>
-                  <span className="flex items-center gap-1 text-[0.55rem] font-bold text-green-400 uppercase tracking-wider">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
-                    {t("rayLiveIndicator")}
-                  </span>
-                </div>
-              </div>
-
-              {/* Search bar */}
-              <div className="flex items-center gap-2 bg-white/7 rounded-lg px-3 py-2.5 mb-3">
-                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" className="text-white/60 shrink-0" aria-hidden="true">
-                  <circle cx="6" cy="6" r="4" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M9 9l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                <span className="text-xs text-white/55">{t("mockupSearch")}</span>
-              </div>
-
-              {/* Category pills row */}
-              <div className="flex gap-1.5 mb-3 overflow-x-auto pb-0.5 scrollbar-hide">
-                {["All", "Phones", "Cars", "Rentals"].map((cat, i) => (
-                  <span
-                    key={cat}
-                    className={cn(
-                      "shrink-0 rounded-full px-2.5 py-1 text-[0.6rem] font-semibold",
-                      // text-on-accent, not text-white: the accent lightens in
-                      // dark mode, where a white label on it is 2.87:1.
-                      i === 1 ? "bg-accent text-on-accent" : "bg-white/8 text-white/55"
-                    )}
-                  >
-                    {cat}
-                  </span>
-                ))}
-              </div>
-
-              {/* Listings */}
-              <div className="flex flex-col gap-2 mb-3">
-                {MOCKUP_LISTINGS.map((item) => (
-                  <div key={item.name} className="flex items-center gap-3 bg-white/5 rounded-lg p-2.5">
-                    <div className="w-9 h-9 rounded-md bg-gradient-to-br from-accent/30 to-white/10 shrink-0" aria-hidden="true" />
-                    <div className="min-w-0">
-                      <div className="text-xs font-semibold text-white truncate">{item.name}</div>
-                      <div className="text-[0.65rem] font-medium text-accent-on-inverse">{item.price}</div>
-                      <div className="text-[0.6rem] text-white/55 flex items-center gap-1">
-                        <span className="h-1 w-1 rounded-full bg-green-500 inline-block" aria-hidden="true" />
-                        {t("mockupVerified")}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Post CTA */}
-              <div className="bg-accent rounded-lg py-2.5 text-center text-xs font-semibold text-on-accent">
-                {t("mockupPostItem")}
-              </div>
-            </div>
-
-            {/* Available on label */}
-            <p className="mt-4 text-center text-[0.65rem] text-content-muted">
-              {t("mockupAvailableOn")}
-            </p>
+          {/* Animated app showcase slideshow */}
+          <MotionDiv delay={0.15} className="w-full lg:pt-16">
+            <RaySlideshow />
           </MotionDiv>
         </div>
       </section>
