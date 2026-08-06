@@ -211,8 +211,13 @@ export default function ProductsPage({
               {["100%", "70%", "40%"].map((size, i) => (
                 <div
                   key={size}
-                  className="absolute rounded-full border border-content/8"
-                  style={{ width: size, height: size, background: i === 2 ? "rgba(0,21,41,0.03)" : "transparent" }}
+                  className={cn(
+                    "absolute rounded-full border border-content/8",
+                    // Innermost ring carries a faint fill; theme-aware so it
+                    // does not vanish against the dark surface.
+                    i === 2 && "bg-content/[0.03]"
+                  )}
+                  style={{ width: size, height: size }}
                 />
               ))}
               <div className="flex flex-col items-center gap-1 z-10">

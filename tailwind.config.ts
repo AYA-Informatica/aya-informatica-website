@@ -7,6 +7,12 @@ const config: Config = {
   content: [
     "./src/components/**/*.{ts,tsx}",
     "./src/app/**/*.{ts,tsx}",
+    "./src/content/**/*.mdx",
+    // Test files are scanned otherwise, and their JavaScript is
+    // indistinguishable from class names to the extractor: the expression
+    // `!dark.has(k)` in theme-tokens.test.ts caused Tailwind to emit a dead
+    // `.\!dark` rule duplicating the entire dark palette with !important.
+    "!./src/**/*.test.{ts,tsx}",
   ],
   theme: {
     container: {
@@ -47,10 +53,12 @@ const config: Config = {
           60: "rgba(0,21,41,0.6)",
           10: "rgba(0,21,41,0.08)",
         },
+        // Token-backed: the accent had been left as a literal, so it did not
+        // change between themes and sat at 4.35:1 on the dark raised surface.
         accent: {
-          DEFAULT: "#0A84FF",
-          hover: "#0066CC",
-          light: "rgba(10,132,255,0.12)",
+          DEFAULT: "rgb(var(--brand-accent) / <alpha-value>)",
+          hover: "rgb(var(--brand-accent-hover) / <alpha-value>)",
+          light: "rgb(var(--brand-accent) / 0.12)",
         },
         brand: {
           bg: "#F5F5F5",

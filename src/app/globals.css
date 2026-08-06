@@ -29,6 +29,7 @@
 
     --border-subtle:      232 232 232;  /* dividers       (#E8E8E8) */
     --brand-accent:        10 132 255;  /* actions        (#0A84FF) */
+    --brand-accent-hover:   0 102 204;  /* hover          (#0066CC) */
 
     /* Card shadows are navy-tinted on light. Also the ring-offset colour, so a
        focus ring reads against the page rather than against assumed white. */
@@ -52,7 +53,11 @@
     --content-on-inverse: 255 255 255;  /* text on navy   (#FFFFFF) */
 
     --border-subtle:       42  52  63;  /* dividers       (#2A343F) */
-    --brand-accent:        10 132 255;  /* actions        (#0A84FF) — 5.50:1, AA */
+    /* Lifted from #0A84FF, which lands at 4.35:1 on the raised surface — just
+       under AA for normal text. #2E93FF clears it at 5.09:1 while staying close
+       to the brand blue. Hover lightens on dark rather than darkening. */
+    --brand-accent:        46 147 255;  /* actions        (#2E93FF) — 5.09:1, AA */
+    --brand-accent-hover:  92 176 255;  /* hover          (#5CB0FF) */
 
     /* Black rather than navy, and stronger: a tinted shadow is invisible
        against a dark surface. Depth here comes mostly from border-subtle;
