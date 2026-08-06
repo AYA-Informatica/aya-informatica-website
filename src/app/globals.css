@@ -29,6 +29,11 @@
 
     --border-subtle:      232 232 232;  /* dividers       (#E8E8E8) */
     --brand-accent:        10 132 255;  /* actions        (#0A84FF) */
+
+    /* Card shadows are navy-tinted on light. Also the ring-offset colour, so a
+       focus ring reads against the page rather than against assumed white. */
+    --shadow-rgb:           0  21  41;
+    --shadow-strength:            0.06;
   }
 
   /* Applied by the theme script before first paint. `surface-inverse` stays
@@ -48,6 +53,12 @@
 
     --border-subtle:       42  52  63;  /* dividers       (#2A343F) */
     --brand-accent:        10 132 255;  /* actions        (#0A84FF) — 5.50:1, AA */
+
+    /* Black rather than navy, and stronger: a tinted shadow is invisible
+       against a dark surface. Depth here comes mostly from border-subtle;
+       the shadow only deepens it. */
+    --shadow-rgb:            0   0   0;
+    --shadow-strength:            0.45;
   }
 
   html {

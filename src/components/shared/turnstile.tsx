@@ -47,7 +47,11 @@ export function TurnstileWidget() {
       <div
         className="cf-turnstile"
         data-sitekey={SITE_KEY}
-        data-theme="light"
+        // "auto" follows prefers-color-scheme. It cannot see an in-page
+        // override, because the widget reads this attribute once when
+        // Cloudflare's script initialises it — but it is right for the common
+        // case and better than pinning it light.
+        data-theme="auto"
         data-appearance="interaction-only"
       />
     </>

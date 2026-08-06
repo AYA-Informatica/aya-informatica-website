@@ -32,6 +32,11 @@ const config: Config = {
           "on-inverse": "rgb(var(--content-on-inverse) / <alpha-value>)",
         },
         "border-subtle": "rgb(var(--border-subtle) / <alpha-value>)",
+        // `ring-offset-background` is used by the form controls and the button.
+        // Tailwind never generated it because no `background` colour existed,
+        // so the focus ring had no offset colour and fell back to white — a
+        // white halo on any dark surface.
+        background: "rgb(var(--surface) / <alpha-value>)",
 
         // ── Existing literal brand palette ────────────────────
         // Kept unchanged so the site builds and looks identical while the
@@ -120,11 +125,11 @@ const config: Config = {
       },
       // ── Box Shadows ─────────────────────────────────────────
       boxShadow: {
-        // Tinted with the navy brand. These read on light surfaces only — a
-        // dark-on-dark shadow is invisible, so dark mode leans on the token
-        // borders for separation rather than elevation.
-        card: "0 1px 3px rgba(0,21,41,0.06), 0 4px 16px rgba(0,21,41,0.06)",
-        "card-hover": "0 8px 32px rgba(0,21,41,0.12)",
+        // Colour and strength come from tokens so the shadow re-tints per
+        // theme: navy and subtle on light, black and stronger on dark where a
+        // tinted shadow would vanish.
+        card: "0 1px 3px rgb(var(--shadow-rgb) / var(--shadow-strength)), 0 4px 16px rgb(var(--shadow-rgb) / var(--shadow-strength))",
+        "card-hover": "0 8px 32px rgb(var(--shadow-rgb) / calc(var(--shadow-strength) * 2))",
         accent: "0 8px 24px rgba(10,132,255,0.35)",
       },
     },

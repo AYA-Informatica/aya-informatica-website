@@ -26,28 +26,55 @@ import { cn } from "@/lib/utils"
  * layout space, avoiding a shift while the image loads.
  */
 export function Logo({
-  variant = "navy",
+  variant = "auto",
   className,
   priority = false,
   alt = "AYA Informatica RW",
 }: {
-  /** `white` for navy surfaces, `navy` for light ones. */
-  variant?: "navy" | "white"
+  /**
+   * `white` for the always-dark surfaces (header, footer, ecosystem hub),
+   * `navy` to force the dark artwork, `auto` to follow the theme.
+   */
+  variant?: "navy" | "white" | "auto"
   className?: string
   /** Set on the header instance — it is usually the LCP element. */
   priority?: boolean
   alt?: string
 }) {
+  // Width is derived from the intrinsic aspect ratio; only height is set.
+  // No `sizes`: this renders at a fixed height, so Next's default 1x/2x srcset
+  // is correct. A `sizes` value larger than the real display width would make
+  // the browser fetch a bigger candidate than it needs.
+  const common = {
+    priority,
+    className: cn("w-auto object-contain", className),
+  }
+
+  if (variant !== "auto") {
+    return <Image src={variant === "white" ? logoWhite : logoNavy} alt={alt} {...common} />
+  }
+
+  // Swapped in CSS rather than by reading the theme in JS. `useTheme` is
+  // unresolved on the server, so a JS swap would either render the wrong mark
+  // during SSR or need a hydration guard — and this sits inside prerendered
+  // pages where neither is acceptable. The trade is that both files are
+  // referenced; each is ~20-45KB and only the visible one is decoded.
   return (
-    <Image
-      src={variant === "white" ? logoWhite : logoNavy}
-      alt={alt}
-      priority={priority}
-      // Width is derived from the intrinsic aspect ratio; only height is set.
-      className={cn("w-auto object-contain", className)}
-      // No `sizes`: this renders at a fixed height, so Next's default 1x/2x
-      // srcset is correct. A `sizes` value larger than the real display width
-      // would make the browser fetch a bigger candidate than it needs.
-    />
+    <>
+      <Image
+        src={logoNavy}
+        alt={alt}
+        {...common}
+        className={cn(common.className, "dark:hidden")}
+      />
+      {/* The paired copy is decorative — the one above carries the name. */}
+      <Image
+        src={logoWhite}
+        alt=""
+        aria-hidden="true"
+        {...common}
+        className={cn(common.className, "hidden dark:block")}
+      />
+    </>
   )
 }
