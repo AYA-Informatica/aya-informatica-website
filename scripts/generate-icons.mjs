@@ -11,15 +11,43 @@
  * showed different logos. Deriving the small sizes from the large one makes
  * that impossible.
  *
- * The 32px output is the one that matters. Most displays are high-DPI now, so
- * browsers ask for 32 rather than 16, and 16 survives only as a legacy
- * fallback where this artwork cannot be made legible at any quality setting.
+ * ── Same brand, different job ──────────────────────────────────────────
+ *
+ * The app icon is a full lockup: disc, "AYA", "Informatica" underneath, and an
+ * RW roundel. At 180px on a home screen every part of that reads. At 32px in a
+ * browser tab it does not — "Informatica" collapses into a grey smear under
+ * the wordmark and the roundel becomes a blob, and no resampling quality
+ * setting rescues either.
+ *
+ * So the small sizes use a simplified cut of the *same* artwork: the same
+ * disc, the same letterforms, "AYA" alone, scaled to fill the badge. Nothing
+ * is redrawn — the wordmark is extracted from the source at full resolution,
+ * so it stays the real logo rather than an approximation of it.
+ *
+ * That split is deliberate and normal: 180px and above gets the lockup,
+ * 48px and below gets the mark.
  */
 import sharp from "sharp"
 import { writeFileSync, statSync } from "node:fs"
 
 const SOURCE = "public/apple-touch-icon.png"
 const SIZES = [16, 32, 48]
+
+/**
+ * Where "AYA" sits inside the 180x180 source, found by scanning for bands of
+ * ink rather than guessed: rows 56-102 hold the wordmark, rows 108-125 hold
+ * "Informatica". The box below is that band with a little air, stopping short
+ * of the roundel on the right.
+ *
+ * If the source artwork is ever re-exported with different proportions, these
+ * numbers must be re-measured — a wrong crop here silently ships a clipped logo.
+ */
+const WORDMARK = { left: 25, top: 50, width: 124, height: 58 }
+
+/** Disc colour sampled from the source, and how much of the badge "AYA" fills. */
+const DISC = "#F8F8F8"
+const CANVAS = 180
+const FILL = 0.7
 
 /**
  * Writes an ICO container around already-encoded PNGs.
@@ -54,17 +82,37 @@ function buildIco(entries) {
   return Buffer.concat([header, directory, ...entries.map((e) => e.buf)])
 }
 
-const trimmed = await sharp(SOURCE).trim({ threshold: 5 }).toBuffer()
+/** Rebuilds the badge with "AYA" alone, at full source resolution. */
+async function buildSimplifiedBadge() {
+  const disc = Buffer.from(
+    `<svg width="${CANVAS}" height="${CANVAS}">` +
+      `<circle cx="${CANVAS / 2}" cy="${CANVAS / 2}" r="${CANVAS / 2}" fill="${DISC}"/></svg>`
+  )
+
+  const wordmark = await sharp(SOURCE).extract(WORDMARK).toBuffer()
+  const width = Math.round(CANVAS * FILL)
+  const scaled = await sharp(wordmark).resize({ width }).toBuffer()
+  const { height } = await sharp(scaled).metadata()
+
+  return sharp(disc)
+    .composite([
+      {
+        input: scaled,
+        left: Math.round((CANVAS - width) / 2),
+        top: Math.round((CANVAS - height) / 2),
+      },
+    ])
+    .png()
+    .toBuffer()
+}
+
+const badge = await buildSimplifiedBadge()
 
 const render = (size) =>
-  sharp(trimmed)
-    .resize(size, size, {
-      kernel: "lanczos3",
-      fit: "contain",
-      background: { r: 0, g: 0, b: 0, alpha: 0 },
-    })
-    // Downscaling this far softens the wordmark past reading; a light unsharp
-    // pass brings the stems back without visible haloing at these sizes.
+  sharp(badge)
+    .resize(size, size, { kernel: "lanczos3" })
+    // Downscaling this far softens the stems past reading; a light unsharp
+    // pass brings them back without visible haloing at these sizes.
     .sharpen({ sigma: 0.5 })
     .png({ compressionLevel: 9 })
     .toBuffer()
