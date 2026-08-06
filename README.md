@@ -300,11 +300,33 @@ same directory. If it persists, stop every node process, delete `.next`, and
 start again — but stop the server *before* deleting, or you will cause exactly
 this error.
 
-**`GET /sw.js 404` in the dev log.** Nothing in this project registers or serves
-a service worker. Service workers are scoped per origin, not per project, so a
-worker registered earlier by any other app on `localhost:3000` keeps requesting
-its script. Harmless. Clear it in DevTools under Application → Service Workers →
-Unregister.
+**`GET /sw.js 404` in the dev log. Not harmless — fix it before debugging
+anything else.** Nothing in this project registers or serves a service worker.
+Service workers are scoped per *origin*, not per project, so a worker
+registered by any other app that has run on `localhost:3000` stays registered
+and keeps intercepting requests to this one. The sibling RAY app is a PWA and
+ships `public/sw.js` with a precache, and it runs on the same port.
+
+The 404 is only the visible symptom. The worker also serves its precached
+responses to this app, and stale assets produce failures that look like real
+bugs:
+
+- **Hydration mismatches** naming classes that no longer exist in the source —
+  the client is executing an old bundle while the server renders current code.
+  `text-white/45` appearing in a diff after it had been changed to `/70` was
+  this, not a code defect.
+- **`Image ... has "fill" and a height value of 0`** from the RAY slideshow.
+  The device frame gets its height from `aspect-[9/20]`, so a stale or
+  unapplied stylesheet leaves it at zero and Next warns about a parent that is
+  correctly styled in the source.
+
+Verified: in a browser with no service worker registered, on the same dev
+server, both disappear and the frame measures 280x622.
+
+Clear it in DevTools under Application → Service Workers → Unregister, then
+Application → Storage → Clear site data, then hard-reload. To avoid it
+recurring, run one of the two projects on a different port — a different
+origin cannot share a worker.
 
 **Regenerating the logo.** `public/logo.png` and `logo-white.png` are derived
 from a bare-wordmark export, not from the favicons. The app icons are a circular
