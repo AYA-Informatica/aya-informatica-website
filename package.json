@@ -13,7 +13,8 @@
     "test:coverage": "vitest run --coverage",
     "postbuild": "node scripts/check-prerender.mjs",
     "verify:prerender": "node scripts/check-prerender.mjs",
-    "screenshot": "node scripts/screenshot.mjs"
+    "screenshot": "node scripts/screenshot.mjs",
+    "generate-icons": "node scripts/generate-icons.mjs"
   },
   "overrides": {
     "postcss": "^8.5.25",

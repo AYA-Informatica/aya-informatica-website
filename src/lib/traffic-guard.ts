@@ -98,7 +98,6 @@ const WELL_KNOWN_EXACT = new Set([
   "/sitemap.xml",
   "/manifest.json",
   "/favicon.ico",
-  "/favicon.svg",
   "/sw.js",
 ])
 

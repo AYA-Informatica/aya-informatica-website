@@ -70,13 +70,19 @@ export async function generateMetadata({
       images: ["/og-image.png"],
     },
     icons: {
-      // Ordered least-to-most preferred: browsers that understand SVG take it,
-      // the rest fall back to the raster sizes, and favicon.ico covers legacy.
+      // One mark everywhere: the circular badge. There was also a favicon.svg
+      // carrying a different design — a navy square reading "AYA" over "RW" —
+      // and because browsers prefer an SVG icon when one is offered, Chrome and
+      // Firefox showed the square while bookmarks and the home screen showed
+      // the circle. The SVG is gone rather than redrawn; it is in git history
+      // if the square is ever wanted back.
+      //
+      // Every raster here is generated from apple-touch-icon.png by
+      // `npm run generate-icons`, so they cannot drift apart again.
       icon: [
         { url: "/favicon.ico", sizes: "any" },
         { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
         { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-        { url: "/favicon.svg", type: "image/svg+xml" },
       ],
       shortcut: [{ url: "/favicon.ico" }],
       apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
