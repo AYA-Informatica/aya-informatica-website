@@ -21,6 +21,7 @@ self-hosted contact pipeline.
 | Email | Nodemailer over SMTP |
 | Rate limiting | Upstash Redis (in-memory fallback) |
 | Captcha | Cloudflare Turnstile (optional) |
+| Theming | next-themes (class strategy) |
 | Tests | Vitest |
 | Fonts | Self-hosted Syne + DM Sans (variable) |
 
@@ -113,6 +114,41 @@ an empty value, a mismatched array length, or a dropped `{placeholder}`.
 Routing, the language switcher, the sitemap, and hreflang all derive from
 `config.ts` and need no further changes.
 
+## Theming
+
+Light and dark, following the OS setting by default with a navbar toggle
+cycling light → dark → system. The choice persists in `localStorage`.
+
+Colours are semantic tokens declared for `:root` and `.dark` in
+`src/app/globals.css` and mapped into Tailwind as
+`rgb(var(--token) / <alpha-value>)`:
+
+| Token | Role |
+|---|---|
+| `surface` | page background |
+| `surface-raised` | cards |
+| `surface-inverse` | the navy hero and footer bands |
+| `content` / `-strong` / `-muted` | body / headings / secondary text |
+| `content-on-inverse` | text on the navy bands |
+| `border-subtle` | dividers |
+
+`surface-inverse` stays dark in **both** themes. The navy bands are the brand,
+and holding them fixed is what allows the roughly ninety `text-white/*` usages
+inside them to need no dark variant. Dark mode reads as elevation — a darker
+base with the bands sitting above it — rather than an inversion.
+
+Two rules when adding styles:
+
+- Use the tokens, not `bg-white` / `text-navy` / `bg-brand-bg`. A literal colour
+  will not follow the theme.
+- Values must be `r g b` channel triplets, never hex. Tailwind composes them
+  with `<alpha-value>`; a hex value compiles but silently breaks every opacity
+  modifier such as `bg-surface/50`.
+
+`theme-tokens.test.ts` enforces both, and that the two blocks define the same
+set of tokens — a token added to `:root` but forgotten in `.dark` fails nothing
+at build time and simply renders unreadably.
+
 ## Routing and Locales
 
 `localePrefix` is `"as-needed"`, so the default locale is unprefixed:
@@ -169,10 +205,10 @@ Turnstile.
 npm test
 ```
 
-87 tests covering the Zod schema (including sanitization ordering), the mailer
+92 tests covering the Zod schema (including sanitization ordering), the mailer
 (HTML escaping, header injection, transport pooling), Turnstile (timeouts and
-fail-open behaviour), the contact route handler, the CSP, and message-catalogue
-parity.
+fail-open behaviour), the contact route handler, the CSP, message-catalogue
+parity, and the theme tokens.
 
 ## Deployment
 
@@ -205,6 +241,25 @@ automatically as a `postbuild` step.
 **The security headers have two sources.** `src/lib/security-headers.js` feeds
 both `next.config.js` and the proxy. `vercel.json` separately re-declares three
 of them; the values currently agree, but that copy can drift.
+
+**`EPERM: operation not permitted, rename` in `next dev` (Windows).** Next
+rewrites files under `.next` continuously. If another process has one open when
+Next renames it, Windows refuses, and the dev server serves intermittent 500s
+before recovering. It is an environment problem, not a code one.
+
+In order of likelihood: the editor's file watcher and any workspace-indexing
+extensions (`.vscode/settings.json` here excludes `.next` from the watcher and
+from search), Windows Defender real-time scanning (add `.next` as an exclusion —
+requires admin), and a second dev server or a `next build` running against the
+same directory. If it persists, stop every node process, delete `.next`, and
+start again — but stop the server *before* deleting, or you will cause exactly
+this error.
+
+**`GET /sw.js 404` in the dev log.** Nothing in this project registers or serves
+a service worker. Service workers are scoped per origin, not per project, so a
+worker registered earlier by any other app on `localhost:3000` keeps requesting
+its script. Harmless. Clear it in DevTools under Application → Service Workers →
+Unregister.
 
 **Regenerating the logo.** `public/logo.png` and `logo-white.png` are derived
 from a bare-wordmark export, not from the favicons. The app icons are a circular
