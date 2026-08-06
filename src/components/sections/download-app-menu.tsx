@@ -10,16 +10,27 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
-const DOWNLOAD_URL = "/downloads/ray-markets.apk"
+// Points at the EAS-hosted build artifact rather than a self-hosted file:
+// GitHub hard-rejects any committed file over 100 MB (the APK is ~118 MB),
+// so a repo-hosted file was not an option without adding new infrastructure
+// (Vercel Blob, Git LFS) that wasn't set up yet. Expo does not guarantee
+// build-artifact URLs stay valid indefinitely — this is a deliberate interim
+// choice, not a permanent one. When this link goes stale (404), the fix is
+// either a fresh `eas build` + swap this URL, or move to Vercel Blob for a
+// URL that does not expire.
+//
+// Built from RAY-Mobile commit a638d6a (EAS build 30741939, 2026-08-06).
+const DOWNLOAD_URL = "https://expo.dev/artifacts/eas/hPR8HQH-jzxrO6OYsKu3lCCajwsstvXt13jnQBO3znE.apk"
 
 /**
  * "Download App" trigger with a panel offering three routes: the real,
- * self-hosted APK (works today), and Play Store / App Store, which are not
- * live yet — RAY-Mobile has no store listing on either platform, tracked
- * separately in that repo's own checklist. Those two route to the existing
- * "RAY Markets Early Access" contact subject rather than dead-ending, so
- * they're still useful before the real badges exist. Swap them for real
- * store links the moment those listings go live; nothing else here changes.
+ * working APK download (see DOWNLOAD_URL above for hosting caveats), and
+ * Play Store / App Store, which are not live yet — RAY-Mobile has no store
+ * listing on either platform, tracked separately in that repo's own
+ * checklist. Those two route to the existing "RAY Markets Early Access"
+ * contact subject rather than dead-ending, so they're still useful before
+ * the real badges exist. Swap them for real store links the moment those
+ * listings go live; nothing else here changes.
  */
 export function DownloadAppMenu({
   size = "lg",

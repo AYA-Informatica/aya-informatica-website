@@ -1,9 +1,10 @@
 /**
  * Generates the static QR code for the direct-APK-download link.
  *
- * Not run at build time — the download URL is fixed (same domain, same
- * path, forever), so the SVG is generated once and committed like any other
- * static asset. Re-run this only if the download path or domain changes.
+ * Not run at build time — generated once and committed like any other
+ * static asset. Re-run this whenever DOWNLOAD_URL in
+ * src/components/sections/download-app-menu.tsx changes (keep the two in
+ * sync manually; there's no build-time check that they match).
  *
  * Usage:
  *   node scripts/generate-qr.mjs
@@ -11,8 +12,10 @@
 import { writeFileSync } from "node:fs"
 import QRCode from "qrcode"
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ayainformatica.tech"
-const DOWNLOAD_URL = `${SITE_URL}/downloads/ray-markets.apk`
+// Keep in sync with DOWNLOAD_URL in
+// src/components/sections/download-app-menu.tsx — see that file for why
+// this points at Expo's build artifact rather than a self-hosted file.
+const DOWNLOAD_URL = "https://expo.dev/artifacts/eas/hPR8HQH-jzxrO6OYsKu3lCCajwsstvXt13jnQBO3znE.apk"
 const OUT = "public/ray-download-qr.svg"
 
 const svg = await QRCode.toString(DOWNLOAD_URL, {
