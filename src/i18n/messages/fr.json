@@ -6,7 +6,7 @@
     "description": "AYA Informatica RW est une entreprise technologique basée au Rwanda qui construit des plateformes numériques évolutives reliant les personnes, les entreprises et les opportunités à travers l'Afrique.",
     "ogDescription": "Entreprise technologique basée au Rwanda construisant des plateformes numériques évolutives à travers l'Afrique. Le produit d'abord. Le mobile d'abord. Conçu pour le continent.",
     "twitterDescription": "Entreprise technologique basée au Rwanda construisant des plateformes numériques évolutives à travers l'Afrique.",
-    "keywords": "AYA Informatica RW|AYA Informatica|technologie Rwanda|plateformes numériques|tech Afrique|place de marché RAY|bien-être Humura|startup Kigali|mobile-first|infrastructure numérique africaine"
+    "keywords": "AYA Informatica RW|AYA Informatica|technologie Rwanda|plateformes numériques|tech Afrique|RAY Markets|bien-être Humura|startup Kigali|mobile-first|infrastructure numérique africaine"
   },
   "nav": {
     "home": "Accueil",
@@ -61,7 +61,7 @@
     "brandLine1": "Construire l'avenir",
     "brandLine2": "numérique de l'Afrique",
     "location": "Kigali, Rwanda",
-    "rayLabel": "RAY – Place de marché",
+    "rayLabel": "RAY Markets",
     "humuraLabel": "Humura – Bien-être",
     "companyName": "AYA Informatica RW",
     "privacy": "Politique de confidentialité",
@@ -96,9 +96,9 @@
     "topicTagsTitle": "Comment pouvons-nous vous aider ?",
     "breadcrumb": "Contact",
     "metaTitle": "Contact",
-    "metaDescription": "Contactez AYA Informatica RW. Devenez partenaire, obtenez un accès anticipé à RAY, ou discutez d'un projet.",
+    "metaDescription": "Contactez AYA Informatica RW. Devenez partenaire, obtenez un accès anticipé à RAY Markets, ou discutez d'un projet.",
     "ogTitle": "Contacter AYA Informatica RW – Construisons ensemble",
-    "ogDescription": "Devenez partenaire, obtenez un accès anticipé à RAY, discutez d'une demande de service ou explorez des opportunités d'investissement.",
+    "ogDescription": "Devenez partenaire, obtenez un accès anticipé à RAY Markets, discutez d'une demande de service ou explorez des opportunités d'investissement.",
     "twitterTitle": "Contacter AYA Informatica RW",
     "twitterDescription": "Devenez partenaire ou contactez-nous à propos de nos produits et services.",
     "details": {
@@ -127,17 +127,17 @@
   "content": {
     "products": {
       "ray": {
-        "name": "RAY",
+        "name": "RAY Markets",
         "badge": "🔥 Plateforme phare",
         "tagline": "La place de marché mobile du Rwanda pour acheter et vendre.",
-        "description": "RAY est une place de marché pensée d'abord pour le mobile, conçue pour simplifier l'achat et la vente au Rwanda, en commençant par les téléphones et l'électronique. Fondée sur la confiance, la rapidité et l'accessibilité, RAY met en relation acheteurs et vendeurs de façon directe et transparente.",
+        "description": "RAY Markets est une place de marché pensée d'abord pour le mobile, conçue pour simplifier l'achat et la vente au Rwanda, en commençant par les téléphones et l'électronique. Fondée sur la confiance, la rapidité et l'accessibilité, RAY Markets met en relation acheteurs et vendeurs de façon directe et transparente.",
         "features": [
           "Publier des articles rapidement",
           "Entrer en contact direct avec les acheteurs ou les vendeurs",
           "Négocier les prix en toute transparence",
           "Accéder à un marché plus large et plus actif"
         ],
-        "cta": "Découvrir RAY"
+        "cta": "Découvrir RAY Markets"
       },
       "humura": {
         "name": "Humura",
@@ -196,7 +196,7 @@
     },
     "roadmap": {
       "launch": {
-        "title": "Lancer et développer RAY à Kigali",
+        "title": "Lancer et développer RAY Markets à Kigali",
         "desc": "Établir la place de marché mobile de référence au Rwanda pour les téléphones et l'électronique."
       },
       "expand": {
@@ -251,7 +251,7 @@
         "role": "Entrepreneur tech, Kigali"
       },
       "diane": {
-        "quote": "RAY est exactement ce dont le marché avait besoin — une plateforme fiable, pensée pour le mobile, qui rend l'achat et la vente simples et transparents.",
+        "quote": "RAY Markets est exactement ce dont le marché avait besoin — une plateforme fiable, pensée pour le mobile, qui rend l'achat et la vente simples et transparents.",
         "name": "Diane U.",
         "role": "Utilisatrice en accès anticipé"
       },
@@ -277,7 +277,7 @@
     },
     "contactSubjects": {
       "partnership": "Partenariat",
-      "ray-access": "Accès anticipé à RAY",
+      "ray-access": "Accès anticipé à RAY Markets",
       "humura": "Plateforme Humura",
       "services": "Demande de service",
       "investment": "Investissement",
@@ -345,17 +345,17 @@
   "products": {
     "breadcrumb": "Produits",
     "metaTitle": "Produits",
-    "metaDescription": "Découvrez RAY, la place de marché mobile du Rwanda, et Humura, notre future plateforme de bien-être mental. Des plateformes conçues pour de vraies personnes.",
-    "ogTitle": "Produits AYA Informatica RW – Place de marché RAY et bien-être Humura",
-    "ogDescription": "RAY : la place de marché mobile du Rwanda pour téléphones et électronique. Humura : plateforme de bien-être mental à venir.",
-    "twitterTitle": "Produits AYA Informatica RW – RAY et Humura",
-    "twitterDescription": "RAY : la place de marché mobile du Rwanda. Humura : plateforme de bien-être mental à venir.",
+    "metaDescription": "Découvrez RAY Markets, la place de marché mobile du Rwanda, et Humura, notre future plateforme de bien-être mental. Des plateformes conçues pour de vraies personnes.",
+    "ogTitle": "Produits AYA Informatica RW – RAY Markets et bien-être Humura",
+    "ogDescription": "RAY Markets : la place de marché mobile du Rwanda pour téléphones et électronique. Humura : plateforme de bien-être mental à venir.",
+    "twitterTitle": "Produits AYA Informatica RW – RAY Markets et Humura",
+    "twitterDescription": "RAY Markets : la place de marché mobile du Rwanda. Humura : plateforme de bien-être mental à venir.",
     "eyebrow": "Nos produits",
     "headline": "Des plateformes conçues",
     "headlineAccent": "pour la vraie vie",
     "sub": "Chaque produit part d'un problème réel, est conçu pour être accessible et pensé pour évoluer. Nous ne construisons pas des applications — nous construisons des infrastructures numériques.",
-    "rayIntro1": "RAY est une place de marché pensée d'abord pour le mobile, conçue pour simplifier l'achat et la vente au Rwanda, en commençant par les téléphones et l'électronique.",
-    "rayIntro2": "Fondée sur la confiance, la rapidité et l'accessibilité, RAY met en relation acheteurs et vendeurs de façon directe et transparente. Notre objectif est de faire de RAY la plateforme de référence du commerce quotidien au Rwanda.",
+    "rayIntro1": "RAY Markets est une place de marché pensée d'abord pour le mobile, conçue pour simplifier l'achat et la vente au Rwanda, en commençant par les téléphones et l'électronique.",
+    "rayIntro2": "Fondée sur la confiance, la rapidité et l'accessibilité, RAY Markets met en relation acheteurs et vendeurs de façon directe et transparente. Notre objectif est de faire de RAY Markets la plateforme de référence du commerce quotidien au Rwanda.",
     "rayPillars": {
       "trust": {
         "title": "Confiance",
@@ -375,8 +375,8 @@
     "mockupSearch": "Rechercher téléphones et électronique…",
     "mockupVerified": "Vendeur vérifié",
     "mockupPostItem": "+ Publier un article",
-    "rayFeaturesEyebrow": "RAY – Fonctionnalités clés",
-    "rayFeaturesTitle": "Ce qui rend RAY différent",
+    "rayFeaturesEyebrow": "RAY Markets – Fonctionnalités clés",
+    "rayFeaturesTitle": "Ce qui rend RAY Markets différent",
     "rayFeatures": {
       "quickListings": {
         "title": "Publication rapide",
@@ -415,7 +415,7 @@
     "ecosystemEyebrow": "La vision",
     "ecosystemTitleLine1": "Construire un écosystème",
     "ecosystemTitleLine2": "numérique intégré",
-    "ecosystemDesc": "RAY et Humura sont les premières pièces d'une vision plus large — un écosystème interconnecté de plateformes au service du quotidien africain.",
+    "ecosystemDesc": "RAY Markets et Humura sont les premières pièces d'une vision plus large — un écosystème interconnecté de plateformes au service du quotidien africain.",
     "ecosystemBadge": "Écosystème",
     "ecosystemNodes": {
       "ray": {
@@ -508,8 +508,8 @@
         "category": "Entreprise"
       },
       "ray-marketplace-vision": {
-        "title": "RAY : repenser la façon dont le Rwanda commerce",
-        "excerpt": "De groupes WhatsApp éparpillés à une place de marché unifiée — l'histoire de RAY et notre vision du commerce numérique en Afrique de l'Est.",
+        "title": "RAY Markets : repenser la façon dont le Rwanda commerce",
+        "excerpt": "De groupes WhatsApp éparpillés à une place de marché unifiée — l'histoire de RAY Markets et notre vision du commerce numérique en Afrique de l'Est.",
         "category": "Produit"
       },
       "mental-wellness-africa": {

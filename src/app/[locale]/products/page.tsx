@@ -46,7 +46,7 @@ const MOCKUP_LISTINGS = [
 ] as const
 
 const ECOSYSTEM_NODES = [
-  { id: "ray", name: "RAY", active: true },
+  { id: "ray", name: "RAY Markets", active: true },
   { id: "humura", name: "Humura", active: false },
   { id: "more", name: null, active: false },
 ] as const
@@ -115,7 +115,7 @@ export default function ProductsPage({
         </div>
       </section>
 
-      {/* ── RAY DETAIL ───────────────────────── */}
+      {/* ── RAY MARKETS DETAIL ───────────────────────── */}
       <section className="bg-white py-24" aria-labelledby="ray-heading">
         <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <MotionDiv>
@@ -152,6 +152,7 @@ export default function ProductsPage({
           <MotionDiv delay={0.15}>
             <div className="bg-navy rounded-3xl p-5 sm:p-6 shadow-[0_40px_80px_rgba(0,21,41,0.25)] max-w-[260px] sm:max-w-[300px] mx-auto w-full">
               <div className="flex justify-between items-center mb-4">
+                {/* Short form: this is the app's own header inside the mockup. */}
                 <span className="font-display text-xl font-extrabold text-white">RAY</span>
                 <span className="text-xs text-white/40">{t("mockupLocation")}</span>
               </div>
@@ -182,7 +183,7 @@ export default function ProductsPage({
         </div>
       </section>
 
-      {/* ── RAY FEATURES ─────────────────────── */}
+      {/* ── RAY MARKETS FEATURES ─────────────────────── */}
       <section className="bg-brand-bg py-20" aria-labelledby="ray-features-heading">
         <div className="container">
           <SectionHeader eyebrow={t("rayFeaturesEyebrow")} title={t("rayFeaturesTitle")} className="mb-12" />

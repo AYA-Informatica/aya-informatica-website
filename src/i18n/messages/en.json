@@ -6,7 +6,7 @@
     "description": "AYA Informatica RW is a Rwanda-based technology company building scalable digital platforms that connect people, businesses, and opportunities across Africa.",
     "ogDescription": "Rwanda-based technology company building scalable digital platforms across Africa. Product-first. Mobile-first. Built for the continent.",
     "twitterDescription": "Rwanda-based technology company building scalable digital platforms across Africa.",
-    "keywords": "AYA Informatica RW|AYA Informatica|Rwanda technology|digital platforms|Africa tech|RAY marketplace|Humura wellness|Kigali startup|mobile-first|African digital infrastructure"
+    "keywords": "AYA Informatica RW|AYA Informatica|Rwanda technology|digital platforms|Africa tech|RAY Markets|Humura wellness|Kigali startup|mobile-first|African digital infrastructure"
   },
   "nav": {
     "home": "Home",
@@ -61,7 +61,7 @@
     "brandLine1": "Building Africa's",
     "brandLine2": "Digital Future",
     "location": "Kigali, Rwanda",
-    "rayLabel": "RAY – Marketplace",
+    "rayLabel": "RAY Markets",
     "humuraLabel": "Humura – Wellness",
     "companyName": "AYA Informatica RW",
     "privacy": "Privacy Policy",
@@ -96,9 +96,9 @@
     "topicTagsTitle": "What can we help with?",
     "breadcrumb": "Contact",
     "metaTitle": "Contact",
-    "metaDescription": "Get in touch with AYA Informatica RW. Partner with us, get early access to RAY, or discuss a project.",
+    "metaDescription": "Get in touch with AYA Informatica RW. Partner with us, get early access to RAY Markets, or discuss a project.",
     "ogTitle": "Contact AYA Informatica RW – Let's Build Together",
-    "ogDescription": "Partner with us, get early access to RAY, discuss a service inquiry, or explore investment opportunities.",
+    "ogDescription": "Partner with us, get early access to RAY Markets, discuss a service inquiry, or explore investment opportunities.",
     "twitterTitle": "Contact AYA Informatica RW",
     "twitterDescription": "Partner with us or get in touch about our products and services.",
     "details": {
@@ -127,17 +127,17 @@
   "content": {
     "products": {
       "ray": {
-        "name": "RAY",
+        "name": "RAY Markets",
         "badge": "🔥 Flagship Platform",
         "tagline": "Rwanda's mobile-first marketplace for buying and selling.",
-        "description": "RAY is a mobile-first marketplace designed to simplify buying and selling in Rwanda, starting with phones and electronics. Built on trust, speed, and accessibility — RAY connects buyers and sellers directly and transparently.",
+        "description": "RAY Markets is a mobile-first marketplace designed to simplify buying and selling in Rwanda, starting with phones and electronics. Built on trust, speed, and accessibility — RAY Markets connects buyers and sellers directly and transparently.",
         "features": [
           "Post items quickly",
           "Connect directly with buyers or sellers",
           "Negotiate prices transparently",
           "Access a wider, more active market"
         ],
-        "cta": "Discover RAY"
+        "cta": "Discover RAY Markets"
       },
       "humura": {
         "name": "Humura",
@@ -196,7 +196,7 @@
     },
     "roadmap": {
       "launch": {
-        "title": "Launch & Scale RAY in Kigali",
+        "title": "Launch & Scale RAY Markets in Kigali",
         "desc": "Establish Rwanda's go-to mobile marketplace for phones and electronics."
       },
       "expand": {
@@ -251,7 +251,7 @@
         "role": "Tech Entrepreneur, Kigali"
       },
       "diane": {
-        "quote": "RAY is exactly what the market needed — a trustworthy, mobile-first platform that makes buying and selling simple and transparent.",
+        "quote": "RAY Markets is exactly what the market needed — a trustworthy, mobile-first platform that makes buying and selling simple and transparent.",
         "name": "Diane U.",
         "role": "Early Access User"
       },
@@ -277,7 +277,7 @@
     },
     "contactSubjects": {
       "partnership": "Partnership",
-      "ray-access": "RAY Early Access",
+      "ray-access": "RAY Markets Early Access",
       "humura": "Humura Platform",
       "services": "Service Inquiry",
       "investment": "Investment",
@@ -345,17 +345,17 @@
   "products": {
     "breadcrumb": "Products",
     "metaTitle": "Products",
-    "metaDescription": "Discover RAY, Rwanda's mobile-first marketplace, and Humura, our upcoming mental wellness platform. Platforms designed for real people.",
-    "ogTitle": "AYA Informatica RW Products – RAY Marketplace & Humura Wellness",
-    "ogDescription": "RAY: Rwanda's mobile-first marketplace for phones and electronics. Humura: mental wellness platform coming soon.",
-    "twitterTitle": "AYA Informatica RW Products – RAY & Humura",
-    "twitterDescription": "RAY: Rwanda's mobile-first marketplace. Humura: mental wellness platform coming soon.",
+    "metaDescription": "Discover RAY Markets, Rwanda's mobile-first marketplace, and Humura, our upcoming mental wellness platform. Platforms designed for real people.",
+    "ogTitle": "AYA Informatica RW Products – RAY Markets & Humura Wellness",
+    "ogDescription": "RAY Markets: Rwanda's mobile-first marketplace for phones and electronics. Humura: mental wellness platform coming soon.",
+    "twitterTitle": "AYA Informatica RW Products – RAY Markets & Humura",
+    "twitterDescription": "RAY Markets: Rwanda's mobile-first marketplace. Humura: mental wellness platform coming soon.",
     "eyebrow": "Our Products",
     "headline": "Platforms Designed",
     "headlineAccent": "for Real Life",
     "sub": "Each product is grounded in a real problem, designed for accessibility, and engineered to scale. We don't build apps — we build digital infrastructure.",
-    "rayIntro1": "RAY is a mobile-first marketplace designed to simplify buying and selling in Rwanda, starting with phones and electronics.",
-    "rayIntro2": "Built on trust, speed, and accessibility — RAY connects buyers and sellers directly and transparently. Our goal is to make RAY the default platform for everyday commerce in Rwanda.",
+    "rayIntro1": "RAY Markets is a mobile-first marketplace designed to simplify buying and selling in Rwanda, starting with phones and electronics.",
+    "rayIntro2": "Built on trust, speed, and accessibility — RAY Markets connects buyers and sellers directly and transparently. Our goal is to make RAY Markets the default platform for everyday commerce in Rwanda.",
     "rayPillars": {
       "trust": {
         "title": "Trust",
@@ -375,8 +375,8 @@
     "mockupSearch": "Search phones & electronics…",
     "mockupVerified": "Verified Seller",
     "mockupPostItem": "+ Post Item",
-    "rayFeaturesEyebrow": "RAY – Key Features",
-    "rayFeaturesTitle": "What Makes RAY Different",
+    "rayFeaturesEyebrow": "RAY Markets – Key Features",
+    "rayFeaturesTitle": "What Makes RAY Markets Different",
     "rayFeatures": {
       "quickListings": {
         "title": "Quick Listings",
@@ -415,7 +415,7 @@
     "ecosystemEyebrow": "The Vision",
     "ecosystemTitleLine1": "Building an Integrated",
     "ecosystemTitleLine2": "Digital Ecosystem",
-    "ecosystemDesc": "RAY and Humura are the first pieces of a larger vision — an interconnected ecosystem of platforms that power everyday African life.",
+    "ecosystemDesc": "RAY Markets and Humura are the first pieces of a larger vision — an interconnected ecosystem of platforms that power everyday African life.",
     "ecosystemBadge": "Ecosystem",
     "ecosystemNodes": {
       "ray": {
@@ -508,8 +508,8 @@
         "category": "Company"
       },
       "ray-marketplace-vision": {
-        "title": "RAY: Rethinking How Rwanda Trades",
-        "excerpt": "From fragmented WhatsApp groups to a unified marketplace — the story behind RAY and our vision for digital commerce in East Africa.",
+        "title": "RAY Markets: Rethinking How Rwanda Trades",
+        "excerpt": "From fragmented WhatsApp groups to a unified marketplace — the story behind RAY Markets and our vision for digital commerce in East Africa.",
         "category": "Product"
       },
       "mental-wellness-africa": {

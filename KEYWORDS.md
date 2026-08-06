@@ -45,8 +45,8 @@ because the site is new and under-crawled.
 |---|---|
 | `AYA Informatica RW` | `/` |
 | `AYA Informatica Rwanda` | `/` |
-| `RAY marketplace Rwanda` | `/products` |
-| `RAY app Rwanda` | `/products` |
+| `RAY Markets` | `/products` |
+| `RAY Markets app Rwanda` | `/products` |
 | `Humura app` | `/products` |
 | `Humura mental wellness` | `/products` |
 
@@ -70,9 +70,9 @@ purchase intent, moderate and *local* competition.
 competes with itself. One page per service, each targeting one query, is the
 single highest-value structural change on this list.
 
-### Tier 3 — RAY's actual market (long-tail, low competition, high intent)
+### Tier 3 — RAY Markets' actual market (long-tail, low competition, high intent)
 
-These are the people RAY exists for, at the moment they want it.
+These are the people RAY Markets exists for, at the moment they want it.
 
 | Query | Target page |
 |---|---|
@@ -83,7 +83,7 @@ These are the people RAY exists for, at the moment they want it.
 | `buy and sell phones Rwanda` | new |
 
 **Action:** each needs a page that genuinely answers the question. A guide
-titled "How to sell your phone safely in Kigali" that happens to end with RAY
+titled "How to sell your phone safely in Kigali" that happens to end with RAY Markets
 will outrank a product page for all of these.
 
 ### Tier 4 — Kinyarwanda (the most under-exploited advantage here)
@@ -126,7 +126,7 @@ added.
 |---|---|---|
 | `/` | AYA Informatica RW (brand) | fine |
 | `/about` | AYA Informatica RW team / Kigali | fine |
-| `/products` | RAY marketplace Rwanda | fine |
+| `/products` | RAY Markets (brand) | fine |
 | `/services` | software development company Kigali | **competes with itself** — three pillars, one page |
 | `/blog` | — | **no articles**; ranks for nothing |
 | `/contact` | — | not a ranking page, and that is correct |
@@ -146,7 +146,7 @@ added.
 4. **Get the Kinyarwanda copy reviewed**, then treat `/rw` as a real channel
    rather than a checkbox.
 5. **Build the first ten links** — Rwandan startup directories, Crunchbase,
-   local tech press, ProductHunt when RAY launches. Slowest lever, so start it
+   local tech press, ProductHunt when RAY Markets launches. Slowest lever, so start it
    early and in parallel.
 
 ---

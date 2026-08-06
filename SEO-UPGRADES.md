@@ -59,8 +59,8 @@ Keyword targeting lives in `KEYWORDS.md`.
 - No description uses a call-to-action or differentiator
 
 **Action items:**
-- Homepage: focus on brand promise + location — "AYA Informatica RW builds digital platforms from Kigali, Rwanda. Explore RAY marketplace and Humura wellness — mobile-first products for Africa."
-- Products: lead with product names — "RAY: Rwanda's mobile marketplace for phones & electronics. Humura: Africa's upcoming mental wellness platform. Try them today."
+- Homepage: focus on brand promise + location — "AYA Informatica RW builds digital platforms from Kigali, Rwanda. Explore RAY Markets marketplace and Humura wellness — mobile-first products for Africa."
+- Products: lead with product names — "RAY Markets: Rwanda's mobile marketplace for phones & electronics. Humura: Africa's upcoming mental wellness platform. Try them today."
 - Services: lead with value prop — "End-to-end platform development, intelligent systems, and custom software for businesses scaling across Africa. Based in Kigali."
 - About: focus on team/story — "Meet the team behind AYA Informatica RW. Founded in Kigali in 2024, we're builders, engineers, and thinkers creating Africa's digital infrastructure."
 - Contact: include response time — "Contact AYA Informatica RW — partnerships, early access, investment. Based in Kigali, Rwanda. We respond within 24 hours."
@@ -83,10 +83,10 @@ CLS). There are still no photographs, product screenshots or team images — the
 phone mockup on the products page is CSS.  
 
 **Action items:**
-- Add product screenshots (RAY app mockups, Humura wireframes)
+- Add product screenshots (RAY Markets app mockups, Humura wireframes)
 - Add team photos on about page
 - Use `next/Image` with descriptive `alt` text containing target keywords:
-  - `alt="RAY marketplace app showing phone listings in Kigali, Rwanda"`
+  - `alt="RAY Markets app showing phone listings in Kigali, Rwanda"`
   - `alt="AYA Informatica RW team in Kigali office"`
 - Add `width`/`height` to prevent CLS (Core Web Vitals)
 - Create WebP versions with PNG fallback
@@ -95,7 +95,7 @@ phone mockup on the products page is CSS.
 
 ## Tier 2 — Medium Impact
 
-### 5. Add `SoftwareApplication` JSON-LD for RAY
+### 5. Add `SoftwareApplication` JSON-LD for RAY Markets
 **Impact:** Enables rich results in Google for app searches  
 **Current state:** No product-specific structured data  
 
@@ -104,7 +104,7 @@ phone mockup on the products page is CSS.
   ```json
   {
     "@type": "SoftwareApplication",
-    "name": "RAY",
+    "name": "RAY Markets",
     "operatingSystem": "Android, iOS",
     "applicationCategory": "ShoppingApplication",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RWF" },
@@ -120,9 +120,9 @@ phone mockup on the products page is CSS.
 **Action items:**
 - Add an FAQ section to products page or a dedicated `/faq` page
 - Questions to target:
-  - "How does RAY work?"
-  - "Is RAY free to use?"
-  - "How do I sell on RAY?"
+  - "How does RAY Markets work?"
+  - "Is RAY Markets free to use?"
+  - "How do I sell on RAY Markets?"
   - "What is Humura?"
   - "Where is AYA Informatica RW based?"
 - Wrap in `FAQPage` + `Question` + `Answer` JSON-LD schema
@@ -229,7 +229,7 @@ English ones.
 **Current state:** No educational content  
 
 **Action items:**
-- "How to sell phones online in Rwanda" (targets RAY's market)
+- "How to sell phones online in Rwanda" (targets RAY Markets' market)
 - "Guide to digital commerce in East Africa"
 - "Mental wellness resources for African communities" (targets Humura's market)
 - These pages become link magnets and establish topical authority
@@ -264,7 +264,7 @@ English ones.
 - List AYA Informatica RW on Rwanda startup directories
 - Submit to African tech publication lists (e.g., Disrupt Africa, TechCabal)
 - Contribute guest posts to tech blogs with backlink to ayainformatica.tech
-- List on Crunchbase, AngelList, ProductHunt (when RAY launches)
+- List on Crunchbase, AngelList, ProductHunt (when RAY Markets launches)
 - Engage in Kigali tech community events for press coverage
 
 ---

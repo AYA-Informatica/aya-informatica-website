@@ -157,7 +157,7 @@ export async function sendContactEmail(
 
   const subjectLabels: Record<string, string> = {
     partnership:  "Partnership Enquiry",
-    "ray-access": "RAY Early Access Request",
+    "ray-access": "RAY Markets Early Access Request",
     humura:       "Humura Platform Enquiry",
     services:     "Service Inquiry",
     investment:   "Investment Enquiry",

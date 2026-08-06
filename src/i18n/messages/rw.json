@@ -6,7 +6,7 @@
     "description": "AYA Informatica RW ni ikigo cy'ikoranabuhanga gifite icyicaro mu Rwanda cyubaka imbuga za numerike zishobora gukura, zihuza abantu, ubucuruzi, n'amahirwe muri Afrika yose.",
     "ogDescription": "Ikigo cy'ikoranabuhanga gifite icyicaro mu Rwanda cyubaka imbuga za numerike muri Afrika. Ibicuruzwa mbere. Telefoni mbere. Cyubakiwe umugabane.",
     "twitterDescription": "Ikigo cy'ikoranabuhanga gifite icyicaro mu Rwanda cyubaka imbuga za numerike muri Afrika.",
-    "keywords": "AYA Informatica RW|AYA Informatica|ikoranabuhanga mu Rwanda|imbuga za numerike|ikoranabuhanga muri Afrika|isoko rya RAY|ubuzima bwo mu mutwe Humura|ikigo gishya i Kigali|telefoni mbere|ibikorwa remezo bya numerike muri Afrika"
+    "keywords": "AYA Informatica RW|AYA Informatica|ikoranabuhanga mu Rwanda|imbuga za numerike|ikoranabuhanga muri Afrika|RAY Markets|ubuzima bwo mu mutwe Humura|ikigo gishya i Kigali|telefoni mbere|ibikorwa remezo bya numerike muri Afrika"
   },
   "nav": {
     "home": "Ahabanza",
@@ -61,7 +61,7 @@
     "brandLine1": "Twubaka ejo hazaza",
     "brandLine2": "h'ikoranabuhanga rya Afrika",
     "location": "Kigali, u Rwanda",
-    "rayLabel": "RAY – Isoko",
+    "rayLabel": "RAY Markets",
     "humuraLabel": "Humura – Ubuzima bwo mu mutwe",
     "companyName": "AYA Informatica RW",
     "privacy": "Politiki y'ibanga",
@@ -96,9 +96,9 @@
     "topicTagsTitle": "Twagufasha iki?",
     "breadcrumb": "Twandikire",
     "metaTitle": "Twandikire",
-    "metaDescription": "Twandikire muri AYA Informatica RW. Dufatanye, ubone RAY hakiri kare, cyangwa uganire ku mushinga.",
+    "metaDescription": "Twandikire muri AYA Informatica RW. Dufatanye, ubone RAY Markets hakiri kare, cyangwa uganire ku mushinga.",
     "ogTitle": "Twandikire AYA Informatica RW – Twubake hamwe",
-    "ogDescription": "Dufatanye, ubone RAY hakiri kare, ubaze kuri serivisi, cyangwa urebe amahirwe yo gushora imari.",
+    "ogDescription": "Dufatanye, ubone RAY Markets hakiri kare, ubaze kuri serivisi, cyangwa urebe amahirwe yo gushora imari.",
     "twitterTitle": "Twandikire AYA Informatica RW",
     "twitterDescription": "Dufatanye cyangwa utwandikire ku bicuruzwa na serivisi zacu.",
     "details": {
@@ -127,17 +127,17 @@
   "content": {
     "products": {
       "ray": {
-        "name": "RAY",
+        "name": "RAY Markets",
         "badge": "🔥 Urubuga rw'ibanze",
         "tagline": "Isoko rya mbere kuri telefoni mu Rwanda ryo kugura no kugurisha.",
-        "description": "RAY ni isoko ryubatswe ryibanda kuri telefoni, ryagenewe koroshya kugura no kugurisha mu Rwanda, hatangirwa kuri telefoni n'ibikoresho by'ikoranabuhanga. Ryubakiye ku kwizerana, umuvuduko, no kuboneka — RAY rihuza abaguzi n'abagurisha ku buryo butaziguye kandi bugaragara.",
+        "description": "RAY Markets ni isoko ryubatswe ryibanda kuri telefoni, ryagenewe koroshya kugura no kugurisha mu Rwanda, hatangirwa kuri telefoni n'ibikoresho by'ikoranabuhanga. Ryubakiye ku kwizerana, umuvuduko, no kuboneka — RAY Markets rihuza abaguzi n'abagurisha ku buryo butaziguye kandi bugaragara.",
         "features": [
           "Shyiraho ibicuruzwa vuba",
           "Hura ku buryo butaziguye n'abaguzi cyangwa abagurisha",
           "Ganira ku biciro ku mucyo",
           "Gera ku isoko rigari kandi rikora cyane"
         ],
-        "cta": "Menya RAY"
+        "cta": "Menya RAY Markets"
       },
       "humura": {
         "name": "Humura",
@@ -196,7 +196,7 @@
     },
     "roadmap": {
       "launch": {
-        "title": "Gutangiza no kwagura RAY i Kigali",
+        "title": "Gutangiza no kwagura RAY Markets i Kigali",
         "desc": "Gushinga isoko rya telefoni rikomeye mu Rwanda kuri telefoni n'ibikoresho by'ikoranabuhanga."
       },
       "expand": {
@@ -251,7 +251,7 @@
         "role": "Rwiyemezamirimo w'ikoranabuhanga, Kigali"
       },
       "diane": {
-        "quote": "RAY ni cyo isoko ryari rikeneye — urubuga rwizewe, rwibanda kuri telefoni, rutuma kugura no kugurisha byoroha kandi bigaragara.",
+        "quote": "RAY Markets ni cyo isoko ryari rikeneye — urubuga rwizewe, rwibanda kuri telefoni, rutuma kugura no kugurisha byoroha kandi bigaragara.",
         "name": "Diane U.",
         "role": "Ukoresha wa mbere"
       },
@@ -277,7 +277,7 @@
     },
     "contactSubjects": {
       "partnership": "Ubufatanye",
-      "ray-access": "Kubona RAY hakiri kare",
+      "ray-access": "Kubona RAY Markets hakiri kare",
       "humura": "Urubuga Humura",
       "services": "Kubaza kuri serivisi",
       "investment": "Ishoramari",
@@ -345,17 +345,17 @@
   "products": {
     "breadcrumb": "Ibicuruzwa",
     "metaTitle": "Ibicuruzwa",
-    "metaDescription": "Menya RAY, isoko rya mbere kuri telefoni mu Rwanda, na Humura, urubuga rwacu ruzaza rw'ubuzima bwo mu mutwe. Imbuga zagenewe abantu nyabo.",
-    "ogTitle": "Ibicuruzwa bya AYA Informatica RW – Isoko RAY n'ubuzima Humura",
-    "ogDescription": "RAY: isoko rya mbere kuri telefoni mu Rwanda ku telefoni n'ibikoresho by'ikoranabuhanga. Humura: urubuga rw'ubuzima bwo mu mutwe ruraza.",
-    "twitterTitle": "Ibicuruzwa bya AYA Informatica RW – RAY na Humura",
-    "twitterDescription": "RAY: isoko rya mbere kuri telefoni mu Rwanda. Humura: urubuga rw'ubuzima bwo mu mutwe ruraza.",
+    "metaDescription": "Menya RAY Markets, isoko rya mbere kuri telefoni mu Rwanda, na Humura, urubuga rwacu ruzaza rw'ubuzima bwo mu mutwe. Imbuga zagenewe abantu nyabo.",
+    "ogTitle": "Ibicuruzwa bya AYA Informatica RW – RAY Markets n'ubuzima Humura",
+    "ogDescription": "RAY Markets: isoko rya mbere kuri telefoni mu Rwanda ku telefoni n'ibikoresho by'ikoranabuhanga. Humura: urubuga rw'ubuzima bwo mu mutwe ruraza.",
+    "twitterTitle": "Ibicuruzwa bya AYA Informatica RW – RAY Markets na Humura",
+    "twitterDescription": "RAY Markets: isoko rya mbere kuri telefoni mu Rwanda. Humura: urubuga rw'ubuzima bwo mu mutwe ruraza.",
     "eyebrow": "Ibicuruzwa byacu",
     "headline": "Imbuga zagenewe",
     "headlineAccent": "ubuzima nyabwo",
     "sub": "Buri gicuruzwa gishingiye ku kibazo nyacyo, cyagenewe kuboneka ku bose, kandi cyubatswe kugira ngo gikure. Ntitwubaka porogaramu gusa — twubaka ibikorwa remezo bya numerike.",
-    "rayIntro1": "RAY ni isoko ryibanda kuri telefoni, ryagenewe koroshya kugura no kugurisha mu Rwanda, hatangirwa kuri telefoni n'ibikoresho by'ikoranabuhanga.",
-    "rayIntro2": "Ryubakiye ku kwizerana, umuvuduko, no kuboneka — RAY rihuza abaguzi n'abagurisha ku buryo butaziguye kandi bugaragara. Intego yacu ni uko RAY riba urubuga rw'ibanze rw'ubucuruzi bwa buri munsi mu Rwanda.",
+    "rayIntro1": "RAY Markets ni isoko ryibanda kuri telefoni, ryagenewe koroshya kugura no kugurisha mu Rwanda, hatangirwa kuri telefoni n'ibikoresho by'ikoranabuhanga.",
+    "rayIntro2": "Ryubakiye ku kwizerana, umuvuduko, no kuboneka — RAY Markets rihuza abaguzi n'abagurisha ku buryo butaziguye kandi bugaragara. Intego yacu ni uko RAY Markets riba urubuga rw'ibanze rw'ubucuruzi bwa buri munsi mu Rwanda.",
     "rayPillars": {
       "trust": {
         "title": "Kwizerana",
@@ -370,13 +370,13 @@
         "desc": "Byihuse mu gushyiraho, guhura, no gusoza ubucuruzi."
       }
     },
-    "getEarlyAccess": "Bona RAY hakiri kare",
+    "getEarlyAccess": "Bona RAY Markets hakiri kare",
     "mockupLocation": "📍 Kigali",
     "mockupSearch": "Shakisha telefoni n'ibikoresho…",
     "mockupVerified": "Umugurisha wemejwe",
     "mockupPostItem": "+ Shyiraho igicuruzwa",
-    "rayFeaturesEyebrow": "RAY – Ibiranga by'ingenzi",
-    "rayFeaturesTitle": "Icyo RAY itandukaniyeho",
+    "rayFeaturesEyebrow": "RAY Markets – Ibiranga by'ingenzi",
+    "rayFeaturesTitle": "Icyo RAY Markets itandukaniyeho",
     "rayFeatures": {
       "quickListings": {
         "title": "Gushyiraho byihuse",
@@ -415,7 +415,7 @@
     "ecosystemEyebrow": "Icyerekezo",
     "ecosystemTitleLine1": "Kubaka urusobe rwa numerike",
     "ecosystemTitleLine2": "ruhuza byose",
-    "ecosystemDesc": "RAY na Humura ni ibice bya mbere by'icyerekezo kinini — urusobe rw'imbuga zihujwe zifasha ubuzima bwa buri munsi muri Afrika.",
+    "ecosystemDesc": "RAY Markets na Humura ni ibice bya mbere by'icyerekezo kinini — urusobe rw'imbuga zihujwe zifasha ubuzima bwa buri munsi muri Afrika.",
     "ecosystemBadge": "Urusobe",
     "ecosystemNodes": {
       "ray": {
@@ -508,8 +508,8 @@
         "category": "Ikigo"
       },
       "ray-marketplace-vision": {
-        "title": "RAY: Kongera gutekereza uko u Rwanda rucuruza",
-        "excerpt": "Kuva ku matsinda ya WhatsApp atatanye kugeza ku isoko rimwe rihuza — inkuru iri inyuma ya RAY n'icyerekezo cyacu ku bucuruzi bwa numerike muri Afrika y'Iburasirazuba.",
+        "title": "RAY Markets: Kongera gutekereza uko u Rwanda rucuruza",
+        "excerpt": "Kuva ku matsinda ya WhatsApp atatanye kugeza ku isoko rimwe rihuza — inkuru iri inyuma ya RAY Markets n'icyerekezo cyacu ku bucuruzi bwa numerike muri Afrika y'Iburasirazuba.",
         "category": "Igicuruzwa"
       },
       "mental-wellness-africa": {

@@ -16,9 +16,9 @@ are listed at the bottom so the history stays visible.
   page is honest about this — but it is still a section with no content.
 
 ### No product anyone can use
-- RAY and Humura are described at length, but there is no download, demo,
+- RAY Markets and Humura are described at length, but there is no download, demo,
   waitlist, or beta signup.
-- Every product CTA routes to `/contact`. A visitor who gets excited about RAY
+- Every product CTA routes to `/contact`. A visitor who gets excited about RAY Markets
   reaches a contact form, not a product.
 
 ### Fabricated testimonials
