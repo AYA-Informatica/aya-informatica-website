@@ -19,7 +19,16 @@ export function localeUrl(locale: string, path = "") {
   return `${BASE_URL}${prefix}${path}`
 }
 
-/** `{ en: "…", fr: "…", rw: "…" }` for a path — used for hreflang alternates. */
+/**
+ * `{ en, fr, rw, "x-default" }` for a path — used for hreflang alternates.
+ *
+ * `x-default` points at the default locale and is what Google serves when a
+ * visitor's language matches none of the alternates. Without it, unmatched
+ * users get whichever version Google guesses.
+ */
 export function localeAlternates(path = ""): Record<string, string> {
-  return Object.fromEntries(locales.map((l: Locale) => [l, localeUrl(l, path)]))
+  return {
+    ...Object.fromEntries(locales.map((l: Locale) => [l, localeUrl(l, path)])),
+    "x-default": localeUrl(routing.defaultLocale, path),
+  }
 }

@@ -10,7 +10,7 @@ import { CONTACT_INFO } from "@/lib/constants"
 import { Mail, Phone, MapPin } from "lucide-react"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
-import { localeUrl } from "@/lib/urls"
+import { localeAlternates, localeUrl } from "@/lib/urls"
 
 /** Presentation only — labels come from the `contact` message namespace. */
 const CLOSING_BADGES = [
@@ -26,12 +26,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "contact" })
-  const url = localeUrl(locale, "/contact")
+  const path = "/contact"
+  const url = localeUrl(locale, path)
 
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages: localeAlternates(path) },
     openGraph: {
       title: t("ogTitle"),
       description: t("ogDescription"),

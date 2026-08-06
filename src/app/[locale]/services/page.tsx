@@ -11,7 +11,7 @@ import { useServices } from "@/lib/content"
 import { cn } from "@/lib/utils"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
-import { localeUrl } from "@/lib/urls"
+import { localeAlternates, localeUrl } from "@/lib/urls"
 
 /** Ids for the process and differentiator sections — copy lives in messages. */
 const PROCESS_STEPS = [
@@ -30,12 +30,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "services" })
-  const url = localeUrl(locale, "/services")
+  const path = "/services"
+  const url = localeUrl(locale, path)
 
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages: localeAlternates(path) },
     openGraph: {
       title: t("ogTitle"),
       description: t("ogDescription"),

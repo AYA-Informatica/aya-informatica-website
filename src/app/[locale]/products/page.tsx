@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils"
 import { Logo } from "@/components/shared/logo"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
-import { localeUrl } from "@/lib/urls"
+import { localeAlternates, localeUrl } from "@/lib/urls"
 
 /** Ids and presentation only — copy lives in the `products` message namespace. */
 const RAY_FEATURE_IDS = [
@@ -58,12 +58,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "products" })
-  const url = localeUrl(locale, "/products")
+  const path = "/products"
+  const url = localeUrl(locale, path)
 
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages: localeAlternates(path) },
     openGraph: {
       title: t("ogTitle"),
       description: t("ogDescription"),

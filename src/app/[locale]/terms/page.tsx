@@ -4,7 +4,7 @@ import { use } from "react"
 import { useTranslations } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { LegalPage } from "@/components/shared/legal-page"
-import { localeUrl } from "@/lib/urls"
+import { localeAlternates, localeUrl } from "@/lib/urls"
 import { routing } from "@/i18n/routing"
 import TermsEn from "@/content/legal/terms.en.mdx"
 import TermsFr from "@/content/legal/terms.fr.mdx"
@@ -34,7 +34,10 @@ export async function generateMetadata({
     title: t("termsTitle"),
     description: t("termsDescription"),
     robots: { index: true, follow: true },
-    alternates: { canonical: localeUrl(locale, "/terms") },
+    alternates: {
+      canonical: localeUrl(locale, "/terms"),
+      languages: localeAlternates("/terms"),
+    },
   }
 }
 

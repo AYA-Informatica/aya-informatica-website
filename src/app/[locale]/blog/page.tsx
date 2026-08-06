@@ -9,7 +9,7 @@ import { MotionDiv, MotionList, MotionItem } from "@/components/shared/motion-di
 import { Logo } from "@/components/shared/logo"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { BreadcrumbJsonLd } from "@/components/shared/json-ld"
-import { localeUrl } from "@/lib/urls"
+import { localeAlternates, localeUrl } from "@/lib/urls"
 
 /**
  * Post metadata. Titles, excerpts and category labels live in the `blog`
@@ -29,12 +29,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: "blog" })
-  const url = localeUrl(locale, "/blog")
+  const path = "/blog"
+  const url = localeUrl(locale, path)
 
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages: localeAlternates(path) },
     openGraph: {
       title: t("ogTitle"),
       description: t("ogDescription"),
