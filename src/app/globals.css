@@ -24,12 +24,30 @@
 
     --content:             26  26  26;  /* body           (#1A1A1A) */
     --content-strong:       0  21  41;  /* headings       (#001529) */
-    --content-muted:      160 160 160;  /* secondary      (#A0A0A0) */
+    --content-muted:       95 107 122;  /* secondary      (#5F6B7A) — 4.98:1, AA */
     --content-on-inverse: 255 255 255;  /* text on navy   (#FFFFFF) */
 
     --border-subtle:      232 232 232;  /* dividers       (#E8E8E8) */
-    --brand-accent:        10 132 255;  /* actions        (#0A84FF) */
-    --brand-accent-hover:   0 102 204;  /* hover          (#0066CC) */
+    /* #0A84FF was 3.35:1 on the page and 3.65:1 under white button labels —
+       both under AA. #0066CC clears it at 5.10:1 and 5.56:1. */
+    --brand-accent:         0 102 204;  /* actions        (#0066CC) */
+    --brand-accent-hover:   0  82 163;  /* hover          (#0052A3) */
+
+    /* No single blue clears 4.5:1 against both #FFFFFF and the #001529 bands:
+       the first caps luminance at 0.183, the second floors it at 0.206. So the
+       accent has a band variant, identical in both themes — the bands do not
+       change colour, so neither does the text on them. */
+    --brand-accent-on-inverse: 59 155 255;  /*          (#3B9BFF) — 6.43:1 */
+
+    /* The foreground for anything filled with --brand-accent. It cannot just be
+       white: the accent lightens in dark mode, where white on it is 2.87:1. */
+    --accent-contrast:    255 255 255;  /* on accent      (#FFFFFF) — 5.57:1 */
+
+    /* Form controls need their own border. WCAG 1.4.11 wants 3:1 for the
+       boundary that identifies a control, and --border-subtle is 1.23:1 against
+       the card the form sits on — correct for a divider, invisible for an input.
+       One value clears 3:1 on every surface in both themes. */
+    --border-control:     125 136 153;  /* controls       (#7D8899) — 3.59:1 */
 
     /* Card shadows are navy-tinted on light. Also the ring-offset colour, so a
        focus ring reads against the page rather than against assumed white. */
@@ -61,11 +79,15 @@
     --content-on-inverse: 255 255 255;  /* text on navy   (#FFFFFF) */
 
     --border-subtle:       58  70  86;  /* dividers       (#3A4656) */
-    /* Lifted from #0A84FF, which lands at 4.35:1 on the raised surface — just
-       under AA for normal text. #2E93FF clears it at 5.09:1 while staying close
-       to the brand blue. Hover lightens on dark rather than darkening. */
+    /* #0A84FF lands at 4.35:1 on the raised surface — just under AA. #3B9BFF
+       clears it while staying in the brand blue family, and doubles as the
+       band accent, since the bands are the same navy in both themes. Hover
+       lightens on dark rather than darkening. */
     --brand-accent:        59 155 255;  /* actions        (#3B9BFF) — 4.59:1 on cards, AA */
     --brand-accent-hover:  109 184 255; /* hover          (#6DB8FF) */
+    --brand-accent-on-inverse: 59 155 255;
+    --accent-contrast:      0  21  41;  /* on accent      (#001529) — 6.43:1 */
+    --border-control:     125 136 153;  /* controls       (#7D8899) — 3.67:1 */
 
     /* Black, and stronger than light: against a slate base a black shadow
        reads properly, so cards can carry real elevation rather than relying on

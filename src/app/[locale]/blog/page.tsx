@@ -74,14 +74,14 @@ export default function BlogPage({
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
             >
               {t("headline")}<br />
-              <span className="text-accent">{t("headlineAccent")}</span>
+              <span className="text-accent-on-inverse">{t("headlineAccent")}</span>
             </h1>
           </MotionDiv>
           <MotionDiv delay={0.2}>
             <p className="text-white/60 text-lg max-w-xl leading-relaxed">
               {t("sub")}
             </p>
-            <p className="text-white/40 text-sm max-w-xl leading-relaxed mt-4">
+            <p className="text-white/60 text-sm max-w-xl leading-relaxed mt-4">
               {t("note")}
             </p>
           </MotionDiv>

@@ -65,12 +65,12 @@ export default function HomePage({
         <div
           aria-hidden="true"
           className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(10,132,255,0.1) 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(59,155,255,0.1) 0%, transparent 70%)" }}
         />
         <div
           aria-hidden="true"
           className="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(10,132,255,0.06) 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(59,155,255,0.06) 0%, transparent 70%)" }}
         />
 
         <div className="container relative z-10 py-12 sm:py-16 md:py-20">
@@ -90,7 +90,7 @@ export default function HomePage({
               style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
             >
               {t("headline")}<br />
-              <span className="text-accent">{t("headlineAccent")}</span>
+              <span className="text-accent-on-inverse">{t("headlineAccent")}</span>
             </h1>
           </MotionDiv>
 
@@ -291,7 +291,7 @@ export default function HomePage({
             {testimonials.map((item) => (
               <MotionItem key={item.id}>
                 <div className="bg-white/5 border border-white/8 rounded-2xl p-7 h-full flex flex-col">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-accent mb-4 shrink-0" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-accent-on-inverse mb-4 shrink-0" aria-hidden="true">
                     <path d="M11 7H7a4 4 0 0 0-4 4v1a3 3 0 0 0 3 3h1a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2H5.5A2.5 2.5 0 0 1 8 7.5V7h3V7ZM21 7h-4a4 4 0 0 0-4 4v1a3 3 0 0 0 3 3h1a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1.5A2.5 2.5 0 0 1 18 7.5V7h3V7Z" fill="currentColor" />
                   </svg>
                   <blockquote className="text-sm text-white/70 leading-relaxed mb-5 flex-1">
@@ -299,7 +299,7 @@ export default function HomePage({
                   </blockquote>
                   <div>
                     <div className="font-display font-semibold text-sm text-white">{item.name}</div>
-                    <div className="text-xs text-white/40">{item.role}</div>
+                    <div className="text-xs text-white/60">{item.role}</div>
                   </div>
                 </div>
               </MotionItem>

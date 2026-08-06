@@ -32,10 +32,12 @@ export function Logo({
   alt = "AYA Informatica RW",
 }: {
   /**
-   * `white` for the always-dark surfaces (header, footer, ecosystem hub),
-   * `navy` to force the dark artwork, `auto` to follow the theme.
+   * `white` for the always-dark surfaces (header, footer), `navy` to force the
+   * dark artwork, `auto` to follow the theme, `on-accent` for accent-filled
+   * shapes — the accent is dark in light mode and light in dark mode, so the
+   * mark has to run opposite to `auto`.
    */
-  variant?: "navy" | "white" | "auto"
+  variant?: "navy" | "white" | "auto" | "on-accent"
   className?: string
   /** Set on the header instance — it is usually the LCP element. */
   priority?: boolean
@@ -50,9 +52,14 @@ export function Logo({
     className: cn("w-auto object-contain", className),
   }
 
-  if (variant !== "auto") {
+  if (variant === "navy" || variant === "white") {
     return <Image src={variant === "white" ? logoWhite : logoNavy} alt={alt} {...common} />
   }
+
+  // `auto` shows navy on the light page and white on the dark one. `on-accent`
+  // is the same swap reversed, because the accent runs the other way.
+  const [first, second] =
+    variant === "on-accent" ? [logoWhite, logoNavy] : [logoNavy, logoWhite]
 
   // Swapped in CSS rather than by reading the theme in JS. `useTheme` is
   // unresolved on the server, so a JS swap would either render the wrong mark
@@ -62,14 +69,14 @@ export function Logo({
   return (
     <>
       <Image
-        src={logoNavy}
+        src={first}
         alt={alt}
         {...common}
         className={cn(common.className, "dark:hidden")}
       />
       {/* The paired copy is decorative — the one above carries the name. */}
       <Image
-        src={logoWhite}
+        src={second}
         alt=""
         aria-hidden="true"
         {...common}

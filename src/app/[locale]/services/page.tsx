@@ -75,7 +75,7 @@ export default function ServicesPage({
             <h1 className="font-display font-bold text-white leading-tight mt-3 mb-5"
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
             >
-              {t("headline")}<br /><span className="text-accent">{t("headlineAccent")}</span>
+              {t("headline")}<br /><span className="text-accent-on-inverse">{t("headlineAccent")}</span>
             </h1>
           </MotionDiv>
           <MotionDiv delay={0.2}>
@@ -111,7 +111,7 @@ export default function ServicesPage({
 
             <MotionDiv delay={0.15}>
               <div className={cn("rounded-2xl p-7", i % 2 === 0 ? "bg-surface-inverse" : "bg-surface-raised border border-border-subtle")}>
-                <h3 className={cn("text-xs font-semibold uppercase tracking-[0.1em] mb-5", i % 2 === 0 ? "text-white/40" : "text-content-muted")}>
+                <h3 className={cn("text-xs font-semibold uppercase tracking-[0.1em] mb-5", i % 2 === 0 ? "text-white/60" : "text-content-muted")}>
                   {t("whatThisIncludes")}
                 </h3>
                 <ul className="flex flex-col gap-4">

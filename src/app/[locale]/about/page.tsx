@@ -105,7 +105,7 @@ export default function AboutPage({
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
             >
               {t("headline")}<br />
-              <span className="text-accent">{t("headlineAccent")}</span>
+              <span className="text-accent-on-inverse">{t("headlineAccent")}</span>
             </h1>
           </MotionDiv>
           <MotionDiv delay={0.2}>
@@ -137,7 +137,7 @@ export default function AboutPage({
                 {overviewStats.map((s) => (
                   <div key={s.id} className="p-6 odd:border-r odd:border-white/6">
                     <div className="font-display text-3xl font-extrabold text-white mb-1">{s.value}</div>
-                    <div className="text-xs text-white/40 leading-snug">{s.label}</div>
+                    <div className="text-xs text-white/60 leading-snug">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -220,7 +220,7 @@ export default function AboutPage({
                     {item.step}
                   </div>
                   <h3 className="font-display font-semibold text-sm text-white mb-2 leading-snug">{item.title}</h3>
-                  <p className="text-xs text-white/45 leading-relaxed">{item.desc}</p>
+                  <p className="text-xs text-white/65 leading-relaxed">{item.desc}</p>
                 </div>
               </MotionItem>
             ))}

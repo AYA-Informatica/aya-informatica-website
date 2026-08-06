@@ -46,7 +46,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             "px-1.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wider rounded transition-colors",
             l === locale
               ? "text-white bg-white/15"
-              : "text-white/45 hover:text-white hover:bg-white/10"
+              : "text-white/65 hover:text-white hover:bg-white/10"
           )}
         >
           {l}

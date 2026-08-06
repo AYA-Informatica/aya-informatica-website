@@ -219,7 +219,7 @@ export async function sendContactEmail(
 
         <!-- Subject banner -->
         <tr>
-          <td style="background:#0A84FF;padding:12px 32px;">
+          <td style="background:#0066CC;padding:12px 32px;">
             <p style="margin:0;font-size:13px;font-weight:600;color:#ffffff;">${safe.subjectLabel}</p>
           </td>
         </tr>
@@ -241,24 +241,24 @@ export async function sendContactEmail(
               </tr>
               <tr><td style="padding:6px 0;border-top:1px solid #E8E8E8;">
                 <span style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#A0A0A0;font-weight:600;">Email</span><br/>
-                <a href="mailto:${safe.email}" style="font-size:15px;color:#0A84FF;font-weight:500;text-decoration:none;">${safe.email}</a>
+                <a href="mailto:${safe.email}" style="font-size:15px;color:#0066CC;font-weight:500;text-decoration:none;">${safe.email}</a>
               </td></tr>
               ${data.phone ? `<tr><td style="padding:6px 0;border-top:1px solid #E8E8E8;">
                 <span style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#A0A0A0;font-weight:600;">Phone</span><br/>
-                <a href="tel:${safe.phone}" style="font-size:15px;color:#0A84FF;font-weight:500;text-decoration:none;">${safe.phone}</a>
+                <a href="tel:${safe.phone}" style="font-size:15px;color:#0066CC;font-weight:500;text-decoration:none;">${safe.phone}</a>
               </td></tr>` : ""}
             </table>
 
             <!-- Message -->
             <p style="margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#A0A0A0;font-weight:600;">Message</p>
-            <div style="background:#F5F5F5;border-left:3px solid #0A84FF;border-radius:0 8px 8px 0;padding:16px 20px;">
+            <div style="background:#F5F5F5;border-left:3px solid #0066CC;border-radius:0 8px 8px 0;padding:16px 20px;">
               <p style="margin:0;font-size:14px;color:#1A1A1A;line-height:1.75;white-space:pre-wrap;">${escapeHtml(data.message)}</p>
             </div>
 
             <!-- Reply CTA -->
             <div style="margin-top:28px;text-align:center;">
               <a href="mailto:${safe.email}?subject=${safe.replySubject}"
-                 style="display:inline-block;background:#0A84FF;color:#ffffff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:8px;text-decoration:none;">
+                 style="display:inline-block;background:#0066CC;color:#ffffff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:8px;text-decoration:none;">
                 Reply to ${safe.firstName}
               </a>
             </div>
@@ -336,7 +336,7 @@ export async function sendContactEmail(
               We typically respond within <strong style="color:#001529;">24 hours</strong>. In the meantime, feel free to explore our website for more information.
             </p>
             <div style="text-align:center;">
-              <a href="https://ayainformatica.tech" style="display:inline-block;background:#0A84FF;color:#ffffff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:8px;text-decoration:none;">
+              <a href="https://ayainformatica.tech" style="display:inline-block;background:#0066CC;color:#ffffff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:8px;text-decoration:none;">
                 Visit Our Website
               </a>
             </div>

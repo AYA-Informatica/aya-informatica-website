@@ -43,7 +43,7 @@ export default function Error({
           <button
             type="button"
             onClick={reset}
-            className="inline-flex items-center justify-center h-11 px-6 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-hover transition-colors"
+            className="inline-flex items-center justify-center h-11 px-6 bg-accent text-on-accent text-sm font-semibold rounded-lg hover:bg-accent-hover transition-colors"
           >
             {t("tryAgain")}
           </button>

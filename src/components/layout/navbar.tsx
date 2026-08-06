@@ -47,7 +47,7 @@ export function Navbar() {
       {/* Skip link */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-accent focus:text-on-accent focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold"
       >
         {t("skipToContent")}
       </a>
@@ -181,7 +181,7 @@ export function Navbar() {
                         "block font-display text-[2rem] font-bold py-2 transition-colors",
                         pathname === href
                           ? "text-accent"
-                          : "text-white/40 hover:text-white"
+                          : "text-white/60 hover:text-white"
                       )}
                     >
                       {t(key)}

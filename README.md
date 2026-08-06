@@ -49,6 +49,7 @@ feature that needs them.
 | `npm run test:watch` | Vitest, watch mode |
 | `npm run test:coverage` | Coverage report |
 | `npm run verify:prerender` | Assert every localized route is prerendered |
+| `npm run screenshot` | Capture every section in both colour schemes (needs `npm start` running) |
 
 ## Project Structure
 
@@ -131,6 +132,22 @@ Colours are semantic tokens declared for `:root` and `.dark` in
 | `content` / `-strong` / `-muted` | body / headings / secondary text |
 | `content-on-inverse` | text on the navy bands |
 | `border-subtle` | dividers |
+| `border-control` | form-field boundaries |
+| `brand-accent` / `-hover` | links and fills on the page |
+| `brand-accent-on-inverse` | accent text on the navy bands |
+| `accent-contrast` | the label colour on an accent fill |
+
+Three of those exist because one value cannot cover both themes:
+
+- **`brand-accent-on-inverse`.** No blue clears 4.5:1 against both `#FFFFFF`
+  and the `#001529` bands — the first caps luminance at 0.183, the second
+  floors it at 0.206. Accent text on a band uses `text-accent-on-inverse`.
+- **`accent-contrast`.** The accent is dark in light mode and light in dark
+  mode, so a fixed white label fails in one of them (`bg-accent text-white` is
+  2.87:1 in dark). Accent fills take `text-on-accent`.
+- **`border-control`.** `border-subtle` is 1.23:1 against the card a form sits
+  on — right for a divider, invisible for an input. WCAG 1.4.11 wants 3:1 on
+  the boundary that identifies a control.
 
 `surface-inverse` stays dark in **both** themes. The navy bands are the brand,
 and holding them fixed is what allows the roughly ninety `text-white/*` usages
@@ -147,7 +164,12 @@ Two rules when adding styles:
 
 `theme-tokens.test.ts` enforces both, and that the two blocks define the same
 set of tokens — a token added to `:root` but forgotten in `.dark` fails nothing
-at build time and simply renders unreadably.
+at build time and simply renders unreadably. It also computes the contrast of
+every pair the markup renders, in both themes, and fails below WCAG AA, so a
+palette change cannot quietly make text unreadable.
+
+`npm run screenshot` captures every section in both schemes against a running
+production build, for visual review.
 
 ## Routing and Locales
 
@@ -205,7 +227,7 @@ Turnstile.
 npm test
 ```
 
-92 tests covering the Zod schema (including sanitization ordering), the mailer
+95 tests covering the Zod schema (including sanitization ordering), the mailer
 (HTML escaping, header injection, transport pooling), Turnstile (timeouts and
 fail-open behaviour), the contact route handler, the CSP, message-catalogue
 parity, and the theme tokens.

@@ -38,6 +38,9 @@ const config: Config = {
           "on-inverse": "rgb(var(--content-on-inverse) / <alpha-value>)",
         },
         "border-subtle": "rgb(var(--border-subtle) / <alpha-value>)",
+        // Form controls only. WCAG 1.4.11 wants 3:1 for a boundary that
+        // identifies a control; border-subtle is a divider and is far softer.
+        "border-control": "rgb(var(--border-control) / <alpha-value>)",
         // `ring-offset-background` is used by the form controls and the button.
         // Tailwind never generated it because no `background` colour existed,
         // so the focus ring had no offset colour and fell back to white — a
@@ -55,10 +58,16 @@ const config: Config = {
         },
         // Token-backed: the accent had been left as a literal, so it did not
         // change between themes and sat at 4.35:1 on the dark raised surface.
+        // Paired foreground for accent-filled surfaces. Never `text-white` on
+        // `bg-accent`: the accent lightens in dark mode, where white is 2.87:1.
+        "on-accent": "rgb(var(--accent-contrast) / <alpha-value>)",
         accent: {
           DEFAULT: "rgb(var(--brand-accent) / <alpha-value>)",
           hover: "rgb(var(--brand-accent-hover) / <alpha-value>)",
           light: "rgb(var(--brand-accent) / 0.12)",
+          // For accent text sitting on the navy bands, where the page accent
+          // is too dark to reach AA.
+          "on-inverse": "rgb(var(--brand-accent-on-inverse) / <alpha-value>)",
         },
         brand: {
           bg: "#F5F5F5",
@@ -138,7 +147,7 @@ const config: Config = {
         // tinted shadow would vanish.
         card: "0 1px 3px rgb(var(--shadow-rgb) / var(--shadow-strength)), 0 4px 16px rgb(var(--shadow-rgb) / var(--shadow-strength))",
         "card-hover": "0 8px 32px rgb(var(--shadow-rgb) / calc(var(--shadow-strength) * 2))",
-        accent: "0 8px 24px rgba(10,132,255,0.35)",
+        accent: "0 8px 24px rgb(var(--brand-accent) / 0.35)",
       },
     },
   },

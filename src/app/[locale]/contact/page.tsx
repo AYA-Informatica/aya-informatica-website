@@ -77,7 +77,7 @@ export default function ContactPage({
             <h1 className="font-display font-bold text-white leading-tight mt-3 mb-5"
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
             >
-              {t("headline")}<br /><span className="text-accent">{t("headlineAccent")}</span>
+              {t("headline")}<br /><span className="text-accent-on-inverse">{t("headlineAccent")}</span>
             </h1>
           </MotionDiv>
           <MotionDiv delay={0.2}>

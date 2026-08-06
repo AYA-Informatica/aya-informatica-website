@@ -104,7 +104,7 @@ export default function ProductsPage({
             <h1 className="font-display font-bold text-white leading-tight mt-3 mb-5"
               style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
             >
-              {t("headline")}<br /><span className="text-accent">{t("headlineAccent")}</span>
+              {t("headline")}<br /><span className="text-accent-on-inverse">{t("headlineAccent")}</span>
             </h1>
           </MotionDiv>
           <MotionDiv delay={0.2}>
@@ -154,14 +154,14 @@ export default function ProductsPage({
               <div className="flex justify-between items-center mb-4">
                 {/* Short form: this is the app's own header inside the mockup. */}
                 <span className="font-display text-xl font-extrabold text-white">RAY</span>
-                <span className="text-xs text-white/40">{t("mockupLocation")}</span>
+                <span className="text-xs text-white/60">{t("mockupLocation")}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/7 rounded-lg px-3 py-2.5 mb-4">
-                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" className="text-white/40" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" className="text-white/60" aria-hidden="true">
                   <circle cx="6" cy="6" r="4" stroke="currentColor" strokeWidth="1.5"/>
                   <path d="M9 9l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
-                <span className="text-xs text-white/35">{t("mockupSearch")}</span>
+                <span className="text-xs text-white/55">{t("mockupSearch")}</span>
               </div>
               <div className="flex flex-col gap-2 mb-3">
                 {MOCKUP_LISTINGS.map((item) => (
@@ -169,13 +169,13 @@ export default function ProductsPage({
                     <div className="w-9 h-9 rounded-md bg-gradient-to-br from-accent/30 to-white/10 shrink-0" />
                     <div>
                       <div className="text-xs font-semibold text-white">{item.name}</div>
-                      <div className="text-[0.65rem] text-accent">{item.price}</div>
-                      <div className="text-[0.6rem] text-white/35">{t("mockupVerified")}</div>
+                      <div className="text-[0.65rem] text-accent-on-inverse">{item.price}</div>
+                      <div className="text-[0.6rem] text-white/55">{t("mockupVerified")}</div>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="bg-accent rounded-lg py-2.5 text-center text-xs font-semibold text-white">
+              <div className="bg-accent rounded-lg py-2.5 text-center text-xs font-semibold text-on-accent">
                 {t("mockupPostItem")}
               </div>
             </div>
@@ -276,9 +276,9 @@ export default function ProductsPage({
           <MotionDiv>
             <div className="flex flex-col items-center gap-6">
               <div className="w-24 h-24 rounded-full bg-accent flex flex-col items-center justify-center
-                shadow-[0_0_60px_rgba(10,132,255,0.3)]">
-                <Logo variant="white" alt="" className="h-7" />
-                <span className="text-[0.55rem] text-white/65 uppercase tracking-wider mt-1">{t("ecosystemBadge")}</span>
+                shadow-[0_0_60px_rgb(var(--brand-accent)/0.3)]">
+                <Logo variant="on-accent" alt="" className="h-7" />
+                <span className="text-[0.55rem] text-on-accent/75 uppercase tracking-wider mt-1">{t("ecosystemBadge")}</span>
               </div>
               <div className="flex flex-wrap gap-2 sm:gap-3 justify-center px-4">
                 {ECOSYSTEM_NODES.map((node) => (
@@ -294,7 +294,7 @@ export default function ProductsPage({
                     <span className="font-display font-bold text-white text-sm">
                       {node.name ?? t("ecosystemNodes.more.name")}
                     </span>
-                    <span className="text-[0.65rem] text-white/40 uppercase tracking-wider">
+                    <span className="text-[0.65rem] text-white/60 uppercase tracking-wider">
                       {t(`ecosystemNodes.${node.id}.desc`)}
                     </span>
                   </div>

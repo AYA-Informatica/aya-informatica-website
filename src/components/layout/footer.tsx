@@ -96,15 +96,15 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 pt-6 flex-wrap">
-          <p className="text-xs text-white/45">
+          <p className="text-xs text-white/65">
             &copy; {year} {t("companyName")}. {t("rights")}
           </p>
           <div className="flex items-center gap-4">
-            <Link href="/privacy" className="text-xs text-white/45 hover:text-white/60 transition-colors">
+            <Link href="/privacy" className="text-xs text-white/65 hover:text-white/60 transition-colors">
               {t("privacy")}
             </Link>
-            <span className="text-white/35 text-xs">·</span>
-            <Link href="/terms" className="text-xs text-white/45 hover:text-white/60 transition-colors">
+            <span className="text-white/55 text-xs">·</span>
+            <Link href="/terms" className="text-xs text-white/65 hover:text-white/60 transition-colors">
               {t("terms")}
             </Link>
           </div>
