@@ -68,7 +68,7 @@ export default function ContactPage({
     <PageWrapper>
       <BreadcrumbJsonLd items={[{ name: t("breadcrumb"), href: "/contact" }]} />
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
+      <section className="relative bg-surface-inverse py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
@@ -89,35 +89,35 @@ export default function ContactPage({
       </section>
 
       {/* ── MAIN CONTACT SECTION ─────────────── */}
-      <section className="bg-brand-bg py-24" aria-labelledby="contact-heading">
+      <section className="bg-surface py-24" aria-labelledby="contact-heading">
         <div className="container grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-8 lg:gap-14 items-start">
 
           {/* Sidebar info — on mobile, shows after the form via order */}
           <MotionDiv className="order-2 lg:order-1">
             <div className="lg:sticky lg:top-28">
-              <h2 id="contact-heading" className="font-display font-bold text-2xl text-navy mb-3">
+              <h2 id="contact-heading" className="font-display font-bold text-2xl text-content-strong mb-3">
                 {t("getInTouch")}
               </h2>
-              <p className="text-sm text-brand-gray leading-relaxed mb-8">
+              <p className="text-sm text-content-muted leading-relaxed mb-8">
                 {t("basedIn")}
               </p>
 
               <div className="flex flex-col gap-5 mb-8">
                 {details.map((item) => (
                   <div key={item.id} className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-navy/8 text-navy flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-lg bg-content/8 text-content-strong flex items-center justify-center shrink-0">
                       {item.icon}
                     </div>
                     <div>
-                      <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-brand-gray mb-0.5">
+                      <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-content-muted mb-0.5">
                         {t(`details.${item.id}`)}
                       </span>
                       {item.href ? (
-                        <a href={item.href} className="text-sm font-medium text-brand-dark hover:text-accent transition-colors">
+                        <a href={item.href} className="text-sm font-medium text-content hover:text-accent transition-colors">
                           {item.value}
                         </a>
                       ) : (
-                        <span className="text-sm font-medium text-brand-dark">{item.value}</span>
+                        <span className="text-sm font-medium text-content">{item.value}</span>
                       )}
                     </div>
                   </div>
@@ -139,7 +139,7 @@ export default function ContactPage({
       </section>
 
       {/* ── CLOSING ──────────────────────────── */}
-      <section className="bg-navy py-16">
+      <section className="bg-surface-inverse py-16">
         <div className="container">
           <MotionDiv>
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 flex-wrap">

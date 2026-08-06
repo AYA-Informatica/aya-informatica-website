@@ -98,12 +98,31 @@ const config: Config = {
         "pulse-dot": "pulse 2s ease-in-out infinite",
         "scroll-line": "scroll-line 2s ease-in-out infinite",
       },
+      // ── Opacity scale ───────────────────────────────────────
+      // Tailwind ships 0,5,10,15,20,…  Anything off that scale silently
+      // produces no rule at all: `bg-navy/8` compiled to nothing, so the icon
+      // containers using it have had no background. globals.css previously
+      // hand-wrote a few of these (/7, /8, /12, /97) to paper over it; the rest
+      // were simply dead. Declaring them here fixes both.
+      opacity: {
+        2: "0.02",
+        3: "0.03",
+        4: "0.04",
+        6: "0.06",
+        7: "0.07",
+        8: "0.08",
+        12: "0.12",
+        97: "0.97",
+      },
       // ── Spacing / Border Radius ─────────────────────────────
       borderRadius: {
         "4xl": "2rem",
       },
       // ── Box Shadows ─────────────────────────────────────────
       boxShadow: {
+        // Tinted with the navy brand. These read on light surfaces only — a
+        // dark-on-dark shadow is invisible, so dark mode leans on the token
+        // borders for separation rather than elevation.
         card: "0 1px 3px rgba(0,21,41,0.06), 0 4px 16px rgba(0,21,41,0.06)",
         "card-hover": "0 8px 32px rgba(0,21,41,0.12)",
         accent: "0 8px 24px rgba(10,132,255,0.35)",

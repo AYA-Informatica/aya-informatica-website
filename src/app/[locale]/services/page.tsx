@@ -66,7 +66,7 @@ export default function ServicesPage({
     <PageWrapper>
       <BreadcrumbJsonLd items={[{ name: t("breadcrumb"), href: "/services" }]} />
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
+      <section className="relative bg-surface-inverse py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
@@ -91,34 +91,34 @@ export default function ServicesPage({
         <section
           key={svc.id}
           id={`svc-${svc.id}`}
-          className={cn("py-20 border-b border-brand-gray-light scroll-mt-[calc(var(--navbar-height)+1rem)]", i % 2 === 0 ? "bg-white" : "bg-brand-bg")}
+          className={cn("py-20 border-b border-border-subtle scroll-mt-[calc(var(--navbar-height)+1rem)]", i % 2 === 0 ? "bg-surface-raised" : "bg-surface")}
           aria-labelledby={`svc-${svc.id}-heading`}
         >
           <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             <MotionDiv>
-              <div className="font-display text-5xl font-extrabold text-navy/6 leading-none mb-2 select-none" aria-hidden="true">
+              <div className="font-display text-5xl font-extrabold text-content-strong/6 leading-none mb-2 select-none" aria-hidden="true">
                 {svc.step}
               </div>
-              <h2 id={`svc-${svc.id}-heading`} className="font-display font-bold text-2xl sm:text-3xl text-navy mb-2">
+              <h2 id={`svc-${svc.id}-heading`} className="font-display font-bold text-2xl sm:text-3xl text-content-strong mb-2">
                 {svc.title}
               </h2>
               <p className="text-accent font-medium text-sm mb-4">{svc.tagline}</p>
-              <p className="text-brand-gray text-sm leading-relaxed mb-7">{svc.description}</p>
+              <p className="text-content-muted text-sm leading-relaxed mb-7">{svc.description}</p>
               <Button asChild size="default">
                 <Link href="/contact?subject=services">{t("discussProject")}</Link>
               </Button>
             </MotionDiv>
 
             <MotionDiv delay={0.15}>
-              <div className={cn("rounded-2xl p-7", i % 2 === 0 ? "bg-navy" : "bg-white border border-brand-gray-light")}>
-                <h3 className={cn("text-xs font-semibold uppercase tracking-[0.1em] mb-5", i % 2 === 0 ? "text-white/40" : "text-brand-gray")}>
+              <div className={cn("rounded-2xl p-7", i % 2 === 0 ? "bg-surface-inverse" : "bg-surface-raised border border-border-subtle")}>
+                <h3 className={cn("text-xs font-semibold uppercase tracking-[0.1em] mb-5", i % 2 === 0 ? "text-white/40" : "text-content-muted")}>
                   {t("whatThisIncludes")}
                 </h3>
                 <ul className="flex flex-col gap-4">
                   {svc.capabilities.map((cap) => (
                     <li key={cap} className="flex items-start gap-3">
                       <CheckCircle2 size={15} className="text-accent shrink-0 mt-0.5" />
-                      <span className={cn("text-sm leading-snug", i % 2 === 0 ? "text-white/70" : "text-brand-dark")}>
+                      <span className={cn("text-sm leading-snug", i % 2 === 0 ? "text-white/70" : "text-content")}>
                         {cap}
                       </span>
                     </li>
@@ -131,7 +131,7 @@ export default function ServicesPage({
       ))}
 
       {/* ── PROCESS ──────────────────────────── */}
-      <section className="bg-navy py-24">
+      <section className="bg-surface-inverse py-24">
         <div className="container">
           <SectionHeader eyebrow={t("processEyebrow")} title={t("processTitle")} light className="mb-14" />
           <MotionList className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -149,19 +149,19 @@ export default function ServicesPage({
       </section>
 
       {/* ── WHY AYA ──────────────────────────── */}
-      <section className="bg-brand-bg py-24">
+      <section className="bg-surface py-24">
         <div className="container">
           <SectionHeader eyebrow={t("whyEyebrow")} title={t("whyTitle")} className="mb-14" />
           <MotionList className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {WHY_ITEMS.map((id) => (
               <MotionItem key={id}>
-                <div className="flex items-start gap-4 bg-white rounded-xl p-6 border border-brand-gray-light hover:border-accent hover:-translate-y-0.5 transition-all duration-200">
+                <div className="flex items-start gap-4 bg-surface-raised rounded-xl p-6 border border-border-subtle hover:border-accent hover:-translate-y-0.5 transition-all duration-200">
                   <div className="w-9 h-9 rounded-lg bg-accent/10 text-accent flex items-center justify-center shrink-0">
                     <CheckCircle2 size={18} />
                   </div>
                   <div>
-                    <h4 className="font-display font-bold text-navy text-sm mb-1">{t(`why.${id}.title`)}</h4>
-                    <p className="text-xs text-brand-gray leading-relaxed">{t(`why.${id}.desc`)}</p>
+                    <h4 className="font-display font-bold text-content-strong text-sm mb-1">{t(`why.${id}.title`)}</h4>
+                    <p className="text-xs text-content-muted leading-relaxed">{t(`why.${id}.desc`)}</p>
                   </div>
                 </div>
               </MotionItem>
@@ -171,13 +171,13 @@ export default function ServicesPage({
       </section>
 
       {/* ── CTA ──────────────────────────────── */}
-      <section className="bg-white border-t border-brand-gray-light py-20">
+      <section className="bg-surface-raised border-t border-border-subtle py-20">
         <div className="container">
           <MotionDiv>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
               <div>
-                <h2 className="font-display font-bold text-2xl sm:text-3xl text-navy mb-2">{t("ctaTitle")}</h2>
-                <p className="text-brand-gray">{t("ctaDesc")}</p>
+                <h2 className="font-display font-bold text-2xl sm:text-3xl text-content-strong mb-2">{t("ctaTitle")}</h2>
+                <p className="text-content-muted">{t("ctaDesc")}</p>
               </div>
               <Button asChild size="lg"><Link href="/contact">{t("ctaButton")}</Link></Button>
             </div>

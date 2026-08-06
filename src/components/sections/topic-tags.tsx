@@ -18,7 +18,7 @@ export function TopicTags() {
 
   return (
     <div>
-      <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-brand-gray mb-3">
+      <h3 className="text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-content-muted mb-3">
         {t("topicTagsTitle")}
       </h3>
       <div className="flex flex-wrap gap-1.5">
@@ -27,7 +27,7 @@ export function TopicTags() {
             key={subject.value}
             type="button"
             onClick={() => handleClick(subject.value)}
-            className="text-[0.75rem] font-medium text-navy bg-white border border-brand-gray-light px-3 py-1 rounded-full hover:border-accent hover:bg-accent/5 hover:text-accent transition-colors cursor-pointer"
+            className="text-[0.75rem] font-medium text-content-strong bg-surface-raised border border-border-subtle px-3 py-1 rounded-full hover:border-accent hover:bg-accent/5 hover:text-accent transition-colors cursor-pointer"
           >
             {subject.label}
           </button>

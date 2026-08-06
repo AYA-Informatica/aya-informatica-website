@@ -61,7 +61,7 @@ export default function BlogPage({
     <PageWrapper>
       <BreadcrumbJsonLd items={[{ name: t("breadcrumb"), href: "/blog" }]} />
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
+      <section className="relative bg-surface-inverse py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
@@ -89,37 +89,37 @@ export default function BlogPage({
       </section>
 
       {/* ── POSTS ────────────────────────────── */}
-      <section className="bg-brand-bg py-24">
+      <section className="bg-surface py-24">
         <div className="container">
           <MotionList className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {POSTS.map((post) => (
               <MotionItem key={post.slug}>
-                <article className="bg-white rounded-2xl border border-brand-gray-light overflow-hidden h-full flex flex-col">
-                  <div className="h-48 bg-navy/5 flex items-center justify-center">
+                <article className="bg-surface-raised rounded-2xl border border-border-subtle overflow-hidden h-full flex flex-col">
+                  <div className="h-48 bg-content/5 flex items-center justify-center">
                     <Logo alt="" className="h-14 opacity-10" />
                   </div>
                   <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center gap-2 mb-3">
                       <Badge variant="navy" className="text-[0.6rem]">{t(`posts.${post.slug}.category`)}</Badge>
-                      <span className="text-[0.65rem] text-brand-gray">
+                      <span className="text-[0.65rem] text-content-muted">
                         {t("readTime", { minutes: post.readMinutes })}
                       </span>
                     </div>
-                    <h2 className="font-display font-bold text-lg text-navy mb-2">
+                    <h2 className="font-display font-bold text-lg text-content-strong mb-2">
                       {t(`posts.${post.slug}.title`)}
                     </h2>
-                    <p className="text-sm text-brand-gray leading-relaxed mb-4 flex-1">
+                    <p className="text-sm text-content-muted leading-relaxed mb-4 flex-1">
                       {t(`posts.${post.slug}.excerpt`)}
                     </p>
                     <div className="flex items-center justify-between">
-                      <time className="text-xs text-brand-gray" dateTime={post.date}>
+                      <time className="text-xs text-content-muted" dateTime={post.date}>
                         {format.dateTime(new Date(post.date), {
                           year: "numeric",
                           month: "long",
                           day: "numeric",
                         })}
                       </time>
-                      <span className="inline-flex items-center rounded-full bg-navy/5 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-brand-gray">
+                      <span className="inline-flex items-center rounded-full bg-content/5 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-content-muted">
                         {t("comingSoon")}
                       </span>
                     </div>
@@ -132,14 +132,14 @@ export default function BlogPage({
       </section>
 
       {/* ── CTA ──────────────────────────────── */}
-      <section className="bg-white border-t border-brand-gray-light py-20">
+      <section className="bg-surface-raised border-t border-border-subtle py-20">
         <div className="container">
           <MotionDiv>
             <div className="text-center max-w-lg mx-auto">
-              <h2 className="font-display font-bold text-2xl sm:text-3xl text-navy mb-4">
+              <h2 className="font-display font-bold text-2xl sm:text-3xl text-content-strong mb-4">
                 {t("ctaTitle")}
               </h2>
-              <p className="text-brand-gray mb-8">
+              <p className="text-content-muted mb-8">
                 {t("ctaDesc")}
               </p>
               <Button asChild size="lg">

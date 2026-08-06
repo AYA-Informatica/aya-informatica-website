@@ -28,9 +28,9 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-white border-brand-gray-light text-brand-dark",
-        success: "bg-white border-green-200 text-brand-dark",
-        destructive: "bg-white border-red-200 text-brand-dark",
+        default: "bg-surface-raised border-border-subtle text-content",
+        success: "bg-surface-raised border-green-200 text-content",
+        destructive: "bg-surface-raised border-red-200 text-content",
       },
     },
     defaultVariants: { variant: "default" },
@@ -57,7 +57,7 @@ const ToastAction = React.forwardRef<
   <ToastPrimitives.Action
     ref={ref}
     className={cn(
-      "inline-flex shrink-0 items-center justify-center rounded-md border border-brand-gray-light px-3 py-1.5 text-xs font-medium transition-colors hover:bg-brand-bg focus:outline-none focus:ring-2 focus:ring-accent",
+      "inline-flex shrink-0 items-center justify-center rounded-md border border-border-subtle px-3 py-1.5 text-xs font-medium transition-colors hover:bg-surface focus:outline-none focus:ring-2 focus:ring-accent",
       className
     )}
     {...props}
@@ -72,7 +72,7 @@ const ToastClose = React.forwardRef<
   <ToastPrimitives.Close
     ref={ref}
     className={cn(
-      "ml-auto shrink-0 rounded-md p-1 text-brand-gray hover:text-brand-dark focus:outline-none focus:ring-2 focus:ring-accent transition-colors",
+      "ml-auto shrink-0 rounded-md p-1 text-content-muted hover:text-content focus:outline-none focus:ring-2 focus:ring-accent transition-colors",
       className
     )}
     toast-close=""
@@ -89,7 +89,7 @@ const ToastTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Title
     ref={ref}
-    className={cn("text-sm font-semibold text-brand-dark", className)}
+    className={cn("text-sm font-semibold text-content", className)}
     {...props}
   />
 ))
@@ -101,7 +101,7 @@ const ToastDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Description
     ref={ref}
-    className={cn("text-xs text-brand-gray leading-relaxed", className)}
+    className={cn("text-xs text-content-muted leading-relaxed", className)}
     {...props}
   />
 ))

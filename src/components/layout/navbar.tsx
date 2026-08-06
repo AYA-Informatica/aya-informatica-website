@@ -56,7 +56,7 @@ export function Navbar() {
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-300",
           isSolid
-            ? "bg-navy/97 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.06)] py-3"
+            ? "bg-surface-inverse/97 backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.06)] py-3"
             : "bg-transparent py-5"
         )}
         role="banner"
@@ -159,7 +159,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-navy flex flex-col items-center justify-center"
+            className="fixed inset-0 z-40 bg-surface-inverse flex flex-col items-center justify-center"
           >
             <FocusLock returnFocus>
               <nav

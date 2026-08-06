@@ -25,7 +25,7 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="min-h-[60vh] flex items-center justify-center bg-brand-bg">
+    <div className="min-h-[60vh] flex items-center justify-center bg-surface">
       <div className="container py-20 flex flex-col items-center text-center max-w-md">
         <div className="w-14 h-14 rounded-full bg-red-50 border border-red-100 flex items-center justify-center mb-6">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -33,10 +33,10 @@ export default function Error({
             <path d="M12 7v5M12 16h.01" stroke="#ef4444" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </div>
-        <h2 className="font-display font-bold text-2xl text-navy mb-3">
+        <h2 className="font-display font-bold text-2xl text-content-strong mb-3">
           {t("errorTitle")}
         </h2>
-        <p className="text-sm text-brand-gray leading-relaxed mb-8">
+        <p className="text-sm text-content-muted leading-relaxed mb-8">
           {t("errorDesc")}
         </p>
         <div className="flex gap-3 flex-wrap justify-center">
@@ -49,7 +49,7 @@ export default function Error({
           </button>
           <Link
             href="/"
-            className="inline-flex items-center justify-center h-11 px-6 border-[1.5px] border-navy text-navy text-sm font-semibold rounded-lg hover:bg-navy hover:text-white transition-colors"
+            className="inline-flex items-center justify-center h-11 px-6 border-[1.5px] border-content-strong text-content-strong text-sm font-semibold rounded-lg hover:bg-surface-inverse hover:text-white transition-colors"
           >
             {t("goHome")}
           </Link>

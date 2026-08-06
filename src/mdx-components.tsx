@@ -10,17 +10,17 @@ import type { MDXComponents } from "mdx/types"
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h2: ({ children }) => (
-      <h2 className="font-display font-bold text-xl text-navy mt-10 mb-3 first:mt-0">
+      <h2 className="font-display font-bold text-xl text-content-strong mt-10 mb-3 first:mt-0">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="font-display font-semibold text-base text-navy mt-6 mb-2">
+      <h3 className="font-display font-semibold text-base text-content-strong mt-6 mb-2">
         {children}
       </h3>
     ),
     p: ({ children }) => (
-      <p className="text-sm text-brand-gray leading-relaxed mb-4">{children}</p>
+      <p className="text-sm text-content-muted leading-relaxed mb-4">{children}</p>
     ),
     ul: ({ children }) => (
       <ul className="flex flex-col gap-2 mb-4 pl-5 list-disc marker:text-accent">
@@ -33,17 +33,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </ol>
     ),
     li: ({ children }) => (
-      <li className="text-sm text-brand-gray leading-relaxed">{children}</li>
+      <li className="text-sm text-content-muted leading-relaxed">{children}</li>
     ),
     strong: ({ children }) => (
-      <strong className="font-semibold text-brand-dark">{children}</strong>
+      <strong className="font-semibold text-content">{children}</strong>
     ),
     a: ({ children, href }) => (
       <a href={href} className="text-accent hover:underline">
         {children}
       </a>
     ),
-    hr: () => <hr className="my-8 border-brand-gray-light" />,
+    hr: () => <hr className="my-8 border-border-subtle" />,
     ...components,
   }
 }

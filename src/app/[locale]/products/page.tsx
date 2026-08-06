@@ -95,7 +95,7 @@ export default function ProductsPage({
     <PageWrapper>
       <BreadcrumbJsonLd items={[{ name: t("breadcrumb"), href: "/products" }]} />
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
+      <section className="relative bg-surface-inverse py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
@@ -116,17 +116,17 @@ export default function ProductsPage({
       </section>
 
       {/* ── RAY MARKETS DETAIL ───────────────────────── */}
-      <section className="bg-white py-24" aria-labelledby="ray-heading">
+      <section className="bg-surface-raised py-24" aria-labelledby="ray-heading">
         <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <MotionDiv>
             <Badge className="mb-5">{ray.badge}</Badge>
-            <h2 id="ray-heading" className="font-display font-extrabold text-navy leading-none tracking-tight mb-3"
+            <h2 id="ray-heading" className="font-display font-extrabold text-content-strong leading-none tracking-tight mb-3"
               style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}
             >
               {ray.name}
             </h2>
             <p className="text-accent font-medium mb-4">{ray.tagline}</p>
-            <div className="space-y-3 text-brand-gray text-sm leading-relaxed mb-7">
+            <div className="space-y-3 text-content-muted text-sm leading-relaxed mb-7">
               <p>{t("rayIntro1")}</p>
               <p>{t("rayIntro2")}</p>
             </div>
@@ -134,11 +134,11 @@ export default function ProductsPage({
             {/* Three pillars */}
             <div className="flex flex-col gap-3 mb-7">
               {RAY_PILLARS.map((p) => (
-                <div key={p.id} className="flex items-start gap-4 p-4 bg-brand-bg rounded-xl border border-brand-gray-light hover:border-accent transition-colors">
-                  <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-lg shrink-0">{p.icon}</div>
+                <div key={p.id} className="flex items-start gap-4 p-4 bg-surface rounded-xl border border-border-subtle hover:border-accent transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-surface-raised flex items-center justify-center text-lg shrink-0">{p.icon}</div>
                   <div>
-                    <h4 className="font-display font-bold text-sm text-navy mb-0.5">{t(`rayPillars.${p.id}.title`)}</h4>
-                    <p className="text-xs text-brand-gray">{t(`rayPillars.${p.id}.desc`)}</p>
+                    <h4 className="font-display font-bold text-sm text-content-strong mb-0.5">{t(`rayPillars.${p.id}.title`)}</h4>
+                    <p className="text-xs text-content-muted">{t(`rayPillars.${p.id}.desc`)}</p>
                   </div>
                 </div>
               ))}
@@ -150,7 +150,7 @@ export default function ProductsPage({
 
           {/* Phone mockup */}
           <MotionDiv delay={0.15}>
-            <div className="bg-navy rounded-3xl p-5 sm:p-6 shadow-[0_40px_80px_rgba(0,21,41,0.25)] max-w-[260px] sm:max-w-[300px] mx-auto w-full">
+            <div className="bg-surface-inverse rounded-3xl p-5 sm:p-6 shadow-[0_40px_80px_rgba(0,21,41,0.25)] max-w-[260px] sm:max-w-[300px] mx-auto w-full">
               <div className="flex justify-between items-center mb-4">
                 {/* Short form: this is the app's own header inside the mockup. */}
                 <span className="font-display text-xl font-extrabold text-white">RAY</span>
@@ -184,17 +184,17 @@ export default function ProductsPage({
       </section>
 
       {/* ── RAY MARKETS FEATURES ─────────────────────── */}
-      <section className="bg-brand-bg py-20" aria-labelledby="ray-features-heading">
+      <section className="bg-surface py-20" aria-labelledby="ray-features-heading">
         <div className="container">
           <SectionHeader eyebrow={t("rayFeaturesEyebrow")} title={t("rayFeaturesTitle")} className="mb-12" />
           <MotionList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {RAY_FEATURE_IDS.map((id) => (
               <MotionItem key={id}>
-                <div className="bg-white rounded-xl p-6 border border-brand-gray-light
+                <div className="bg-surface-raised rounded-xl p-6 border border-border-subtle
                   relative overflow-hidden group hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200">
                   <div className="absolute top-0 left-0 w-0.5 h-0 bg-accent group-hover:h-full transition-all duration-300 rounded-bl" />
-                  <h4 className="font-display font-bold text-navy text-sm mb-2">{t(`rayFeatures.${id}.title`)}</h4>
-                  <p className="text-xs text-brand-gray leading-relaxed">{t(`rayFeatures.${id}.desc`)}</p>
+                  <h4 className="font-display font-bold text-content-strong text-sm mb-2">{t(`rayFeatures.${id}.title`)}</h4>
+                  <p className="text-xs text-content-muted leading-relaxed">{t(`rayFeatures.${id}.desc`)}</p>
                 </div>
               </MotionItem>
             ))}
@@ -203,7 +203,7 @@ export default function ProductsPage({
       </section>
 
       {/* ── HUMURA ───────────────────────────── */}
-      <section className="bg-brand-bg py-24" aria-labelledby="humura-heading">
+      <section className="bg-surface py-24" aria-labelledby="humura-heading">
         <div className="container grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Visual */}
           <MotionDiv>
@@ -211,14 +211,14 @@ export default function ProductsPage({
               {["100%", "70%", "40%"].map((size, i) => (
                 <div
                   key={size}
-                  className="absolute rounded-full border border-navy/8"
+                  className="absolute rounded-full border border-content/8"
                   style={{ width: size, height: size, background: i === 2 ? "rgba(0,21,41,0.03)" : "transparent" }}
                 />
               ))}
               <div className="flex flex-col items-center gap-1 z-10">
                 <span className="text-4xl">🧠</span>
-                <span className="font-display text-xl font-extrabold text-navy">{humura.name}</span>
-                <span className="text-xs text-brand-gray uppercase tracking-wider">{t("humuraVisualLabel")}</span>
+                <span className="font-display text-xl font-extrabold text-content-strong">{humura.name}</span>
+                <span className="text-xs text-content-muted uppercase tracking-wider">{t("humuraVisualLabel")}</span>
               </div>
               {HUMURA_TAGS.map((tag) => (
                 <span
@@ -234,18 +234,18 @@ export default function ProductsPage({
           {/* Text */}
           <MotionDiv delay={0.1}>
             <Badge variant="navy" className="mb-5">{humura.badge}</Badge>
-            <h2 id="humura-heading" className="font-display font-extrabold text-navy leading-none tracking-tight mb-3"
+            <h2 id="humura-heading" className="font-display font-extrabold text-content-strong leading-none tracking-tight mb-3"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
             >
               {humura.name}
             </h2>
             <p className="text-accent font-medium mb-4">{humura.tagline}</p>
-            <p className="text-brand-gray text-sm leading-relaxed mb-6">
+            <p className="text-content-muted text-sm leading-relaxed mb-6">
               {t("humuraBlurb")}
             </p>
             <ul className="flex flex-col gap-3 mb-7">
               {humura.features.map((f) => (
-                <li key={f} className="flex items-center gap-3 text-sm text-brand-dark">
+                <li key={f} className="flex items-center gap-3 text-sm text-content">
                   <CheckCircle2 size={16} className="text-accent shrink-0" />
                   {f}
                 </li>
@@ -259,7 +259,7 @@ export default function ProductsPage({
       </section>
 
       {/* ── ECOSYSTEM ────────────────────────── */}
-      <section className="bg-navy py-24">
+      <section className="bg-surface-inverse py-24">
         <div className="container">
           <SectionHeader
             eyebrow={t("ecosystemEyebrow")}
@@ -301,13 +301,13 @@ export default function ProductsPage({
       </section>
 
       {/* ── CTA ──────────────────────────────── */}
-      <section className="bg-white border-t border-brand-gray-light py-20">
+      <section className="bg-surface-raised border-t border-border-subtle py-20">
         <div className="container">
           <MotionDiv>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
               <div>
-                <h2 className="font-display font-bold text-2xl sm:text-3xl text-navy mb-2">{t("ctaTitle")}</h2>
-                <p className="text-brand-gray">{t("ctaDesc")}</p>
+                <h2 className="font-display font-bold text-2xl sm:text-3xl text-content-strong mb-2">{t("ctaTitle")}</h2>
+                <p className="text-content-muted">{t("ctaDesc")}</p>
               </div>
               <div className="flex gap-3 flex-wrap">
                 <Button asChild size="lg"><Link href="/contact">{t("ctaContact")}</Link></Button>

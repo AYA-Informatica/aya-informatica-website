@@ -11,7 +11,7 @@ export function ContactFormSkeleton({ label }: { label: string }) {
   return (
     <SkeletonRegion
       label={label}
-      className="bg-white rounded-2xl border border-brand-gray-light p-5 sm:p-7 md:p-9"
+      className="bg-surface-raised rounded-2xl border border-border-subtle p-5 sm:p-7 md:p-9"
     >
       {/* title + required-fields note */}
       <Skeleton className="h-6 w-48" />

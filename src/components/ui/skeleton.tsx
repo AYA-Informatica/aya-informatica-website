@@ -12,18 +12,18 @@ import { cn } from "@/lib/utils"
  */
 export function Skeleton({
   className,
-  dark = false,
+  onInverse = false,
 }: {
   className?: string
-  /** Use the light-on-navy treatment for the hero and other dark sections. */
-  dark?: boolean
+  /** Light-on-dark treatment, for placeholders sitting on the navy bands. */
+  onInverse?: boolean
 }) {
   return (
     <div
       aria-hidden="true"
       className={cn(
         "rounded-md motion-safe:animate-pulse",
-        dark ? "bg-white/10" : "bg-navy/8",
+        onInverse ? "bg-white/10" : "bg-content/8",
         className
       )}
     />

@@ -30,7 +30,7 @@ export function LegalPage({
   return (
     <PageWrapper>
       {/* ── HERO ─────────────────────────────── */}
-      <section className="bg-navy py-20 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+5rem)] relative overflow-hidden">
+      <section className="bg-surface-inverse py-20 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+5rem)] relative overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
           <span className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50 block mb-3">
@@ -49,11 +49,11 @@ export function LegalPage({
       </section>
 
       {/* ── CONTENT ──────────────────────────── */}
-      <div className="bg-white">
+      <div className="bg-surface-raised">
         <div className="container py-16 max-w-3xl">
           {!isDefaultLocale && (
             <div className="mb-10 rounded-xl border border-accent/30 bg-accent/5 px-5 py-4">
-              <p className="text-sm text-brand-dark leading-relaxed">
+              <p className="text-sm text-content leading-relaxed">
                 {t("translationNotice")}
               </p>
             </div>
@@ -61,7 +61,7 @@ export function LegalPage({
 
           <article lang={locale}>{children}</article>
 
-          <div className="flex flex-wrap gap-4 mt-12 pt-8 border-t border-brand-gray-light">
+          <div className="flex flex-wrap gap-4 mt-12 pt-8 border-t border-border-subtle">
             <Link href="/" className="text-sm font-semibold text-accent hover:underline">
               {t("backHome")}
             </Link>

@@ -93,7 +93,7 @@ export default function AboutPage({
     <PageWrapper>
       <BreadcrumbJsonLd items={[{ name: t("breadcrumb"), href: "/about" }]} />
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
+      <section className="relative bg-surface-inverse py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="absolute top-0 left-[40%] w-0.5 h-full bg-accent/10 -rotate-12 origin-top" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
@@ -117,14 +117,14 @@ export default function AboutPage({
       </section>
 
       {/* ── OVERVIEW ─────────────────────────── */}
-      <section className="bg-white py-24">
+      <section className="bg-surface-raised py-24">
         <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <MotionDiv>
             <span className="text-xs font-semibold uppercase tracking-[0.12em] text-accent block mb-3">{t("overviewEyebrow")}</span>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl text-navy mb-6">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl text-content-strong mb-6">
               {t("overviewTitleLine1")}<br />{t("overviewTitleLine2")}
             </h2>
-            <div className="space-y-4 text-brand-gray leading-relaxed">
+            <div className="space-y-4 text-content-muted leading-relaxed">
               <p>{t("overviewP1")}</p>
               <p>{t("overviewP2")}</p>
               <p>{t("overviewP3")}</p>
@@ -132,7 +132,7 @@ export default function AboutPage({
           </MotionDiv>
 
           <MotionDiv delay={0.15}>
-            <div className="bg-navy rounded-2xl overflow-hidden">
+            <div className="bg-surface-inverse rounded-2xl overflow-hidden">
               <div className="grid grid-cols-2 border-b border-white/6 divide-x divide-white/6">
                 {overviewStats.map((s) => (
                   <div key={s.id} className="p-6 odd:border-r odd:border-white/6">
@@ -153,21 +153,21 @@ export default function AboutPage({
       </section>
 
       {/* ── VISION & MISSION ─────────────────── */}
-      <section className="bg-brand-bg py-24">
+      <section className="bg-surface py-24">
         <div className="container">
           <SectionHeader eyebrow={t("visionEyebrow")} title={t("visionTitle")} className="mb-14" />
           <MotionList className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             {VISION_MISSION.map((card) => (
               <MotionItem key={card.id}>
-                <div className={cn("bg-white rounded-2xl p-8 border border-brand-gray-light border-t-[3px] h-full hover:shadow-card-hover transition-shadow", card.isVision ? "border-t-accent" : "border-t-navy")}>
-                  <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center mb-5", card.isVision ? "bg-accent/10 text-accent" : "bg-navy/8 text-navy")}>
+                <div className={cn("bg-surface-raised rounded-2xl p-8 border border-border-subtle border-t-[3px] h-full hover:shadow-card-hover transition-shadow", card.isVision ? "border-t-accent" : "border-t-navy")}>
+                  <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center mb-5", card.isVision ? "bg-accent/10 text-accent" : "bg-content/8 text-content-strong")}>
                     {card.icon}
                   </div>
-                  <span className={cn("text-xs font-semibold uppercase tracking-[0.1em] block mb-3", card.isVision ? "text-accent" : "text-navy")}>
+                  <span className={cn("text-xs font-semibold uppercase tracking-[0.1em] block mb-3", card.isVision ? "text-accent" : "text-content-strong")}>
                     {t(`visionMission.${card.id}.type`)}
                   </span>
-                  <h3 className="font-display font-bold text-xl text-navy mb-3">{t(`visionMission.${card.id}.title`)}</h3>
-                  <p className="text-sm text-brand-gray leading-relaxed">{t(`visionMission.${card.id}.desc`)}</p>
+                  <h3 className="font-display font-bold text-xl text-content-strong mb-3">{t(`visionMission.${card.id}.title`)}</h3>
+                  <p className="text-sm text-content-muted leading-relaxed">{t(`visionMission.${card.id}.desc`)}</p>
                 </div>
               </MotionItem>
             ))}
@@ -176,7 +176,7 @@ export default function AboutPage({
       </section>
 
       {/* ── TEAM ─────────────────────────────── */}
-      <section className="bg-white py-24">
+      <section className="bg-surface-raised py-24">
         <div className="container">
           <SectionHeader
             eyebrow={t("teamEyebrow")}
@@ -187,18 +187,18 @@ export default function AboutPage({
           <MotionList className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-6">
             {TEAM.map((member) => (
               <MotionItem key={member.id}>
-                <div className="bg-brand-bg rounded-2xl p-7 border border-brand-gray-light hover:border-accent transition-colors">
-                  <div className="w-14 h-14 rounded-xl bg-navy/8 flex items-center justify-center text-navy mb-5">
+                <div className="bg-surface rounded-2xl p-7 border border-border-subtle hover:border-accent transition-colors">
+                  <div className="w-14 h-14 rounded-xl bg-content/8 flex items-center justify-center text-content-strong mb-5">
                     {member.icon}
                   </div>
-                  <h3 className="font-display font-bold text-lg text-navy mb-2">{t(`team.${member.id}.role`)}</h3>
-                  <p className="text-sm text-brand-gray leading-relaxed">{t(`team.${member.id}.desc`)}</p>
+                  <h3 className="font-display font-bold text-lg text-content-strong mb-2">{t(`team.${member.id}.role`)}</h3>
+                  <p className="text-sm text-content-muted leading-relaxed">{t(`team.${member.id}.desc`)}</p>
                 </div>
               </MotionItem>
             ))}
           </MotionList>
           <MotionDiv>
-            <div className="bg-navy rounded-xl px-8 py-5 text-center">
+            <div className="bg-surface-inverse rounded-xl px-8 py-5 text-center">
               <p className="text-white/75 text-sm">
                 <strong className="text-white font-semibold">{t("teamNoteStrong")}</strong>{" "}
                 {t("teamNoteRest")}
@@ -209,7 +209,7 @@ export default function AboutPage({
       </section>
 
       {/* ── ROADMAP ──────────────────────────── */}
-      <section className="bg-navy py-24">
+      <section className="bg-surface-inverse py-24">
         <div className="container">
           <SectionHeader eyebrow={t("roadmapEyebrow")} title={t("roadmapTitle")} light className="mb-14" />
           <MotionList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-y sm:divide-y-0 divide-white/8">
@@ -229,14 +229,14 @@ export default function AboutPage({
       </section>
 
       {/* ── CTA ──────────────────────────────── */}
-      <section className="bg-brand-bg py-20">
+      <section className="bg-surface py-20">
         <div className="container">
           <MotionDiv>
             <div className="text-center max-w-lg mx-auto">
-              <h2 className="font-display font-bold text-3xl text-navy mb-4">
+              <h2 className="font-display font-bold text-3xl text-content-strong mb-4">
                 {t("ctaTitle")}
               </h2>
-              <p className="text-brand-gray mb-8">
+              <p className="text-content-muted mb-8">
                 {t("ctaDesc")}
               </p>
               <Button asChild size="lg">

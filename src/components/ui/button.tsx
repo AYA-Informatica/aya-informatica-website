@@ -13,7 +13,7 @@ const buttonVariants = cva(
         outline:
           "border border-white/40 bg-transparent text-white hover:bg-white/10 hover:border-white",
         "outline-dark":
-          "border-[1.5px] border-navy bg-transparent text-navy hover:bg-navy hover:text-white",
+          "border-[1.5px] border-content-strong bg-transparent text-content-strong hover:bg-content-strong hover:text-surface",
         ghost:
           "bg-transparent text-white/70 hover:bg-white/8 hover:text-white",
         link:

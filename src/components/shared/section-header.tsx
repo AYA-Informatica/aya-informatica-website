@@ -33,7 +33,7 @@ export function SectionHeader({
           className={cn(
             "font-display font-bold leading-tight tracking-tight",
             "text-3xl sm:text-4xl lg:text-[2.75rem]",
-            light ? "text-white" : "text-navy"
+            light ? "text-white" : "text-content-strong"
           )}
         >
           {title}
@@ -44,7 +44,7 @@ export function SectionHeader({
           <p
             className={cn(
               "mt-4 text-base leading-relaxed",
-              light ? "text-white/60" : "text-brand-gray"
+              light ? "text-white/60" : "text-content-muted"
             )}
           >
             {description}

@@ -21,25 +21,25 @@ export function PageSkeleton({
   return (
     <SkeletonRegion label={label} className={cn("block", className)}>
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative bg-navy py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
+      <section className="relative bg-surface-inverse py-24 -mt-[var(--navbar-height)] pt-[calc(var(--navbar-height)+6rem)] overflow-hidden">
         <div className="absolute inset-0 navy-grid" aria-hidden="true" />
         <div className="container relative z-10 pt-8">
           {/* eyebrow */}
-          <Skeleton dark className="h-3 w-28 rounded-full" />
+          <Skeleton onInverse className="h-3 w-28 rounded-full" />
           {/* headline, two lines */}
-          <Skeleton dark className="h-12 sm:h-16 w-[min(28rem,85%)] mt-5" />
-          <Skeleton dark className="h-12 sm:h-16 w-[min(20rem,65%)] mt-3" />
+          <Skeleton onInverse className="h-12 sm:h-16 w-[min(28rem,85%)] mt-5" />
+          <Skeleton onInverse className="h-12 sm:h-16 w-[min(20rem,65%)] mt-3" />
           {/* sub-paragraph */}
           <div className="mt-6 flex flex-col gap-2.5 max-w-xl">
-            <Skeleton dark className="h-4 w-full" />
-            <Skeleton dark className="h-4 w-[92%]" />
-            <Skeleton dark className="h-4 w-[70%]" />
+            <Skeleton onInverse className="h-4 w-full" />
+            <Skeleton onInverse className="h-4 w-[92%]" />
+            <Skeleton onInverse className="h-4 w-[70%]" />
           </div>
         </div>
       </section>
 
       {/* ── CONTENT ──────────────────────────── */}
-      <section className="bg-brand-bg py-20 sm:py-24">
+      <section className="bg-surface py-20 sm:py-24">
         <div className="container">
           {/* section header */}
           <div className="flex flex-col items-center gap-3 mb-12">
@@ -58,7 +58,7 @@ export function PageSkeleton({
             {Array.from({ length: cards }).map((_, i) => (
               <div
                 key={i}
-                className="bg-white rounded-2xl p-7 border border-brand-gray-light flex flex-col gap-4"
+                className="bg-surface-raised rounded-2xl p-7 border border-border-subtle flex flex-col gap-4"
               >
                 <Skeleton className="h-12 w-12 rounded-xl" />
                 <Skeleton className="h-5 w-2/3" />

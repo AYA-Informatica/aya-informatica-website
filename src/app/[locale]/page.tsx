@@ -56,7 +56,7 @@ export default function HomePage({
           HERO
       ════════════════════════════════════════ */}
       <section
-        className="relative min-h-screen -mt-[var(--navbar-height)] pt-[var(--navbar-height)] bg-navy flex flex-col justify-center overflow-hidden"
+        className="relative min-h-screen -mt-[var(--navbar-height)] pt-[var(--navbar-height)] bg-surface-inverse flex flex-col justify-center overflow-hidden"
         aria-label={t("heroAriaLabel")}
       >
         {/* Background grid */}
@@ -127,17 +127,17 @@ export default function HomePage({
       {/* ════════════════════════════════════════
           STATS STRIP
       ════════════════════════════════════════ */}
-      <section className="bg-white border-b border-brand-gray-light" aria-label={t("statsAriaLabel")}>
+      <section className="bg-surface-raised border-b border-border-subtle" aria-label={t("statsAriaLabel")}>
         <div className="container py-10">
           <MotionList className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat) => (
               <MotionItem key={stat.id} className="flex flex-col items-center text-center gap-1 py-3 px-2">
-                <span className="font-display font-extrabold text-navy leading-none"
+                <span className="font-display font-extrabold text-content-strong leading-none"
                   style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
                 >
                   {stat.value}
                 </span>
-                <span className="text-[0.7rem] text-brand-gray uppercase tracking-wider font-medium">
+                <span className="text-[0.7rem] text-content-muted uppercase tracking-wider font-medium">
                   {stat.label}
                 </span>
               </MotionItem>
@@ -149,7 +149,7 @@ export default function HomePage({
       {/* ════════════════════════════════════════
           THREE PILLARS
       ════════════════════════════════════════ */}
-      <section className="bg-brand-bg py-24" aria-labelledby="pillars-heading">
+      <section className="bg-surface py-24" aria-labelledby="pillars-heading">
         <div className="container">
           <SectionHeader
             eyebrow={t("pillarsEyebrow")}
@@ -163,17 +163,17 @@ export default function HomePage({
               <MotionItem key={p.id}>
                 <Link
                   href={p.href}
-                  className="group block bg-white rounded-2xl p-7 border border-brand-gray-light
+                  className="group block bg-surface-raised rounded-2xl p-7 border border-border-subtle
                     hover:border-accent hover:shadow-card-hover hover:-translate-y-1
                     transition-all duration-300 h-full"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-navy/8 flex items-center justify-center text-navy
+                  <div className="w-12 h-12 rounded-xl bg-content/8 flex items-center justify-center text-content-strong
                     group-hover:bg-accent/12 group-hover:text-accent transition-colors duration-200 mb-5"
                   >
                     {PILLAR_ICONS[p.id]}
                   </div>
-                  <h3 className="font-display font-bold text-lg text-navy mb-2">{p.title}</h3>
-                  <p className="text-sm text-brand-gray leading-relaxed mb-4">{p.desc}</p>
+                  <h3 className="font-display font-bold text-lg text-content-strong mb-2">{p.title}</h3>
+                  <p className="text-sm text-content-muted leading-relaxed mb-4">{p.desc}</p>
                   <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent group-hover:gap-2 transition-all">
                     {t("learnMore")} <ArrowRight size={14} />
                   </span>
@@ -187,7 +187,7 @@ export default function HomePage({
       {/* ════════════════════════════════════════
           PRODUCTS PREVIEW
       ════════════════════════════════════════ */}
-      <section className="bg-navy py-24" aria-labelledby="products-preview-heading">
+      <section className="bg-surface-inverse py-24" aria-labelledby="products-preview-heading">
         <div className="container">
           <SectionHeader
             eyebrow={t("productsEyebrow")}
@@ -235,7 +235,7 @@ export default function HomePage({
                     className={cn(
                       "self-start",
                       product.status === "active" &&
-                        "bg-white text-accent border-transparent hover:bg-white/90 hover:text-accent shadow-none"
+                        "bg-surface-raised text-accent border-transparent hover:bg-white/90 hover:text-accent shadow-none"
                     )}
                     size="sm"
                   >
@@ -251,7 +251,7 @@ export default function HomePage({
       {/* ════════════════════════════════════════
           APPROACH
       ════════════════════════════════════════ */}
-      <section className="bg-brand-bg py-24" aria-labelledby="approach-heading">
+      <section className="bg-surface py-24" aria-labelledby="approach-heading">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16 items-start">
             <SectionHeader
@@ -262,12 +262,12 @@ export default function HomePage({
             <MotionList className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {approach.map((item) => (
                 <MotionItem key={item.id}>
-                  <div className="bg-white rounded-xl p-6 border border-brand-gray-light hover:border-accent transition-colors duration-200">
-                    <span className="font-display text-3xl font-extrabold text-navy/8 leading-none block mb-3">
+                  <div className="bg-surface-raised rounded-xl p-6 border border-border-subtle hover:border-accent transition-colors duration-200">
+                    <span className="font-display text-3xl font-extrabold text-content-strong/8 leading-none block mb-3">
                       {item.num}
                     </span>
-                    <h4 className="font-display font-bold text-base text-navy mb-2">{item.title}</h4>
-                    <p className="text-sm text-brand-gray leading-relaxed">{item.desc}</p>
+                    <h4 className="font-display font-bold text-base text-content-strong mb-2">{item.title}</h4>
+                    <p className="text-sm text-content-muted leading-relaxed">{item.desc}</p>
                   </div>
                 </MotionItem>
               ))}
@@ -279,7 +279,7 @@ export default function HomePage({
       {/* ════════════════════════════════════════
           TESTIMONIALS
       ════════════════════════════════════════ */}
-      <section className="bg-navy py-24" aria-labelledby="testimonials-heading">
+      <section className="bg-surface-inverse py-24" aria-labelledby="testimonials-heading">
         <div className="container">
           <SectionHeader
             eyebrow={t("testimonialsEyebrow")}
@@ -311,15 +311,15 @@ export default function HomePage({
       {/* ════════════════════════════════════════
           CTA BANNER
       ════════════════════════════════════════ */}
-      <section className="bg-white border-t border-brand-gray-light py-20">
+      <section className="bg-surface-raised border-t border-border-subtle py-20">
         <div className="container">
           <MotionDiv>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
               <div>
-                <h2 className="font-display font-bold text-2xl sm:text-3xl text-navy mb-2">
+                <h2 className="font-display font-bold text-2xl sm:text-3xl text-content-strong mb-2">
                   {t("ctaTitle")}
                 </h2>
-                <p className="text-brand-gray">
+                <p className="text-content-muted">
                   {t("ctaDesc")}
                 </p>
               </div>

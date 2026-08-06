@@ -1,6 +1,3 @@
-/* Legal pages (Privacy Policy, Terms) */
-@import "../styles/legal.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -59,11 +56,11 @@
   }
 
   body {
-    @apply bg-brand-bg text-brand-dark font-body antialiased;
+    @apply bg-surface text-content font-body antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold tracking-tight text-navy;
+    @apply font-display font-bold tracking-tight text-content-strong;
   }
 
   ::selection {
@@ -93,22 +90,8 @@
 }
 
 @layer utilities {
-  /* Slightly transparent navy for nav */
-  .bg-navy\/97 {
-    background-color: rgba(0, 21, 41, 0.97);
-  }
-  .bg-white\/7 {
-    background-color: rgba(255, 255, 255, 0.07);
-  }
-  .bg-white\/8 {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-  .border-white\/8 {
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-  .border-white\/12 {
-    border-color: rgba(255, 255, 255, 0.12);
-  }
+  /* Grid texture for the inverse (navy) bands. White at very low alpha, so it
+     reads the same whichever theme is active — those bands stay dark in both. */
   .navy-grid {
     background-image:
       linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),

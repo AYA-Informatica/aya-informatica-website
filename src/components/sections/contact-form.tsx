@@ -116,9 +116,9 @@ export function ContactForm() {
   }
 
   return (
-    <div id="contact-form" className="bg-white rounded-2xl border border-brand-gray-light p-5 sm:p-7 md:p-9 scroll-mt-28">
-      <h3 className="font-display font-bold text-xl text-navy mb-1">{t("formTitle")}</h3>
-      <p className="text-xs text-brand-gray mb-7">
+    <div id="contact-form" className="bg-surface-raised rounded-2xl border border-border-subtle p-5 sm:p-7 md:p-9 scroll-mt-28">
+      <h3 className="font-display font-bold text-xl text-content-strong mb-1">{t("formTitle")}</h3>
+      <p className="text-xs text-content-muted mb-7">
         <span className="text-accent">*</span> {t("requiredFields")}
       </p>
 
@@ -269,7 +269,7 @@ export function ContactForm() {
               </>
             )}
           </Button>
-          <p className="text-xs text-brand-gray max-w-[220px] leading-relaxed">
+          <p className="text-xs text-content-muted max-w-[220px] leading-relaxed">
             {t("responseTime")}
           </p>
         </div>
