@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown, Download, Smartphone } from "lucide-react"
@@ -107,20 +106,6 @@ export function DownloadAppMenu({
                 <p className="text-xs text-content-muted">{t("downloadDirectSub")}</p>
               </div>
             </a>
-
-            {/* QR code — same link, for scanning from a desktop */}
-            <div className="flex items-center gap-3 rounded-lg p-3">
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-white p-1.5">
-                <Image
-                  src="/ray-download-qr.svg"
-                  alt=""
-                  width={56}
-                  height={56}
-                  className="h-full w-full"
-                />
-              </div>
-              <p className="text-xs text-content-muted leading-relaxed">{t("downloadQrLabel")}</p>
-            </div>
 
             <div className="my-2 h-px bg-border-subtle" aria-hidden="true" />
 

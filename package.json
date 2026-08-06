@@ -13,8 +13,7 @@
     "test:coverage": "vitest run --coverage",
     "postbuild": "node scripts/check-prerender.mjs",
     "verify:prerender": "node scripts/check-prerender.mjs",
-    "screenshot": "node scripts/screenshot.mjs",
-    "generate-qr": "node scripts/generate-qr.mjs"
+    "screenshot": "node scripts/screenshot.mjs"
   },
   "overrides": {
     "postcss": "^8.5.25",
@@ -57,7 +56,6 @@
   "devDependencies": {
     "@types/node": "^20",
     "@types/nodemailer": "^8.0.1",
-    "@types/qrcode": "^1.5.6",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@vitest/coverage-v8": "^3.2.7",
@@ -66,7 +64,6 @@
     "eslint-config-next": "^16.2.12",
     "playwright": "^1.62.1",
     "postcss": "^8.5.25",
-    "qrcode": "^1.5.4",
     "sharp": "^0.35.3",
     "tailwindcss": "^3.4.6",
     "tailwindcss-animate": "^1.0.7",
