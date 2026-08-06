@@ -1,12 +1,12 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 import { useSearchParams } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { motion, AnimatePresence } from "framer-motion"
-import { Loader2, Send } from "lucide-react"
+import { Check, Copy, Loader2, Mail, Send, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -27,6 +27,15 @@ import {
 import { CONTACT_SUBJECTS } from "@/lib/constants"
 import { useContactSubjects } from "@/lib/content"
 import { useToastStore } from "@/store/toast"
+import {
+  buildMailDraft,
+  draftAsText,
+  gmailUrl,
+  isDraftTooLongForMailto,
+  mailtoUrl,
+  outlookUrl,
+  type MailDraft,
+} from "@/lib/compose-mail"
 import { cn } from "@/lib/utils"
 
 type SubmitStatus = "idle" | "loading" | "error"
@@ -72,6 +81,45 @@ export function ContactForm() {
     return () => window.removeEventListener("select-subject", handler)
   }, [setValue])
 
+  // When the server cannot take the message, the visitor should not have to
+  // retype it. The draft below is handed to their own mail client instead.
+  const [draft, setDraft] = useState<MailDraft | null>(null)
+  const [copied, setCopied] = useState(false)
+
+  const offerMailFallback = (data: ContactSchema) => {
+    setDraft(
+      buildMailDraft(
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          subjectLabel:
+            contactSubjects.find((s) => s.value === data.subject)?.label ?? data.subject,
+          message: data.message,
+        },
+        {
+          name: t("draftName"),
+          email: t("draftEmail"),
+          phone: t("draftPhone"),
+          topic: t("draftTopic"),
+          sentFrom: t("draftSentFrom"),
+        }
+      )
+    )
+    setCopied(false)
+  }
+
+  const copyDraft = async () => {
+    if (!draft) return
+    try {
+      await navigator.clipboard.writeText(draftAsText(draft))
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2500)
+    } catch {
+      // Clipboard access can be refused; the draft is still on screen to select.
+    }
+  }
+
   const onSubmit = async (data: ContactSchema) => {
     try {
       const honeyField = document.querySelector<HTMLInputElement>('input[name="_honey"]')
@@ -92,6 +140,7 @@ export function ContactForm() {
       resetTurnstile()
 
       if (res.ok) {
+        setDraft(null)
         reset()
         toast({
           title: t("successTitle"),
@@ -99,19 +148,14 @@ export function ContactForm() {
           variant: "success",
         })
       } else {
-        const body = await res.json().catch(() => ({}))
-        toast({
-          title: t("errorTitle"),
-          description: body?.error ?? t("errorFallbackDesc"),
-          variant: "destructive",
-        })
+        // Deliberately no error toast. The panel below says the same thing and
+        // carries the way out of it; a red "something went wrong" on top of it
+        // is alarming about a problem the visitor can already solve. The server
+        // reason (CORS, rate limit, SMTP) is for the logs, not for them.
+        offerMailFallback(data)
       }
     } catch {
-      toast({
-        title: t("networkErrorTitle"),
-        description: t("networkErrorDesc"),
-        variant: "destructive",
-      })
+      offerMailFallback(data)
     }
   }
 
@@ -273,6 +317,89 @@ export function ContactForm() {
             {t("responseTime")}
           </p>
         </div>
+
+        {/* Mail-client hand-off.
+            Appears only when the send failed. A toast would carry the apology
+            and then vanish with the message still stranded in the form, so this
+            is inline and stays until it is used or dismissed. */}
+        <AnimatePresence>
+          {draft && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden"
+            >
+              <div
+                role="group"
+                aria-labelledby="mail-fallback-title"
+                className="rounded-xl border border-accent/30 bg-accent/5 p-4 sm:p-5"
+              >
+                <div className="flex items-start gap-3">
+                  <Mail size={18} className="text-accent shrink-0 mt-0.5" aria-hidden="true" />
+                  <div className="min-w-0 flex-1">
+                    <p
+                      id="mail-fallback-title"
+                      className="text-sm font-semibold text-content-strong"
+                    >
+                      {t("fallbackTitle")}
+                    </p>
+                    <p className="text-xs text-content-muted leading-relaxed mt-1">
+                      {t("fallbackDesc")}
+                    </p>
+                    {isDraftTooLongForMailto(draft) && (
+                      <p className="text-xs text-content leading-relaxed mt-2 font-medium">
+                        {t("fallbackTooLong")}
+                      </p>
+                    )}
+
+                    <div className="flex flex-wrap gap-2 mt-3.5">
+                      {/* Resolves to whatever the device already uses for mail —
+                          Gmail on Android, Mail on iOS, Outlook on most desks. */}
+                      <Button asChild size="sm">
+                        <a href={mailtoUrl(draft)}>
+                          <Mail size={14} />
+                          {t("fallbackMailApp")}
+                        </a>
+                      </Button>
+                      {/* Named providers, for a desktop with no mail app set up. */}
+                      <Button asChild size="sm" variant="outline-dark">
+                        <a href={gmailUrl(draft)} target="_blank" rel="noopener noreferrer">
+                          {t("fallbackGmail")}
+                        </a>
+                      </Button>
+                      <Button asChild size="sm" variant="outline-dark">
+                        <a href={outlookUrl(draft)} target="_blank" rel="noopener noreferrer">
+                          {t("fallbackOutlook")}
+                        </a>
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="outline-dark"
+                        onClick={copyDraft}
+                      >
+                        {copied ? <Check size={14} /> : <Copy size={14} />}
+                        {copied ? t("fallbackCopied") : t("fallbackCopy")}
+                      </Button>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setDraft(null)}
+                    aria-label={t("fallbackDismiss")}
+                    className="shrink-0 rounded p-1 text-content-muted hover:text-content-strong
+                      hover:bg-content/8 transition-colors"
+                  >
+                    <X size={15} aria-hidden="true" />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </form>
     </div>
   )

@@ -7,6 +7,14 @@ import { routing } from "@/i18n/routing"
 // Security headers are defined once in src/lib/security-headers.js and shared
 // with next.config.js so the two cannot drift apart.
 import { SECURITY_HEADERS } from "@/lib/security-headers"
+import {
+  exceedsBodyLimit,
+  isAllowedMethod,
+  isProbePath,
+  resolveClientIp,
+  tierFor,
+  type RateTier,
+} from "@/lib/traffic-guard"
 
 // ─────────────────────────────────────────────────────────────
 // SECURITY PROXY
@@ -21,31 +29,22 @@ import { SECURITY_HEADERS } from "@/lib/security-headers"
 
 const hasRedis = !!(process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN)
 
-let contactLimiter: Ratelimit | null = null
-let defaultLimiter: Ratelimit | null = null
+const limiters = new Map<string, Ratelimit>()
 
-function getContactLimiter() {
-  if (!contactLimiter && hasRedis) {
-    contactLimiter = new Ratelimit({
+/** One Upstash limiter per tier, created on first use and reused after. */
+function getLimiter(tier: RateTier): Ratelimit | null {
+  if (!hasRedis) return null
+  let limiter = limiters.get(tier.name)
+  if (!limiter) {
+    limiter = new Ratelimit({
       redis: Redis.fromEnv(),
-      limiter: Ratelimit.slidingWindow(5, "1 m"),
+      limiter: Ratelimit.slidingWindow(tier.max, tier.window),
       analytics: true,
-      prefix: "aya-rl-contact",
+      prefix: `aya-rl-${tier.name}`,
     })
+    limiters.set(tier.name, limiter)
   }
-  return contactLimiter
-}
-
-function getDefaultLimiter() {
-  if (!defaultLimiter && hasRedis) {
-    defaultLimiter = new Ratelimit({
-      redis: Redis.fromEnv(),
-      limiter: Ratelimit.slidingWindow(60, "1 m"),
-      analytics: true,
-      prefix: "aya-rl-default",
-    })
-  }
-  return defaultLimiter
+  return limiter
 }
 
 // ── In-memory fallback rate limiter (development) ────────────
@@ -63,11 +62,14 @@ function cleanupExpired() {
   })
 }
 
-function isRateLimitedFallback(ip: string, pathname: string): boolean {
+function isRateLimitedFallback(ip: string, tier: RateTier): boolean {
   cleanupExpired()
   const now = Date.now()
-  const max = pathname === "/api/contact" ? 5 : 60
-  const key = `${ip}:${pathname}`
+  const max = tier.max
+  // Keyed by tier, not by path. Keying on the full path handed a crawler a
+  // fresh budget for every distinct URL it invented, which made the limit
+  // meaningless for exactly the traffic it exists to stop.
+  const key = `${ip}:${tier.name}`
   const entry = rateLimitMap.get(key)
 
   if (!entry || now > entry.resetAt) {
@@ -123,36 +125,47 @@ const STATE_CHANGING_METHODS = new Set(["POST", "PUT", "PATCH", "DELETE"])
 
 // ── Rate limit check (unified) ───────────────────────────────
 
-async function checkRateLimit(ip: string, pathname: string): Promise<NextResponse | null> {
-  const isContact = pathname === "/api/contact"
-  const limiter = isContact ? getContactLimiter() : getDefaultLimiter()
+/**
+ * Applies the tier for this path.
+ *
+ * A page hitting the limit gets HTML-friendly plain text rather than a JSON
+ * body, since a browser navigating to a page will render whatever comes back.
+ */
+async function checkRateLimit(
+  ip: string,
+  pathname: string,
+  isApiRoute: boolean,
+): Promise<NextResponse | null> {
+  const tier = tierFor(pathname)
+  const limiter = getLimiter(tier)
+
+  let exceeded: boolean
+  let headers: Record<string, string> = { "Retry-After": "60" }
 
   if (limiter) {
-    const { success, limit, remaining, reset } = await limiter.limit(ip)
-    if (!success) {
-      return NextResponse.json(
-        { error: "Too many requests. Please try again later." },
-        {
-          status: 429,
-          headers: {
-            "Retry-After": "60",
-            "X-RateLimit-Limit": String(limit),
-            "X-RateLimit-Remaining": String(remaining),
-            "X-RateLimit-Reset": String(reset),
-          },
-        },
-      )
+    const { success, limit, remaining, reset } = await limiter.limit(`${tier.name}:${ip}`)
+    exceeded = !success
+    headers = {
+      ...headers,
+      "X-RateLimit-Limit": String(limit),
+      "X-RateLimit-Remaining": String(remaining),
+      "X-RateLimit-Reset": String(reset),
     }
-    return null
+  } else {
+    exceeded = isRateLimitedFallback(ip, tier)
   }
 
-  if (isRateLimitedFallback(ip, pathname)) {
-    return NextResponse.json(
-      { error: "Too many requests. Please try again later." },
-      { status: 429, headers: { "Retry-After": "60" } },
-    )
-  }
-  return null
+  if (!exceeded) return null
+
+  return isApiRoute
+    ? NextResponse.json({ error: "Too many requests. Please try again later." }, {
+        status: 429,
+        headers,
+      })
+    : new NextResponse("Too many requests. Please try again in a minute.", {
+        status: 429,
+        headers: { ...headers, "Content-Type": "text/plain; charset=utf-8" },
+      })
 }
 
 // ── Security headers ─────────────────────────────────────────
@@ -186,8 +199,36 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   if (SKIP_PATTERN.test(pathname)) return NextResponse.next()
 
+  // ── Cheap rejections first ─────────────────────────────────
+  // Each of these is a string comparison, and each one that fires saves the
+  // work of everything below it. Ordering matters: a scanner sweeping for
+  // /wp-login.php should cost a prefix match, not a rate-limit round trip.
+
+  // 404 rather than 403: a scanner learns nothing from "not found", whereas
+  // "forbidden" confirms something is there to forbid.
+  if (isProbePath(pathname)) {
+    return new NextResponse(null, { status: 404 })
+  }
+
+  if (!isAllowedMethod(request.method)) {
+    return new NextResponse(null, {
+      status: 405,
+      headers: { Allow: "GET, HEAD, POST, OPTIONS" },
+    })
+  }
+
   const origin = request.headers.get("origin")
   const isApiRoute = pathname.startsWith("/api/")
+
+  // OPTIONS on a page route. Left to fall through, next-intl answers it with a
+  // 400, which is a confusing reply to a legitimate question about what a URL
+  // supports — and one that uptime monitors do ask.
+  if (request.method === "OPTIONS" && !isApiRoute) {
+    return new NextResponse(null, {
+      status: 204,
+      headers: { Allow: "GET, HEAD, OPTIONS" },
+    })
+  }
 
   if (isApiRoute) {
     const allowedOrigin = getCorsOrigin(origin)
@@ -201,14 +242,18 @@ export async function proxy(request: NextRequest) {
       return rejectOrigin()
     }
 
-    const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-      request.headers.get("x-real-ip") ??
-      "unknown"
-
-    const rateLimitResponse = await checkRateLimit(ip, pathname)
-    if (rateLimitResponse) return rateLimitResponse
+    // Refused on the declared length, before the body is read at all.
+    if (exceedsBodyLimit(request.headers)) {
+      return NextResponse.json({ error: "Payload too large" }, { status: 413 })
+    }
   }
+
+  // ── Rate limiting, now on every route rather than just the API ──
+  // Page routes were previously unlimited, so anything that was not an API call
+  // could be requested as fast as the network allowed.
+  const ip = resolveClientIp(request.headers)
+  const rateLimitResponse = await checkRateLimit(ip, pathname, isApiRoute)
+  if (rateLimitResponse) return rateLimitResponse
 
   // Locale negotiation runs only after the API guards above, so rate limiting
   // and CORS still short-circuit before any i18n work happens. next-intl may
@@ -230,4 +275,22 @@ export async function proxy(request: NextRequest) {
   }
 
   return response
+}
+
+/**
+ * Which requests reach this proxy at all.
+ *
+ * Without a matcher, Next runs it for every request — including each static
+ * chunk, font and image. SKIP_PATTERN then returns immediately, but the
+ * invocation has already happened, and on Vercel an invocation is billed and
+ * adds latency whether or not it does anything. Excluding static assets here
+ * means a flood of asset requests never wakes this code at all.
+ *
+ * Documents, API routes, /robots.txt and /sitemap.xml are deliberately still
+ * matched: they need the security headers, and the first two need the guards.
+ */
+export const config = {
+  matcher: [
+    "/((?!_next/static|_next/image|.*\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|woff|woff2|ttf|otf|mp4|webm)$).*)",
+  ],
 }

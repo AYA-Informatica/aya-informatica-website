@@ -214,6 +214,16 @@ Outlook (`smtp-mail.outlook.com`), Zoho (`smtp.zoho.com`) and Resend
 
 See `.env.local.example` for the full annotated list.
 
+### When the site cannot send
+
+If the endpoint fails for any reason — SMTP unconfigured, rate limited, network
+down — the form does not just apologise. It builds the submission into a
+pre-filled draft and offers to open it in the visitor's own mail application,
+Gmail or Outlook, or to copy it. Nothing they typed is lost, and the site is
+usable as a contact channel before SMTP is configured at all.
+
+See `src/lib/compose-mail.ts`.
+
 ### Protections in place
 
 Honeypot field, IP rate limiting (5/min on the contact endpoint), Zod
@@ -221,16 +231,29 @@ validation shared by client and server, HTML escaping and CR/LF stripping in the
 email templates, an Origin requirement on state-changing requests, and optional
 Turnstile.
 
+## Security
+
+Rate limiting, traffic filtering, the security headers and the Cloudflare
+configuration that sits in front of all of it are documented in
+[SECURITY.md](SECURITY.md), including a runbook for an attack in progress.
+
+One thing worth stating here too: the application layer cannot stop a DDoS.
+`src/proxy.ts` decides what to *answer*; by the time it runs, the connection
+and the function invocation have already been paid for. Volumetric defence has
+to sit in front of the origin.
+
 ## Testing
 
 ```bash
 npm test
 ```
 
-95 tests covering the Zod schema (including sanitization ordering), the mailer
+178 tests covering the Zod schema (including sanitization ordering), the mailer
 (HTML escaping, header injection, transport pooling), Turnstile (timeouts and
 fail-open behaviour), the contact route handler, the CSP, message-catalogue
-parity, and the theme tokens.
+parity, the theme tokens, the traffic guards (client-IP resolution, probe
+paths, method and body limits, rate-limit tiers) and the mail-composer
+fallback.
 
 ## Deployment
 
