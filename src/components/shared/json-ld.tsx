@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayainformatica.tech"
+import { BASE_URL } from "@/lib/urls"
 
 interface BreadcrumbItem {
   name: string
