@@ -27,7 +27,7 @@ const SLIDES = [
     src: "/ray/screen-browse.webp",
     alt: "RAY Markets — browse categories",
     label: "Browse & Discover",
-    sub: "10 categories",
+    sub: "15 categories",
     device: "mobile" as const,
     w: 420,
     h: 933,
