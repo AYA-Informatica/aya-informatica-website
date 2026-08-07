@@ -14,7 +14,8 @@
     "postbuild": "node scripts/check-prerender.mjs",
     "verify:prerender": "node scripts/check-prerender.mjs",
     "screenshot": "node scripts/screenshot.mjs",
-    "generate-icons": "node scripts/generate-icons.mjs"
+    "generate-icons": "node scripts/generate-icons.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "overrides": {
     "postcss": "^8.5.25",
